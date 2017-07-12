@@ -3,12 +3,14 @@ require 'pugin/helpers/controller_helpers'
 require 'request_helper'
 require 'parliament_helper'
 require 'format_helper'
+require 'v_card_helper'
 
 class ApplicationController < ActionController::Base
   include Pugin::Helpers::ControllerHelpers
   include RequestHelper
   include ParliamentHelper
   include FormatHelper
+  include VCardHelper
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
