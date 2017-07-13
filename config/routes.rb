@@ -16,6 +16,17 @@ Rails.application.routes.draw do
   get '/houses/:house_id/parties/:party_id', to: 'houses/parties#show'
   get '/houses/lookup', to: 'houses#lookup'
 
+  get '/parliaments/:parliament_id', to: 'parliaments#show', as: 'parliament'
+  get '/parliaments/:parliament_id/next', to: 'parliaments#next_parliament'
+  get '/parliaments/:parliament_id/previous', to: 'parliaments#previous_parliament'
+  get '/parliaments/next', to: 'parliaments#next'
+  get '/parliaments/previous', to: 'parliaments#previous'
+  get '/parliaments/current', to: 'parliaments#current'
+  get '/parliaments/lookup', to: 'parliaments#lookup'
+  get '/parliaments/:parliament_id/parties/:party_id', to: 'parliaments/parties#show'
+  get '/parliaments/:parliament_id/houses/:house_id', to: 'parliaments/houses#show'
+  get '/parliaments/:parliament_id/houses/:house_id/parties/:party_id', to: 'parliaments/houses/parties#show'
+
   # External urls
 
   get '/constituencies/current', to: redirect('http://localhost:3030/constituencies/current'), as: 'constituencies_current'
@@ -31,4 +42,12 @@ Rails.application.routes.draw do
 
   get '/parties/:party_id', to: redirect('http://localhost:3030/parties/:party_id'), as: 'party'
 
+  get '/parliaments', to: redirect('http://localhost:3030/parliaments'), as: 'parliaments'
+  get '/parliaments/:parliament_id/members', to: redirect('http://localhost:3030/parliaments/:parliament_id/members'), as: 'parliament_members'
+  get '/parliaments/:parliament_id/parties', to: redirect('http://localhost:3030/parliaments/:parliament_id/parties'), as: 'parliament_parties'
+  get '/parliaments/:parliament_id/constituencies', to: redirect('http://localhost:3030/parliaments/:parliament_id/constituencies'), as: 'parliament_constituencies'
+  get '/parliaments/:parliament_id/parties/:party_id/members', to: redirect('http://localhost:3030/parliaments/:parliament_id/parties/:party_id/members'), as: 'parliament_party_members'
+  get '/parliaments/:parliament_id/houses/:house_id/members', to: redirect('http://localhost:3030/parliaments/:parliament_id/houses/:house_id/members'), as: 'parliament_house_members'
+  get '/parliaments/:parliament_id/houses/:house_id/parties', to: redirect('http://localhost:3030/parliaments/:parliament_id/houses/:house_id/parties'), as: 'parliament_house_parties'
+  get '/parliaments/:parliament_id/houses/:house_id/parties/:party_id/members', to: redirect('http://localhost:3030/parliaments/:parliament_id/houses/:house_id/parties/:party_id/members'), as: 'parliament_house_party_members'
 end
