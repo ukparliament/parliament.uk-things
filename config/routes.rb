@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get '/parliaments/:parliament_id/houses/:house_id', to: 'parliaments/houses#show'
   get '/parliaments/:parliament_id/houses/:house_id/parties/:party_id', to: 'parliaments/houses/parties#show'
 
+  get '/parties/:party_id', to: 'parties#show'
+  get '/parties/lookup', to: 'parties#lookup'
+
   # External urls
 
   get '/constituencies/current', to: redirect('http://localhost:3030/constituencies/current'), as: 'constituencies_current'
@@ -41,6 +44,8 @@ Rails.application.routes.draw do
   get '/mps', to: redirect('http://localhost:3030/mps'), as: 'mps'
 
   get '/parties/:party_id', to: redirect('http://localhost:3030/parties/:party_id'), as: 'party'
+  get '/parties/:party_id/members/current', to: redirect('http://localhost:3030/parties/:party_id/members/current'), as: 'party_members_current'
+  get '/parties/:party_id/members', to: redirect('http://localhost:3030/parties/:party_id/members'), as: 'party_members'
 
   get '/parliaments', to: redirect('http://localhost:3030/parliaments'), as: 'parliaments'
   get '/parliaments/:parliament_id/members', to: redirect('http://localhost:3030/parliaments/:parliament_id/members'), as: 'parliament_members'

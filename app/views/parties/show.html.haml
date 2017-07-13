@@ -1,0 +1,22 @@
+#content.section--primary
+  .container
+    %h1= title(@party.name) if @party.name.present?
+
+- if @party.current?
+  %section
+    .container
+      %ul.list--box
+        %li
+          .list--details
+            %h2= link_to("#{t('current').capitalize} #{t('member_plural')}", party_members_current_path(@party.graph_id))
+            %p= "#{t('view_all').capitalize} #{t('current')} #{@party.name} #{t('member_plural')}"
+
+- else
+  %section
+    .container
+      .highlight--box.highlight--primary
+        %p= t('.party_no_current_members')
+      %ul.list--box
+        %li
+          .list--details
+            %h2= link_to("#{t('view_all').capitalize} #{t('former')} #{@party.name} #{t('member_plural')}", party_members_path(@party.graph_id))
