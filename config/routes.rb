@@ -1,33 +1,33 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/constituencies/:constituency_id', to: 'constituencies#show', as: 'constituency'
+  get '/constituencies/:constituency_id', to: 'constituencies#show', as: 'constituency', constituency_id: /\w{8}/
   get '/constituencies/:constituency_id/map', to: 'constituencies#map', as: 'constituency_map'
   get '/constituencies/lookup', to: 'constituencies#lookup'
   post '/constituencies/postcode_lookup', to: 'constituencies#postcode_lookup'
 
-  get '/people/:person_id', to: 'people#show', as: 'person'
+  get '/people/:person_id', to: 'people#show', as: 'person', person_id: /\w{8}/
   get '/people/lookup', to: 'people#lookup'
   post '/people/postcode_lookup', to: 'people#postcode_lookup'
 
-  get '/contact_points/:contact_point_id', to: 'contact_points#show'
+  get '/contact-points/:contact_point_id', to: 'contact_points#show'
 
-  get '/houses/:house_id', to: 'houses#show', as: 'house'
+  get '/houses/:house_id', to: 'houses#show', as: 'house', house_id: /\w{8}/
   get '/houses/:house_id/parties/:party_id', to: 'houses/parties#show'
   get '/houses/lookup', to: 'houses#lookup'
 
-  get '/parliaments/:parliament_id', to: 'parliaments#show', as: 'parliament'
-  get '/parliaments/:parliament_id/next', to: 'parliaments#next_parliament'
-  get '/parliaments/:parliament_id/previous', to: 'parliaments#previous_parliament'
   get '/parliaments/next', to: 'parliaments#next'
   get '/parliaments/previous', to: 'parliaments#previous'
   get '/parliaments/current', to: 'parliaments#current'
   get '/parliaments/lookup', to: 'parliaments#lookup'
+  get '/parliaments/:parliament_id', to: 'parliaments#show', as: 'parliament', parliament_id: /\w{8}/
+  get '/parliaments/:parliament_id/next', to: 'parliaments#next_parliament'
+  get '/parliaments/:parliament_id/previous', to: 'parliaments#previous_parliament'
   get '/parliaments/:parliament_id/parties/:party_id', to: 'parliaments/parties#show'
   get '/parliaments/:parliament_id/houses/:house_id', to: 'parliaments/houses#show'
   get '/parliaments/:parliament_id/houses/:house_id/parties/:party_id', to: 'parliaments/houses/parties#show'
 
-  get '/parties/:party_id', to: 'parties#show'
+  get '/parties/:party_id', to: 'parties#show', party_id: /\w{8}/
   get '/parties/lookup', to: 'parties#lookup'
 
   # External urls
