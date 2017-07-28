@@ -114,7 +114,7 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
           end
 
           it 'will not render current incumbency start date' do
-            expect(rendered).to match("#{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present")
+            expect(rendered).not_to match("#{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present")
           end
         end
       end

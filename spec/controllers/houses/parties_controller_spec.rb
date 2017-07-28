@@ -28,7 +28,7 @@ RSpec.describe Houses::PartiesController, vcr: true do
         house_id = 'KL2k1BGP'
         party_id = 'P6LNyUn5'
 
-        expect{ get :show, params: { house_id: house_id, party_id: party_id } }.to raise_error(ActionController::RoutingError, 'Invalid party id')
+        expect{ get :show, params: { house_id: house_id, party_id: party_id } }.to raise_error(ActionController::RoutingError, 'Invalid party ID')
       end
     end
   end
