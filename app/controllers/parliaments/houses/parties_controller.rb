@@ -7,7 +7,6 @@ module Parliaments
         show:  proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.parliaments(params[:parliament_id]).houses(params[:house_id]).parties(params[:party_id]) }
       }.freeze
 
-
       def show
         @parliament, @house, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
           @request,

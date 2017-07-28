@@ -17,7 +17,7 @@ module Houses
       @party = @party.first
       @current_person_type, @other_person_type = Parliament::Utils::Helpers::HousesHelper.person_type_string(@house)
 
-      raise ActionController::RoutingError, 'Invalid party id' if @party.nil?
+      raise ActionController::RoutingError, 'Invalid party ID' if @party.nil?
     end
   end
 end

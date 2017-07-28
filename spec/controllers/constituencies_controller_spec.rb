@@ -29,7 +29,7 @@ RSpec.describe ConstituenciesController, vcr: true do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'assigns @constituency, @seat_incumbencies and @current_incumbency' do
+    it 'assigns @constituency, @seat_incumbencies, @current_incumbency and @party' do
       expect(assigns(:constituency)).to be_a(Grom::Node)
       expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
 
@@ -41,6 +41,9 @@ RSpec.describe ConstituenciesController, vcr: true do
       expect(assigns(:current_incumbency)).to be_a(Grom::Node)
       expect(assigns(:current_incumbency).type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
       expect(assigns(:current_incumbency).current?).to be(true)
+
+      expect(assigns(:party)).to be_a(Grom::Node)
+      expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
     end
 
     it 'assigns @seat_incumbencies in reverse chronological order' do
