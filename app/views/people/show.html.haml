@@ -24,7 +24,10 @@
     - if Pugin::Feature::Bandiera.show_list_images?
       - if @person.image_id(show_placeholder:false)
         %figure
-          %img{ src: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=1464&quality=80", alt: "#{@person.display_name}" }
+          %picture
+            %source{srcset: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=732&quality=80, #{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=1464&quality=80 2x", media: "(min-width: 480px)"}
+            %source{srcset: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=444&quality=80, #{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=888&quality=80 2x"}
+            %img{ src: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=1464&quality=80", alt: "#{@person.display_name}" }
           %figcaption= t('.figcaption', link: link_to(t('.available_download'), media_show_path(@person.image_id))).html_safe
 
 - if @current_incumbency && @current_party_membership
