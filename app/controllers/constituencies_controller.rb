@@ -2,9 +2,16 @@ class ConstituenciesController < ApplicationController
   before_action :data_check, :build_request, except: :postcode_lookup
 
   ROUTE_MAP = {
-    show:              proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituencies(params[:constituency_id]) },
-    lookup:            proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituencies.lookup(params[:source], params[:id]) },
-    map:               proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituencies(params[:constituency_id]).map }
+    index:             proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_index },
+    show:              proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_by_id.set_url_params({ constituency_id: params[:constituency_id] }) },
+    lookup:            proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_lookup.set_url_params({ property: params[:source], value: params[:id] }) },
+    lookup_by_letters: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_by_substring.set_url_params({ substring: params[:letters] }) },
+    a_to_z_current:    proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_current_a_to_z },
+    current:           proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_current },
+    map:               proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_map.set_url_params({ constituency_id: params[:constituency_id] }) },
+    letters:           proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_by_initial.set_url_params({ initial: params[:letter] }) },
+    current_letters:   proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_current_by_initial.set_url_params({ initial: params[:letter] }) },
+    a_to_z:            proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_a_to_z }
   }.freeze
 
   # Renders a single constituency given a constituency id.
@@ -79,7 +86,7 @@ class ConstituenciesController < ApplicationController
 
       format.json do
         @constituency = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-          Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituencies(params[:constituency_id]).map,
+          Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_map.set_url_params({ constituency_id: params[:constituency_id] }),
           'http://id.ukpds.org/schema/ConstituencyGroup'
         ).first
 

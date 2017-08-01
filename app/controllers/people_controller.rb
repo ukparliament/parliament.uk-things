@@ -2,8 +2,8 @@ class PeopleController < ApplicationController
   before_action :data_check, :build_request, except: :postcode_lookup
 
   ROUTE_MAP = {
-    show:              proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.people(params[:person_id]) },
-    lookup:            proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.people.lookup(params[:source], params[:id]) }
+    show:              proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.person_by_id.set_url_params({ person_id: params[:person_id] }) },
+    lookup:            proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.person_lookup.set_url_params({ property: params[:source], value: params[:id] }) },
   }.freeze
 
   def show

@@ -37,7 +37,7 @@ RSpec.describe ParliamentsController, vcr: true do
       end
     end
 
-    context '@pariament is not nil' do
+    context '@parliament is not nil' do
       before(:each) do
         get :next
       end
@@ -100,13 +100,13 @@ RSpec.describe ParliamentsController, vcr: true do
     end
 
     it 'redirects to parliaments/:id' do
-      expect(response).to redirect_to(parliament_path('GEFMX81E'))
+      expect(response).to redirect_to(parliament_path('ExyBZkI7'))
     end
   end
 
   describe 'GET show' do
     before(:each) do
-      get :show, params: { parliament_id: '0FxbTVtr' }
+      get :show, params: { parliament_id: 'fHx6P1lb' }
     end
 
     it 'should have a response with http status ok (200)' do
@@ -127,13 +127,13 @@ RSpec.describe ParliamentsController, vcr: true do
     context '@parliament is nil' do
       # updated VCR cassette in order to set @parliament to nil
       it 'should raise ActionController::RoutingError' do
-        expect{get :next_parliament, params: { parliament_id: '0FxbTVtr' }}.to raise_error(ActionController::RoutingError)
+        expect{get :next_parliament, params: { parliament_id: 'YN9DxpsC' }}.to raise_error(ActionController::RoutingError)
       end
     end
 
     context '@parliament is not nil' do
       before(:each) do
-        get :next_parliament, params: { parliament_id: '0FxbTVtr' }
+        get :next_parliament, params: { parliament_id: 'fHx6P1lb' }
       end
 
       it 'should have a response with http status redirect (302)' do
@@ -155,13 +155,13 @@ RSpec.describe ParliamentsController, vcr: true do
     context '@parliament is nil' do
       # updated VCR cassette in order to set @parliament to nil
       it 'should raise ActionController::RoutingError' do
-        expect{get :previous_parliament, params: { parliament_id: '0FxbTVtr' }}.to raise_error(ActionController::RoutingError)
+        expect{get :previous_parliament, params: { parliament_id: 'QXymPJgT' }}.to raise_error(ActionController::RoutingError)
       end
     end
 
     context '@parliament is not nil' do
       before(:each) do
-        get :previous_parliament, params: { parliament_id: '0FxbTVtr' }
+        get :previous_parliament, params: { parliament_id: 'fHx6P1lb' }
       end
 
       it 'should have a response with http status redirect (302)' do
@@ -182,34 +182,38 @@ RSpec.describe ParliamentsController, vcr: true do
   describe '#data_check' do
     context 'an available data format is requested' do
       methods = [
-          {
-            route: 'show',
-            parameters: { parliament_id: '0FxbTVtr' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/0FxbTVtr"
-          },
-          {
-            route: 'current',
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/current"
-          },
-          {
-            route: 'next_parliament',
-            parameters: { parliament_id: '0FxbTVtr' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/0FxbTVtr/next"
-          },
-          {
-            route: 'previous',
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/previous"
-          },
-          {
-            route: 'lookup',
-            parameters: { source: 'parliamentPeriodNumber', id: '57' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/lookup/parliamentPeriodNumber/57"
-          },
-          {
-            route: 'previous_parliament',
-            parameters: { parliament_id: '0FxbTVtr' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/0FxbTVtr/previous"
-          }
+        {
+          route: 'show',
+          parameters: { parliament_id: 'fHx6P1lb' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_by_id?parliament_id=fHx6P1lb"
+        },
+        {
+          route: 'current',
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_current"
+        },
+        {
+          route: 'next_parliament',
+          parameters: { parliament_id: 'fHx6P1lb' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/next_parliament_by_id?parliament_id=fHx6P1lb"
+        },
+        {
+          route: 'previous',
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_previous"
+        },
+        {
+          route: 'next',
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_next"
+        },
+        {
+          route: 'lookup',
+          parameters: { source: 'parliamentPeriodNumber', id: '56' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_lookup?property=parliamentPeriodNumber&value=56"
+        },
+        {
+          route: 'previous_parliament',
+          parameters: { parliament_id: 'fHx6P1lb' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/previous_parliament_by_id?parliament_id=fHx6P1lb"
+        }
         ]
 
       before(:each) do
@@ -260,7 +264,7 @@ RSpec.describe ParliamentsController, vcr: true do
         end
 
         it 'redirects to the data service' do
-            expect(response).to redirect_to("#{ENV['PARLIAMENT_BASE_URL']}/parliaments/next")
+          expect(response).to redirect_to("#{ENV['PARLIAMENT_BASE_URL']}/parliament_next")
         end
       end
     end
