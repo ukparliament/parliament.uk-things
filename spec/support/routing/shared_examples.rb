@@ -1,3 +1,14 @@
+RSpec.shared_examples 'index route' do |controller|
+  context 'index' do
+    it "GET #{controller}#index" do
+      expect(get: "/#{controller}").to route_to(
+        controller: controller,
+        action:     'index'
+      )
+    end
+  end
+end
+
 # e.g. people#parties - /people/parties
 RSpec.shared_examples 'top level routes' do |controller, action|
   it "GET #{controller}##{action}" do
