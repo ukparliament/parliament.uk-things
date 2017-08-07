@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ConstituenciesController, vcr: true do
   describe 'GET lookup' do
     before(:each) do
-      get :lookup, params: { source: 'mnisId', id: '3274' }
+      get :lookup, params: { source: 'onsCode', id: 'E14000699' }
     end
 
     it 'should have a response with http status redirect (302)' do
@@ -16,13 +16,13 @@ RSpec.describe ConstituenciesController, vcr: true do
     end
 
     it 'redirects to constituencies/:id' do
-      expect(response).to redirect_to(constituency_path('beRgFrSo'))
+      expect(response).to redirect_to(constituency_path('6ptkUjxb'))
     end
   end
 
   describe 'GET show' do
     before(:each) do
-      get :show, params: { constituency_id: 'vUPobpVT' }
+      get :show, params: { constituency_id: 'xeQCZvTU' }
     end
 
     it 'should have a response with a http status ok (200)' do
@@ -47,12 +47,12 @@ RSpec.describe ConstituenciesController, vcr: true do
     end
 
     it 'assigns @seat_incumbencies in reverse chronological order' do
-      expect(assigns(:seat_incumbencies)[0].start_date).to eq(DateTime.new(2010, 5, 6))
-      expect(assigns(:seat_incumbencies)[1].start_date).to eq(DateTime.new(2005, 5, 5))
+      expect(assigns(:seat_incumbencies)[0].start_date).to eq(DateTime.new(2015, 5, 7))
+      expect(assigns(:seat_incumbencies)[1].start_date).to eq(DateTime.new(2010, 5, 6))
     end
 
     it 'assigns @current_incumbency to be the current incumbency' do
-      expect(assigns(:current_incumbency).start_date).to eq(DateTime.new(2015, 5, 7))
+      expect(assigns(:current_incumbency).start_date).to eq(DateTime.new(2017, 6, 8))
     end
 
     it 'renders the show template' do
@@ -61,7 +61,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     context 'given a valid postcode' do
       before(:each) do
-        get :show, params: { constituency_id: 'vUPobpVT' }, flash: { postcode: 'E2 0JA' }
+        get :show, params: { constituency_id: 'xeQCZvTU' }, flash: { postcode: 'E2 0JA' }
       end
 
       it 'assigns @postcode, @postcode_constituency' do
@@ -74,7 +74,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     context 'given an invalid postcode' do
       before(:each) do
-        get :show, params: { constituency_id: 'vUPobpVT' }, flash: { postcode: 'apple' }
+        get :show, params: { constituency_id: 'xeQCZvTU' }, flash: { postcode: 'apple' }
       end
 
       it 'assigns @postcode and flash[:error]' do
@@ -86,7 +86,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
   describe "POST postcode_lookup" do
     before(:each) do
-      post :postcode_lookup, params: { constituency_id: 'vUPobpVT', postcode: 'E2 0JA' }
+      post :postcode_lookup, params: { constituency_id: 'xeQCZvTU', postcode: 'E2 0JA' }
     end
 
     it 'assigns flash[:postcode]' do
@@ -94,13 +94,13 @@ RSpec.describe ConstituenciesController, vcr: true do
     end
 
     it 'redirects to constituency/:id' do
-      expect(response).to redirect_to(constituency_path('vUPobpVT'))
+      expect(response).to redirect_to(constituency_path('xeQCZvTU'))
     end
   end
 
   describe 'GET map' do
     before(:each) do
-      get :map, params: { constituency_id: 'uHGiM4q8' }
+      get :map, params: { constituency_id: 'dwtSdieB' }
     end
 
     it 'should have a response with a http status ok (200)' do
@@ -134,28 +134,29 @@ RSpec.describe ConstituenciesController, vcr: true do
       it 'renders the map template' do
         expect(response).to render_template('map')
       end
+
+      context 'constituency is not current' do
+        it 'will respond with ActionController::RoutingError' do
+          expect{ get :map, params: { constituency_id: 'dwtSdieB' } }.to raise_error(ActionController::RoutingError)
+        end
+      end
     end
   end
 
   describe '#data_check' do
-    xcontext 'an available data format is requested' do
+    context 'an available data format is requested' do
       METHODS = [
-          {
-            route: 'map',
-            parameters: { constituency_id: 'vUPobpVT' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/constituencies/vUPobpVT/map"
-          },
-          {
-            route: 'lookup',
-            parameters: { source: 'mnisId', id: '3274' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/constituencies/lookup/mnisId/3274"
-          },
-          {
-            route: 'show',
-            parameters: { constituency_id: 'vUPobpVT' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/constituencies/vUPobpVT"
-          }
-        ]
+        {
+          route: 'lookup',
+          parameters: { source: 'mnisId', id: '3274' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/constituency_lookup?property=mnisId&value=3274"
+        },
+        {
+          route: 'show',
+          parameters: { constituency_id: 'vUPobpVT' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/constituency_by_id?constituency_id=vUPobpVT"
+        }
+      ]
 
       before(:each) do
         headers = { 'Accept' => 'application/rdf+xml' }
@@ -193,7 +194,7 @@ RSpec.describe ConstituenciesController, vcr: true do
       end
 
       it 'should raise ActionController::UnknownFormat error' do
-        expect{ get :show, params: { constituency_id: 'vUPobpVT' } }.to raise_error(ActionController::UnknownFormat)
+        expect{ get :show, params: { constituency_id: 'xeQCZvTU' } }.to raise_error(ActionController::UnknownFormat)
       end
     end
   end

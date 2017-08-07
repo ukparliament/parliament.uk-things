@@ -4,7 +4,7 @@ RSpec.describe Houses::PartiesController, vcr: true do
   describe "GET show" do
     context 'both house and party have a valid id' do
       before(:each) do
-        get :show, params: { house_id: 'KL2k1BGP', party_id: 'P6LNyUn4' }
+        get :show, params: { house_id: 'Kz7ncmrt', party_id: '891w1b1k' }
       end
 
       it 'should have a response with http status ok (200)' do
@@ -25,8 +25,8 @@ RSpec.describe Houses::PartiesController, vcr: true do
 
     context 'party id is invalid' do
       it 'raises an error if @party is nil' do
-        house_id = 'KL2k1BGP'
-        party_id = 'P6LNyUn5'
+        house_id = 'Kz7ncmrt'
+        party_id = 'zzzzzzzz'
 
         expect{ get :show, params: { house_id: house_id, party_id: party_id } }.to raise_error(ActionController::RoutingError, 'Invalid party ID')
       end
@@ -36,11 +36,11 @@ RSpec.describe Houses::PartiesController, vcr: true do
   describe '#data_check' do
     context 'an available data format is requested' do
       methods = [
-          {
-            route: 'show',
-            parameters: { house_id: 'cqIATgUK', party_id: 'P6LNyUn4' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/houses/cqIATgUK/parties/P6LNyUn4"
-          }
+        {
+          route: 'show',
+          parameters: { house_id: 'Kz7ncmrt', party_id: '891w1b1k' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/house_party_by_id?house_id=Kz7ncmrt&party_id=891w1b1k"
+        }
         ]
 
       before(:each) do

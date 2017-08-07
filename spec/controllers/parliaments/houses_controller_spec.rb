@@ -5,13 +5,13 @@ RSpec.describe Parliaments::HousesController, vcr: true do
     context '@house is nil' do
       # updated VCR cassette in order to set @house to nil
       it 'should raise ActionController::RoutingError' do
-        expect{get :show, params: { parliament_id: '0FxbTVtr', house_id: 'cqIATgUK' }}.to raise_error(ActionController::RoutingError)
+        expect{get :show, params: { parliament_id: 'fHx6P1lb', house_id: 'Kz7ncmrt' }}.to raise_error(ActionController::RoutingError)
       end
     end
 
     context '@house is not nil' do
       before(:each) do
-        get :show, params: { parliament_id: '0FxbTVtr', house_id: 'cqIATgUK' }
+        get :show, params: { parliament_id: 'fHx6P1lb', house_id: 'Kz7ncmrt' }
       end
 
       context '@parliament' do
@@ -39,8 +39,8 @@ RSpec.describe Parliaments::HousesController, vcr: true do
       methods = [
           {
             route: 'show',
-            parameters: { parliament_id: '0FxbTVtr', house_id: 'cqIATgUK' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliaments/0FxbTVtr/houses/cqIATgUK"
+            parameters: { parliament_id: 'fHx6P1lb', house_id: 'Kz7ncmrt' },
+            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_house?parliament_id=fHx6P1lb&house_id=Kz7ncmrt"
           }
         ]
 

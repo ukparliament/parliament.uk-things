@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe HousesController, vcr: true do
   describe 'GET lookup' do
     before(:each) do
-      get :lookup, params: { source: 'mnisId', id: '1' }
+      get :lookup, params: { source: 'name', id: 'House of Lords' }
     end
 
     it 'should have a response with http status redirect (302)' do
@@ -16,13 +16,13 @@ RSpec.describe HousesController, vcr: true do
     end
 
     it 'redirects to houses/:id' do
-      expect(response).to redirect_to(house_path('KL2k1BGP'))
+      expect(response).to redirect_to(house_path('MvLURLV5'))
     end
   end
 
   describe "GET show" do
     before(:each) do
-      get :show, params: { house_id: 'KL2k1BGP' }
+      get :show, params: { house_id: 'Kz7ncmrt' }
     end
 
     it 'should have a response with http status ok (200)' do
@@ -42,17 +42,17 @@ RSpec.describe HousesController, vcr: true do
   describe '#data_check' do
     context 'an available data format is requested' do
       methods = [
-          {
-            route: 'lookup',
-            parameters: { source: 'mnisId', id: '1' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/houses/lookup/mnisId/1"
-          },
-          {
-            route: 'show',
-            parameters: { house_id: 'cqIATgUK' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/houses/cqIATgUK"
-          }
-        ]
+        {
+          route: 'lookup',
+          parameters: { source: 'name', id: 'House of Lords' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/house_lookup?property=name&value=House+of+Lords"
+        },
+        {
+          route: 'show',
+          parameters: { house_id: 'Kz7ncmrt' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/house_by_id?house_id=Kz7ncmrt"
+        }
+      ]
 
       before(:each) do
         headers = { 'Accept' => 'application/rdf+xml' }
