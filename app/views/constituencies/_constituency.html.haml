@@ -13,7 +13,7 @@
         = render partial: 'shared/dissolution_message'
 
       - elsif @current_incumbency
-        %ol.list--box
+        %ol.list--block
           %li.image__item
             - if Pugin::Feature::Bandiera.show_list_images?
               %figure
