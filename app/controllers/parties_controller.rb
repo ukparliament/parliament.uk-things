@@ -8,7 +8,6 @@ class PartiesController < ApplicationController
     current:           proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.party_current },
     letters:           proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.party_by_initial.set_url_params({ initial: params[:letter] }) },
     a_to_z:            proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.party_a_to_z },
-    lookup_by_letters: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.party_by_substring.set_url_params({ substring: params[:letters] }) },
 
     # NOT IN THE ORIGINAL ROUTE MAP BUT IN NEW DATA API URL STRUCTURE??
     # current_a_to_z:      proc { ParliamentHelper.parliament_request.party_current_a_to_z }
