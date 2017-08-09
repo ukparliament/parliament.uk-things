@@ -5,7 +5,6 @@ class ConstituenciesController < ApplicationController
     index:             proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_index },
     show:              proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_by_id.set_url_params({ constituency_id: params[:constituency_id] }) },
     lookup:            proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_lookup.set_url_params({ property: params[:source], value: params[:id] }) },
-    lookup_by_letters: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_by_substring.set_url_params({ substring: params[:letters] }) },
     a_to_z_current:    proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_current_a_to_z },
     current:           proc { Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_current },
     map:               proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_map.set_url_params({ constituency_id: params[:constituency_id] }) },
