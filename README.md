@@ -41,6 +41,9 @@ We use [RSpec][rspec] as our testing framework and tests can be run using:
 bundle exec rspec
 ```
 
+## Maps
+Our maps use the [leafletjs library][leafletjs] that is published under the [2-clause BSD License][license-2c-BSD].
+
 ## Contributing
 If you wish to submit a bug fix or feature, you can create a pull request and it will be merged pending a code review.
 
@@ -61,6 +64,8 @@ If you wish to submit a bug fix or feature, you can create a pull request and it
 [rspec]:                         http://rspec.info
 [rails]:                         http://rubyonrails.org
 [parliament.uk]:                 http://www.parliament.uk/
+[leafletjs]:                     http://leafletjs.com/
+[license-2c-BSD]:                https://opensource.org/licenses/BSD-2-Clause
 
 [info-license]:   http://www.parliament.uk/site-information/copyright/open-parliament-licence/
 [shield-license]: https://img.shields.io/badge/license-Open%20Parliament%20Licence-blue.svg
