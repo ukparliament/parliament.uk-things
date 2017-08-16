@@ -18,7 +18,7 @@ class PeopleController < ApplicationController
 
     @person = @person.first
 
-    @current_party_membership = @person.party_memberships.select(&:current?).first
+    @current_party_membership = @person.current_party_membership
 
     sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
