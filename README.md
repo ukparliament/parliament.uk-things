@@ -1,4 +1,3 @@
-
 # Parliament.uk-things
 [Parliament.uk-things][parliament.uk-things] is a [Rails][rails] application designed to hold the individual 'thing' elements of the new [parliament.uk][parliament.uk] website made by the [Parliamentary Digital Service][parliamentary-digital-service].
 
