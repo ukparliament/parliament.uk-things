@@ -135,7 +135,7 @@ GEM
     parliament-grom-decorators (0.4.0)
     parliament-ntriple (0.1.5)
       grom (~> 0.3)
-    parliament-routes (0.3.0)
+    parliament-routes (0.3.1)
     parliament-ruby (0.8.0)
     parliament-utils (0.2.4)
       bandiera-client
