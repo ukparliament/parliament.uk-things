@@ -34,7 +34,7 @@ class ConstituenciesController < ApplicationController
 
     @json_location = constituency_map_path(@constituency.graph_id, format: 'json')
 
-    @current_party = @current_incumbency.member.current_party
+    @current_party = @current_incumbency.member.current_party if @current_incumbency
 
     @party = @current_party ? @current_party : @party.first
 
