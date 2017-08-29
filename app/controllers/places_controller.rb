@@ -1,5 +1,4 @@
 class PlacesController < ApplicationController
-<<<<<<< HEAD
   before_action :data_check, :build_request
 
   ROUTE_MAP = {

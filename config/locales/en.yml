@@ -124,6 +124,15 @@ en:
       incorrect_mp: '%{name} is not the MP for the postcode entered.  Your MP is '
       figcaption: 'The official MP portraits are %{link}'
       available_download: 'available to download'
+      when_to_contact:
+        title: 'When to contact an MP'
+        mps_can_help_with: 'MPs can help with issues that are the responsibility of UK Parliament. They represent their constituencies and can help with issues such as:'
+        hospitals_nhs: 'Hospitals and the NHS'
+        problems: 'Problems with benefits, pensions and national insurance'
+        immigration: 'Immigration'
+        school_closures: 'School closures and funding'
+        transport: 'Transport facilities'
+        who_else_can_help: 'Who else can help with my issue?'
     constituencies:
       index:
         title: '%{current_and_former} %{constituency_plural}'
