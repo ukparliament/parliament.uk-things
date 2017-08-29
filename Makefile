@@ -37,13 +37,16 @@ TENABLEIO_REGISTRY = cloud.flawcheck.com
 TENABLEIO_REPO = web1live
 
 # Airbrake.io
-AIRBRAKE_PROJECT_ID ?=
-AIRBRAKE_PROJECT_KEY ?=
+AIRBRAKE_PROJECT_ID = $(shell credstash get things/airbrake_id)
+AIRBRAKE_PROJECT_KEY = $(shell credstash get things/airbrake_key)
 AIRBRAKE_ENVIRONMENT = $(RACK_ENV)
 AIRBRAKE_REPOSITORY = https://github.com/ukparliament/parliament.uk-things
 GIT_SHA = $(or $(GO_REVISION), unknown)
 GIT_TAG = $(or $(shell git describe --tags --exact-match 2> /dev/null), unknown)
 AWS_ACCOUNT ?= unknown
+
+GTM_KEY = $(shell credstash get common/gtm_key)
+SECRET_KEY_BASE = $(shell credstash get common/secret_key_base)
 
 # The name of our Docker image
 IMAGE = $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(APP_NAME)
