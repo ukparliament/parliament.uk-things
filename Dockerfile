@@ -1,4 +1,4 @@
-FROM ruby:2-alpine
+FROM ruby:2.4.1-alpine
 
 # Add command line argument variables used to cusomise the image at build-time.
 ARG IMAGE_SERVICE_URL
@@ -69,4 +69,4 @@ LABEL git-sha=$GIT_SHA \
 EXPOSE 3000
 
 # Launch puma
-CMD ["bundle", "exec", "rails", "s"]
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]

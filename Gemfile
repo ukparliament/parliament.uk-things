@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.1.2'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.10.0'
 gem 'rack-timeout'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -14,10 +14,19 @@ gem 'turbolinks', '~> 5'
 gem 'haml'
 
 # Use Parliament-Ruby for web requests
-gem 'parliament-ruby', '~> 0.7'
+gem 'parliament-ruby', '~> 0.8'
 
 # Parliament Grom Decorators decorates Grom nodes
 gem 'parliament-grom-decorators', '~> 0.2'
+
+# Converts GeoSparql to GeoJSON
+gem 'geosparql_to_geojson', '~> 0.1'
+
+# Parliament routing
+gem 'parliament-routes', '~> 0.3'
+
+# Parliament-Utils gem for generic set up and configuration
+gem 'parliament-utils', '~> 0.2', require: false
 
 # Parliament NTriple processes N-triple data
 gem 'parliament-ntriple', '~> 0.1', require: false
@@ -26,7 +35,8 @@ gem 'parliament-ntriple', '~> 0.1', require: false
 gem 'bandiera-client'
 
 # Use Pugin for front-end components and templates
-gem 'pugin', '~> 0.8'
+# gem 'pugin', '~> 0.8'
+gem 'pugin', '~> 1.2', require: false
 
 # Use dotenv to override environment variables
 gem 'dotenv'
@@ -40,9 +50,18 @@ gem 'rack-rewrite'
 # Include time zone information
 gem 'tzinfo-data'
 
+gem 'vcard', '~> 0.2'
+
+if %w(2.2.7 2.3.4 2.4.1).include? RUBY_VERSION
+  gem "stopgap_13632", "~> 1.0", :platforms => ["mri", "mingw", "x64_mingw"]
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Use parallel_tests to run specs across all CPU cores locally
+  gem 'parallel_tests'
 end
 
 group :development do

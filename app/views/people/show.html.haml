@@ -1,0 +1,97 @@
+.section--primary#content
+  .container
+
+    %h1= title(@person.display_name)
+
+    - if @most_recent_incumbency.nil? || @most_recent_incumbency.house.name == 'House of Lords'
+      %p= @person.full_title
+      %p= "#{@person.full_name}" unless @person.display_name == @person.full_name
+
+    - if @current_party_membership && @current_incumbency
+      - current_party_details = link_to(@current_party_membership.party.name, party_path(@current_party_membership.party.graph_id))
+
+    - unless @person.statuses[:house_membership_status].empty?
+      - if @person.statuses[:house_membership_status].include?('Current MP')
+        %p
+          = current_party_details if current_party_details
+          = t('.mp_for')
+          = link_to(@current_incumbency.constituency.name, constituency_path(@current_incumbency.constituency.graph_id))
+      - else
+        %p
+          = current_party_details if current_party_details
+          = @person.statuses[:house_membership_status].join(' and ')
+
+    - if Pugin::Feature::Bandiera.show_list_images?
+      - if @person.image_id(show_placeholder:false)
+        %figure
+          %picture
+            %source{srcset: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=732&quality=80, #{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=1464&quality=80 2x", media: "(min-width: 480px)"}
+            %source{srcset: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=MCU_3:2&width=444&quality=80, #{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=MCU_3:2&width=888&quality=80 2x"}
+            %img{ src: "#{ENV['IMAGE_SERVICE_URL']}/#{@person.image_id}.jpeg?crop=CU_5:2&width=1464&quality=80", alt: "#{@person.display_name}" }
+          %figcaption= t('.figcaption', link: link_to(t('.available_download'), media_show_path(@person.image_id))).html_safe
+
+- if @current_incumbency && @current_party_membership
+  %section
+    .container
+      .block
+        %h2= "#{t('.contact').capitalize}"
+        - if @seat_incumbencies.present?
+          %p= t('.contact_postcode')
+          .dropdown
+            .dropdown__toggle
+              %h3= link_to t('.when_to_contact.title'), '#'
+            .dropdown__content.visually-hidden
+              %p= t('.when_to_contact.mps_can_help_with')
+              %ul.list--bullet
+                %li= t('.when_to_contact.hospitals_nhs')
+                %li= t('.when_to_contact.problems')
+                %li= t('.when_to_contact.immigation')
+                %li= t('.when_to_contact.school_closures')
+                %li= t('.when_to_contact.transport')
+              %p= link_to t('.when_to_contact.who_else_can_help'), who_should_i_contact_with_my_issue_path
+        - if @person.statuses[:house_membership_status].include?('Current MP') || @person.statuses[:house_membership_status].include?('Member of the House of Lords')
+          - if @current_incumbency.contact_points.empty?
+            %p= t('.empty_contact_details')
+          - else
+            %dl.list--definition
+              - @current_incumbency.contact_points.each do |contact_point|
+                - if contact_point.email.present?
+                  %dt= t('contact_points.email').capitalize + ": "
+                  %dd
+                    %a{ href: "mailto:#{contact_point.email}" }= contact_point.email
+                - if contact_point.phone_number.present?
+                  %dt= t('contact_points.phone').capitalize + ": "
+                  %dd
+                    %a{ href: "tel:#{contact_point.phone_number.gsub(/\s+/, "")}" }= contact_point.phone_number.gsub(/\s+/, " ")
+                - if contact_point.postal_addresses.present?
+                  %dt
+                    = t('contact_points.address').capitalize + ": "
+                  - contact_point.postal_addresses.each do |postal_address|
+                    %dd= postal_address.full_address
+                - if @current_incumbency.contact_points.length > 1
+                  - unless contact_point.equal?(@current_incumbency.contact_points.last)
+                    .line-break--sm
+        - if @seat_incumbencies.present?
+          %p= t('.contact_discussion')
+
+%section
+  .container
+    - if @house_incumbencies.present? || @seat_incumbencies.present?
+      %h2= t('.roles').capitalize
+      - if @house_incumbencies.present?
+        %h3= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
+        %ol.list--pipe
+          - @house_incumbencies.sort{ |inc_a, inc_b| inc_b.start_date <=> inc_a.start_date }.each do |house_incumbency|
+            %li
+              .list--details
+                %p= house_incumbency.date_range
+      - if @seat_incumbencies.present?
+        %h3= "#{t('mp')}"
+        %ol.list--pipe
+          - @seat_incumbencies.sort{ |inc_a, inc_b| inc_b.start_date <=> inc_a.start_date }.each do |seat_incumbency|
+            %li
+              .list--details
+                %p
+                  = t('.mp_for')
+                  = link_to(seat_incumbency.constituency.name, constituency_path(seat_incumbency.constituency.graph_id))
+                %p= seat_incumbency.date_range

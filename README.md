@@ -1,24 +1,70 @@
-# README
+# Parliament.uk-things
+[Parliament.uk-things][parliament.uk-things] is a [Rails][rails] application designed to hold the individual 'thing' elements of the new [parliament.uk][parliament.uk] website made by the [Parliamentary Digital Service][parliamentary-digital-service].
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Contents
+- [Requirements](#requirements)
+- [Getting Started](#getting-started)
+- [Things Rails Application](#parliament-rails-application)
+  - [Running the application](#running-the-application)
+  - [Running the tests](#running-the-tests)
+- [Contributing](#contributing)
+- [License](#license)
 
-Things you may want to cover:
+## Requirements
+[Parliament.uk-things][parliament.uk-things] requires the following:
+* [Ruby][ruby]
+* [Bundler][bundler]
 
-* Ruby version
 
-* System dependencies
+## Getting Started
+Clone the repository:
+```bash
+git clone https://github.com/ukparliament/Parliament.uk-things.git
+cd Parliament.uk-things
+```
 
-* Configuration
+#### Things Rails Application
+The [Parliament.uk-things][parliament.uk-things] application holds the routes, controllers and views that make up all the 'thing' elements of the new [parliament.uk][parliament.uk] website. 'Things' are singular, individual items with ids.
 
-* Database creation
+### Running the application
+To run the application locally, run:
+```bash
+bundle install
 
-* Database initialization
+bundle exec rails s
+```
 
-* How to run the test suite
+### Running the tests
+We use [RSpec][rspec] as our testing framework and tests can be run using:
+```bash
+bundle exec rspec
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Maps
+Our maps use the [leafletjs library][leafletjs] that is published under the [2-clause BSD License][license-2c-BSD].
 
-* Deployment instructions
+## Contributing
+If you wish to submit a bug fix or feature, you can create a pull request and it will be merged pending a code review.
 
-* ...
+1. Fork the repository
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Ensure your changes are tested using [Rspec][rspec]
+6. Create a new Pull Request
+
+## License
+[Parliament.uk-things][parliament.uk-things] is available as open source under the terms of the [Open Parliament Licence][info-license].
+
+[parliament.uk-things]:          https://github.com/ukparliament/parliament.uk-things
+[parliamentary-digital-service]: https://github.com/ukparliament
+[ruby]:                          https://www.ruby-lang.org/en/
+[bundler]:                       http://bundler.io/
+[rspec]:                         http://rspec.info
+[rails]:                         http://rubyonrails.org
+[parliament.uk]:                 http://www.parliament.uk/
+[leafletjs]:                     http://leafletjs.com/
+[license-2c-BSD]:                https://opensource.org/licenses/BSD-2-Clause
+
+[info-license]:   http://www.parliament.uk/site-information/copyright/open-parliament-licence/
+[shield-license]: https://img.shields.io/badge/license-Open%20Parliament%20Licence-blue.svg
