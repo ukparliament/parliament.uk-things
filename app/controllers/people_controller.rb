@@ -7,6 +7,9 @@ class PeopleController < ApplicationController
   }.freeze
 
   def show
+  # When calculating history, how many years do we want in each block
+  @year_seperator = 10
+
     @postcode = flash[:postcode]
 
     @person, @seat_incumbencies, @house_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
@@ -20,15 +23,45 @@ class PeopleController < ApplicationController
 
     @current_party_membership = @person.current_party_membership
 
-    sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
+    @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
       parameters:       [:end_date],
       prepend_rejected: false
     })
 
-    @most_recent_incumbency = sorted_incumbencies.last
+    @most_recent_incumbency = @sorted_incumbencies.last
     @current_incumbency = @most_recent_incumbency && @most_recent_incumbency.current? ? @most_recent_incumbency : nil
 
+    @history = {
+      start: nil,
+      current: [],
+      years: {}
+    }
+
+    @person.incumbencies.each do |seat_incumbency|
+      if seat_incumbency.end_date # Not current
+        year = ((Time.now.year.to_f - seat_incumbency.end_date.year.to_f) / @year_seperator).ceil
+
+        year = 1 if year == 0
+
+        @history[:years][year] = [] unless @history[:years][year]
+
+        @history[:years][year] << seat_incumbency
+      else # Current
+        @history[:current] << seat_incumbency
+      end
+
+      @history[:start] = seat_incumbency.start_date if @history[:start].nil? || @history[:start] > seat_incumbency.start_date
+    end
+
+    # Sort the current
+    @history[:current].sort_by!(&:start_date).reverse!
+    @history[:years].keys.each do |year|
+      @history[:years][year].sort_by!(&:start_date).reverse!
+    end
+
+
+    # !!!!! CODE BELOW THIS POINT ONLY EXECUTES WHEN YOU HAVE CHECKED THAT THIS PERSON IS YOUR MP !!!!!
     return unless @postcode && @current_incumbency
 
     begin
