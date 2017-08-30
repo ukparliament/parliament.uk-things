@@ -35,7 +35,7 @@
     .container
       .block
         %h2= "#{t('.contact').capitalize}"
-        - if @seat_incumbencies.present?
+        - if @most_recent_incumbency && @most_recent_incumbency.house.name == 'House of Commons'
           %p= t('.contact_postcode')
           .dropdown
             .dropdown__toggle
