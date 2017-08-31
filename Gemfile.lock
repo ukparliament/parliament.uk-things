@@ -137,7 +137,7 @@ GEM
       grom (~> 0.3)
     parliament-routes (0.3.1)
     parliament-ruby (0.8.0)
-    parliament-utils (0.2.4)
+    parliament-utils (0.2.5)
       bandiera-client
       coveralls
       haml
