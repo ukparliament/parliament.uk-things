@@ -5,4 +5,4 @@
       %li
         .list--details
           %h2= link_to t('constituency_plural').capitalize, places_show_constituencies_path(@place.gss_code)
-          %p= t('places.region_constituencies')
+          %p= "#{@place.constituency_count} #{t('constituency_plural').capitalize}"
