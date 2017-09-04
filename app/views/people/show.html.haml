@@ -70,7 +70,7 @@
                 - if @current_incumbency.contact_points.length > 1
                   - unless contact_point.equal?(@current_incumbency.contact_points.last)
                     .line-break--sm
-        - if @seat_incumbencies.present?
+        - if @seat_incumbencies.present? && Parliament::Utils::Helpers::HousesHelper.commons?(@current_incumbency.house)
           %p= t('.contact_discussion')
 
 %section
