@@ -9,11 +9,12 @@ class PeopleController < ApplicationController
   def show
     @postcode = flash[:postcode]
 
-    @person, @seat_incumbencies, @house_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
+    @person, @seat_incumbencies, @house_incumbencies, @committees = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
       'http://id.ukpds.org/schema/Person',
       'http://id.ukpds.org/schema/SeatIncumbency',
-      'http://id.ukpds.org/schema/HouseIncumbency'
+      'http://id.ukpds.org/schema/HouseIncumbency',
+      'http://id.ukpds.org/schema/FormalBody'
     )
 
     @person = @person.first
