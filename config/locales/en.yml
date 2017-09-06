@@ -77,7 +77,10 @@ en:
   open_new_window: "website opens in a new window"
   # global a-z navigation translations
   a_to_z:
+    a_to_z: 'A to Z'
     select_letter: 'select a letter'
+    showing_results: 'showing results for'
+    showing_all: 'showing all'
     aria_label: 'Paged navigation'
   # global time format translations
   time:
@@ -118,6 +121,12 @@ en:
       membership_history: 'membership history'
       election_history: 'election history'
       roles: 'roles'
+      parliamentary_role: 'parliamentary role'
+      committee_role: 'committee role'
+      held_currently: 'Held currently'
+      held_in: 'Held in the last'
+      show_history: 'Show history'
+      years: 'years'
       check_mp: 'Check if %{name} is your MP'
       check_mp_alternative: 'Check if this is your MP'
       correct_mp: '%{name} is the MP for the postcode entered.'
