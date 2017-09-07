@@ -281,7 +281,29 @@ RSpec.describe 'people/show', vcr: true do
   context '@current_incumbency and @current_party_membership are present' do
     before do
       assign(:house_incumbencies, [])
-      assign(:seat_incumbencies, [])
+      assign(:seat_incumbencies, [
+               double(:seat_incumbency,
+                 start_date:   Time.zone.now - 1.month,
+                 end_date:     nil,
+                 current?:     true,
+                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 constituency: double(:constituency,
+                   name:       'Aberavon',
+                   graph_id:   constituency_graph_id,
+                   start_date: Time.zone.now - 1.month,
+                   date_range: 'from 2010')),
+               double(:seat_incumbency,
+                 start_date:   Time.zone.now - 2.months,
+                 end_date:     Time.zone.now - 1.week,
+                 current?:     false,
+                 date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+                 constituency: double(:constituency,
+                   name:       'Aberconwy',
+                   graph_id:   constituency_graph_id,
+                   start_date: Time.zone.now - 1.month,
+                   date_range: 'from 2010'))
+             ])
+
       assign(:most_recent_incumbency, nil)
       assign(:current_party_membership, double(:current_party_membership, party: double(:party, name: 'Conservative', graph_id: 'jF43Jxoc')))
     end
@@ -331,7 +353,22 @@ RSpec.describe 'people/show', vcr: true do
               constituency:   double(:constituency,
                 name:     'Aberavon',
                 graph_id: constituency_graph_id,
-                date_range: 'from 2010')))
+                date_range: 'from 2010'),
+              house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
+
+             assign(:seat_incumbencies, [
+               double(:seat_incumbency,
+                 start_date:   Time.zone.now - 1.month,
+                 end_date:     nil,
+                 current?:     true,
+                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 constituency: double(:constituency,
+                   name:       'Aberavon',
+                   graph_id:   constituency_graph_id,
+                   start_date: Time.zone.now - 1.month,
+                   date_range: 'from 2010'))
+             ])
+
           render
         end
 
@@ -354,8 +391,22 @@ RSpec.describe 'people/show', vcr: true do
                   phone_number:     '07700000000',
                   postal_addresses: [
                     double(:postal_address, full_address: 'Full Test Address')
-                  ])
-              ]))
+                                    ])],
+              house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
+
+             assign(:seat_incumbencies, [
+               double(:seat_incumbency,
+                 start_date:   Time.zone.now - 1.month,
+                 end_date:     nil,
+                 current?:     true,
+                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 constituency: double(:constituency,
+                   name:       'Aberavon',
+                   graph_id:   constituency_graph_id,
+                   start_date: Time.zone.now - 1.month,
+                   date_range: 'from 2010'))
+                                        ])
+
           render
         end
 
@@ -368,25 +419,6 @@ RSpec.describe 'people/show', vcr: true do
             it 'will render phone number' do
               expect(rendered).to match(/07700000000/)
             end
-
-            before do
-              assign(:current_incumbency,
-                double(:current_incumbency,
-                  constituency:   double(:constituency,
-                    name:     'Aberavon',
-                    graph_id: constituency_graph_id,
-                    date_range: 'from 2010'),
-                  contact_points: [
-                    double(:contact_point,
-                      email:            'testemail@test.com',
-                      phone_number:     '  07700000 001 ',
-                      postal_addresses: [
-                        double(:postal_address,
-                          full_address: 'Full Test Address')
-                      ])
-                  ]))
-              render
-            end
           end
 
           it 'will render postal address' do
@@ -395,6 +427,12 @@ RSpec.describe 'people/show', vcr: true do
 
           it 'will not render a line break' do
             expect(rendered).not_to match(/line-break-heavy/)
+          end
+
+          context 'contact information' do
+            it 'will not display information' do
+               expect(rendered).not_to match(/You may be able to discuss issues with your MP in person or online/)
+            end
           end
         end
 
@@ -421,7 +459,7 @@ RSpec.describe 'people/show', vcr: true do
                       double(:postal_address,
                         full_address: 'Full Test Address 2')
                     ])
-                ]))
+                ],house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
             render
           end
 
@@ -448,7 +486,8 @@ RSpec.describe 'people/show', vcr: true do
             constituency:   double(:constituency,
               name:     'Aberavon',
               graph_id: constituency_graph_id,
-              date_range: 'from 2010')))
+              date_range: 'from 2010'),
+                house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
 
         render
       end
@@ -456,6 +495,12 @@ RSpec.describe 'people/show', vcr: true do
       context 'no contact details' do
         it 'will render no contact details' do
           expect(rendered).to match(/Empty Contact Details/)
+        end
+      end
+
+      context 'contact information' do
+        it 'will not display information' do
+          expect(rendered).not_to match(/You may be able to discuss issues with your MP in person or online/)
         end
       end
     end
