@@ -353,7 +353,22 @@ RSpec.describe 'people/show', vcr: true do
               constituency:   double(:constituency,
                 name:     'Aberavon',
                 graph_id: constituency_graph_id,
-                date_range: 'from 2010')))
+                date_range: 'from 2010'),
+              house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
+
+             assign(:seat_incumbencies, [
+               double(:seat_incumbency,
+                 start_date:   Time.zone.now - 1.month,
+                 end_date:     nil,
+                 current?:     true,
+                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 constituency: double(:constituency,
+                   name:       'Aberavon',
+                   graph_id:   constituency_graph_id,
+                   start_date: Time.zone.now - 1.month,
+                   date_range: 'from 2010'))
+             ])
+
           render
         end
 
@@ -376,32 +391,26 @@ RSpec.describe 'people/show', vcr: true do
                   phone_number:     '07700000000',
                   postal_addresses: [
                     double(:postal_address, full_address: 'Full Test Address')
-                  ])
-              ]))
+                                    ])],
+              house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
+
+             assign(:seat_incumbencies, [
+               double(:seat_incumbency,
+                 start_date:   Time.zone.now - 1.month,
+                 end_date:     nil,
+                 current?:     true,
+                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 constituency: double(:constituency,
+                   name:       'Aberavon',
+                   graph_id:   constituency_graph_id,
+                   start_date: Time.zone.now - 1.month,
+                   date_range: 'from 2010'))
+                                        ])
+
           render
         end
 
         context 'contact details' do
-          before do
-            assign(:current_incumbency,
-              double(:current_incumbency,
-                constituency:   double(:constituency,
-                  name:     'Aberavon',
-                  graph_id: constituency_graph_id,
-                  date_range: 'from 2010'),
-                contact_points: [
-                  double(:contact_point,
-                    email:            'testemail@test.com',
-                    phone_number:     '  07700000 001 ',
-                    postal_addresses: [
-                      double(:postal_address,
-                        full_address: 'Full Test Address')
-                    ])
-                                ],
-                    house: double(:house, name: 'House of Commons')))
-            render
-          end
-
           it 'will render email' do
             expect(rendered).to match(/testemail@test.com/)
           end
@@ -422,7 +431,7 @@ RSpec.describe 'people/show', vcr: true do
 
           context 'contact information' do
             it 'will not display information' do
-               expect(rendered).to match(/You may be able to discuss issues with your MP in person or online/)
+               expect(rendered).not_to match(/You may be able to discuss issues with your MP in person or online/)
             end
           end
         end
@@ -450,7 +459,7 @@ RSpec.describe 'people/show', vcr: true do
                       double(:postal_address,
                         full_address: 'Full Test Address 2')
                     ])
-                ]))
+                ],house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
             render
           end
 
@@ -477,7 +486,8 @@ RSpec.describe 'people/show', vcr: true do
             constituency:   double(:constituency,
               name:     'Aberavon',
               graph_id: constituency_graph_id,
-              date_range: 'from 2010')))
+              date_range: 'from 2010'),
+                house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
 
         render
       end
