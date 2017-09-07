@@ -1,6 +1,5 @@
 .section--primary#content
   .container
-
     %h1= title(@person.display_name)
 
     - if @most_recent_incumbency.nil? || @most_recent_incumbency.house.name == 'House of Lords'
