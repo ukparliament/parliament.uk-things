@@ -19,9 +19,11 @@ RSpec.describe 'people/show', vcr: true do
       assign(:current_incumbency,
         double(:current_incumbency,
           constituency: double(:constituency, name: 'Aberavon', graph_id: constituency_graph_id, date_range: 'from 2010')))
-      assign(:seat_incumbencies, [])
       assign(:most_recent_incumbency, nil)
       assign(:history, { start: nil, current: [], years: {} })
+
+      assign(:seat_incumbencies, count: 2)
+      assign(:committee_memberships, count: 2)
 
       render
     end
@@ -51,6 +53,8 @@ RSpec.describe 'people/show', vcr: true do
     context 'nil' do
       before do
         assign(:most_recent_incumbency, nil)
+
+        assign(:committee_memberships, count: 2)
         render
       end
 
@@ -69,6 +73,8 @@ RSpec.describe 'people/show', vcr: true do
           assign(:most_recent_incumbency,
             double(:most_recent_incumbency,
               house: double(:house, name: 'House of Commons')))
+          assign(:seat_incumbencies, count: 2)
+          assign(:committee_memberships, count: 2)
           render
         end
 
@@ -82,6 +88,8 @@ RSpec.describe 'people/show', vcr: true do
           assign(:most_recent_incumbency,
             double(:most_recent_incumbency,
               house: double(:house, name: 'House of Lords')))
+
+          assign(:committee_memberships, count: 2)
           render
         end
 
@@ -111,6 +119,8 @@ RSpec.describe 'people/show', vcr: true do
             full_name:    'Test Full Name',
             statuses:     { house_membership_status: [] },
             graph_id:     '7TX8ySd4'))
+
+        assign(:committee_memberships, count: 2)
         render
       end
 
@@ -132,6 +142,8 @@ RSpec.describe 'people/show', vcr: true do
             full_name:    'Test Full Name',
             statuses:     { house_membership_status: ['Current MP'] },
             graph_id:     '7TX8ySd4'))
+
+        assign(:committee_memberships, count: 2)
         render
       end
 
@@ -151,6 +163,8 @@ RSpec.describe 'people/show', vcr: true do
               full_title:   'Test Title',
               full_name:    'Test Full Name',
               statuses:     { house_membership_status: ['Current MP', 'Former Lord'] }))
+
+          assign(:committee_memberships, count: 2)
           render
         end
 
@@ -171,6 +185,8 @@ RSpec.describe 'people/show', vcr: true do
             full_title:   'Test Title',
             full_name:    'Test Full Name',
             statuses:     { house_membership_status: ['Member of the House of Lords', 'test Membership'] }))
+        assign(:seat_incumbencies, count: 2)
+        assign(:committee_memberships, count: 2)
         render
       end
 
@@ -210,6 +226,8 @@ RSpec.describe 'people/show', vcr: true do
             full_name:    'Test Full Name',
             statuses:     { house_membership_status: ['Test Membership'] },
             graph_id:     '7TX8ySd4'))
+
+        assign(:committee_memberships, count: 2)
         render
       end
 
@@ -269,6 +287,8 @@ RSpec.describe 'people/show', vcr: true do
 
         assign(:current_party_membership,
           double(:current_party_membership, party: double(:party, name: 'Conservative', graph_id: 'jF43Jxoc')))
+
+        assign(:committee_memberships, count: 2)
 
         render
       end
@@ -369,7 +389,7 @@ RSpec.describe 'people/show', vcr: true do
                    start_date: Time.zone.now - 2.months,
                    date_range: 'from 2010'))
              ])
-
+            assign(:committee_memberships, count: 2)
           render
         end
 
@@ -408,6 +428,7 @@ RSpec.describe 'people/show', vcr: true do
                    date_range: 'from 2010'))
                                         ])
 
+          assign(:committee_memberships, count: 2)
           render
         end
 
@@ -461,6 +482,8 @@ RSpec.describe 'people/show', vcr: true do
                         full_address: 'Full Test Address 2')
                     ])
                 ],house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
+
+            assign(:committee_memberships, count: 2)
             render
           end
 

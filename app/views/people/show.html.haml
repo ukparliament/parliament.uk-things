@@ -77,7 +77,7 @@
   .container
     - if @seat_incumbencies.present? || @house_incumbencies || @committee_memberships.present?
       %h2= t('.roles').capitalize
-      - unless @history.nil? || @history[:current].empty? || @committee_memberships.empty?
+      - unless @history.nil? || @history[:current].empty? || @committee_memberships.nil?
         %ul.list--pipe
           - @history[:current].each do |incumbency|
             %li
@@ -96,40 +96,16 @@
                   %h3.content--xs= t('.committee_role').capitalize
                   %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{committee_membership.formal_body.name}"
                   %p= "#{committee_membership.date_range}"
-
-      .dropdown
-        .dropdown__toggle
-          %h3= link_to "#{t('.show_history')}", "#"
-        .dropdown__content.visually-hidden
-          - unless @history.nil? || @history[:current].empty? || @committee_memberships.empty?
-            .timeline
-              %h4= "#{t('.held_currently')}"
-              %ul.list--block
-                - @history[:current].each do |incumbency|
-                  %li
-                    .list--details
-                      - if incumbency.respond_to?(:constituency)
-                        %h5
-                          = t('.mp_for')
-                          = link_to incumbency.constituency.name, constituency_path(incumbency.constituency.graph_id)
-                      - else
-                        %h5= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
-                      %p= t('.parliamentary_role').capitalize
-                      %p= incumbency.date_range
-                - @committee_memberships.each do |committee_membership|
-                  - if committee_membership.current?
-                    %li
-                      .list--details
-                        %h5= "#{t('member').capitalize} #{t('of_the')} #{committee_membership.formal_body.name}"
-                        %p= t('.committee_role').capitalize
-                        %p= "#{committee_membership.date_range}"
-          -unless @history.nil? || @history[:years].empty?
-            - @history[:years].keys.sort.each do |year|
-              - year_multiplier = year * @year_seperator
+      - if @seat_incumbencies.count > 1 || @committee_memberships.count > 1
+        .dropdown
+          .dropdown__toggle
+            %h3= link_to "#{t('.show_history')}", "#"
+          .dropdown__content.visually-hidden
+            - unless @history.nil? || @history[:current].empty? || @committee_memberships.nil?
               .timeline
-                %h4= "#{t('.held_in')} #{year_multiplier} #{t('.years')}"
+                %h4= "#{t('.held_currently')}"
                 %ul.list--block
-                  - @history[:years][year].each do |incumbency|
+                  - @history[:current].each do |incumbency|
                     %li
                       .list--details
                         - if incumbency.respond_to?(:constituency)
@@ -141,13 +117,37 @@
                         %p= t('.parliamentary_role').capitalize
                         %p= incumbency.date_range
                   - @committee_memberships.each do |committee_membership|
-                    - unless committee_membership.current?
-                      -if committee_membership.formal_body
-                        %li
-                          .list--details
-                            %h5= "#{t('member').capitalize} #{t('of_the')} #{committee_membership.formal_body.name}"
-                            %p= t('.committee_role').capitalize
-                            %p= "#{committee_membership.date_range}"
-          - if @history && @history[:start]
-            .timeline
-              %h3= @history[:start].year
+                    - if committee_membership.current?
+                      %li
+                        .list--details
+                          %h5= "#{t('member').capitalize} #{t('of_the')} #{committee_membership.formal_body.name}"
+                          %p= t('.committee_role').capitalize
+                          %p= "#{committee_membership.date_range}"
+            -unless @history.nil? || @history[:years].empty?
+              - @history[:years].keys.sort.each do |year|
+                - year_multiplier = year * @year_seperator
+                .timeline
+                  %h4= "#{t('.held_in')} #{year_multiplier} #{t('.years')}"
+                  %ul.list--block
+                    - @history[:years][year].each do |incumbency|
+                      %li
+                        .list--details
+                          - if incumbency.respond_to?(:constituency)
+                            %h5
+                              = t('.mp_for')
+                              = link_to incumbency.constituency.name, constituency_path(incumbency.constituency.graph_id)
+                          - else
+                            %h5= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
+                          %p= t('.parliamentary_role').capitalize
+                          %p= incumbency.date_range
+                    - @committee_memberships.each do |committee_membership|
+                      - unless committee_membership.current?
+                        - if committee_membership.formal_body
+                          %li
+                            .list--details
+                              %h5= "#{t('member').capitalize} #{t('of_the')} #{committee_membership.formal_body.name}"
+                              %p= t('.committee_role').capitalize
+                              %p= "#{committee_membership.date_range}"
+            - if @history && @history[:start]
+              .timeline
+                %h3= @history[:start].year
