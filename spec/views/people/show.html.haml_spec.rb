@@ -21,6 +21,7 @@ RSpec.describe 'people/show', vcr: true do
           constituency: double(:constituency, name: 'Aberavon', graph_id: constituency_graph_id, date_range: 'from 2010')))
       assign(:seat_incumbencies, [])
       assign(:most_recent_incumbency, nil)
+      assign(:history, { start: nil, current: [], years: {} })
 
       render
     end
@@ -283,14 +284,14 @@ RSpec.describe 'people/show', vcr: true do
       assign(:house_incumbencies, [])
       assign(:seat_incumbencies, [
                double(:seat_incumbency,
-                 start_date:   Time.zone.now - 1.month,
+                 start_date:   Time.zone.now - 2.months,
                  end_date:     nil,
                  current?:     true,
-                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
                  constituency: double(:constituency,
                    name:       'Aberavon',
                    graph_id:   constituency_graph_id,
-                   start_date: Time.zone.now - 1.month,
+                   start_date: Time.zone.now - 2.months,
                    date_range: 'from 2010')),
                double(:seat_incumbency,
                  start_date:   Time.zone.now - 2.months,
@@ -300,7 +301,7 @@ RSpec.describe 'people/show', vcr: true do
                  constituency: double(:constituency,
                    name:       'Aberconwy',
                    graph_id:   constituency_graph_id,
-                   start_date: Time.zone.now - 1.month,
+                   start_date: Time.zone.now - 2.months,
                    date_range: 'from 2010'))
              ])
 
@@ -358,14 +359,14 @@ RSpec.describe 'people/show', vcr: true do
 
              assign(:seat_incumbencies, [
                double(:seat_incumbency,
-                 start_date:   Time.zone.now - 1.month,
+                 start_date:   Time.zone.now - 2.months,
                  end_date:     nil,
                  current?:     true,
-                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
                  constituency: double(:constituency,
                    name:       'Aberavon',
                    graph_id:   constituency_graph_id,
-                   start_date: Time.zone.now - 1.month,
+                   start_date: Time.zone.now - 2.months,
                    date_range: 'from 2010'))
              ])
 
@@ -396,14 +397,14 @@ RSpec.describe 'people/show', vcr: true do
 
              assign(:seat_incumbencies, [
                double(:seat_incumbency,
-                 start_date:   Time.zone.now - 1.month,
+                 start_date:   Time.zone.now - 2.months,
                  end_date:     nil,
                  current?:     true,
-                 date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                 date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
                  constituency: double(:constituency,
                    name:       'Aberavon',
                    graph_id:   constituency_graph_id,
-                   start_date: Time.zone.now - 1.month,
+                   start_date: Time.zone.now - 2.months,
                    date_range: 'from 2010'))
                                         ])
 
@@ -527,16 +528,33 @@ RSpec.describe 'people/show', vcr: true do
         assign(:seat_incumbencies, [])
         assign(:house_incumbencies, [
                  double(:house_incumbency,
-                   start_date: Time.zone.now - 1.month,
+                   start_date: Time.zone.now - 2.months,
                    end_date:   nil,
-                   date_range: "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
+                   date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
                    current?:   true),
                  double(:house_incumbency,
                    start_date: Time.zone.now - 2.months,
                    end_date:   Time.zone.now - 1.week,
-                   date_range: "from #{(Time.zone.now - 2.month).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+                   date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
                    current?:   false)
                ])
+        assign(:history, { start: nil, current: [
+          double(:incumbency,
+            start_date: Time.zone.now - 2.months,
+            end_date:   nil,
+            date_range: "from #{(Time.zone.now - 1.week).strftime('%-e %b %Y')} to present",
+            current?:   true
+          )
+        ], years: {} })
+        assign(:committee_memberships, [
+          double(:committee_membership,
+            current?: true,
+            date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+            formal_body: double(:formal_body,
+              name: 'Test Committe Name'
+            )
+          )
+        ])
         render
       end
 
@@ -546,7 +564,7 @@ RSpec.describe 'people/show', vcr: true do
 
       context 'incumbency is current' do
         it 'will render start date to present' do
-          expect(rendered).to match((Time.zone.now - 1.month).strftime('%-e %b %Y'))
+          expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
         end
 
         it 'will render present status' do
@@ -556,7 +574,7 @@ RSpec.describe 'people/show', vcr: true do
 
       context 'incumbency is not current' do
         it 'will render start date' do
-          expect(rendered).to match((Time.zone.now - 2.month).strftime('%-e %b %Y'))
+          expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
         end
 
         it 'will render end date' do
@@ -569,45 +587,54 @@ RSpec.describe 'people/show', vcr: true do
       before do
         assign(:house_incumbencies, [])
         assign(:seat_incumbencies, [
-                 double(:seat_incumbency,
-                   start_date:   Time.zone.now - 1.month,
-                   end_date:     nil,
-                   current?:     true,
-                   date_range:   "from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present",
-                   constituency: double(:constituency,
-                     name:       'Aberavon',
-                     graph_id:   constituency_graph_id,
-                     start_date: Time.zone.now - 1.month,
-                     date_range: 'from 2010')),
-                 double(:seat_incumbency,
-                   start_date:   Time.zone.now - 2.months,
-                   end_date:     Time.zone.now - 1.week,
-                   current?:     false,
-                   date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
-                   constituency: double(:constituency,
-                     name:       'Aberconwy',
-                     graph_id:   constituency_graph_id,
-                     start_date: Time.zone.now - 1.month,
-                     date_range: 'from 2010'))
-               ])
+          double(:seat_incumbency,
+            start_date:   Time.zone.now - 2.months,
+            end_date:     nil,
+            current?:     true,
+            date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
+            constituency: double(:constituency,
+              name:       'Aberavon',
+              graph_id:   constituency_graph_id,
+              start_date: Time.zone.now - 2.months,
+              date_range: 'from 2010')),
+          double(:seat_incumbency,
+            start_date:   Time.zone.now - 2.months,
+            end_date:     Time.zone.now - 1.week,
+            current?:     false,
+            date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+            constituency: double(:constituency,
+              name:       'Aberconwy',
+              graph_id:   constituency_graph_id,
+              start_date: Time.zone.now - 2.months,
+              date_range: 'from 2010'))
+        ])
+        assign(:history, { start: nil, current: [
+          double(:incumbency,
+            start_date: Time.zone.now - 2.months,
+            end_date:   nil,
+            date_range: "from #{(Time.zone.now - 1.week).strftime('%-e %b %Y')} to present",
+            current?:   true
+          )
+        ], years: {} })
+        assign(:committee_memberships, [
+          double(:committee_membership,
+            current?: true,
+            date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+            formal_body: double(:formal_body,
+              name: 'Test Committe Name'
+            )
+          )
+        ])
 
         render
       end
 
       it 'will render the correct sub-header' do
-        expect(rendered).to match(/MP/)
-      end
-
-      it 'will render link to first constituency_path' do
-        expect(rendered).to have_link('Aberavon', href: constituency_path(constituency_graph_id))
-      end
-
-      it 'will render link to last constituency_path' do
-        expect(rendered).to have_link('Aberconwy', href: constituency_path(constituency_graph_id))
+        expect(rendered).to match(/role/)
       end
 
       it 'will render the first incumbencies start date' do
-        expect(rendered).to match((Time.zone.now - 1.month).strftime('%-e %b %Y'))
+        expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
       end
 
       it 'will render the last incumbencies start date' do
