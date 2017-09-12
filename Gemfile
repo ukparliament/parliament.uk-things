@@ -35,7 +35,6 @@ gem 'parliament-ntriple', '~> 0.1', require: false
 gem 'bandiera-client'
 
 # Use Pugin for front-end components and templates
-# gem 'pugin', '~> 0.8'
 gem 'pugin', '~> 1.2', require: false
 
 # Use dotenv to override environment variables

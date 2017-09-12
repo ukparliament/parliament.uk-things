@@ -21,42 +21,62 @@ RSpec.describe ConstituenciesController, vcr: true do
   end
 
   describe 'GET show' do
-    before(:each) do
-      get :show, params: { constituency_id: 'xeQCZvTU' }
-    end
-
-    it 'should have a response with a http status ok (200)' do
-      expect(response).to have_http_status(:ok)
-    end
-
-    it 'assigns @constituency, @seat_incumbencies, @current_incumbency and @party' do
-      expect(assigns(:constituency)).to be_a(Grom::Node)
-      expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
-
-      assigns(:seat_incumbencies).each do |seat_incumbency|
-        expect(seat_incumbency).to be_a(Grom::Node)
-        expect(seat_incumbency.type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
+    context 'variable assignment' do
+      before(:each) do
+        get :show, params: { constituency_id: 't7YWWdzQ' }
       end
 
-      expect(assigns(:current_incumbency)).to be_a(Grom::Node)
-      expect(assigns(:current_incumbency).type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
-      expect(assigns(:current_incumbency).current?).to be(true)
+      it 'should have a response with a http status ok (200)' do
+        expect(response).to have_http_status(:ok)
+      end
 
-      expect(assigns(:party)).to be_a(Grom::Node)
-      expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
-    end
+      it 'assigns @constituency, @seat_incumbencies, @current_incumbency, @party and regions' do
+        expect(assigns(:constituency)).to be_a(Grom::Node)
+        expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
 
-    it 'assigns @seat_incumbencies in reverse chronological order' do
-      expect(assigns(:seat_incumbencies)[0].start_date).to eq(DateTime.new(2015, 5, 7))
-      expect(assigns(:seat_incumbencies)[1].start_date).to eq(DateTime.new(2010, 5, 6))
-    end
+        assigns(:seat_incumbencies).each do |seat_incumbency|
+          expect(seat_incumbency).to be_a(Grom::Node)
+          expect(seat_incumbency.type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
+        end
 
-    it 'assigns @current_incumbency to be the current incumbency' do
-      expect(assigns(:current_incumbency).start_date).to eq(DateTime.new(2017, 6, 8))
-    end
+        expect(assigns(:current_incumbency)).to be_a(Grom::Node)
+        expect(assigns(:current_incumbency).type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
+        expect(assigns(:current_incumbency).current?).to be(true)
 
-    it 'renders the show template' do
-      expect(response).to render_template('show')
+        expect(assigns(:party)).to be_a(Grom::Node)
+        expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+      end
+
+      it 'assigns @seat_incumbencies in reverse chronological order' do
+        expect(assigns(:seat_incumbencies)[0].start_date).to eq(DateTime.new(2015, 5, 7))
+        expect(assigns(:seat_incumbencies)[1].start_date).to eq(DateTime.new(2010, 5, 6))
+      end
+
+      it 'assigns @current_incumbency to be the current incumbency' do
+        expect(assigns(:current_incumbency).start_date).to eq(DateTime.new(2017, 6, 8))
+      end
+
+      it 'assigns @party' do
+        expect(assigns(:party)).to be_a(Grom::Node)
+        expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+      end
+
+      it 'assigns regions when available' do
+        expect(assigns(:constituency).regions).to be_a(Array)
+        assigns(:constituency).regions.each do |region|
+          expect(region).to be_a(Grom::Node)
+          expect(region.type).to eq('http://data.ordnancesurvey.co.uk/ontology/admingeo/EuropeanRegion')
+        end
+      end
+
+      it 'assigns regions to an empty array if no regions are available' do
+        expect(assigns(:constituency).regions).to be_a(Array)
+        expect(assigns(:constituency).regions.empty?).to be true
+      end
+
+      it 'renders the show template' do
+        expect(response).to render_template('show')
+      end
     end
 
     context 'given a valid postcode' do
@@ -74,7 +94,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     context 'given an invalid postcode' do
       before(:each) do
-        get :show, params: { constituency_id: 'xeQCZvTU' }, flash: { postcode: 'apple' }
+        get :show, params: { constituency_id: 't7YWWdzQ' }, flash: { postcode: 'apple' }
       end
 
       it 'assigns @postcode and flash[:error]' do

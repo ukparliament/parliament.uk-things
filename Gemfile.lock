@@ -132,10 +132,10 @@ GEM
     parallel (1.12.0)
     parallel_tests (2.15.0)
       parallel
-    parliament-grom-decorators (0.4.0)
+    parliament-grom-decorators (0.6.1)
     parliament-ntriple (0.1.5)
       grom (~> 0.3)
-    parliament-routes (0.4.1)
+    parliament-routes (0.4.3)
     parliament-ruby (0.8.0)
     parliament-utils (0.2.5)
       bandiera-client
