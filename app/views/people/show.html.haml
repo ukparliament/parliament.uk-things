@@ -38,7 +38,7 @@
           .dropdown
             .dropdown__toggle
               %h3= link_to t('.when_to_contact.title'), '#'
-            .dropdown__content.visually-hidden
+            .dropdown__content
               %p= t('.when_to_contact.mps_can_help_with')
               %ul.list--bullet
                 %li= t('.when_to_contact.hospitals_nhs')
@@ -84,7 +84,9 @@
               .list--details
                 %h3.content--xs= t('.parliamentary_role').capitalize
                 - if incumbency.respond_to?(:constituency)
-                  %h4.lead= "#{t('.mp_for')} #{incumbency.constituency.name}"
+                  %h4.lead
+                    = t('.mp_for')
+                    = link_to incumbency.constituency.name, constituency_path(incumbency.constituency.graph_id)
                 - else
                   %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
                 %p= incumbency.date_range
@@ -100,7 +102,7 @@
         .dropdown
           .dropdown__toggle
             %h3= link_to "#{t('.show_history')}", "#"
-          .dropdown__content.visually-hidden
+          .dropdown__content
             - unless @history.nil? || @history[:current].empty? || @committee_memberships.nil?
               .timeline
                 %h4= "#{t('.held_currently')}"
