@@ -211,6 +211,7 @@ en:
       check_constituency_alternative: 'Check if this is your constituency'
       correct_constituency: '%{name} is the constituency for the postcode entered.'
       incorrect_constituency: '%{name} is not the constituency for the postcode entered.  Your constituency is '
+      constituency_in: 'Constituency in'
     members:
       index:
         title: '%{current_and_former} %{mp_plural}'
