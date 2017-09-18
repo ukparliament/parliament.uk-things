@@ -530,143 +530,184 @@ RSpec.describe 'people/show', vcr: true do
     end
   end
 
-  context '@house_incumbencies or @seat_incumbencies are present' do
+  context '@house_incumbencies, @seat_incumbencies or @committee_memberships are present' do
     before do
       assign(:person,
         double(:person,
           display_name: 'Test Display Name',
           full_title:   'Test Title',
           full_name:    'Test Full Name',
-          statuses:     { house_membership_status: ['Lord'] },
-          graph_id:     '7TX8ySd4'))
+          statuses:     { house_membership_status: ['Member of the House of Lords'] },
+          graph_id:     '9BSfSFxq')
+        )
       assign(:most_recent_incumbency, nil)
       assign(:current_party_membership,
         double(:current_party_membership,
           party: double(:party,
-            name: 'Conservative', graph_id: 'jF43Jxoc')))
+            name: 'Conservative',
+            graph_id: 'jF43Jxoc')
+        )
+      )
     end
 
-    context '@house_incumbencies' do
+    context 'with roles' do
       before do
-        assign(:seat_incumbencies, [])
-        assign(:house_incumbencies, [
-                 double(:house_incumbency,
-                   start_date: Time.zone.now - 2.months,
-                   end_date:   nil,
-                   date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
-                   current?:   true),
-                 double(:house_incumbency,
-                   start_date: Time.zone.now - 2.months,
-                   end_date:   Time.zone.now - 1.week,
-                   date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
-                   current?:   false)
-               ])
-        assign(:history, { start: nil, current: [
-          double(:incumbency,
-            start_date: Time.zone.now - 2.months,
-            end_date:   nil,
-            date_range: "from #{(Time.zone.now - 1.week).strftime('%-e %b %Y')} to present",
-            current?:   true
-          )
-        ], years: {} })
-        assign(:committee_memberships, [
-          double(:committee_membership,
-            current?: true,
-            date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
-            formal_body: double(:formal_body,
-              name: 'Test Committe Name'
-            )
-          )
-        ])
-
         allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
-
+        assign(:history, {
+          start: Time.zone.now - 25.years,
+          current: [
+            double(:seat_incumbency,
+              type: '/SeatIncumbency',
+              name: 'Test Incumbency',
+              date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
+              constituency: double(:constituency,
+                name:       'Aberconwy',
+                graph_id:   constituency_graph_id,
+              )
+            ),
+            double(:committee_membership,
+              type: '/FormalBodyMembership',
+              date_range: "from #{(Time.zone.now - 3.months).strftime('%-e %b %Y')} to present",
+              formal_body: double(:formal_body,
+                name: 'Test Committee Name',
+                graph_id:   constituency_graph_id,
+              )
+            ),
+            double(:house_incumbency,
+              type: '/HouseIncumbency',
+              start_date: Time.zone.now - 2.months,
+              end_date:   nil,
+              date_range: "from #{(Time.zone.now - 4.months).strftime('%-e %b %Y')} to present",
+            )
+          ],
+          years: {
+            '10': [
+              double(:committee_membership,
+                type: '/FormalBodyMembership',
+                date_range: "from #{(Time.zone.now - 8.years).strftime('%-e %b %Y')} to #{(Time.zone.now - 7.years).strftime('%-e %b %Y')}",
+                formal_body: double(:formal_body,
+                  name: 'Second Committee Name',
+                  graph_id:   constituency_graph_id,
+                )
+              ),
+              double(:house_incumbency,
+                type: '/HouseIncumbency',
+                start_date: Time.zone.now - 6.months,
+                end_date:   Time.zone.now - 1.week,
+                date_range: "from #{(Time.zone.now - 6.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+              )
+            ]
+          }
+        })
         render
       end
 
-      it 'will render the correct sub-header' do
-        expect(rendered).to match(/Member of the House of Lords/)
-      end
-
-      context 'incumbency is current' do
-        it 'will render start date to present' do
-          expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
+      context 'showing current' do
+        it 'shows header' do
+          expect(rendered).to match(/Held currently/)
         end
 
-        it 'will render present status' do
-          expect(rendered).to match('to present')
+        context 'Parliamentary roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Parliamentary role/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Test Incumbency/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match('to present')
+          end
+        end
+
+        context 'Committee roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Committee role/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Test Committee Name/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 3.months).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match('to present')
+          end
+        end
+
+        context 'House roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/House of Lords role/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Member of the House of Lords/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 4.months).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match('to present')
+          end
         end
       end
 
-      context 'incumbency is not current' do
-        it 'will render start date' do
-          expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
+      context 'showing historic' do
+        it 'shows header' do
+          expect(rendered).to match(/Held in the last 10 years/)
         end
 
-        it 'will render end date' do
-          expect(rendered).to match("to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}")
+        context 'Committee roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Committee role/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Second Committee Name/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 8.years).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match((Time.zone.now - 7.years).strftime('%-e %b %Y'))
+          end
+        end
+
+        context 'House roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/House of Lords role/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Member of the House of Lords/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 6.months).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match((Time.zone.now - 1.week).strftime('%-e %b %Y'))
+          end
         end
       end
-    end
 
-    context '@seat_incumbencies' do
-      before do
-        assign(:house_incumbencies, [])
-        assign(:seat_incumbencies, [
-          double(:seat_incumbency,
-            start_date:   Time.zone.now - 2.months,
-            end_date:     nil,
-            current?:     true,
-            date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
-            constituency: double(:constituency,
-              name:       'Aberavon',
-              graph_id:   constituency_graph_id,
-              start_date: Time.zone.now - 2.months,
-              date_range: 'from 2010')),
-          double(:seat_incumbency,
-            start_date:   Time.zone.now - 2.months,
-            end_date:     Time.zone.now - 1.week,
-            current?:     false,
-            date_range:   "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
-            constituency: double(:constituency,
-              name:       'Aberconwy',
-              graph_id:   constituency_graph_id,
-              start_date: Time.zone.now - 2.months,
-              date_range: 'from 2010'))
-        ])
-        assign(:history, { start: nil, current: [
-          double(:incumbency,
-            start_date: Time.zone.now - 2.months,
-            end_date:   nil,
-            date_range: "from #{(Time.zone.now - 1.week).strftime('%-e %b %Y')} to present",
-            current?:   true
-          )
-        ], years: {} })
-        assign(:committee_memberships, [
-          double(:committee_membership,
-            current?: true,
-            date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
-            formal_body: double(:formal_body,
-              name: 'Test Committe Name'
-            )
-          )
-        ])
-
-        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
-
-        render
-      end
-
-      it 'will render the correct sub-header' do
-        expect(rendered).to match(/role/)
-      end
-
-      it 'will render the first incumbencies start date' do
-        expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
-      end
-
-      it 'will render the last incumbencies start date' do
-        expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
+      context 'showing start date' do
+        it 'shows start date' do
+          expect(rendered).to match((Time.zone.now - 25.years).strftime('%Y'))
+        end
       end
     end
   end
