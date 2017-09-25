@@ -578,6 +578,9 @@ RSpec.describe 'people/show', vcr: true do
             )
           )
         ])
+
+        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
+
         render
       end
 
@@ -648,6 +651,8 @@ RSpec.describe 'people/show', vcr: true do
             )
           )
         ])
+
+        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
 
         render
       end
