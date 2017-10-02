@@ -182,7 +182,7 @@
                               %li= "#{node.date_range}"
                         - else
                           %h5
-                            = role.name
+                            = role.constituency.name
                             = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
                           %p= t('.parliamentary_role').capitalize
                           %p= "#{role.date_range}"
