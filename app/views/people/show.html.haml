@@ -94,7 +94,7 @@
                         %li= "#{node.date_range}"
                   - else
                     %h4.lead
-                      = role.constituency.name
+                      = t('.mp_for')
                       = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
                     %p= "#{role.date_range}"
 
@@ -140,7 +140,7 @@
                             %li= "#{node.date_range}"
                       - else
                         %h5
-                          = role.constituency.name
+                          = t('.mp_for')
                           = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
                         %p= t('.parliamentary_role').capitalize
                         %p= "#{role.date_range}"
@@ -182,7 +182,7 @@
                               %li= "#{node.date_range}"
                         - else
                           %h5
-                            = role.constituency.name
+                            = t('.mp_for')
                             = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
                           %p= t('.parliamentary_role').capitalize
                           %p= "#{role.date_range}"
