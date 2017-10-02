@@ -38,7 +38,7 @@
           .dropdown
             .dropdown__toggle
               %h3= link_to t('.when_to_contact.title'), '#'
-            .dropdown__content
+            .dropdown__content.visually-hidden
               %p= t('.when_to_contact.mps_can_help_with')
               %ul.list--bullet
                 %li= t('.when_to_contact.hospitals_nhs')
@@ -121,7 +121,7 @@
     .dropdown
       .dropdown__toggle
         %h3= link_to "#{t('.show_history')}", "#"
-      .dropdown__content
+      .dropdown__content.visually-hidden
         .timeline
           - unless @history.nil? || @history[:current].empty?
             %h2= "#{t('.held_currently')}"
