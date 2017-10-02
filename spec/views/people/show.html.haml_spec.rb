@@ -558,7 +558,6 @@ RSpec.describe 'people/show', vcr: true do
           current: [
             double(:seat_incumbency,
               type: '/SeatIncumbency',
-              name: 'Test Incumbency',
               date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
               constituency: double(:constituency,
                 name:       'Aberconwy',
@@ -613,7 +612,7 @@ RSpec.describe 'people/show', vcr: true do
           end
 
           it 'will render the correct title' do
-            expect(rendered).to match(/Test Incumbency/)
+            expect(rendered).to match(/Aberconwy/)
           end
 
           it 'will render start date to present' do
