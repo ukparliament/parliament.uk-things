@@ -122,6 +122,7 @@ en:
       election_history: 'election history'
       roles: 'roles'
       parliamentary_role: 'parliamentary role'
+      house_of_lords_role: 'House of Lords role'
       committee_role: 'committee role'
       held_currently: 'Held currently'
       held_in: 'Held in the last'
