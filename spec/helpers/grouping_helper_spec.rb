@@ -13,21 +13,37 @@ RSpec.describe GroupingHelper do
   describe '#group_data' do
     context 'with no data' do
       it 'returns a hash' do
-        expect(subject.group_data([], :grouping, :name)).to be_a(Hash)
+        expect(subject.group_data([], [:grouping, :name])).to be_a(Hash)
       end
     end
 
     context 'with data' do
-      let(:node1) { double('node1', :start_date => 2015, :end_date => 2017, :type => 'SeatIncumbency', :grouping => double(:name, :name => 'test'))}
-      let(:node2) { double('node2', :start_date => 1990, :end_date => 1994, :type => 'SeatIncumbency', :grouping => double(:name, :name => 'test'))}
-      let(:node3) { double('node3', :start_date => 2015, :end_date => 2016, :type => 'SeatIncumbency', :grouping => double(:name, :name => 'banana'))}
-      let(:data) {[node1, node2, node3]}
+      context 'with two optional methods' do
+        let(:node1) { double('node1', :start_date => 2015, :end_date => 2017, :type => 'SeatIncumbency', :grouping => double(:name, :name => 'test'))}
+        let(:node2) { double('node2', :start_date => 1990, :end_date => 1994, :type => 'SeatIncumbency', :grouping => double(:name, :name => 'test'))}
+        let(:node3) { double('node3', :start_date => 2015, :end_date => 2016, :type => 'SeatIncumbency', :grouping => double(:name, :name => 'banana'))}
+        let(:data) {[node1, node2, node3]}
 
-      it 'returns an array of grouped objects' do
-        expect(subject.group_data(data, :grouping, :name)).to eq({
-          'test' => [node1, node2],
-          'banana' => [node3]
-        })
+        it 'returns an array of grouped objects' do
+          expect(subject.group_data(data, [:grouping, :name])).to eq({
+            'test' => [node1, node2],
+            'banana' => [node3]
+          })
+        end
+      end
+
+      context 'with only one optional method' do
+        let(:node1) { double('node1', :start_date => 2015, :end_date => 2017, :type => 'SeatIncumbency', :grouping => 'test')}
+        let(:node2) { double('node2', :start_date => 1990, :end_date => 1994, :type => 'SeatIncumbency', :grouping => 'test')}
+        let(:node3) { double('node3', :start_date => 2015, :end_date => 2016, :type => 'SeatIncumbency', :grouping => 'banana')}
+        let(:data) {[node1, node2, node3]}
+
+        it 'returns an array of grouped objects' do
+          expect(subject.group_data(data, [:grouping])).to eq({
+            'test' => [node1, node2],
+            'banana' => [node3]
+          })
+        end
       end
     end
 
@@ -37,7 +53,7 @@ RSpec.describe GroupingHelper do
       let(:data) {[node4, node5]}
 
       it 'returns an array of objects' do
-        expect(subject.group_data(data, :grouping, :name)).to eq({
+        expect(subject.group_data(data, [:grouping, :name])).to eq({
           'UNKNOWN' => [node4],
           'banana' => [node5]
         })
@@ -65,11 +81,6 @@ RSpec.describe GroupingHelper do
       it 'of IncumbencyHelper::GroupedObject class' do
         grouped = subject.create_grouped_objects(data_hash, 'apple')
         expect(grouped[0].class).to eq(GroupingHelper::GroupedObject)
-      end
-
-      it 'with a grouped_by property' do
-        grouped = subject.create_grouped_objects(data_hash, 'apple')
-        expect(grouped[0].grouped_by).to eq('apple')
       end
 
       it 'with nodes that have been grouped' do

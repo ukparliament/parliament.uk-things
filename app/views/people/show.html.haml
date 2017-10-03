@@ -110,7 +110,7 @@
                     = t('.committee_role').capitalize
                     - if role.class == GroupingHelper::GroupedObject
                       %h4.lead
-                        = "#{t('member').capitalize} #{t('of_the')} #{role.grouped_by}"
+                        = "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
                         %ul.list--bullet
                           - role.nodes.each do |node|
                             %li= "#{node.date_range}"
@@ -176,7 +176,8 @@
                           - if role.class == GroupingHelper::GroupedObject
                             %h5
                               = t('.mp_for')
-                              = link_to role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id)
+                              - date_string = " (#{l(role.start_date, format: :year_only)} - #{l(role.end_date, format: :year_only)})" if role.respond_to?(:start_date) && role.respond_to?(:end_date)
+                              = link_to "#{role.nodes[0].constituency.name}#{date_string}", constituency_path(role.nodes[0].constituency.graph_id)
                             %p= "Elected #{role.nodes.count} times"
                             %ul.list--bullet
                               - role.nodes.each do |node|
@@ -184,7 +185,8 @@
                           - else
                             %h5
                               = t('.mp_for')
-                              = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
+                              - date_string = " (#{l(role.start_date, format: :year_only)} - #{l(role.end_date, format: :year_only)})" if role.respond_to?(:start_date) && role.respond_to?(:end_date)
+                              = link_to "#{role.constituency.name}#{date_string}", constituency_path(role.constituency.graph_id)
                             %p= t('.parliamentary_role').capitalize
                             %p= "#{role.date_range}"
 
@@ -197,7 +199,7 @@
                           -# Committees list, wrapped within conditional flag
                           - if Pugin::Feature::Bandiera.show_committees?
                             - if role.class == GroupingHelper::GroupedObject
-                              %h5= "#{t('member').capitalize} #{t('of_the')} #{role.grouped_by}"
+                              %h5= "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
                               %p= t('.committee_role').capitalize
                               %ul.list--bullet
                                 - role.nodes.each do |node|
