@@ -4,34 +4,33 @@ module GroupingHelper
   # @return start_date [DateTime] Earliest start date
   # @return end_date [DateTime] Latest end date
   # @return nodes [Array] Array of Grom::Nodes
-  # @return grouped_by [String] Grouping of Grom::Nodes
   # @return type [String] Type of all grouped Grom::Nodes
   class GroupedObject
-    attr_accessor :start_date, :end_date, :nodes, :grouped_by, :type
+    attr_accessor :start_date, :end_date, :nodes, :type
   end
 
   # Groups objects by category where possible
   #
   # @param data [Array] Array of Grom::Nodes to be grouped
-  # @param category [Symbol] Method of Grom::Node that is used to find suitable nodes for grouping
-  # @param property [Symbol] Method of category parameter that is used to group Grom::Nodes
+  # @param optional_methods [Symbol] Optional number of methods can be called on Grom::Node to find suitable nodes for grouping
   # @return [Array] Single array of grouped, ungrouped and unknown objects
-  def self.group(data, category, property)
-    grouped_data = group_data(data, category, property)
+  def self.group(data, *optional_methods)
+    grouped_data = group_data(data, optional_methods)
     create_sorted_array(grouped_data)
   end
 
-  # Where category and property methods can be called, groups by the result of calling category.property on each Grom::Node
+  # Where optional methods can be called (e.g. #category and #id), this method groups by the result of calling each of those methods in succession on each Grom::Node
   # If a grouping cannot be found, adds 'UNKNOWN' as key of the hash
   #
   # @param data [Array] Array of Grom::Nodes to be grouped
-  # @param category [Symbol] Method of Grom::Node that is used to find suitable nodes for grouping
-  # @param property [Symbol] Method of category parameter that is used to group Grom::Nodes
+  # @param optional_methods [Array] Optional number of methods can be called on Grom::Node to find suitable nodes for grouping
   # @return [Hash] Keys identify grouping (grouped by category.property), with each value being an array of grouped, ungrouped and unknown Grom::Nodes
   #
   # e.g. { 12345678 => [...], 23456789 => [...], "UNKNOWN" => [...] }
-  def self.group_data(data, category, property)
-    data.group_by { |data_point| data_point.try(category).try(property) || 'UNKNOWN' }
+  def self.group_data(data, optional_methods)
+    data.group_by do |data_point|
+      optional_methods.inject(data_point) { |point, method| point.try(method) } || 'UNKNOWN'
+    end
   end
 
 
@@ -54,7 +53,7 @@ module GroupingHelper
   end
 
   # Creates new GroupingHelper::GroupedObject, for each set of Grom::Nodes that have been grouped (nodes)
-  # Each instance of GroupingHelper::GroupedObject is assigned properties of start_date, end_date, grouped_by, nodes and type
+  # Each instance of GroupingHelper::GroupedObject is assigned properties of start_date, end_date, nodes and type
   # Once object has been created, calls sort_grouped_nodes_by_date method to sort that object's nodes by date
   #
   # @param data_hash [Hash] Keys identify grouping, with each value being an array of grouped, ungrouped and unknown Grom::Nodes
@@ -64,7 +63,6 @@ module GroupingHelper
     grouped = []
 
     grouped_object = GroupingHelper::GroupedObject.new
-    grouped_object.grouped_by = key
     grouped_object.nodes = data_hash[key]
 
     start_date = nil
