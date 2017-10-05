@@ -176,7 +176,7 @@
                           - if role.class == GroupingHelper::GroupedObject
                             %h5
                               = t('.mp_for')
-                              - date_string = " (#{l(role.start_date, format: :year_only)} - #{l(role.end_date, format: :year_only)})" if role.respond_to?(:start_date) && role.respond_to?(:end_date)
+                              - date_string = " (#{l(role.start_date, format: :year_only)} #{t('to')} #{l(role.end_date, format: :year_only)})" if role.respond_to?(:start_date) && role.respond_to?(:end_date)
                               = link_to "#{role.nodes[0].constituency.name}#{date_string}", constituency_path(role.nodes[0].constituency.graph_id)
                             %p= "Elected #{role.nodes.count} times"
                             %ul.list--bullet
@@ -185,7 +185,7 @@
                           - else
                             %h5
                               = t('.mp_for')
-                              - date_string = " (#{l(role.start_date, format: :year_only)} - #{l(role.end_date, format: :year_only)})" if role.respond_to?(:start_date) && role.respond_to?(:end_date)
+                              - date_string = " (#{l(role.start_date, format: :year_only)} #{t('to')} #{l(role.end_date, format: :year_only)})" if role.respond_to?(:start_date) && role.respond_to?(:end_date)
                               = link_to "#{role.constituency.name}#{date_string}", constituency_path(role.constituency.graph_id)
                             %p= t('.parliamentary_role').capitalize
                             %p= "#{role.date_range}"
