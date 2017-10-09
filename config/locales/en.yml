@@ -77,7 +77,10 @@ en:
   open_new_window: "website opens in a new window"
   # global a-z navigation translations
   a_to_z:
+    a_to_z: 'A to Z'
     select_letter: 'select a letter'
+    showing_results: 'showing results for'
+    showing_all: 'showing all'
     aria_label: 'Paged navigation'
   # global time format translations
   time:
@@ -118,6 +121,13 @@ en:
       membership_history: 'membership history'
       election_history: 'election history'
       roles: 'roles'
+      parliamentary_role: 'parliamentary role'
+      house_of_lords_role: 'House of Lords role'
+      committee_role: 'committee role'
+      held_currently: 'Held currently'
+      held_in: 'Held in the last'
+      show_history: 'Show history'
+      years: 'years'
       check_mp: 'Check if %{name} is your MP'
       check_mp_alternative: 'Check if this is your MP'
       correct_mp: '%{name} is the MP for the postcode entered.'
@@ -202,6 +212,7 @@ en:
       check_constituency_alternative: 'Check if this is your constituency'
       correct_constituency: '%{name} is the constituency for the postcode entered.'
       incorrect_constituency: '%{name} is not the constituency for the postcode entered.  Your constituency is '
+      constituency_in: 'Constituency in'
     members:
       index:
         title: '%{current_and_former} %{mp_plural}'

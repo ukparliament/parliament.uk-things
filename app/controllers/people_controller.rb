@@ -7,29 +7,46 @@ class PeopleController < ApplicationController
   }.freeze
 
   def show
+    # When calculating history, how many years do we want in each block
+
     @postcode = flash[:postcode]
 
-    @person, @seat_incumbencies, @house_incumbencies, @committees = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
+    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
       'http://id.ukpds.org/schema/Person',
       'http://id.ukpds.org/schema/SeatIncumbency',
       'http://id.ukpds.org/schema/HouseIncumbency',
-      'http://id.ukpds.org/schema/FormalBody'
+      'http://id.ukpds.org/schema/FormalBodyMembership'
     )
 
     @person = @person.first
 
     @current_party_membership = @person.current_party_membership
 
-    sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
+    # Only seat incumbencies, not committee roles are being grouped
+    incumbencies = GroupingHelper.group(@seat_incumbencies, :constituency, :graph_id)
+
+    roles = []
+    roles += incumbencies
+    roles += @committee_memberships.to_a
+    roles += @house_incumbencies.to_a
+
+    @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
       parameters:       [:end_date],
       prepend_rejected: false
-    })
+      })
 
-    @most_recent_incumbency = sorted_incumbencies.last
+    @most_recent_incumbency = @sorted_incumbencies.last
+
     @current_incumbency = @most_recent_incumbency && @most_recent_incumbency.current? ? @most_recent_incumbency : nil
 
+    HistoryHelper.reset
+    HistoryHelper.add(roles)
+    @history = HistoryHelper.history
+
+
+    # !!!!! CODE BELOW THIS POINT ONLY EXECUTES WHEN YOU HAVE CHECKED THAT THIS PERSON IS YOUR MP !!!!!
     return unless @postcode && @current_incumbency
 
     begin

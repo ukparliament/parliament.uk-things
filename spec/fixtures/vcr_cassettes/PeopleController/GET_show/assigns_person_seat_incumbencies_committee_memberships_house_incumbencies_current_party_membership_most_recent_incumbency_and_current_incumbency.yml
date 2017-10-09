@@ -26,11 +26,11 @@ http_interactions:
       Content-Disposition:
       - inline; filename="index"
       Last-Modified:
-      - Mon, 04 Sep 2017 08:25:39 GMT
+      - Thu, 07 Sep 2017 09:28:27 GMT
       X-Content-Type-Options:
       - nosniff
       Content-Length:
-      - '14127'
+      - '13958'
     body:
       encoding: UTF-8
       string: "<http://id.ukpds.org/tJxPOiSd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -165,7 +165,7 @@ http_interactions:
         \"2017-06-08\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/yKbi7ikQ>
         <http://id.ukpds.org/schema/seatIncumbencyHasHouseSeat> <http://id.ukpds.org/VKUYDXoa>
         .\r\n<http://id.ukpds.org/yKbi7ikQ> <http://id.ukpds.org/schema/incumbencyHasContactPoint>
-        <http://id.ukpds.org/FeCebO0j> .\r\n<http://id.ukpds.org/tJxPOiSd> <http://id.ukpds.org/schema/memberHasFormalBodyMembership>
+        <http://id.ukpds.org/FeCebO0j> .\n\r\n<http://id.ukpds.org/tJxPOiSd> <http://id.ukpds.org/schema/memberHasFormalBodyMembership>
         <http://id.ukpds.org/JCORBTRADECOMMITTEEMEMBERSHIP> .\r\n<http://id.ukpds.org/JCORBTRADECOMMITTEEMEMBERSHIP>
         <http://id.ukpds.org/schema/formalBodyMembershipHasFormalBody> <http://id.ukpds.org/TRADECOMMITTEE>
         .\r\n<http://id.ukpds.org/JCORBTRADECOMMITTEEMEMBERSHIP> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -175,19 +175,18 @@ http_interactions:
         \"2001-06-08\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/TRADECOMMITTEE>
         <http://id.ukpds.org/schema/formalBodyName> \"formalBodyName - 1\" .\r\n<http://id.ukpds.org/TRADECOMMITTEE>
         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.ukpds.org/schema/FormalBody>
-        .\r\n<http://id.ukpds.org/tJxPOiSd> <http://id.ukpds.org/schema/memberHasFormalBodyMembership>
-        <http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP> .\r\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP>
-        <http://id.ukpds.org/schema/formalBodyMembershipHasFormalBody> <http://id.ukpds.org/JOBSCOMMITTEE>
-        .\r\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/FormalBodyMembership> .\r\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP>
+        .\n\r\n<http://id.ukpds.org/tJxPOiSd> <http://id.ukpds.org/schema/memberHasExOfficioMembership>
+        <http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP> .\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP>
+        <http://id.ukpds.org/schema/formalBodyMembershipHasFormalBody> <http://id.ukpds.org/TRADECOMMITTEE>
+        .\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://id.ukpds.org/schema/FormalBodyMembership> .\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP>
         <http://id.ukpds.org/schema/formalBodyMembershipStartDate> \"1998-06-08\"^^<http://www.w3.org/2001/XMLSchema#date>
-        .\r\n<http://id.ukpds.org/JCORBJOBSCOMMITTEEMEMBERSHIP> <http://id.ukpds.org/schema/formalBodyMembershipEndDate>
-        \"20012-06-08\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/JOBSCOMMITTEE>
-        <http://id.ukpds.org/schema/formalBodyName> \"formalBodyName - 2\" .\r\n<http://id.ukpds.org/JOBSCOMMITTEE>
+        .\n<http://id.ukpds.org/JOBSCOMMITTEE> <http://id.ukpds.org/schema/formalBodyName>
+        \"formalBodyName - 2\"Jobs Committee\"\" .\n<http://id.ukpds.org/JOBSCOMMITTEE>
         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.ukpds.org/schema/FormalBody>
-        .\r\n"
+        ."
     http_version: 
-  recorded_at: Mon, 04 Sep 2017 15:08:53 GMT
+  recorded_at: Thu, 07 Sep 2017 09:33:32 GMT
 - request:
     method: get
     uri: http://localhost:3030/house_index
@@ -227,5 +226,5 @@ http_interactions:
         <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/MvLURLV5> <http://id.ukpds.org/schema/houseName>
         \"houseName - 2\" .\r\n"
     http_version: 
-  recorded_at: Mon, 04 Sep 2017 15:08:54 GMT
+  recorded_at: Thu, 07 Sep 2017 09:33:32 GMT
 recorded_with: VCR 3.0.3
