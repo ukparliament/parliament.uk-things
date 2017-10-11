@@ -1,0 +1,43 @@
+%ul.list--pipe
+  - @history[:current].each do |role|
+    %li
+      .list--details
+        - if Grom::Helper.get_id(role.type) == 'SeatIncumbency'
+          %h3.content--xs
+            = t('.parliamentary_role').capitalize
+            - if role.class == GroupingHelper::GroupedObject
+              %h4.lead
+                = t('.mp_for')
+                = link_to role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id)
+              %p= "Elected #{role.nodes.count} times"
+              %ul.list--bullet
+                - role.nodes.each do |node|
+                  %li= "#{node.date_range}"
+            - else
+              %h4.lead
+                = t('.mp_for')
+                = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
+              %p= "#{role.date_range}"
+
+        - elsif Grom::Helper.get_id(role.type) == 'HouseIncumbency'
+          %h3.content--xs= t('.house_of_lords_role')
+          %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
+          %p= "#{role.date_range}"
+
+        - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
+          %h3.content--xs
+            = t('.committee_role').capitalize
+            - if role.class == GroupingHelper::GroupedObject
+              %h4.lead
+                = "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
+                %ul.list--bullet
+                  - role.nodes.each do |node|
+                    %li= "#{node.date_range}"
+            - else
+              %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
+              %p= "#{role.date_range}"
+
+        - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
+          %h3.content--xs= t('.government_role').capitalize
+          %h4.lead= "#{role.government_position.name}"
+          %p= "#{role.date_range}"
