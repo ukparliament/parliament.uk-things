@@ -1,0 +1,13 @@
+.dropdown
+  .dropdown__toggle
+    %h3= link_to t('.title'), '#'
+  .dropdown__content
+    %p= t('.mps_can_help_with')
+    %ul.list--bullet
+      %li= t('.hospitals_nhs')
+      %li= t('.problems')
+      %li= t('.immigration')
+      %li= t('.school_closures')
+      %li= t('.transport')
+    %p= link_to t('.who_else_can_help'), who_should_i_contact_with_my_issue_path
+  %p= t('.contact_postcode')
