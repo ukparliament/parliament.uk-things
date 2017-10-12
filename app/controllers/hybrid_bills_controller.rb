@@ -5,8 +5,20 @@ require 'pry'
 require 'pry-nav'
 
 class HybridBillsController < ApplicationController
-  # Dummy application index route renders two links to test routing from engine has been added
-  
+  include HybridBillsHelper
+
+  STEP_TEMPLATES = {
+    'submission-type': 'hybrid_bills/steps/1',
+    'covering-page': {
+      'individual': 'hybrid_bills/steps/individual/1',
+      'organisation': 'hybrid_bills/steps/organisation/1',
+      'group': 'hybrid_bills/steps/group/1'
+    },
+    'document-submission': 'hybrid_bills/steps/3',
+    'terms-conditions': 'hybrid_bills/steps/4',
+    'complete': 'hybrid_bills/steps/5'
+  }
+
   def index
   end
 
@@ -16,28 +28,14 @@ class HybridBillsController < ApplicationController
 
   	@petition = params[:bill_id]
 
-  	step_templates = {
-  		'submission-type': 'hybrid_bills/steps/1',
-  		'covering-page': {
-  			'individual': 'hybrid_bills/steps/individual/1',
-  			'organisation': 'hybrid_bills/steps/organisation/1',
-  			'group': 'hybrid_bills/steps/group/1'
-  		},
-  		'document-submission': 'hybrid_bills/steps/3',
-      'terms-conditions': 'hybrid_bills/steps/4',
-  		'complete': 'hybrid_bills/steps/5'
-  	}
+    if params[:step]
+      template = STEP_TEMPLATES[params[:step].to_sym]
+      template = template[params[:type].to_sym] if params[:type]
 
-    #session = new session thing  	
-    session['hybrid bills'] = {} if session['hybrid bills'].nil?
-    #this shows if there is no step_templates[key]
-    template = step_templates[params[:step].to_sym] if params[:step]
-    sessionstore = HybridBillsHelper::HybridBillsSessionStore.new(params, session['hybrid bills'])
-    
-    binding.pry
-    template = template[params[:type].to_sym] if params[:step] && params[:type]
-    
-  	render template if template
+      create_session
+
+      return render template if template
+    end
   end
 
   def new
@@ -56,19 +54,19 @@ class HybridBillsController < ApplicationController
   # 	# p r
   # 	#binding.pry
   # 	#response = JSON.parse(r)
-  	
-  # end 
+
+  # end
 
   private
 
   def validate_petition(id)
-  	id == 'hs2' 
-  end	
+  	id == 'hs2'
+  end
 
   def add_to_params(params)
 
      HybridBillsHelper::HybridBillsSessionStore.new(params).set
-  end 
-  
+  end
+
 end
 
