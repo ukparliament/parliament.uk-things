@@ -1,0 +1,2 @@
+class HybridBillAgent < HybridBillBase
+end

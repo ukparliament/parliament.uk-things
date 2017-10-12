@@ -9,6 +9,9 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'parliament/utils/test_helpers'
 
+require 'factory_bot'
+require 'support/factory_bot'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 RSpec.configure do |config|

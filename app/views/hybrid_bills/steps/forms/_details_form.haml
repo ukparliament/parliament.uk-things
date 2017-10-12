@@ -1,0 +1,70 @@
+= form_for petitioner_object, url: hybrid_bill_path(business_id, step: 'details') do |f|
+  - if include_group
+    - if local_assigns.fetch(:group_name, nil)
+      %fieldset
+        %legend.sr-only Please provide the name of the #{group_type}
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of, label_value: group_name }
+        %h2 Details of individual in #{group_type}
+
+    - else
+      = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of }
+
+  %fieldset
+    %legend.sr-only Please provide details for the individual petitioner
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name, :label_value => "First name(s)", "aria-required" => true}
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :surname, :label_value => "Last name" }
+
+    %p Do you live in the UK?
+    = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :in_the_uk }
+
+    = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: f, attribute: :country }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1, :label_value => "Address line 1" }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_2, :label_value => "Address line 2 (optional)" }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :postcode, :label_value => "Post code", class: 'input__sm' }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email }
+
+    = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: f, attribute: :receive_updates}
+    %br
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone, :label_value => "Phone", class: 'input__md' }
+
+  %h2 Who should be contacted about this petition?
+  %fieldset
+    %legend.sr-only Please confrim who should be contacted about this petition
+    = render partial: 'hybrid_bills/steps/forms/components/radio_buttons_rep', locals: { f: f, attribute: :has_a_rep }
+
+  .block--border__bottom
+    %h3{:style => "margin-bottom: 18px"} Main contact's details
+    = f.fields_for :hybrid_bill_agent, petitioner_object.hybrid_bill_agent do |a|
+      %fieldset
+        %legend.sr-only Please provide details for the main contact
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :first_name, :label_value => "First name(s)" }
+
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname, :label_value => "Last name" }
+
+        %p Do you live in the UK?
+        = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: a, attribute: :in_the_uk }
+
+        = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: a, attribute: :country }
+
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_1, :label_value => "Address line 1" }
+
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_2, :label_value => "Address line 2 (optional)" }
+
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :postcode, :label_value => "Post code", class: 'input__sm' }
+
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email }
+
+        = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: a, attribute: :receive_updates }
+        %br
+
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone, :label_value => "Phone", class: 'input__md' }
+
+  = f.submit 'Next', :class => "btn--primary", :style => "width: 70px;"
+%p
+  =link_to 'Back', hybrid_bill_path(@business_id, step: 'who-are-you-submitting-a-petition-for')

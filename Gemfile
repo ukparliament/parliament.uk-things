@@ -57,6 +57,9 @@ group :development, :test do
 
   # Use parallel_tests to run specs across all CPU cores locally
   gem 'parallel_tests'
+
+  # Use FactoryBot for building models in tests
+  gem 'factory_bot_rails'
 end
 
 group :development do
