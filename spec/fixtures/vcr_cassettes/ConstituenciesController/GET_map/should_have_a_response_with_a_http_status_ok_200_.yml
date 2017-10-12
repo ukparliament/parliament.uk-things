@@ -55,10 +55,10 @@ http_interactions:
         <http://id.ukpds.org/schema/houseSeatHasSeatIncumbency> <http://id.ukpds.org/tqXLctOQ>
         .\r\n<http://id.ukpds.org/tqXLctOQ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://id.ukpds.org/schema/SeatIncumbency> .\r\n<http://id.ukpds.org/tqXLctOQ>
-        <http://id.ukpds.org/schema/incumbencyHasMember> <http://id.ukpds.org/ASzQgyMr>
-        .\r\n<http://id.ukpds.org/tqXLctOQ> <http://id.ukpds.org/schema/incumbencyEndDate>
+        <http://id.ukpds.org/schema/parliamentaryIncumbencyHasMember> <http://id.ukpds.org/ASzQgyMr>
+        .\r\n<http://id.ukpds.org/tqXLctOQ> <http://id.ukpds.org/schema/parliamentaryIncumbencyEndDate>
         \"1970-06-18\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/tqXLctOQ>
-        <http://id.ukpds.org/schema/incumbencyStartDate> \"1966-03-31\"^^<http://www.w3.org/2001/XMLSchema#date>
+        <http://id.ukpds.org/schema/parliamentaryIncumbencyStartDate> \"1966-03-31\"^^<http://www.w3.org/2001/XMLSchema#date>
         .\r\n<http://id.ukpds.org/ASzQgyMr> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://id.ukpds.org/schema/Person> .\r\n<http://id.ukpds.org/ASzQgyMr> <http://id.ukpds.org/schema/personGivenName>
         \"personGivenName - 1\" .\r\n<http://id.ukpds.org/ASzQgyMr> <http://id.ukpds.org/schema/personFamilyName>
@@ -73,10 +73,10 @@ http_interactions:
         \"partyName - 2\" .\r\n<http://id.ukpds.org/FXAnggqP> <http://id.ukpds.org/schema/houseSeatHasSeatIncumbency>
         <http://id.ukpds.org/fYgixfVw> .\r\n<http://id.ukpds.org/fYgixfVw> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://id.ukpds.org/schema/SeatIncumbency> .\r\n<http://id.ukpds.org/fYgixfVw>
-        <http://id.ukpds.org/schema/incumbencyHasMember> <http://id.ukpds.org/ASzQgyMr>
-        .\r\n<http://id.ukpds.org/fYgixfVw> <http://id.ukpds.org/schema/incumbencyEndDate>
+        <http://id.ukpds.org/schema/parliamentaryIncumbencyHasMember> <http://id.ukpds.org/ASzQgyMr>
+        .\r\n<http://id.ukpds.org/fYgixfVw> <http://id.ukpds.org/schema/parliamentaryIncumbencyEndDate>
         \"1974-02-28\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/fYgixfVw>
-        <http://id.ukpds.org/schema/incumbencyStartDate> \"1970-06-18\"^^<http://www.w3.org/2001/XMLSchema#date>
+        <http://id.ukpds.org/schema/parliamentaryIncumbencyStartDate> \"1970-06-18\"^^<http://www.w3.org/2001/XMLSchema#date>
         .\r\n"
     http_version: 
   recorded_at: Wed, 02 Aug 2017 09:28:16 GMT
