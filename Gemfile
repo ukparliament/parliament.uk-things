@@ -23,7 +23,8 @@ gem 'parliament-grom-decorators', '~> 0.8'
 gem 'geosparql_to_geojson', '~> 0.1'
 
 # Parliament routing
-gem 'parliament-routes', '~> 0.3'
+#gem 'parliament-routes', '~> 0.3'
+gem 'parliament-routes', path: "/Users/ebirima/parliament.uk-routes"
 
 # Parliament-Utils gem for generic set up and configuration
 gem 'parliament-utils', '~> 0.2', require: false
@@ -50,6 +51,9 @@ gem 'rack-rewrite'
 gem 'tzinfo-data'
 
 gem 'vcard', '~> 0.2'
+gem 'pry'
+gem 'pry-nav'
+gem 'paperclip'
 
 if %w(2.2.7 2.3.4 2.4.1).include? RUBY_VERSION
   gem "stopgap_13632", "~> 1.0", :platforms => ["mri", "mingw", "x64_mingw"]

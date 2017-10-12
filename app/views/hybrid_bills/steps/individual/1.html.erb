@@ -1,0 +1,25 @@
+this is covering individual 1 
+
+<%= form_tag(hybrid_bill_path(@petition, step: 'document-submission')) do %>
+<%= label_tag 'Is this confidential ?' %>
+<%= check_box_tag 'isConfidential' %>
+<%= label_tag 'FirstName', 'First name' %>
+<%= text_field_tag 'FirstName' %>
+<%= label_tag 'Surname', 'Surname' %>
+<%= text_field_tag 'Surname' %>
+<%= label_tag 'Title', 'Title' %>
+<%= text_field_tag 'Title' %>
+<%= label_tag 'JobTitle', 'Job Title' %>
+<%= text_field_tag 'JobTitle' %>
+<%= label_tag 'AddressLine1', 'Address 1' %>
+<%= text_field_tag 'AddressLine1' %>
+<%= label_tag 'AddressLine2', 'Address 2' %>
+<%= text_field_tag 'AddressLine2' %>
+<%= label_tag 'Town', 'Town' %>
+<%= text_field_tag 'Town' %>
+<%= label_tag 'County', 'County' %>
+<%= text_field_tag 'County' %>
+<%= submit_tag 'submit' %>
+<% end %>
+
+
