@@ -1,0 +1,7 @@
+Hello, this is petition: <%= @petition %>
+
+<%= form_tag(hybrid_bill_path(@petition, step: 'submission-type')) do %>
+<%= label_tag 'Terms and Conditions' %>
+<%= check_box_tag 'accept' %>
+<%= submit_tag 'Start' %>
+<% end %>

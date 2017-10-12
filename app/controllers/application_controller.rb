@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError, error.message
   end
 
-  # Rescues from a Parliament::NoContentResponseError and raises an ActionController::RoutingError
+  # # Rescues from a Parliament::NoContentResponseError and raises an ActionController::RoutingError
   rescue_from Parliament::NoContentResponseError do |error|
     raise ActionController::RoutingError, error.message
   end
