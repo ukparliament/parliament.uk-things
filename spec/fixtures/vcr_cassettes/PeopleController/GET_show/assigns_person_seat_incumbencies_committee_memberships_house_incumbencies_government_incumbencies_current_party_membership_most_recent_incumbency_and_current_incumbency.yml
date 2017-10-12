@@ -183,9 +183,27 @@ http_interactions:
         <http://id.ukpds.org/schema/formalBodyMembershipStartDate> \"1998-06-08\"^^<http://www.w3.org/2001/XMLSchema#date>
         .\n<http://id.ukpds.org/JOBSCOMMITTEE> <http://id.ukpds.org/schema/formalBodyName>
         \"formalBodyName - 2\"Jobs Committee\"\" .\n<http://id.ukpds.org/JOBSCOMMITTEE>
-        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.ukpds.org/schema/FormalBody>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.ukpds.org/schema/FormalBody> .\n\r\n<http://id.ukpds.org/tJxPOiSd> <http://id.ukpds.org/schema/governmentPersonHasGovernmentIncumbency>
+        <http://id.ukpds.org/GOVTINCUMBENCY> .\r\n<http://id.ukpds.org/GOVTINCUMBENCY>
+        <http://id.ukpds.org/schema/governmentIncumbencyHasGovernmentPosition> <http://id.ukpds.org/GovtPosition>
+        .\r\n<http://id.ukpds.org/GOVTINCUMBENCY> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://id.ukpds.org/schema/GovernmentIncumbency> .\r\n<http://id.ukpds.org/GOVTINCUMBENCY>
+        <http://id.ukpds.org/schema/incumbencyStartDate> \"1991-06-08\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<http://id.ukpds.org/GOVTINCUMBENCY> <http://id.ukpds.org/schema/incumbencyEndDate>
+        \"2001-06-08\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/GovtPosition>
+        <http://id.ukpds.org/schema/positionName> \"PositionName - 1\" .\r\n<http://id.ukpds.org/GovtPosition>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.ukpds.org/schema/GovernmentPosition>
+        .\n\r\n<http://id.ukpds.org/tJxPOiSd> <http://id.ukpds.org/schema/governmentPersonHasGovernmentIncumbency>
+        <http://id.ukpds.org/GOVTINCUMBENCY> .\n<http://id.ukpds.org/GOVTINCUMBENCY>
+        <http://id.ukpds.org/schema/governmentIncumbencyHasGovernmentPosition> <http://id.ukpds.org/GovtPosition>
+        .\n<http://id.ukpds.org/GOVTINCUMBENCY> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://id.ukpds.org/schema/GovernmentIncumbency> .\n<http://id.ukpds.org/GOVTINCUMBENCY>
+        <http://id.ukpds.org/schema/incumbencyStartDate> \"1998-06-08\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\n<http://id.ukpds.org/GovtPosition> <http://id.ukpds.org/schema/positionName>
+        \"PositionName - 2\"Position\"\" .\n<http://id.ukpds.org/GovtPosition>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.ukpds.org/schema/GovernmentPosition>
         ."
-    http_version: 
+    http_version:
   recorded_at: Thu, 07 Sep 2017 09:33:32 GMT
 - request:
     method: get
@@ -225,6 +243,6 @@ http_interactions:
         \"houseName - 1\" .\r\n<http://id.ukpds.org/MvLURLV5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/MvLURLV5> <http://id.ukpds.org/schema/houseName>
         \"houseName - 2\" .\r\n"
-    http_version: 
+    http_version:
   recorded_at: Thu, 07 Sep 2017 09:33:32 GMT
 recorded_with: VCR 3.0.3

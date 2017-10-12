@@ -29,7 +29,7 @@ RSpec.describe PeopleController, vcr: true do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'assigns @person, @seat_incumbencies, @committee_memberships, @house_incumbencies, @current_party_membership,
+    it 'assigns @person, @seat_incumbencies, @committee_memberships, @house_incumbencies, @government_incumbencies, @current_party_membership,
     @most_recent_incumbency and @current_incumbency' do
       expect(assigns(:person)).to be_a(Grom::Node)
       expect(assigns(:person).type).to eq('http://id.ukpds.org/schema/Person')
@@ -47,6 +47,11 @@ RSpec.describe PeopleController, vcr: true do
       assigns(:committee_memberships).each do |committee_membership|
         expect(committee_membership).to be_a(Grom::Node)
         expect(committee_membership.type).to eq('http://id.ukpds.org/schema/FormalBodyMembership')
+      end
+
+      assigns(:government_incumbencies).each do |government_incumbency|
+        expect(government_incumbency).to be_a(Grom::Node)
+        expect(government_incumbency.type).to eq('http://id.ukpds.org/schema/GovernmentIncumbency')
       end
 
       expect(assigns(:current_party_membership)).to be_a(Grom::Node)

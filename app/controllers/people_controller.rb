@@ -11,12 +11,13 @@ class PeopleController < ApplicationController
 
     @postcode = flash[:postcode]
 
-    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
+    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
       'http://id.ukpds.org/schema/Person',
       'http://id.ukpds.org/schema/SeatIncumbency',
       'http://id.ukpds.org/schema/HouseIncumbency',
-      'http://id.ukpds.org/schema/FormalBodyMembership'
+      'http://id.ukpds.org/schema/FormalBodyMembership',
+      'http://id.ukpds.org/schema/GovernmentIncumbency'
     )
 
     @person = @person.first
@@ -30,6 +31,7 @@ class PeopleController < ApplicationController
     roles += incumbencies
     roles += @committee_memberships.to_a
     roles += @house_incumbencies.to_a
+    roles += @government_incumbencies.to_a
 
     @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
