@@ -564,7 +564,6 @@ RSpec.describe 'people/show', vcr: true do
 
     context 'with roles' do
       before do
-        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
         assign(:history, {
           start: Time.zone.now - 25.years,
           current: [

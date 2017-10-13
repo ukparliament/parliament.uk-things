@@ -29,9 +29,9 @@ class PeopleController < ApplicationController
 
     roles = []
     roles += incumbencies
-    roles += @committee_memberships.to_a
+    roles += @committee_memberships.to_a if Pugin::Feature::Bandiera.show_committees?
     roles += @house_incumbencies.to_a
-    roles += @government_incumbencies.to_a
+    roles += @government_incumbencies.to_a if Pugin::Feature::Bandiera.show_government_roles?
 
     @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
