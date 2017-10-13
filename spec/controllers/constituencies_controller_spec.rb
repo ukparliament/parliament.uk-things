@@ -209,7 +209,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     context 'an unavailable data format is requested' do
       before(:each) do
-        headers = { 'Accept' => 'application/n-quads' }
+        headers = { 'Accept' => 'application/foo' }
         request.headers.merge(headers)
       end
 
