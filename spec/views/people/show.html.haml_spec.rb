@@ -4,6 +4,7 @@ RSpec.describe 'people/show', vcr: true do
   constituency_graph_id     = 'MtbjxRrE'
   house_of_commons_graph_id = 'KL2k1BGP'
   house_of_lords_graph_id   = 'm1EgVTLj'
+  government_graph_id       = 'NprsWxpz'
 
   context 'header' do
     before do
@@ -24,6 +25,7 @@ RSpec.describe 'people/show', vcr: true do
 
       assign(:seat_incumbencies, count: 2)
       assign(:committee_memberships, count: 2)
+      assign(:government_incumbencies, count: 2)
 
       render
     end
@@ -53,7 +55,7 @@ RSpec.describe 'people/show', vcr: true do
     context 'nil' do
       before do
         assign(:most_recent_incumbency, nil)
-
+        assign(:government_incumbencies, count: 2)
         assign(:committee_memberships, count: 2)
         render
       end
@@ -75,6 +77,8 @@ RSpec.describe 'people/show', vcr: true do
               house: double(:house, name: 'House of Commons')))
           assign(:seat_incumbencies, count: 2)
           assign(:committee_memberships, count: 2)
+          assign(:government_incumbencies, count: 2)
+
           render
         end
 
@@ -90,6 +94,7 @@ RSpec.describe 'people/show', vcr: true do
               house: double(:house, name: 'House of Lords')))
 
           assign(:committee_memberships, count: 2)
+          assign(:government_incumbencies, count: 2)
           render
         end
 
@@ -121,6 +126,7 @@ RSpec.describe 'people/show', vcr: true do
             graph_id:     '7TX8ySd4'))
 
         assign(:committee_memberships, count: 2)
+        assign(:government_incumbencies, count: 2)
         render
       end
 
@@ -144,6 +150,7 @@ RSpec.describe 'people/show', vcr: true do
             graph_id:     '7TX8ySd4'))
 
         assign(:committee_memberships, count: 2)
+        assign(:government_incumbencies, count: 2)
         render
       end
 
@@ -165,6 +172,7 @@ RSpec.describe 'people/show', vcr: true do
               statuses:     { house_membership_status: ['Current MP', 'Former Lord'] }))
 
           assign(:committee_memberships, count: 2)
+          assign(:government_incumbencies, count: 2)
           render
         end
 
@@ -187,6 +195,7 @@ RSpec.describe 'people/show', vcr: true do
             statuses:     { house_membership_status: ['Member of the House of Lords', 'test Membership'] }))
         assign(:seat_incumbencies, count: 2)
         assign(:committee_memberships, count: 2)
+        assign(:government_incumbencies, count: 2)
         render
       end
 
@@ -228,6 +237,7 @@ RSpec.describe 'people/show', vcr: true do
             graph_id:     '7TX8ySd4'))
 
         assign(:committee_memberships, count: 2)
+        assign(:government_incumbencies, count: 2)
         render
       end
 
@@ -289,6 +299,7 @@ RSpec.describe 'people/show', vcr: true do
           double(:current_party_membership, party: double(:party, name: 'Conservative', graph_id: 'jF43Jxoc')))
 
         assign(:committee_memberships, count: 2)
+        assign(:government_incumbencies, count: 2)
 
         render
       end
@@ -484,6 +495,7 @@ RSpec.describe 'people/show', vcr: true do
                 ],house: double(:house, name: 'House of Commons', graph_id: house_of_commons_graph_id)))
 
             assign(:committee_memberships, count: 2)
+            assign(:government_incumbencies, count: 2)
             render
           end
 
@@ -530,7 +542,7 @@ RSpec.describe 'people/show', vcr: true do
     end
   end
 
-  context '@house_incumbencies, @seat_incumbencies or @committee_memberships are present' do
+  context '@house_incumbencies, @seat_incumbencies, @government_incumbencies or @committee_memberships are present' do
     before do
       assign(:person,
         double(:person,
@@ -552,7 +564,6 @@ RSpec.describe 'people/show', vcr: true do
 
     context 'with roles' do
       before do
-        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
         assign(:history, {
           start: Time.zone.now - 25.years,
           current: [
@@ -572,6 +583,14 @@ RSpec.describe 'people/show', vcr: true do
                 graph_id:   constituency_graph_id,
               )
             ),
+            double(:government_incumbency,
+                   type: '/GovernmentIncumbency',
+                   date_range: "from #{(Time.zone.now - 5.months).strftime('%-e %b %Y')} to present",
+                   government_position: double(:government_position,
+                                       name: 'Test Government Position Name',
+                                       graph_id:   government_graph_id,
+              )
+            ),
             double(:house_incumbency,
               type: '/HouseIncumbency',
               start_date: Time.zone.now - 2.months,
@@ -588,6 +607,14 @@ RSpec.describe 'people/show', vcr: true do
                   name: 'Second Committee Name',
                   graph_id:   constituency_graph_id,
                 )
+              ),
+              double(:government_incumbency,
+                 type: '/GovernmentIncumbency',
+                 date_range: "from #{(Time.zone.now - 5.years).strftime('%-e %b %Y')} to #{(Time.zone.now - 3.years).strftime('%-e %b %Y')}",
+                 government_position: double(:government_position,
+                   name: 'Second Government Positon Name',
+                   graph_id:   government_graph_id,
+                 )
               ),
               double(:house_incumbency,
                 type: '/HouseIncumbency',
@@ -681,6 +708,24 @@ RSpec.describe 'people/show', vcr: true do
 
           it 'will render present status' do
             expect(rendered).to match((Time.zone.now - 7.years).strftime('%-e %b %Y'))
+          end
+        end
+
+        context 'Government roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Test Government Position Name/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Second Government Positon Name/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 5.years).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match((Time.zone.now - 3.years).strftime('%-e %b %Y'))
           end
         end
 

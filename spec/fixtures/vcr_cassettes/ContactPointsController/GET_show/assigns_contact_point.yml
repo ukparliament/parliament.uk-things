@@ -46,10 +46,10 @@ http_interactions:
       string: "<http://id.ukpds.org/t3Qeaou5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://id.ukpds.org/schema/ContactPoint> .\r\n<http://id.ukpds.org/t3Qeaou5>
         <http://id.ukpds.org/schema/faxNumber> \"faxNumber - 1\" .\r\n<http://id.ukpds.org/t3Qeaou5>
-        <http://id.ukpds.org/schema/contactPointHasIncumbency> <http://id.ukpds.org/IPFQbYsj>
+        <http://id.ukpds.org/schema/contactPointHasParliamentaryIncumbency> <http://id.ukpds.org/IPFQbYsj>
         .\r\n<http://id.ukpds.org/IPFQbYsj> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/Incumbency> .\r\n<http://id.ukpds.org/IPFQbYsj>
-        <http://id.ukpds.org/schema/incumbencyHasMember> <http://id.ukpds.org/bsbXy12q>
+        <http://id.ukpds.org/schema/ParliamentaryIncumbency> .\r\n<http://id.ukpds.org/IPFQbYsj>
+        <http://id.ukpds.org/schema/parliamentaryIncumbencyHasMember> <http://id.ukpds.org/bsbXy12q>
         .\r\n<http://id.ukpds.org/bsbXy12q> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://id.ukpds.org/schema/Person> .\r\n<http://id.ukpds.org/bsbXy12q> <http://id.ukpds.org/schema/personGivenName>
         \"personGivenName - 1\" .\r\n<http://id.ukpds.org/bsbXy12q> <http://id.ukpds.org/schema/personFamilyName>

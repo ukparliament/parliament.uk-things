@@ -22,14 +22,14 @@ RSpec.describe PeopleController, vcr: true do
 
   describe "GET show" do
     before(:each) do
-      get :show, params: { person_id: '7KNGxTli' }
+      get :show, params: { person_id: '1CRqwuTp' }
     end
 
     it 'should have a response with http status ok (200)' do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'assigns @person, @seat_incumbencies, @committee_memberships, @house_incumbencies, @current_party_membership,
+    it 'assigns @person, @seat_incumbencies, @committee_memberships, @house_incumbencies, @government_incumbencies, @current_party_membership,
     @most_recent_incumbency and @current_incumbency' do
       expect(assigns(:person)).to be_a(Grom::Node)
       expect(assigns(:person).type).to eq('http://id.ukpds.org/schema/Person')
@@ -49,6 +49,11 @@ RSpec.describe PeopleController, vcr: true do
         expect(committee_membership.type).to eq('http://id.ukpds.org/schema/FormalBodyMembership')
       end
 
+      assigns(:government_incumbencies).each do |government_incumbency|
+        expect(government_incumbency).to be_a(Grom::Node)
+        expect(government_incumbency.type).to eq('http://id.ukpds.org/schema/GovernmentIncumbency')
+      end
+
       expect(assigns(:current_party_membership)).to be_a(Grom::Node)
       expect(assigns(:current_party_membership).type).to eq('http://id.ukpds.org/schema/PartyMembership')
       expect(assigns(:current_party_membership).current?).to be(true)
@@ -66,7 +71,7 @@ RSpec.describe PeopleController, vcr: true do
 
     context 'given a valid postcode' do
       before(:each) do
-        get :show, params: { person_id: '7KNGxTli' }, flash: { postcode: 'E2 0JA' }
+        get :show, params: { person_id: '1CRqwuTp' }, flash: { postcode: 'E2 0JA' }
       end
 
       it 'assigns @postcode, @postcode_constituency' do
@@ -79,7 +84,7 @@ RSpec.describe PeopleController, vcr: true do
 
     context 'given an invalid postcode' do
       before(:each) do
-        get :show, params: { person_id: '7KNGxTli' }, flash: { postcode: 'apple' }
+        get :show, params: { person_id: '1CRqwuTp' }, flash: { postcode: 'apple' }
       end
 
       it 'assigns @postcode and flash[:error]' do
@@ -87,7 +92,38 @@ RSpec.describe PeopleController, vcr: true do
         expect(flash[:error]).to eq("We couldn't find the postcode you entered.")
       end
     end
+
+    context 'with bandiera turned on' do
+      before(:each) do
+        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
+        allow(Pugin::Feature::Bandiera).to receive(:show_government_roles?).and_return(true)
+        get :show, params: { person_id: '1CRqwuTp' }
+      end
+
+      it 'adds committee memberships and government roles to history' do
+        history = controller.instance_variable_get(:@history)
+        count = 0
+        history[:years].keys.each { |year| count = count + history[:years][year].length }
+        expect(count).to eq(6)
+      end
+    end
+
+    context 'with bandiera turned off' do
+      before(:each) do
+        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(false)
+        allow(Pugin::Feature::Bandiera).to receive(:show_government_roles?).and_return(false)
+        get :show, params: { person_id: '1CRqwuTp' }
+      end
+
+      it 'does not add committee memberships or government roles to history' do
+        history = controller.instance_variable_get(:@history)
+        count = 0
+        history[:years].keys.each { |year| count = count + history[:years][year].length }
+        expect(count).to eq(1)
+      end
+    end
   end
+
 
   describe "POST postcode_lookup" do
     before(:each) do

@@ -22,15 +22,15 @@ http_interactions:
       message: OK
     headers:
       Cache-Control:
-      - public, must-revalidate, max-age=286
+      - public, must-revalidate, max-age=1390
       Content-Length:
       - '1687'
       Content-Type:
       - application/n-triples
       Expires:
-      - Fri, 13 Oct 2017 13:39:39 GMT
+      - Fri, 13 Oct 2017 15:50:36 GMT
       Last-Modified:
-      - Fri, 13 Oct 2017 13:09:39 GMT
+      - Fri, 13 Oct 2017 15:20:36 GMT
       Vary:
       - Accept,Accept-Charset,Accept-Encoding
       Request-Context:
@@ -38,7 +38,7 @@ http_interactions:
       Set-Cookie:
       - ARRAffinity=08e31a4953421e4acc8f85a9de4c15a37fb2c04b2d4bea64f09dfa61db9f7085;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
       Date:
-      - Fri, 13 Oct 2017 13:34:53 GMT
+      - Fri, 13 Oct 2017 15:27:26 GMT
     body:
       encoding: ASCII-8BIT
       string: "<http://id.ukpds.org/1CRqwuTp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -199,7 +199,7 @@ http_interactions:
         .\r\n<http://id.ukpds.org/rPsGfdM7> <http://id.ukpds.org/schema/parliamentaryIncumbencyHasContactPoint>
         <http://id.ukpds.org/eLt8mQLu> .\r\n"
     http_version: 
-  recorded_at: Fri, 13 Oct 2017 13:34:56 GMT
+  recorded_at: Fri, 13 Oct 2017 15:27:29 GMT
 - request:
     method: get
     uri: http://localhost:3030/house_index
@@ -222,15 +222,15 @@ http_interactions:
       message: OK
     headers:
       Cache-Control:
-      - public, must-revalidate, max-age=543
+      - public, must-revalidate, max-age=463
       Content-Length:
       - '164'
       Content-Type:
       - application/n-triples
       Expires:
-      - Fri, 13 Oct 2017 13:43:56 GMT
+      - Fri, 13 Oct 2017 15:35:09 GMT
       Last-Modified:
-      - Fri, 13 Oct 2017 13:13:56 GMT
+      - Fri, 13 Oct 2017 15:05:09 GMT
       Vary:
       - Accept,Accept-Charset,Accept-Encoding
       Request-Context:
@@ -238,7 +238,7 @@ http_interactions:
       Set-Cookie:
       - ARRAffinity=08e31a4953421e4acc8f85a9de4c15a37fb2c04b2d4bea64f09dfa61db9f7085;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
       Date:
-      - Fri, 13 Oct 2017 13:34:53 GMT
+      - Fri, 13 Oct 2017 15:27:26 GMT
     body:
       encoding: ASCII-8BIT
       string: "<http://id.ukpds.org/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -247,7 +247,7 @@ http_interactions:
         <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/WkUWUBMx> <http://id.ukpds.org/schema/houseName>
         \"houseName - 2\" .\r\n"
     http_version: 
-  recorded_at: Fri, 13 Oct 2017 13:34:56 GMT
+  recorded_at: Fri, 13 Oct 2017 15:27:29 GMT
 - request:
     method: get
     uri: http://localhost:3030/person_by_id?person_id=1CRqwuTp
@@ -270,15 +270,15 @@ http_interactions:
       message: OK
     headers:
       Cache-Control:
-      - public, must-revalidate, max-age=286
+      - public, must-revalidate, max-age=1389
       Content-Length:
       - '1687'
       Content-Type:
       - application/n-triples
       Expires:
-      - Fri, 13 Oct 2017 13:39:39 GMT
+      - Fri, 13 Oct 2017 15:50:36 GMT
       Last-Modified:
-      - Fri, 13 Oct 2017 13:09:39 GMT
+      - Fri, 13 Oct 2017 15:20:36 GMT
       Vary:
       - Accept,Accept-Charset,Accept-Encoding
       Request-Context:
@@ -286,7 +286,7 @@ http_interactions:
       Set-Cookie:
       - ARRAffinity=08e31a4953421e4acc8f85a9de4c15a37fb2c04b2d4bea64f09dfa61db9f7085;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
       Date:
-      - Fri, 13 Oct 2017 13:34:53 GMT
+      - Fri, 13 Oct 2017 15:27:26 GMT
     body:
       encoding: ASCII-8BIT
       string: "<http://id.ukpds.org/1CRqwuTp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -447,5 +447,5 @@ http_interactions:
         .\r\n<http://id.ukpds.org/rPsGfdM7> <http://id.ukpds.org/schema/parliamentaryIncumbencyHasContactPoint>
         <http://id.ukpds.org/eLt8mQLu> .\r\n"
     http_version: 
-  recorded_at: Fri, 13 Oct 2017 13:34:56 GMT
+  recorded_at: Fri, 13 Oct 2017 15:27:29 GMT
 recorded_with: VCR 3.0.3
