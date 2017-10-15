@@ -1,10 +1,11 @@
 module HybridBillsHelper
 
   HybridBillPetitionAgent, HybridBillPetitioner = {}, {}
-  
+
+
   SESSION_SEPARATOR = 'hybrid_bills_submission'
   SESSION_KEYS = %W(CommitteeBusinessId accept HyBridBillPetitionId DocumentData isConfidential) 
-  SESSION_KEYS_PETITIONER = %W(HybridBillPetitioner[SubmitterType] HybridBillPetitioner[OrganisationName] HybridBillPetitioner[FirstName] HybridBillPetitioner[Surname] HybridBillPetitioner[Title] HybridBillPetitioner[JobTitle] HybridBillPetitioner[AddressLine1] HybridBillPetitioner[AddressLine2] HybridBillPetitioner[Town] HybridBillPetitioner[County] HybridBillPetitioner[Country] HybridBillPetitioner[Postcode] HybridBillPetitioner[Email] HybridBillPetitioner[Telephone] HybridBillPetitioner[ShouldBeContacted]) 
+  SESSION_KEYS_PETITIONER = %W(HybridBillPetitioner[GroupName] HybridBillPetitioner[SubmitterType] HybridBillPetitioner[OrganisationName] HybridBillPetitioner[FirstName] HybridBillPetitioner[Surname] HybridBillPetitioner[Title] HybridBillPetitioner[JobTitle] HybridBillPetitioner[AddressLine1] HybridBillPetitioner[AddressLine2] HybridBillPetitioner[Town] HybridBillPetitioner[County] HybridBillPetitioner[Country] HybridBillPetitioner[Postcode] HybridBillPetitioner[Email] HybridBillPetitioner[Telephone] HybridBillPetitioner[ShouldBeContacted]) 
   SESSION_KEYS_AGENT = %W(HybridBillPetitionAgent[ShouldBeContacted] HybridBillPetitionAgent[AgentType] HybridBillPetitionAgent[FirstName] HybridBillPetitionAgent[Surname] HybridBillPetitionAgent[Title] HybridBillPetitionAgent[JobTitle] HybridBillPetitionAgent[AddressLine1] HybridBillPetitionAgent[Town] HybridBillPetitionAgent[County] HybridBillPetitionAgent[Country] HybridBillPetitionAgent[Postcode] HybridBillPetitionAgent[Email] HybridBillPetitionAgent[Telephone] HybridBillPetitionAgent[Telephone])
 
   SESSION_KEYS.concat(SESSION_KEYS_PETITIONER, SESSION_KEYS_AGENT)
