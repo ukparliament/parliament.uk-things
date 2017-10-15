@@ -24,7 +24,7 @@ gem 'geosparql_to_geojson', '~> 0.1'
 
 # Parliament routing
 #gem 'parliament-routes', '~> 0.3'
-gem 'parliament-routes', path: '../parliament.uk-routes'
+gem 'parliament-routes', path: '/Users/ebirima/parliament.uk-routes'
 
 # Parliament-Utils gem for generic set up and configuration
 gem 'parliament-utils', '~> 0.2', require: false
