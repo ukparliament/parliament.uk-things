@@ -1,1 +1,71 @@
-this is covering group 1
+this is covering group section
+<br />
+<h1> Group of individuals details </h1>
+<%= form_tag(hybrid_bill_path(@petition, step: 'document-submission')) do %>
+
+<br />
+<%= hidden_field_tag 'CommitteeBusinessId', '255' %>
+<%= label_tag 'GroupName', 'Group Name' %>
+<%= text_field_tag 'HybridBillPetitioner[GroupName]' %>
+
+<h1> Group contact's details </h1>
+
+Please specify a representative for the group
+<br /><br />
+<%= label_tag 'FirstName', 'First Name' %>
+<%= text_field_tag 'HybridBillPetitioner[FirstName]' %>
+<%= label_tag 'Surname', 'Surname' %>
+<%= text_field_tag 'HybridBillPetitioner[Surname]' %>
+<%= label_tag 'AddressLine1', 'Address 1' %>
+<%= text_field_tag 'HybridBillPetitioner[AddressLine1]' %>
+<%= label_tag 'AddressLine2', 'Address 2' %>
+<%= text_field_tag 'HybridBillPetitioner[AddressLine2]' %>
+<%= label_tag 'Town', 'Town' %>
+<%= text_field_tag 'HybridBillPetitioner[Town]' %>
+<%= label_tag 'County', 'County' %>
+<%= text_field_tag 'HybridBillPetitioner[County]' %>
+<%= label_tag 'Country', 'Country' %>
+<%= text_field_tag 'HybridBillPetitioner[Country]' %>
+<%= label_tag 'Postcode', 'Post Code' %>
+<%= text_field_tag 'HybridBillPetitioner[Postcode]' %>
+<%= label_tag 'Email', 'Email' %>
+<%= text_field_tag 'HybridBillPetitioner[Email]' %>
+<%= label_tag 'Telephone', 'Telephone' %>
+<%= text_field_tag 'HybridBillPetitioner[Telephone]' %>
+<%= label_tag 'Do you want to be contacted ?' %>
+<%= check_box_tag 'HybridBillPetitioner[ShouldBeContacted]' %>
+<%= label_tag 'Do you have an external representative ?' %>
+<%= check_box_tag 'HybridBillPetitionAgent[AgentType]' %>
+
+this is organisation's external representative section
+<br /><br />
+<h1> Representative details </h1>
+
+<hr style="border-bottom: dotted 0.5px #001" />
+<br />
+<%= label_tag 'FirstName', 'First name' %>
+<%= text_field_tag 'HybridBillPetitionAgent[FirstName]' %>
+<%= label_tag 'HybridAgentSurname', 'Surname' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Surname]' %>
+<%= label_tag 'Title', 'Title' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Title]' %>
+<%= label_tag 'JobTitle', 'Job Title' %>
+<%= text_field_tag 'HybridBillPetitionAgent[JobTitle]' %>
+<%= label_tag 'AddressLine1', 'Address 1' %>
+<%= text_field_tag 'HybridBillPetitionAgent[AddressLine1]' %>
+<%= label_tag 'Town', 'Town' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Town]' %>
+<%= label_tag 'County', 'County' %>
+<%= text_field_tag 'HybridBillPetitionAgent[County]' %>
+<%= label_tag 'Country', 'Country' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Country]' %>
+<%= label_tag 'Postcode', 'Post Code' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Postcode]' %>
+<%= label_tag 'Email', 'Email' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Email]' %>
+<%= label_tag 'Telephone', 'Telephone' %>
+<%= text_field_tag 'HybridBillPetitionAgent[Telephone]' %>
+<%= label_tag 'Do you want to be contacted ?' %>
+<%= check_box_tag 'HybridBillPetitionAgent[ShouldBeContacted]' %>
+<%= submit_tag 'next' %>
+<% end %>
