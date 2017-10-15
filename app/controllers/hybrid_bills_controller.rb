@@ -33,7 +33,6 @@ class HybridBillsController < ApplicationController
       template = template[params[:type].to_sym] if params[:type]
 
       create_session
-      #binding.pry
       return render template if template
     end
   end
