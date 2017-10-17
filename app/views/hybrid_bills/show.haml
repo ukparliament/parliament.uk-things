@@ -1,0 +1,20 @@
+Hello, this is petition: #{@petition}
+%br/
+%h2 Before you send your petition
+%p Before you petition the New Motorway Bill you should:
+%hr{:style => "border-bottom: dotted 0.5px #001"}/
+%p 1. read the guidelines
+%hr{:style => "border-bottom: dotted 0.5px #001"}/
+%p 2. download and complete template
+%hr{:style => "border-bottom: dotted 0.5px #001"}/
+%p
+  3. if your petition is accepted, a
+  %b payment of £20
+  will be required to process your submission
+%hr{:style => "border-bottom: dotted 0.5px #001"}/
+= form_tag(hybrid_bill_path(@petition, step: 'submission-type')) do
+  - for errors in @hybrid_bill.errors.messages do
+    = errors
+  = label_tag 'Terms and Conditions'
+  = check_box_tag 'accept'
+  = submit_tag 'Start'
