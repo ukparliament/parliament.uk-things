@@ -15,15 +15,15 @@ class ConstituenciesController < ApplicationController
 
   # Renders a single constituency given a constituency id.
   # @controller_action_param :constituency_id [String] 8 character identifier that identifies constituency in graph database.
-  # @return [Grom::Node] object with type 'http://id.ukpds.org/schema/ConstituencyGroup'.
+  # @return [Grom::Node] object with type 'https://id.parliament.uk/schema/ConstituencyGroup'.
   def show
     @postcode = flash[:postcode]
 
     @constituency, @seat_incumbencies, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
-      'http://id.ukpds.org/schema/ConstituencyGroup',
-      'http://id.ukpds.org/schema/SeatIncumbency',
-      'http://id.ukpds.org/schema/Party'
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('SeatIncumbency'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
     )
     # Instance variable for single MP pages
     @single_mp = true
@@ -42,7 +42,7 @@ class ConstituenciesController < ApplicationController
 
     begin
       response = Parliament::Utils::Helpers::PostcodeHelper.lookup(@postcode)
-      @postcode_constituency = response.filter('http://id.ukpds.org/schema/ConstituencyGroup').first
+      @postcode_constituency = response.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup')).first
       postcode_correct = @postcode_constituency.graph_id == @constituency.graph_id
       @postcode_constituency.correct = postcode_correct
     rescue Parliament::Utils::Helpers::PostcodeHelper::PostcodeError => error
@@ -72,14 +72,14 @@ class ConstituenciesController < ApplicationController
   # Renders a constituency that has a constituency area object on map view given a constituency id.
   # Will respond with GeoJSON data using the geosparql-to-geojson gem if JSON is requested.
   # @controller_action_param :constituency_id [String] 8 character identifier that identifies constituency in graph database.
-  # @return [Grom::Node] object with type 'http://id.ukpds.org/schema/ConstituencyGroup' which holds a geo polygon.
+  # @return [Grom::Node] object with type 'https://id.parliament.uk/schema/ConstituencyGroup' which holds a geo polygon.
   # @return [GeosparqlToGeojson::GeoJson] object containing GeoJSON data if JSON is requested.
   def map
     respond_to do |format|
       format.html do
         @constituency = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
           @request,
-          'http://id.ukpds.org/schema/ConstituencyGroup'
+          Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup')
         ).first
 
         @json_location = constituency_map_path(@constituency.graph_id, format: 'json')
@@ -88,7 +88,7 @@ class ConstituenciesController < ApplicationController
       format.json do
         @constituency = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
           Parliament::Utils::Helpers::ParliamentHelper.parliament_request.constituency_map.set_url_params({ constituency_id: params[:constituency_id] }),
-          'http://id.ukpds.org/schema/ConstituencyGroup'
+          Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup')
         ).first
 
         raise ActionController::RoutingError, 'Not Found' unless @constituency.current?

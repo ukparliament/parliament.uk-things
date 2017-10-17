@@ -12,7 +12,7 @@ RSpec.describe PartiesController, vcr: true do
 
     it 'assigns @party' do
       expect(assigns(:party)).to be_a(Grom::Node)
-      expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+      expect(assigns(:party).type).to eq('https://id.parliament.uk/schema/Party')
     end
 
     it 'redirects to parties/:id' do
@@ -31,7 +31,7 @@ RSpec.describe PartiesController, vcr: true do
 
     it 'assigns @party' do
       expect(assigns(:party)).to be_a(Grom::Node)
-      expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+      expect(assigns(:party).type).to eq('https://id.parliament.uk/schema/Party')
     end
 
     it 'renders the show template' do

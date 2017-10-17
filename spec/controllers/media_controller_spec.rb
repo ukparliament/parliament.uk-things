@@ -12,7 +12,7 @@ RSpec.describe MediaController, vcr: true do
 
     it 'assigns @image' do
       expect(assigns(:image)).to be_a(Grom::Node)
-      expect(assigns(:image).type).to eq('http://id.ukpds.org/schema/MemberImage')
+      expect(assigns(:image).type).to eq('https://id.parliament.uk/schema/MemberImage')
     end
 
     it 'renders the show template' do

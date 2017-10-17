@@ -12,7 +12,7 @@ RSpec.describe HousesController, vcr: true do
 
     it 'assigns @house' do
       expect(assigns(:house)).to be_a(Grom::Node)
-      expect(assigns(:house).type).to eq('http://id.ukpds.org/schema/House')
+      expect(assigns(:house).type).to eq('https://id.parliament.uk/schema/House')
     end
 
     it 'redirects to houses/:id' do
@@ -31,7 +31,7 @@ RSpec.describe HousesController, vcr: true do
 
     it 'assigns @house' do
       expect(assigns(:house)).to be_a(Grom::Node)
-      expect(assigns(:house).type).to eq('http://id.ukpds.org/schema/House')
+      expect(assigns(:house).type).to eq('https://id.parliament.uk/schema/House')
     end
 
     it 'renders the show template' do
