@@ -24,7 +24,7 @@ gem 'geosparql_to_geojson', '~> 0.1'
 
 # Parliament routing
 #gem 'parliament-routes', '~> 0.3'
-gem 'parliament-routes', path: '/Users/ebirima/parliament.uk-routes'
+gem 'parliament-routes', path: '../../parliament.uk-routes'
 
 # Parliament-Utils gem for generic set up and configuration
 gem 'parliament-utils', '~> 0.2', require: false
@@ -75,6 +75,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'factory_girl_rails'
 end
 
 group :test do

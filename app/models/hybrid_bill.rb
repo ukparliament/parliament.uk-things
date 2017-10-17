@@ -2,7 +2,7 @@ class HybridBill
 
 	include ActiveModel::Validations
 
-	attr_accessor :committeebusinessid, :accept, :email
+	attr_accessor :committeebusinessid, :address1, :address2, :postcode, :email, :telephone, :firstname, :surname, :has_agent
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -10,6 +10,10 @@ class HybridBill
 
 	validates :accept, :presence => true
 
+	validates :has_agent, inclusion: { in: [true, false] }
+
 	validates :email, :presence => true, :format => { :with => email_regex }
+
+
 
 end
