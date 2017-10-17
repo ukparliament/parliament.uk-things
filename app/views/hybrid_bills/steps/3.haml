@@ -1,0 +1,9 @@
+this is the document submission page
+%h1 New Petition
+%h2 Upload your petition
+%h3 File upload requirements
+%ul
+  %li Word Document (doc, docx, rtf, txt, ooxml, odt or PDFformat only)
+  %li 20Mb file size limit
+  %li No other media types (e.g. pictures or video files)
+/ = form_tag(hybrid_bill_path(@petition, step: 'terms-conditions')) do
