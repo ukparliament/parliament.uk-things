@@ -13,9 +13,9 @@ RSpec.describe Houses::PartiesController, vcr: true do
 
       it 'assigns @house and @party' do
         expect(assigns(:house)).to be_a(Grom::Node)
-        expect(assigns(:house).type).to eq('http://id.ukpds.org/schema/House')
+        expect(assigns(:house).type).to eq('https://id.parliament.uk/schema/House')
         expect(assigns(:party)).to be_a(Grom::Node)
-        expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+        expect(assigns(:party).type).to eq('https://id.parliament.uk/schema/Party')
       end
 
       it 'renders the party template' do
