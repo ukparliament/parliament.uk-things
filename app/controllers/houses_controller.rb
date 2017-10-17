@@ -9,7 +9,7 @@ class HousesController < ApplicationController
   def show
     @house = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
-      'http://id.ukpds.org/schema/House'
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('House')
     ).first
   end
 
