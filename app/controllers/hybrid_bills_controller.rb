@@ -28,6 +28,9 @@ class HybridBillsController < ApplicationController
 
   	@petition = params[:bill_id]
 
+    @hybrid_bill = HybridBill.new
+
+
     if params[:step]
       template = STEP_TEMPLATES[params[:step].to_sym]
       template = template[params[:type].to_sym] if params[:type]
