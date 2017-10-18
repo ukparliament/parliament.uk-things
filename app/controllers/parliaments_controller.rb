@@ -13,19 +13,19 @@ class ParliamentsController < ApplicationController
   }.freeze
 
   def current
-    @parliament = @request.get.filter('http://id.ukpds.org/schema/ParliamentPeriod').first
+    @parliament = @request.get.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod')).first
 
     redirect_to parliament_path(@parliament.graph_id)
   end
 
   def next
-    @parliament = @request.get.filter('http://id.ukpds.org/schema/ParliamentPeriod').first
+    @parliament = @request.get.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod')).first
 
     redirect_to parliament_path(@parliament.graph_id)
   end
 
   def previous
-    @parliament = @request.get.filter('http://id.ukpds.org/schema/ParliamentPeriod').first
+    @parliament = @request.get.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod')).first
 
     redirect_to parliament_path(@parliament.graph_id)
   end
@@ -39,8 +39,8 @@ class ParliamentsController < ApplicationController
   def show
     @parliament, @parties = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
-      'http://id.ukpds.org/schema/ParliamentPeriod',
-      'http://id.ukpds.org/schema/Party'
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
     )
 
     @parliament = @parliament.first
@@ -48,13 +48,13 @@ class ParliamentsController < ApplicationController
   end
 
   def next_parliament
-    @parliament = @request.get.filter('http://id.ukpds.org/schema/ParliamentPeriod').first
+    @parliament = @request.get.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod')).first
 
     redirect_to parliament_path(@parliament.graph_id)
   end
 
   def previous_parliament
-    @parliament = @request.get.filter('http://id.ukpds.org/schema/ParliamentPeriod').first
+    @parliament = @request.get.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod')).first
 
     redirect_to parliament_path(@parliament.graph_id)
   end

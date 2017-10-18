@@ -20,7 +20,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
       it 'assigns @parliament' do
         expect(assigns(:parliament)).to be_a(Grom::Node)
-        expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+        expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
       end
 
       it 'redirects to parliaments/:parliament_id' do
@@ -48,7 +48,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
       it 'assigns @parliament' do
         expect(assigns(:parliament)).to be_a(Grom::Node)
-        expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+        expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
       end
 
       it 'redirects to parliaments/:parliament_id' do
@@ -76,7 +76,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
       it 'assigns @parliament' do
         expect(assigns(:parliament)).to be_a(Grom::Node)
-        expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+        expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
       end
 
       it 'redirects to parliaments/:parliament_id' do
@@ -96,7 +96,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
     it 'assigns @parliament' do
       expect(assigns(:parliament)).to be_a(Grom::Node)
-      expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+      expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
     end
 
     it 'redirects to parliaments/:id' do
@@ -115,7 +115,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
     it 'assigns @parliament' do
       expect(assigns(:parliament)).to be_a(Grom::Node)
-      expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+      expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
     end
 
     it 'renders the show template' do
@@ -142,7 +142,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
       it 'assigns @parliament' do
         expect(assigns(:parliament)).to be_a(Grom::Node)
-        expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+        expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
       end
 
       it 'redirects to parliaments/:parliament_id' do
@@ -170,7 +170,7 @@ RSpec.describe ParliamentsController, vcr: true do
 
       it 'assigns @parliament' do
         expect(assigns(:parliament)).to be_a(Grom::Node)
-        expect(assigns(:parliament).type).to eq('http://id.ukpds.org/schema/ParliamentPeriod')
+        expect(assigns(:parliament).type).to eq('https://id.parliament.uk/schema/ParliamentPeriod')
       end
 
       it 'redirects to parliaments/:parliament_id' do

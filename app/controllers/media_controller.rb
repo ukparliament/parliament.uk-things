@@ -12,8 +12,8 @@ class MediaController < ApplicationController
   def show
     @image, @person = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
-      'http://id.ukpds.org/schema/MemberImage',
-      'http://id.ukpds.org/schema/Person'
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('MemberImage'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Person')
     )
 
     @image = @image.first
