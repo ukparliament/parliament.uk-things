@@ -1,10 +1,7 @@
-class HybridBilllIndividualSubmissionValidator < ActiveModel::Validator
+class HybridBillIndividualSubmissionValidator < ActiveModel::Validator
 
-	def validate(record)
+    def validate(record)
 
-  		  # if invalid(attribute, value)
-      # 		record.errors[attribute] << 'attribute is invalid.'
-    	 #  end	
-	end
+    end
+end	
 
-end
