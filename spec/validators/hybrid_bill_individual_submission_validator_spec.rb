@@ -3,22 +3,17 @@ require 'pry-nav'
 require 'rails_helper'
 
 
-RSpec.describe 'HybridBilllIndividualSubmissionValidator' do 
+RSpec.describe 'HybridBillIndividualSubmissionValidator' do 
 
-	describe 'valid instance' do 
-		
-		           it 'is valid' do 
-		           	hybridbillindividual = build_stubbed(:hybrid_bill_individual_submission)
-			#subject { hybridbillindividual }
-		           	  expect(hybridbillindividual).to be_valid
-		           end
-	 end   
+	context 'for individual path' do 
+		  it 'is valid' do 
+		      hybridbillindividual = build(:hybrid_bill_individual_submission)
+		         expect(hybridbillindividual).to be_valid
+		  end
 
-	 # describe 'invalid instance' do 
-		# hybridbillindividual = build_stubbed(:hybridbillindividualsubmission, should_be_contacted: nil)
-		# 	subject { hybridbillindividual }
-		#           it 'is invalid' do 
-		#            	 expect(subject).not_to be_valid
-		#           end
-	 # end 
+		  it 'is invalid' do 
+		        hybridbillindividual = build(:hybrid_bill_individual_submission, country: "12")
+		           expect(hybridbillindividual).not_to be_valid
+		  end
+	 end 
 end	
