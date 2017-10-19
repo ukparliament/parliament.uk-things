@@ -12,7 +12,7 @@ RSpec.describe PeopleController, vcr: true do
 
     it 'assigns @person' do
       expect(assigns(:person)).to be_a(Grom::Node)
-      expect(assigns(:person).type).to eq('http://id.ukpds.org/schema/Person')
+      expect(assigns(:person).type).to eq('https://id.parliament.uk/schema/Person')
     end
 
     it 'redirects to people/:id' do
@@ -32,30 +32,30 @@ RSpec.describe PeopleController, vcr: true do
     it 'assigns @person, @seat_incumbencies, @committee_memberships, @house_incumbencies, @government_incumbencies, @current_party_membership,
     @most_recent_incumbency and @current_incumbency' do
       expect(assigns(:person)).to be_a(Grom::Node)
-      expect(assigns(:person).type).to eq('http://id.ukpds.org/schema/Person')
+      expect(assigns(:person).type).to eq('https://id.parliament.uk/schema/Person')
 
       assigns(:seat_incumbencies).each do |seat_incumbency|
         expect(seat_incumbency).to be_a(Grom::Node)
-        expect(seat_incumbency.type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
+        expect(seat_incumbency.type).to eq('https://id.parliament.uk/schema/SeatIncumbency')
       end
 
       assigns(:house_incumbencies).each do |house_incumbency|
         expect(house_incumbency).to be_a(Grom::Node)
-        expect(house_incumbency.type).to eq('http://id.ukpds.org/schema/HouseIncumbency')
+        expect(house_incumbency.type).to eq('https://id.parliament.uk/schema/HouseIncumbency')
       end
 
       assigns(:committee_memberships).each do |committee_membership|
         expect(committee_membership).to be_a(Grom::Node)
-        expect(committee_membership.type).to eq('http://id.ukpds.org/schema/FormalBodyMembership')
+        expect(committee_membership.type).to eq('https://id.parliament.uk/schema/FormalBodyMembership')
       end
 
       assigns(:government_incumbencies).each do |government_incumbency|
         expect(government_incumbency).to be_a(Grom::Node)
-        expect(government_incumbency.type).to eq('http://id.ukpds.org/schema/GovernmentIncumbency')
+        expect(government_incumbency.type).to eq('https://id.parliament.uk/schema/GovernmentIncumbency')
       end
 
       expect(assigns(:current_party_membership)).to be_a(Grom::Node)
-      expect(assigns(:current_party_membership).type).to eq('http://id.ukpds.org/schema/PartyMembership')
+      expect(assigns(:current_party_membership).type).to eq('https://id.parliament.uk/schema/PartyMembership')
       expect(assigns(:current_party_membership).current?).to be(true)
 
       expect(assigns(:most_recent_incumbency)).to be_a(Grom::Node)
@@ -78,7 +78,7 @@ RSpec.describe PeopleController, vcr: true do
         expect(assigns(:postcode)).to eq('E2 0JA')
 
         expect(assigns(:postcode_constituency)).to be_a(Grom::Node)
-        expect(assigns(:postcode_constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+        expect(assigns(:postcode_constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
       end
     end
 

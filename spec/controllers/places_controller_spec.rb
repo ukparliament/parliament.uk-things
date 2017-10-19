@@ -17,7 +17,7 @@ RSpec.describe PlacesController, vcr: true do
 
       assigns(:constituencies).each do |constituency|
         expect(constituency).to be_a(Grom::Node)
-        expect(constituency.type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+        expect(constituency.type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
       end
     end
 

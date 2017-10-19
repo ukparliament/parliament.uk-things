@@ -43,15 +43,15 @@ http_interactions:
       - Tue, 01 Aug 2017 15:49:24 GMT
     body:
       encoding: UTF-8
-      string: "<http://id.ukpds.org/fHx6P1lb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/ParliamentPeriod> .\r\n<http://id.ukpds.org/fHx6P1lb>
-        <http://id.ukpds.org/schema/parliamentPeriodStartDate> \"2010-05-18\"^^<http://www.w3.org/2001/XMLSchema#date>
-        .\r\n<http://id.ukpds.org/fHx6P1lb> <http://id.ukpds.org/schema/parliamentPeriodEndDate>
-        \"2015-03-30\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<http://id.ukpds.org/fHx6P1lb>
-        <http://id.ukpds.org/schema/parliamentPeriodNumber> \"55\"^^<http://www.w3.org/2001/XMLSchema#integer>
-        .\r\n<http://id.ukpds.org/fHx6P1lb> <http://id.ukpds.org/schema/parliamentPeriodHasImmediatelyFollowingParliamentPeriod>
-        <http://id.ukpds.org/ExyBZkI7> .\r\n<http://id.ukpds.org/fHx6P1lb> <http://id.ukpds.org/schema/parliamentPeriodHasImmediatelyPreviousParliamentPeriod>
-        <http://id.ukpds.org/Lr7LZwQn> .\r\n"
+      string: "<https://id.parliament.uk/fHx6P1lb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ParliamentPeriod> .\r\n<https://id.parliament.uk/fHx6P1lb>
+        <https://id.parliament.uk/schema/parliamentPeriodStartDate> \"2010-05-18\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/fHx6P1lb> <https://id.parliament.uk/schema/parliamentPeriodEndDate>
+        \"2015-03-30\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/fHx6P1lb>
+        <https://id.parliament.uk/schema/parliamentPeriodNumber> \"55\"^^<http://www.w3.org/2001/XMLSchema#integer>
+        .\r\n<https://id.parliament.uk/fHx6P1lb> <https://id.parliament.uk/schema/parliamentPeriodHasImmediatelyFollowingParliamentPeriod>
+        <https://id.parliament.uk/ExyBZkI7> .\r\n<https://id.parliament.uk/fHx6P1lb> <https://id.parliament.uk/schema/parliamentPeriodHasImmediatelyPreviousParliamentPeriod>
+        <https://id.parliament.uk/Lr7LZwQn> .\r\n"
     http_version:
   recorded_at: Tue, 01 Aug 2017 15:52:55 GMT
 - request:
@@ -97,10 +97,10 @@ http_interactions:
       - Tue, 01 Aug 2017 15:49:23 GMT
     body:
       encoding: UTF-8
-      string: "<http://id.ukpds.org/Kz7ncmrt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/Kz7ncmrt> <http://id.ukpds.org/schema/houseName>
-        \"houseName - 1\" .\r\n<http://id.ukpds.org/MvLURLV5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/MvLURLV5> <http://id.ukpds.org/schema/houseName>
+      string: "<https://id.parliament.uk/Kz7ncmrt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/House> .\r\n<https://id.parliament.uk/Kz7ncmrt> <https://id.parliament.uk/schema/houseName>
+        \"houseName - 1\" .\r\n<https://id.parliament.uk/MvLURLV5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/House> .\r\n<https://id.parliament.uk/MvLURLV5> <https://id.parliament.uk/schema/houseName>
         \"houseName - 2\" .\r\n"
     http_version:
   recorded_at: Tue, 01 Aug 2017 15:52:56 GMT

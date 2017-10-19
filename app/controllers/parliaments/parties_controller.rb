@@ -9,8 +9,8 @@ module Parliaments
     def show
       @parliament, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
         @request,
-        'http://id.ukpds.org/schema/ParliamentPeriod',
-        'http://id.ukpds.org/schema/Party'
+        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod'),
+        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
       )
 
       raise ActionController::RoutingError, 'Not Found' if @party.empty?

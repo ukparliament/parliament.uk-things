@@ -17,7 +17,7 @@ gem 'haml'
 gem 'parliament-ruby', '~> 0.8'
 
 # Parliament Grom Decorators decorates Grom nodes
-gem 'parliament-grom-decorators', '~> 0.10'
+gem 'parliament-grom-decorators', '~> 0.11'
 
 # Converts GeoSparql to GeoJSON
 gem 'geosparql_to_geojson', '~> 0.1'
@@ -26,7 +26,7 @@ gem 'geosparql_to_geojson', '~> 0.1'
 gem 'parliament-routes', '~> 0.3'
 
 # Parliament-Utils gem for generic set up and configuration
-gem 'parliament-utils', '~> 0.3', require: false
+gem 'parliament-utils', '~> 0.4', require: false
 
 # Parliament NTriple processes N-triple data
 gem 'parliament-ntriple', '~> 0.2', require: false

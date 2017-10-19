@@ -8,7 +8,7 @@ class ContactPointsController < ApplicationController
   def show
     @contact_point = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
-      'http://id.ukpds.org/schema/ContactPoint'
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ContactPoint')
     ).first
 
     vcard = create_vcard(@contact_point)

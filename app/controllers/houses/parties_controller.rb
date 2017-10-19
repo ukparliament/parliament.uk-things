@@ -11,8 +11,8 @@ module Houses
     def show
       @house, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
         @request,
-        'http://id.ukpds.org/schema/House',
-        'http://id.ukpds.org/schema/Party'
+        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('House'),
+        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
       )
 
       @house = @house.first

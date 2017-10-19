@@ -10,7 +10,7 @@ RSpec.describe ContactPointsController, vcr: true do
     it 'assigns @contact_point' do
       get :show, params: { contact_point_id: 't3Qeaou5' }
       expect(assigns(:contact_point)).to be_a(Grom::Node)
-      expect(assigns(:contact_point).type).to eq('http://id.ukpds.org/schema/ContactPoint')
+      expect(assigns(:contact_point).type).to eq('https://id.parliament.uk/schema/ContactPoint')
     end
 
     describe 'download' do
