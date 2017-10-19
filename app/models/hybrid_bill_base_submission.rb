@@ -1,8 +1,9 @@
 class HybridBillBaseSubmission
 	include ActiveModel::Validations
 
-	attr_accessor :first_name, :last_name, :address_1, :address_2, :postcode, :email, :country, :telephone, :should_be_contacted, :has_agent, :committee_business_id, :county
+	attr_accessor :first_name, :last_name, :address_1, :address_2, :postcode, :email, :country, :telephone, :should_be_contacted, :has_agent, :committee_business_id, :county, :petition_id
 
+	validates :petition_id, presence: true, allow_blank: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :address_1, presence: true
