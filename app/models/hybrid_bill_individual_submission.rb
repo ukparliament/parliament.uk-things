@@ -7,11 +7,11 @@ class HybridBillIndividualSubmission < HybridBillBaseSubmission
 	#EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
     validates_inclusion_of :receive_updates, :in => [true, false]
-	validates_presence_of :email, :if => :is_receive_updates_checked?, :message => "email field cannot be blank"
+	validates :email, :presence => { :message => "Email field cannot be blank if you wish to receive updates" }, :if => :receive_updates
 
-	def is_receive_updates_checked?
-		unless !receive_updates
-			errors[:email]
-		end
-	end	
+	# def is_receive_updates_checked?
+	# 	unless !receive_updates
+	# 		errors[:email]
+	# 	end
+	# end	
 end
