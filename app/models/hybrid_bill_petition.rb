@@ -1,4 +1,4 @@
-class HybridBill
+class HybridBillPetition
 
 	include ActiveModel::Validations
 

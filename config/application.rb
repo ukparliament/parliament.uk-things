@@ -21,7 +21,7 @@ require 'pugin'
 require 'parliament/utils'
 
 # Temporarily require the stopgap gem
-require 'stopgap_13632'
+#require 'stopgap_13632'
 
 module MembersPrototype
   class Application < Rails::Application
