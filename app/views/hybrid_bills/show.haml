@@ -12,9 +12,4 @@ Hello, this is petition: #{@petition}
   %b payment of £20
   will be required to process your submission
 %hr{:style => "border-bottom: dotted 0.5px #001"}/
-= form_tag(hybrid_bill_path(@petition, step: 'submission-type')) do
-  - for errors in @hybrid_bill.errors.messages do
-    = errors
-  = label_tag 'Terms and Conditions'
-  = check_box_tag 'accept'
-  = submit_tag 'Start'
+= link_to 'Start a petition online', hybrid_bill_path(@petition, step: 'send-a-petition')
