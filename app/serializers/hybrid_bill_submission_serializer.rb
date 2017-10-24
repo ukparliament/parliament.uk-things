@@ -1,5 +1,5 @@
 class HybridBillSubmissionSerializer
-  def self.serialize(committee_business_id:, petitioner_object:, agent_object: nil)
+  def self.serialize(committee_business_id, petitioner_object, agent_object: nil)
     json_object = {
       'CommitteeBusinessId': committee_business_id
     }

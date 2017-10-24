@@ -39,7 +39,10 @@ module MembersPrototype
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Add our custom validators to out autoload paths
+    # Add our custom validators to our autoload paths
     config.autoload_paths += %W["#{config.root}/app/validators/"]
+
+    # Add out custom serializers to our autoload paths
+    config.autoload_paths += %W["#{config.root}/app/serializers/"]
   end
 end

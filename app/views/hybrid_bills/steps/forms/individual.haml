@@ -3,7 +3,7 @@ this is covering individual section
 %br/
 %h1 Petition New Highway Bill
 %h1 Your details
-= form_tag(hybrid_bill_path(@petition, step: 'document-submission')) do
+= form_tag(hybrid_bill_path(@business_id, step: 'document-submission')) do
   = label_tag 'Is this confidential ?'
   = check_box_tag 'isConfidential'
   %br/

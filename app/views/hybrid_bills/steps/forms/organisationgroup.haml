@@ -1,7 +1,7 @@
 this is covering group section
 %br/
 %h1 Group of individuals details
-= form_tag(hybrid_bill_path(@petition, step: 'document-submission')) do
+= form_tag(hybrid_bill_path(@business_id, step: 'document-submission')) do
   %br/
   = hidden_field_tag 'CommitteeBusinessId', '255'
   = label_tag 'GroupName', 'Group Name'

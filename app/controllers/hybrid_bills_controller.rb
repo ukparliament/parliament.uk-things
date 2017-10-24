@@ -6,10 +6,8 @@ require 'pry-nav'
 
 class HybridBillsController < ApplicationController
   before_action :disable_top_navigation, :disable_status_banner
-  before_action :validate_petition, only: :show
+  before_action :validate_business_id, only: :show
   before_action :create_hybrid_bill_submission, only: :show
-
-  include HybridBillsHelper
 
   STEP_TEMPLATES = {
     'send-a-petition':                       'hybrid_bills/steps/send-a-petition',
@@ -34,14 +32,31 @@ class HybridBillsController < ApplicationController
   end
 
   def show
-  	@petition = params[:bill_id]
+  	@business_id = params[:bill_id]
 
     if params[:step]
       template = STEP_TEMPLATES[params[:step].to_sym]
       template = template[params[:type].to_sym] if params[:type]
 
+      session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
+
+      if params[:step] == 'document-submission'
+        # validate what we have
+
+        # collect up and submit form data
+        request_json = HybridBillSubmissionSerializer.serialize(committee_business_id: @business_id, petitioner_object: @petitioner_object, agent_object: @agent_object)
+
+        response = HybridBillsHelper.api_request.hybridbillpetition.submit.post(body: request_json)
+      end
+
+      if params[:step] == 'terms-conditions'
+        request_json = HybridBillDocumentSerializer(petition_reference: SESSION[:hybrid_bill_submission][:petition_reference], filename: params[:file].original_file_name, file: params[:file].tempfile)
+      end
+
       return render template if template
     end
+
+    session[:hybrid_bill_submission] = {}
   end
 
   def email
@@ -49,12 +64,16 @@ class HybridBillsController < ApplicationController
 
   private
 
-  def validate_petition
-    raise ActionController::RoutingError, 'invalid petition id' unless params[:bill_id] == 'hs2'
+  def validate_business_id
+    raise ActionController::RoutingError, 'invalid petition id' unless params[:bill_id] == '1'
   end
 
   def create_hybrid_bill_submission
     @hybrid_bill_submission = nil
+
+    if %W(details document-submission terms-conditions).include?(params[:step])
+
+    end
   end
 
 end
