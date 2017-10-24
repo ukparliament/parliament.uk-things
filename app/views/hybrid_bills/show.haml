@@ -1,5 +1,3 @@
-Hello, this is petition: #{@petition}
-%br/
 %h2 Before you send your petition
 %p Before you petition the New Motorway Bill you should:
 %hr{:style => "border-bottom: dotted 0.5px #001"}/
@@ -12,4 +10,4 @@ Hello, this is petition: #{@petition}
   %b payment of £20
   will be required to process your submission
 %hr{:style => "border-bottom: dotted 0.5px #001"}/
-= link_to 'Start a petition online', hybrid_bill_path(@petition, step: 'send-a-petition')
+= link_to 'Start a petition online', hybrid_bill_path(@business_id, step: 'send-a-petition')
