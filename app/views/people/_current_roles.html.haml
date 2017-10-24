@@ -27,15 +27,8 @@
         - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
           %h3.content--xs
             = t('.committee_role').capitalize
-            - if role.class == GroupingHelper::GroupedObject
-              %h4.lead
-                = "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
-                %ul.list--bullet
-                  - role.nodes.each do |node|
-                    %li= "#{node.date_range}"
-            - else
-              %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
-              %p= "#{role.date_range}"
+            %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
+            %p= "#{role.date_range}"
 
         - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
           %h3.content--xs= t('.government_role').capitalize

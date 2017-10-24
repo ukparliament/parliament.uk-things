@@ -36,13 +36,7 @@
         %h2= "#{t('.contact').capitalize}"
         - if @most_recent_incumbency && @most_recent_incumbency.house.name == 'House of Commons'
           = render 'when_to_contact'
-        - if @person.statuses[:house_membership_status].include?('Current MP') || @person.statuses[:house_membership_status].include?('Member of the House of Lords')
-          - if @current_incumbency.contact_points.empty?
-            %p= t('.empty_contact_details')
-          - else
-            = render 'contact_details'
-        - if @seat_incumbencies.present? && Parliament::Utils::Helpers::HousesHelper.commons?(@current_incumbency.house)
-          %p= t('.contact_discussion')
+        = render 'contact_details'
 
 %section
   .container
