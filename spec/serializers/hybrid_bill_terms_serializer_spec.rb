@@ -6,7 +6,7 @@ RSpec.describe HybridBillDocumentSerializer do
     let(:terms) { true }
 
     it 'creates the expected JSON' do
-      expect(HybridBillTermsSerializer.serialize(petition_id, terms)).to eq('{"HybridBillPetitionId":"ABC123456","AcceptedTerms":true}')
+      expect(HybridBillTermsSerializer.serialize(petition_id, terms)).to eq('{"HybridBillPetitionId":"ABC123456","TermsAndConditionsAccepted":true}')
     end
   end
 end

@@ -17,12 +17,12 @@ RSpec.describe HybridBillSubmissionSerializer do
           postcode: 'SW1P 3JA',
           email: 'admin@example.com',
           telephone: '012345678910',
-          should_be_contacted: false,
+          receives_updates: false,
         )
       end
 
       it 'creates the expected JSON' do
-        expect(HybridBillSubmissionSerializer.serialize(committee_business_id, petitioner_object, agent_object: nil)).to eq('{"CommitteeBusinessId":"1","HybridBillPetitioner":{"SubmitterType":1,"OnBehalfOf":"Parliamentary Digital Service","FirstName":"Matthew","Surname":"Rayner","AddressLine1":"7 Milbank","AddressLine2":"London","Country":"gb","Postcode":"SW1P 3JA","Email":"admin@example.com","Telephone":"012345678910","ShouldBeContacted":false}}')
+        expect(HybridBillSubmissionSerializer.serialize(committee_business_id, petitioner_object, agent_object: nil)).to eq('{"CommitteeBusinessId":"1","HybridBillPetitioner":{"SubmitterType":1,"OnBehalfOf":"Parliamentary Digital Service","FirstName":"Matthew","Surname":"Rayner","AddressLine1":"7 Milbank","AddressLine2":"London","Country":"gb","Postcode":"SW1P 3JA","Email":"admin@example.com","Telephone":"012345678910","ReceivesUpdates":false}}')
       end
 
       context 'including an agent' do
@@ -42,7 +42,7 @@ RSpec.describe HybridBillSubmissionSerializer do
         end
 
         it 'creates the expected JSON' do
-          expect(HybridBillSubmissionSerializer.serialize(committee_business_id, petitioner_object, agent_object:agent_object)).to eq('{"CommitteeBusinessId":"1","HybridBillPetitioner":{"SubmitterType":1,"OnBehalfOf":"Parliamentary Digital Service","FirstName":"Matthew","Surname":"Rayner","AddressLine1":"7 Milbank","AddressLine2":"London","Country":"gb","Postcode":"SW1P 3JA","Email":"admin@example.com","Telephone":"012345678910","ShouldBeContacted":false},"HybridBillPetitionAgent":{"FirstName":"Jamie","Surname":"Tetlow","AddressLine1":"House of Commons","AddressLine2":null,"Country":"gb","Postcode":"SW1A 0AA","Email":"test@example.com","Telephone":"123456789101","ReceivesUpdates":true}}')
+          expect(HybridBillSubmissionSerializer.serialize(committee_business_id, petitioner_object, agent_object:agent_object)).to eq('{"CommitteeBusinessId":"1","HybridBillPetitioner":{"SubmitterType":1,"OnBehalfOf":"Parliamentary Digital Service","FirstName":"Matthew","Surname":"Rayner","AddressLine1":"7 Milbank","AddressLine2":"London","Country":"gb","Postcode":"SW1P 3JA","Email":"admin@example.com","Telephone":"012345678910","ReceivesUpdates":false},"HybridBillPetitionAgent":{"FirstName":"Jamie","Surname":"Tetlow","AddressLine1":"House of Commons","AddressLine2":null,"Country":"gb","Postcode":"SW1A 0AA","Email":"test@example.com","Telephone":"123456789101","ReceivesUpdates":true}}')
         end
       end
     end
