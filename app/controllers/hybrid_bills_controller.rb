@@ -56,6 +56,13 @@ class HybridBillsController < ApplicationController
         redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
       end
 
+      if params[:step] == 'terms-conditions'
+        request_json = HybridBillTermsSerializer(petition_reference: SESSION[:hybrid_bill_submission][:petition_reference])
+
+        response = HybridBillsHelper.api_request.hybridbillpetition.accepttermsandconditions.post(body: request_json)
+        redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
+      end
+
       return render template if template
     end
 
