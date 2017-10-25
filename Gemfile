@@ -64,7 +64,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
 
-  # Use FactoryBot for testinf
+  # Use FactoryBot for testing
   gem 'factory_bot_rails'
 end
 

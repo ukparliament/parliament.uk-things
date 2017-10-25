@@ -10,7 +10,7 @@ FactoryBot.define do
     telephone "0207 520 0890"
     email "testing@gmail.com"
     receive_updates true
-    committee_business_id 255
+    committee_business_id 1
   end
 end
 
