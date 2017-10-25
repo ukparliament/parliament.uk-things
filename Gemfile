@@ -23,7 +23,7 @@ gem 'parliament-grom-decorators', '~> 0.11'
 gem 'geosparql_to_geojson', '~> 0.1'
 
 # Parliament routing
-gem 'parliament-routes', '~> 0.3'
+gem 'parliament-routes', '~> 0.5'
 
 # Parliament-Utils gem for generic set up and configuration
 gem 'parliament-utils', '~> 0.4', require: false
@@ -51,6 +51,8 @@ gem 'tzinfo-data'
 
 gem 'vcard', '~> 0.2'
 
+#
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -61,6 +63,9 @@ group :development, :test do
   # Use pry for testing inline
   gem 'pry'
   gem 'pry-nav'
+
+  # Use FactoryBot for testing
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -70,7 +75,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'factory_girl_rails'
 end
 
 group :test do

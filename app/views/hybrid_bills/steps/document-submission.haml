@@ -1,0 +1,15 @@
+%h2 Upload your petition
+%ul
+  %li Word Document (doc, docx, rtf, txt, ooxml, odt or PDFformat only)
+  %li 10Mb file size limit
+  %li No other media types (e.g. pictures or video files)
+.block--border__bottom
+  = form_tag(hybrid_bill_path(@business_id, step: 'terms-conditions'), multipart: true) do
+    .file--upload
+      %p.file--upload-icon +
+      %h3#file-uploaded-txt
+        Attach your petition template
+        %label
+        = file_field_tag 'file', class: 'file--uploader', id: 'file-upload', title: 'Click here to upload your petition'
+    %p#file-uploaded.file--uploaded No file(s) selected
+    = submit_tag 'next'

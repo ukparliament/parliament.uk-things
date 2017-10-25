@@ -1,0 +1,12 @@
+Who is submitting page:
+
+= form_tag(hybrid_bill_path(@business_id, step: 'details')) do
+  = label_tag 'individual'
+  = radio_button_tag 'type', 'individual'
+  = label_tag 'group of individuals'
+  = radio_button_tag 'type', 'individualgroup'
+  = label_tag 'organisation'
+  = radio_button_tag 'type', 'organisation'
+  = label_tag 'group of organisations'
+  = radio_button_tag 'type', 'organisationgroup'
+  = submit_tag 'submit'
