@@ -10,7 +10,7 @@
       - current_party_details = link_to(@current_party_membership.party.name, party_path(@current_party_membership.party.graph_id))
 
     - unless @person.statuses[:house_membership_status].empty?
-      - if @person.statuses[:house_membership_status].include?('Current MP')
+      - if @person.current_mp?
         %p.lead
           = current_party_details if current_party_details
           = t('.mp_for')
@@ -48,7 +48,7 @@
                 %li= t('.when_to_contact.transport')
               %p= link_to t('.when_to_contact.who_else_can_help'), who_should_i_contact_with_my_issue_path
           %p= t('.contact_postcode')
-        - if @person.statuses[:house_membership_status].include?('Current MP') || @person.statuses[:house_membership_status].include?('Member of the House of Lords')
+        - if @person.current_mp? || @person.current_lord?
           - if @current_incumbency.contact_points.empty?
             %p= t('.empty_contact_details')
           - else
