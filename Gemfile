@@ -23,10 +23,7 @@ gem 'parliament-grom-decorators', '~> 0.11'
 gem 'geosparql_to_geojson', '~> 0.1'
 
 # Parliament routing
-#gem 'parliament-routes', '~> 0.3'
-
-gem 'parliament-routes', path: '../../parliament.uk-routes'
-#gem 'parliament-routes', '~>0.5.0'
+gem 'parliament-routes', '~> 0.3'
 
 # Parliament-Utils gem for generic set up and configuration
 gem 'parliament-utils', '~> 0.4', require: false
@@ -53,7 +50,6 @@ gem 'rack-rewrite'
 gem 'tzinfo-data'
 
 gem 'vcard', '~> 0.2'
-gem 'paperclip'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,7 +58,7 @@ group :development, :test do
   # Use parallel_tests to run specs across all CPU cores locally
   gem 'parallel_tests'
 
-
+  # Use pry for testing inline
   gem 'pry'
   gem 'pry-nav'
 end

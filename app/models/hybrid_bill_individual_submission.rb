@@ -9,6 +9,10 @@ class HybridBillIndividualSubmission < HybridBillBaseSubmission
     validates_inclusion_of :receive_updates, :in => [true, false]
 	validates :email, :presence => { :message => "Email field cannot be blank if you wish to receive updates" }, :if => :receive_updates
 
+	def submitter_type
+		1
+	end
+
 
 	# def is_receive_updates_checked?
 	# 	unless !receive_updates

@@ -1,0 +1,2 @@
+class HybridBillAgent < HybridBillIndividualSubmission
+end
