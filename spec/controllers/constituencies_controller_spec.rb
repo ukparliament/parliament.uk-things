@@ -12,7 +12,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     it 'assigns @constituency' do
       expect(assigns(:constituency)).to be_a(Grom::Node)
-      expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+      expect(assigns(:constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
     end
 
     it 'redirects to constituencies/:id' do
@@ -32,19 +32,19 @@ RSpec.describe ConstituenciesController, vcr: true do
 
       it 'assigns @constituency, @seat_incumbencies, @current_incumbency, @party and regions' do
         expect(assigns(:constituency)).to be_a(Grom::Node)
-        expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+        expect(assigns(:constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
 
         assigns(:seat_incumbencies).each do |seat_incumbency|
           expect(seat_incumbency).to be_a(Grom::Node)
-          expect(seat_incumbency.type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
+          expect(seat_incumbency.type).to eq('https://id.parliament.uk/schema/SeatIncumbency')
         end
 
         expect(assigns(:current_incumbency)).to be_a(Grom::Node)
-        expect(assigns(:current_incumbency).type).to eq('http://id.ukpds.org/schema/SeatIncumbency')
+        expect(assigns(:current_incumbency).type).to eq('https://id.parliament.uk/schema/SeatIncumbency')
         expect(assigns(:current_incumbency).current?).to be(true)
 
         expect(assigns(:party)).to be_a(Grom::Node)
-        expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+        expect(assigns(:party).type).to eq('https://id.parliament.uk/schema/Party')
       end
 
       it 'assigns @seat_incumbencies in reverse chronological order' do
@@ -58,7 +58,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
       it 'assigns @party' do
         expect(assigns(:party)).to be_a(Grom::Node)
-        expect(assigns(:party).type).to eq('http://id.ukpds.org/schema/Party')
+        expect(assigns(:party).type).to eq('https://id.parliament.uk/schema/Party')
       end
 
       it 'assigns regions when available' do
@@ -88,7 +88,7 @@ RSpec.describe ConstituenciesController, vcr: true do
         expect(assigns(:postcode)).to eq('E2 0JA')
 
         expect(assigns(:postcode_constituency)).to be_a(Grom::Node)
-        expect(assigns(:postcode_constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+        expect(assigns(:postcode_constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     it 'assigns @constituency' do
       expect(assigns(:constituency)).to be_a(Grom::Node)
-      expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+      expect(assigns(:constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
     end
 
     it 'renders the map template' do
@@ -148,7 +148,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
       it 'assigns @constituency' do
         expect(assigns(:constituency)).to be_a(Grom::Node)
-        expect(assigns(:constituency).type).to eq('http://id.ukpds.org/schema/ConstituencyGroup')
+        expect(assigns(:constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
       end
 
       it 'renders the map template' do
@@ -209,7 +209,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
     context 'an unavailable data format is requested' do
       before(:each) do
-        headers = { 'Accept' => 'application/n-quads' }
+        headers = { 'Accept' => 'application/foo' }
         request.headers.merge(headers)
       end
 

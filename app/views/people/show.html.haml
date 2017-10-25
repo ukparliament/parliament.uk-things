@@ -104,19 +104,22 @@
                 %p= "#{role.date_range}"
 
               - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
-                -# Committees list, wrapped within conditional flag
-                - if Pugin::Feature::Bandiera.show_committees?
-                  %h3.content--xs
-                    = t('.committee_role').capitalize
-                    - if role.class == GroupingHelper::GroupedObject
-                      %h4.lead
-                        = "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
-                        %ul.list--bullet
-                          - role.nodes.each do |node|
-                            %li= "#{node.date_range}"
-                    - else
-                      %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
-                      %p= "#{role.date_range}"
+                %h3.content--xs
+                  = t('.committee_role').capitalize
+                  - if role.class == GroupingHelper::GroupedObject
+                    %h4.lead
+                      = "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
+                      %ul.list--bullet
+                        - role.nodes.each do |node|
+                          %li= "#{node.date_range}"
+                  - else
+                    %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
+                    %p= "#{role.date_range}"
+
+              - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
+                %h3.content--xs= t('.government_role').capitalize
+                %h4.lead= "#{role.government_position.name}"
+                %p= "#{role.date_range}"
 
     - unless @history.nil? || @history[:years].empty?
       .dropdown
@@ -152,18 +155,30 @@
                         %p= "#{role.date_range}"
 
                       - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
+                        - if role.class == GroupingHelper::GroupedObject
+                          %h5= "#{t('member').capitalize} #{t('of_the')} #{role.grouped_by}"
+                          %p= t('.committee_role').capitalize
+                          %ul.list--bullet
+                            - role.nodes.each do |node|
+                              %li= "#{node.date_range}"
+                        - else
+                          %h5= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
+                          %p= t('.committee_role').capitalize
+                          %p= "#{role.date_range}"
+
+                      - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
                         -# Committees list, wrapped within conditional flag
-                        - if Pugin::Feature::Bandiera.show_committees?
-                          - if role.class == GroupingHelper::GroupedObject
-                            %h5= "#{t('member').capitalize} #{t('of_the')} #{role.grouped_by}"
-                            %p= t('.committee_role').capitalize
-                            %ul.list--bullet
-                              - role.nodes.each do |node|
-                                %li= "#{node.date_range}"
-                          - else
-                            %h5= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
-                            %p= t('.committee_role').capitalize
-                            %p= "#{role.date_range}"
+                        - if role.class == GroupingHelper::GroupedObject
+                          %h5= "#{t('member').capitalize} #{t('of_the')} #{role.grouped_by}"
+                          %p= t('.government_role').capitalize
+                          %ul.list--bullet
+                            - role.nodes.each do |node|
+                              %li= "#{node.date_range}"
+                        - else
+                          %h5= "#{role.government_position.name}"
+                          %p= t('.government_role').capitalize
+                          %p= "#{role.date_range}"
+
 
             - unless @history.nil? || @history[:years].empty?
               - @history[:years].keys.sort.each do |year|
@@ -196,18 +211,29 @@
                           %p= "#{role.date_range}"
 
                         - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
+                          - if role.class == GroupingHelper::GroupedObject
+                            %h5= "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
+                            %p= t('.committee_role').capitalize
+                            %ul.list--bullet
+                              - role.nodes.each do |node|
+                                %li= "#{node.date_range}"
+                          - else
+                            %h5= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
+                            %p= t('.committee_role').capitalize
+                            %p= "#{role.date_range}"
+
+                        - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
                           -# Committees list, wrapped within conditional flag
-                          - if Pugin::Feature::Bandiera.show_committees?
-                            - if role.class == GroupingHelper::GroupedObject
-                              %h5= "#{t('member').capitalize} #{t('of_the')} #{role.nodes[0].constituency.name}"
-                              %p= t('.committee_role').capitalize
-                              %ul.list--bullet
-                                - role.nodes.each do |node|
-                                  %li= "#{node.date_range}"
-                            - else
-                              %h5= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
-                              %p= t('.committee_role').capitalize
-                              %p= "#{role.date_range}"
+                          - if role.class == GroupingHelper::GroupedObject
+                            %h5= "#{t('member').capitalize} #{t('of_the')} #{role.grouped_by}"
+                            %p= t('.government_role').capitalize
+                            %ul.list--bullet
+                              - role.nodes.each do |node|
+                                %li= "#{node.date_range}"
+                          - else
+                            %h5= "#{role.government_position.name}"
+                            %p= t('.government_role').capitalize
+                            %p= "#{role.date_range}"
 
             - if @history && @history[:start]
               %h2= @history[:start].year

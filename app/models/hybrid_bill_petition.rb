@@ -1,19 +1,16 @@
-class HybridBillPetition
+class HybridBillPetition 
 
 	include ActiveModel::Validations
 
-	attr_accessor :committeebusinessid, :address1, :address2, :postcode, :email, :telephone, :firstname, :surname, :has_agent
+	attr_accessor :document_data, :filename, :petition_id
 
-	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	validates_with HybridBillPetitionValidator
 
-	validates :committeebusinessid, presence: true, :numericality => {:only_integer => true, :equal_to => 255}
+    #regex filetypes .doc,.docx, .rtf, .txt, .ooxml, .odt, .pdf
+	DOCUMENT_REGEX = /.(docx|txt|ooxml|rtf|pdf|doc)$\z/
 
-	validates :accept, :presence => true
-
-	validates :has_agent, inclusion: { in: [true, false] }
-
-	validates :email, :presence => true, :format => { :with => email_regex }
-
-
+	validates :document_data, :presence => { :message => "Document must be uploaded" }
+	validates :filename, format: { with: DOCUMENT_REGEX, message: "File type is invalid" }
+	validates :petition_id, presence: true, allow_blank: true
 
 end

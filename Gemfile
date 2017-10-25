@@ -17,17 +17,19 @@ gem 'haml'
 gem 'parliament-ruby', '~> 0.8'
 
 # Parliament Grom Decorators decorates Grom nodes
-gem 'parliament-grom-decorators', '~> 0.8'
+gem 'parliament-grom-decorators', '~> 0.11'
 
 # Converts GeoSparql to GeoJSON
 gem 'geosparql_to_geojson', '~> 0.1'
 
 # Parliament routing
 #gem 'parliament-routes', '~> 0.3'
+
 gem 'parliament-routes', path: '../../parliament.uk-routes'
+#gem 'parliament-routes', '~>0.5.0'
 
 # Parliament-Utils gem for generic set up and configuration
-gem 'parliament-utils', '~> 0.2', require: false
+gem 'parliament-utils', '~> 0.4', require: false
 
 # Parliament NTriple processes N-triple data
 gem 'parliament-ntriple', '~> 0.2', require: false
@@ -53,16 +55,13 @@ gem 'tzinfo-data'
 gem 'vcard', '~> 0.2'
 gem 'paperclip'
 
-if %w(2.2.7 2.3.4 2.4.1).include? RUBY_VERSION
-  gem "stopgap_13632", "~> 1.0", :platforms => ["mri", "mingw", "x64_mingw"]
-end
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   # Use parallel_tests to run specs across all CPU cores locally
   gem 'parallel_tests'
+
 
   gem 'pry'
   gem 'pry-nav'

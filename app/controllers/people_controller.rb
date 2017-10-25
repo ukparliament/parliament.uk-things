@@ -11,12 +11,13 @@ class PeopleController < ApplicationController
 
     @postcode = flash[:postcode]
 
-    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
+    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
-      'http://id.ukpds.org/schema/Person',
-      'http://id.ukpds.org/schema/SeatIncumbency',
-      'http://id.ukpds.org/schema/HouseIncumbency',
-      'http://id.ukpds.org/schema/FormalBodyMembership'
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Person'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('SeatIncumbency'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('HouseIncumbency'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('FormalBodyMembership'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('GovernmentIncumbency')
     )
 
     @person = @person.first
@@ -28,8 +29,9 @@ class PeopleController < ApplicationController
 
     roles = []
     roles += incumbencies
-    roles += @committee_memberships.to_a
+    roles += @committee_memberships.to_a if Pugin::Feature::Bandiera.show_committees?
     roles += @house_incumbencies.to_a
+    roles += @government_incumbencies.to_a if Pugin::Feature::Bandiera.show_government_roles?
 
     @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
@@ -51,7 +53,7 @@ class PeopleController < ApplicationController
 
     begin
       response = Parliament::Utils::Helpers::PostcodeHelper.lookup(@postcode)
-      @postcode_constituency = response.filter('http://id.ukpds.org/schema/ConstituencyGroup').first
+      @postcode_constituency = response.filter(Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup')).first
       postcode_correct = @postcode_constituency.graph_id == @current_incumbency.constituency.graph_id
       @postcode_constituency.correct = postcode_correct
     rescue Parliament::Utils::Helpers::PostcodeHelper::PostcodeError => error

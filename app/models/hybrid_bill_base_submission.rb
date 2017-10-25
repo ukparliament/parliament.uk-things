@@ -5,16 +5,16 @@ class HybridBillBaseSubmission
     
     COUNTRY_REGEX = /\A[A-Z]{2}/
 
-	validates :submitter_type, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 4 }
+	validates :submitter_type, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 4 }, allow_blank: true
 	validates :petition_id, presence: true, allow_blank: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :address_1, presence: true
 	validates :address_2, presence: true, allow_blank: true
-	validates :telephone, presence: true,  allow_blank: true
+	validates :telephone, presence: true
 	validates :postcode, presence: true
 	validates :country, format: { with: COUNTRY_REGEX, message: "Country code is invalid" }
-	validates :committee_business_id, presence: true, numericality: { only_integer: true, equal_to: 255 }
+	validates :committee_business_id, presence: true, numericality: { only_integer: true, equal_to: 1 }
 
 	# ATTRIBUTE_MAP = {
 	#   organization_name: 'OnBehalfOf',

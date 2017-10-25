@@ -43,8 +43,8 @@ http_interactions:
       - Wed, 02 Aug 2017 12:25:23 GMT
     body:
       encoding: UTF-8
-      string: "<http://id.ukpds.org/toes2sa2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/Person> .\r\n"
+      string: "<https://id.parliament.uk/toes2sa2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Person> .\r\n"
     http_version: 
   recorded_at: Wed, 02 Aug 2017 12:28:56 GMT
 recorded_with: VCR 3.0.3
