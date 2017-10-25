@@ -1,8 +1,7 @@
 class HybridBillTermsSerializer
-  def self.serialize(petition_id, terms)
+  def self.serialize(petition_id)
     {
-      'HybridBillPetitionId':petition_id,
-      'TermsAndConditionsAccepted':terms
+      'ReferenceNumber':petition_id
     }.to_json
   end
 end

@@ -4,8 +4,8 @@ class HybridBillDocumentSerializer
     document_data = Base64.encode64(file_content)
 
     {
-      'HybridBillPetitionId':petition_id,
-      'FileName': filename,
+      'ReferenceNumber':petition_id,
+      'Filename': filename,
       'DocumentData': document_data
     }.to_json
   end

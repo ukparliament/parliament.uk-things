@@ -78,15 +78,15 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
     erubi (1.7.0)
-    factory_girl (4.8.1)
+    factory_bot (4.8.2)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.8.0)
-      factory_girl (~> 4.8.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
     ffi (1.9.18)
     geosparql_to_geojson (0.1.3)
       json-schema (~> 2.8)
-    globalid (0.4.0)
+    globalid (0.4.1)
       activesupport (>= 4.2.0)
     grom (0.5.0)
       activesupport (>= 5.0.0.1)
@@ -141,12 +141,12 @@ GEM
     parallel (1.12.0)
     parallel_tests (2.17.0)
       parallel
-    parliament-grom-decorators (0.11.0)
+    parliament-grom-decorators (0.12.0)
     parliament-ntriple (0.2.0)
       grom (~> 0.5)
     parliament-routes (0.5.0)
     parliament-ruby (0.9.0)
-    parliament-utils (0.4.1)
+    parliament-utils (0.4.2)
       bandiera-client
       coveralls
       haml
@@ -281,7 +281,7 @@ GEM
     turbolinks-source (5.0.3)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2017.2)
+    tzinfo-data (1.2017.3)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -313,7 +313,7 @@ DEPENDENCIES
   byebug
   capybara
   dotenv
-  factory_girl_rails
+  factory_bot_rails
   geosparql_to_geojson (~> 0.1)
   haml
   listen (>= 3.0.5, < 3.2)
