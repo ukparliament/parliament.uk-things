@@ -40,17 +40,20 @@ class HybridBillsController < ApplicationController
 
       session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
 
-      if params[:step] == 'document-submission'
-        # validate what we have
-
+      if params[:step] == 'details'
         # collect up and submit form data
         request_json = HybridBillSubmissionSerializer.serialize(committee_business_id: @business_id, petitioner_object: @petitioner_object, agent_object: @agent_object)
 
         response = HybridBillsHelper.api_request.hybridbillpetition.submit.post(body: request_json)
+        SESSION[:hybrid_bill_submission][:petition_reference] = JSON.parse(response.body)['HybridBillPetitionID'.to_sym]
+        redirect_to hybrid_bill_path(@business_id, step: 'document-submission')
       end
 
-      if params[:step] == 'terms-conditions'
+      if params[:step] == 'document-submission'
         request_json = HybridBillDocumentSerializer(petition_reference: SESSION[:hybrid_bill_submission][:petition_reference], filename: params[:file].original_file_name, file: params[:file].tempfile)
+
+        response = HybridBillsHelper.api_request.hybridbillpetitiondocument.submit.post(body: request_json)
+        redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
       end
 
       return render template if template

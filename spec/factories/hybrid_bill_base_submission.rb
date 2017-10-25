@@ -1,5 +1,5 @@
-FactoryGirl.define do 
-  factory :hybrid_bill_base_submission do 
+FactoryBot.define do
+  factory :hybrid_bill_base_submission do
     submitter_type 1
     first_name "susan"
     last_name "conkers"
