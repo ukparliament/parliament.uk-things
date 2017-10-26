@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :hybrid_bill_organisation_submission do
-    on_behalf_of 'Toys Company'
+  factory :hybrid_bill_organisation_group_submission do
     first_name 'susan'
     surname 'conkers'
+    on_behalf_of 'Group of Organisations'
     address_1 'millbank 7'
     address_2 'westminister'
     postcode 'WC2 7TL'

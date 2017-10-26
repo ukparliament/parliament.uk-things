@@ -51,7 +51,8 @@ gem 'tzinfo-data'
 
 gem 'vcard', '~> 0.2'
 
-#
+# Allow us to use active relations within Hybrid Bill POROs
+gem 'active_poro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

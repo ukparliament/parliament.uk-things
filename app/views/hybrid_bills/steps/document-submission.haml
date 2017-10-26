@@ -4,7 +4,7 @@
   %li 10Mb file size limit
   %li No other media types (e.g. pictures or video files)
 .block--border__bottom
-  = form_tag(hybrid_bill_path(@business_id, step: 'terms-conditions'), multipart: true) do
+  = form_tag(hybrid_bill_path(@business_id, step: 'document-submission'), multipart: true) do
     .file--upload
       %p.file--upload-icon +
       %h3#file-uploaded-txt

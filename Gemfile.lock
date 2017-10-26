@@ -24,6 +24,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_poro (0.0.6)
+      activesupport
     activejob (5.1.4)
       activesupport (= 5.1.4)
       globalid (>= 0.3.6)
@@ -42,7 +44,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     airbrake (7.1.0)
       airbrake-ruby (~> 2.5)
-    airbrake-ruby (2.5.0)
+    airbrake-ruby (2.5.1)
     arel (8.0.0)
     ast (2.3.0)
     bandiera-client (3.0.4)
@@ -113,7 +115,7 @@ GEM
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    macmillan-utils (1.0.43)
+    macmillan-utils (1.0.44)
       activesupport (>= 3.2.0)
       codeclimate-test-reporter
       colorize
@@ -141,7 +143,7 @@ GEM
     parallel (1.12.0)
     parallel_tests (2.17.0)
       parallel
-    parliament-grom-decorators (0.12.1)
+    parliament-grom-decorators (0.13.0)
     parliament-ntriple (0.2.0)
       grom (~> 0.5)
     parliament-routes (0.5.0)
@@ -308,6 +310,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_poro
   airbrake
   bandiera-client
   byebug

@@ -1,50 +1,6 @@
 this is covering organisation section
 %br/
-%h1 Group of individuals details
-= form_tag(hybrid_bill_path(@business_id, step: 'document-submission')) do
-  %br/
-  = hidden_field_tag 'CommitteeBusinessId', '255'
-  = label_tag 'GroupName', 'Business/Organisation name'
-  = text_field_tag 'HybridBillPetitioner[OrganisationName]'
-  = label_tag 'AddressLine1', 'Business/Organisation Address 1'
-  = text_field_tag 'HybridBillPetitioner[AddressLine1]'
-  = label_tag 'AddressLine2', 'Business/Organisation Address 2'
-  = text_field_tag 'HybridBillPetitioner[AddressLine2]'
-  = label_tag 'Postcode', 'Business/Organisation Post Code'
-  = text_field_tag 'HybridBillPetitioner[Postcode]'
-  Please specify a representative for your business or organisation
-  %br/
-  %br/
-  = label_tag 'FirstName', 'First Name'
-  = text_field_tag 'HybridBillPetitioner[FirstName]'
-  = label_tag 'Surname', 'Surname'
-  = text_field_tag 'HybridBillPetitioner[Surname]'
-  = label_tag 'Email', 'Email'
-  = text_field_tag 'HybridBillPetitioner[Email]'
-  = label_tag 'Telephone', 'Telephone'
-  = text_field_tag 'HybridBillPetitioner[Telephone]'
-  = label_tag 'Do you have an external representative ?'
-  = check_box_tag 'HybridBillPetitionAgent[AgentType]'
-  this is organisation's external representative section
-  %br/
-  %br/
-  %h1 Representative details
-  %hr{:style => "border-bottom: dotted 0.5px #001"}/
-  %br/
-  = label_tag 'FirstName', 'First name'
-  = text_field_tag 'HybridBillPetitionAgent[FirstName]'
-  = label_tag 'HybridAgentSurname', 'Surname'
-  = text_field_tag 'HybridBillPetitionAgent[Surname]'
-  = label_tag 'AddressLine1', 'Address 1'
-  = text_field_tag 'HybridBillPetitionAgent[AddressLine1]'
-  = label_tag 'AddressLine2', 'Address 2'
-  = text_field_tag 'HybridBillPetitionAgent[AddressLine2]'
-  = label_tag 'Postcode', 'Post Code'
-  = text_field_tag 'HybridBillPetitionAgent[Postcode]'
-  = label_tag 'Email', 'Email'
-  = text_field_tag 'HybridBillPetitionAgent[Email]'
-  = label_tag 'Telephone', 'Telephone'
-  = text_field_tag 'HybridBillPetitionAgent[Telephone]'
-  Who should be contacted about this petition
+%h1 Organisation
 
-  \#{label_tag 'You'}#{check_box_tag 'HybridBillPetitioner[ShouldBeContacted]'}#{label_tag 'Your representative'}#{check_box_tag 'HybridBillPetitionAgent[ShouldBeContacted]'}#{submit_tag 'next'}
+=render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: true }
+
