@@ -144,6 +144,9 @@ en:
         school_closures: 'school closures and funding'
         transport: 'transport facilities'
         who_else_can_help: 'Who else can help with my issue?'
+    related_links:
+      title: 'related links'
+      portrait: "%{name}&#8217;s official portrait is %{link}."
     constituencies:
       index:
         title: '%{current_and_former} %{constituency_plural}'
@@ -193,6 +196,9 @@ en:
     address: 'address'
     download: 'download'
     add_address_book: 'add to address book'
+    website: 'website'
+    twitter: 'twitter'
+    facebook: 'facebook'
   # constituencies translations
   constituencies:
     index:
@@ -376,7 +382,7 @@ en:
         provide: 'We want your feedback to %{link} further.'
         provide_link: 'help us improve these pages'
       whats_on:
-        title: "What's on our test website"
+        title: "What&#8217;s on our test website"
       members_info:
         title: 'MPs and Lords information'
         current_mps: 'View all current members of the House of Commons.'
