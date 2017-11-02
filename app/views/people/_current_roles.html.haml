@@ -1,36 +1,21 @@
 %ul.list--pipe
-  - @history[:current].each do |role|
-    %li
-      .list--details
-        - if Grom::Helper.get_id(role.type) == 'SeatIncumbency'
-          %h3.content--xs
-            = t('.parliamentary_role').capitalize
-            - if role.class == GroupingHelper::GroupedObject
-              %h4.lead
-                = t('.mp_for')
-                = link_to role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id)
-              %p= "Elected #{role.nodes.count} times"
-              %ul.list--bullet
-                - role.nodes.each do |node|
-                  %li= "#{node.date_range}"
-            - else
-              %h4.lead
-                = t('.mp_for')
-                = link_to role.constituency.name, constituency_path(role.constituency.graph_id)
-              %p= "#{role.date_range}"
+  - current_roles.fetch('GovernmentIncumbency', []).each do |role|
+    = render 'current_role', role: role, role_type: "#{t('.government_role').capitalize}", role_title: "#{role.government_position.name}"
 
-        - elsif Grom::Helper.get_id(role.type) == 'HouseIncumbency'
-          %h3.content--xs= t('.house_of_lords_role')
-          %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
-          %p= "#{role.date_range}"
+  - current_roles.fetch('SeatIncumbency', []).each do |role|
+    - if role.class == GroupingHelper::GroupedObject
+      - first_line_start = t('.mp_for')
+      - first_line_end = "#{link_to role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id)}".html_safe
+      - first_line = "#{first_line_start} #{first_line_end}".html_safe
+      = render 'current_role', role: role, role_type: "#{t('.parliamentary_role').capitalize}", role_title: first_line
+    - else
+      - first_line_start = t('.mp_for')
+      - first_line_end = "#{link_to role.constituency.name, constituency_path(role.constituency.graph_id)}".html_safe
+      - first_line = "#{first_line_start} #{first_line_end}".html_safe
+      = render 'current_role', role: role, role_type: "#{t('.parliamentary_role').capitalize}", role_title: first_line
 
-        - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
-          %h3.content--xs
-            = t('.committee_role').capitalize
-            %h4.lead= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
-            %p= "#{role.date_range}"
+  - current_roles.fetch('HouseIncumbency', []).each do |role|
+    = render 'current_role', role: role, role_type: "#{t('.house_of_lords_role')}", role_title: "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
 
-        - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
-          %h3.content--xs= t('.government_role').capitalize
-          %h4.lead= "#{role.government_position.name}"
-          %p= "#{role.date_range}"
+  - current_roles.fetch('FormalBodyMembership', []).each do |role|
+    = render 'current_role', role: role, role_type: "#{t('.committee_role').capitalize}", role_title: "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"

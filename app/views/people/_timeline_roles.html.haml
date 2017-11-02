@@ -1,34 +1,24 @@
 - timeline_roles.each do |role|
   %li
     .list--details
-      - if Grom::Helper.get_id(role.type) == 'SeatIncumbency'
+      - if RoleHelper.role_type(role, 'SeatIncumbency')
         - date_string = role.try(:start_date) && role.try(:end_date) ? " (#{l(role.start_date, format: :year_only)} #{t('to')} #{l(role.end_date, format: :year_only)})" : ''
         - if role.class == GroupingHelper::GroupedObject
-          %h5
-            = t('.mp_for')
-            = link_to "#{role.nodes[0].constituency.name} #{date_string}", constituency_path(role.nodes[0].constituency.graph_id)
-          %p= "Elected #{role.nodes.count} times"
-          %ul.list--bullet
-            - role.nodes.each do |node|
-              %li= "#{node.date_range}"
+          - role_type_start = t('.mp_for')
+          - role_type_link = "#{link_to "#{role.nodes[0].constituency.name} #{date_string}", constituency_path(role.nodes[0].constituency.graph_id)}".html_safe
+          - role_type = "#{role_type_start} #{role_type_link}".html_safe
+          = render 'timeline_role', role: role, role_type: role_type, role_title: "Elected #{role.nodes.count} times"
         - else
-          %h5
-            = t('.mp_for')
-            = link_to "#{role.constituency.name}#{date_string}", constituency_path(role.constituency.graph_id)
-          %p= t('.parliamentary_role').capitalize
-          %p= "#{role.date_range}"
+          - role_type_start = t('.mp_for')
+          - role_type_link = "#{link_to "#{role.constituency.name}#{date_string}", constituency_path(role.constituency.graph_id)}".html_safe
+          - role_type = "#{role_type_start} #{role_type_link}".html_safe
+          = render 'timeline_role', role: role, role_type: role_type, role_title: t('.parliamentary_role').capitalize
 
-      - elsif Grom::Helper.get_id(role.type) == 'HouseIncumbency'
-        %h5= "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
-        %p= t('.house_of_lords_role')
-        %p= "#{role.date_range}"
+      - elsif RoleHelper.role_type(role, 'HouseIncumbency')
+        = render 'timeline_role', role: role, role_type: "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}", role_title: t('.house_of_lords_role')
 
-      - elsif Grom::Helper.get_id(role.type) == 'FormalBodyMembership'
-        %h5= "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
-        %p= t('.committee_role').capitalize
-        %p= "#{role.date_range}"
+      - elsif RoleHelper.role_type(role, 'FormalBodyMembership')
+        = render 'timeline_role', role: role, role_type: "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}", role_title: t('.committee_role').capitalize
 
-      - elsif Grom::Helper.get_id(role.type) == 'GovernmentIncumbency'
-        %h5= "#{role.government_position.name}"
-        %p= t('.government_role').capitalize
-        %p= "#{role.date_range}"
+      - elsif RoleHelper.role_type(role, 'GovernmentIncumbency')
+        = render 'timeline_role', role: role, role_type: "#{role.government_position.name}", role_title: t('.government_role').capitalize

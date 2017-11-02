@@ -1,0 +1,8 @@
+%h5= role_type
+%p= role_title
+- if role.try(:nodes)
+  %ul.list--bullet
+    - role.nodes.each do |node|
+      %li= "#{node.date_range}"
+- else
+  %p= "#{role.date_range}"

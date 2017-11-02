@@ -47,6 +47,8 @@ class PeopleController < ApplicationController
     HistoryHelper.add(roles)
     @history = HistoryHelper.history
 
+    @current_roles = @history[:current].reverse!.group_by { |role| Grom::Helper.get_id(role.type) } if @history[:current]
+
 
     # !!!!! CODE BELOW THIS POINT ONLY EXECUTES WHEN YOU HAVE CHECKED THAT THIS PERSON IS YOUR MP !!!!!
     return unless @postcode && @current_incumbency

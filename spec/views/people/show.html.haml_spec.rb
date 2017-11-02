@@ -689,11 +689,7 @@ RSpec.describe 'people/show', vcr: true do
           end
 
           it 'will render start date to present' do
-            expect(rendered).to match((Time.zone.now - 2.months).strftime('%-e %b %Y'))
-          end
-
-          it 'will render present status' do
-            expect(rendered).to match('to present')
+            expect(rendered).to match("#{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present")
           end
         end
 
@@ -707,11 +703,21 @@ RSpec.describe 'people/show', vcr: true do
           end
 
           it 'will render start date to present' do
-            expect(rendered).to match((Time.zone.now - 3.months).strftime('%-e %b %Y'))
+            expect(rendered).to match("#{(Time.zone.now - 3.months).strftime('%-e %b %Y')} to present")
+          end
+        end
+
+        context 'Government roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Government role/)
           end
 
-          it 'will render present status' do
-            expect(rendered).to match('to present')
+          it 'will render the correct title' do
+            expect(rendered).to match(/Test Government Position Name/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match("#{(Time.zone.now - 5.months).strftime('%-e %b %Y')} to present")
           end
         end
 
@@ -725,11 +731,7 @@ RSpec.describe 'people/show', vcr: true do
           end
 
           it 'will render start date to present' do
-            expect(rendered).to match((Time.zone.now - 4.months).strftime('%-e %b %Y'))
-          end
-
-          it 'will render present status' do
-            expect(rendered).to match('to present')
+            expect(rendered).to match("#{(Time.zone.now - 4.months).strftime('%-e %b %Y')} to present" )
           end
         end
       end

@@ -18,7 +18,7 @@
     - if @party.member_count == 0
 
       - if Parliament::Utils::Helpers::HousesHelper.commons?(@house)
-        = render partial: 'shared/dissolution_message'
+        = render 'shared/dissolution_message'
 
       %ul.list--block
         %li
