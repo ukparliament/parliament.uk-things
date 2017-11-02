@@ -1,69 +1,63 @@
 = form_for petitioner_object, url: hybrid_bill_path(business_id, step: 'details') do |f|
-  - if include_group
-    = f.label :on_behalf_of
-    = f.text_field :on_behalf_of
+  %div
+    %h3 Errors
+    %ul
+      - petitioner_object.errors.full_messages.each do |message|
+        %li= message
+    %hr
+    %ul
+      - petitioner_object.hybrid_bill_agent.errors.full_messages.each do |message|
+        %li= message
 
-  = f.label :first_name
-  = f.text_field :first_name
-  = f.label :surname
-  = f.text_field :surname
+  - if include_group
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of }
+
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name }
+
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :surname }
 
   %h2 Do you live in the UK?
-  = radio_button_tag(:petitioner_uk, 'yes')
-  = label_tag(:petitioner_uk, 'Yes')
-  = radio_button_tag(:petitioner_uk, 'no')
-  = label_tag(:petitioner_uk, 'No')
+  = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :in_the_uk }
 
-  = f.label :country
-  = f.select :country, [['United Kingdom', 'GB']]
+  = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: f, attribute: :country }
 
-  = f.label :address_1
-  = f.text_field :address_1
-  = f.label :address_2
-  = f.text_field :address_2
-  = f.label :postcode
-  = f.text_field :postcode
-  = f.label :email
-  = f.text_field :email
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1 }
+
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_2 }
+
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :postcode }
+
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email }
+
   = f.label :receive_updates
-  = f.check_box :receive_updates
-  = f.label :telephone
-  = f.text_field :telephone
+  = f.check_box :receive_updates, class: f.object.errors[:receive_updates].present? ? 'invalid' : nil
 
+  = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone }
 
   %h2 Do you have a rep?
-  = radio_button_tag(:include_agent, 'yes')
-  = label_tag(:include_agent, 'Yes')
-  = radio_button_tag(:include_agent, 'no')
-  = label_tag(:include_agent, 'No')
+  = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :has_a_rep }
 
-  = f.fields_for :hybrid_bill_agent do |a|
-    = a.label :first_name
-    = a.text_field :first_name
-    = a.label :surname
-    = a.text_field :surname
+  = f.fields_for :hybrid_bill_agent, petitioner_object.hybrid_bill_agent do |a|
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :first_name }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname }
 
     %h2 Do you live in the UK?
-    = radio_button_tag(:agent_uk, 'yes')
-    = label_tag(:agent_uk, 'Yes')
-    = radio_button_tag(:agent_uk, 'no')
-    = label_tag(:agent_uk, 'No')
+    = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: a, attribute: :in_the_uk }
 
+    = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: a, attribute: :country }
 
-    = a.label :country
-    = a.select :country, [['United Kingdom', 'GB']]
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_1 }
 
-    = a.label :address_1
-    = a.text_field :address_1
-    = a.label :address_2
-    = a.text_field :address_2
-    = a.label :postcode
-    = a.text_field :postcode
-    = a.label :email
-    = a.text_field :email
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_2 }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :postcode }
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email }
+
     = a.label :receive_updates
-    = a.check_box :receive_updates
-    = a.label :telephone
-    = a.text_field :telephone
+    = a.check_box :receive_updates, class: a.object.errors[:receive_updates].present? ? 'invalid' : nil
+
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone }
 
   = f.submit

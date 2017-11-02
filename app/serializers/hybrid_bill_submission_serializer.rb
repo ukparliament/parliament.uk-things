@@ -1,8 +1,11 @@
 class HybridBillSubmissionSerializer
-  def self.serialize(committee_business_id, petitioner_object, agent_object: nil)
+  def self.serialize(committee_business_id, petitioner_object)
     json_object = {
       'CommitteeBusinessId': committee_business_id
     }
+
+    petitioner_country = (petitioner_object.in_the_uk == 'true') ? 'GB' : petitioner_object.country
+    petitioner_updates = (petitioner_object.receive_updates == '1')
 
     json_object['HybridBillPetitioner'] = {
       'SubmitterType':    petitioner_object.submitter_type,
@@ -11,24 +14,27 @@ class HybridBillSubmissionSerializer
       'Surname':          petitioner_object.surname,
       'AddressLine1':     petitioner_object.address_1,
       'AddressLine2':     petitioner_object.address_2,
-      'Country':          petitioner_object.country,
+      'Country':          petitioner_country,
       'Postcode':         petitioner_object.postcode,
       'Email':            petitioner_object.email,
       'Telephone':        petitioner_object.telephone,
-      'ReceivesUpdates':  petitioner_object.receives_updates
+      'ReceivesUpdates':  petitioner_updates
     }
 
-    if agent_object
+    if petitioner_object.has_a_rep == 'true'
+      agent_country = (petitioner_object.hybrid_bill_agent.in_the_uk == 'true') ? 'GB' : petitioner_object.hybrid_bill_agent.country
+      agent_updates = (petitioner_object.hybrid_bill_agent.receive_updates == '1')
+
       json_object['HybridBillPetitionAgent'] = {
-        'FirstName':        agent_object.first_name,
-        'Surname':          agent_object.surname,
-        'AddressLine1':     agent_object.address_1,
-        'AddressLine2':     agent_object.address_2,
-        'Country':          agent_object.country,
-        'Postcode':         agent_object.postcode,
-        'Email':            agent_object.email,
-        'Telephone':        agent_object.telephone,
-        'ReceivesUpdates':  agent_object.receives_updates
+        'FirstName':        petitioner_object.hybrid_bill_agent.first_name,
+        'Surname':          petitioner_object.hybrid_bill_agent.surname,
+        'AddressLine1':     petitioner_object.hybrid_bill_agent.address_1,
+        'AddressLine2':     petitioner_object.hybrid_bill_agent.address_2,
+        'Country':          agent_country,
+        'Postcode':         petitioner_object.hybrid_bill_agent.postcode,
+        'Email':            petitioner_object.hybrid_bill_agent.email,
+        'Telephone':        petitioner_object.hybrid_bill_agent.telephone,
+        'ReceivesUpdates':  agent_updates
       }
     end
 

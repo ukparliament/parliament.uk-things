@@ -33,7 +33,12 @@ class HybridBillsController < ApplicationController
 
     if params[:step]
       template = STEP_TEMPLATES[params[:step].to_sym]
-      template = template[params[:type].to_sym] if params[:type]
+
+      if params[:type]
+        template = template[params[:type].to_sym]
+      elsif @type
+        template = template[@type.to_sym]
+      end
 
       session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
 
@@ -60,6 +65,8 @@ class HybridBillsController < ApplicationController
       #   redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
       # end
 
+      require 'pry'; binding.pry
+
       return render template if template
     end
 
@@ -79,12 +86,62 @@ class HybridBillsController < ApplicationController
     @hybrid_bill_submission = nil
 
     if %W(details).include?(params[:step])
-      type = session[:hybrid_bill_submission][:submission_type].nil? ? params[:type].to_sym : session[:hybrid_bill_submission][:submission_type].to_sym
-      petitioner_object = SUBMISSION_TYPES[type]
-      petitioner_object = petitioner_object.new if petitioner_object
+      @type = session.fetch('hybrid_bill_submission', {})['submission_type']
+      @type = params[:type] if @type.nil?
+
+      return redirect_to hybrid_bill_path(params[:bill_id]) if @type.nil?
+
+      # What object are we trying to build
+      petitioner_object = SUBMISSION_TYPES[@type.to_sym]
+
+      if petitioner_object
+        # What will the params block for this object be
+        params_symbol = petitioner_object.to_s.underscore.to_sym
+
+        begin
+          params_object = params[params_symbol] ? sanitized_params(params_symbol) : {}
+        rescue ActionController::ParameterMissing => e
+          logger.debug 'Redirecting to Hybrid bill home because:'
+          logger.debug e
+
+          redirect_to hybrid_bill_path(params[:bill_id])
+        end
+
+        petitioner_object = petitioner_object.new(params_object)
+        petitioner_object.valid? if params[params_symbol]
+
+        # require 'pry'; binding.pry
+
+        if petitioner_object.has_a_rep == 'true'
+          agent_params = petitioner_object.hybrid_bill_agent || {}
+          petitioner_object.hybrid_bill_agent = HybridBillAgent.new(agent_params)
+          petitioner_object.hybrid_bill_agent.valid?
+        else
+          petitioner_object.hybrid_bill_agent = HybridBillAgent.new
+        end
+
+        if params[params_symbol]
+          petitioner_valid = petitioner_object.valid?
+          agent_valid = (petitioner_object.has_a_rep == 'true') ? petitioner_object.hybrid_bill_agent.valid? : true
+
+          if petitioner_valid && agent_valid
+            request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
+
+            response = HybridBillsHelper.api_request.hybridbillpetition('submit.json').post(body: request_json)
+            logger.info "Recieved #{response.response.code}: #{response.response.body}"
+            session[:hybrid_bill_submission][:petition_reference] = JSON.parse(response.body)['Result']
+            session[:hybrid_bill_submission][:object_params] = params[params_symbol]
+            redirect_to hybrid_bill_path(params[:bill_id], step: 'document-submission')
+          end
+        end
+      end
 
       @petitioner_object = petitioner_object
     end
+  end
+
+  def sanitized_params(symbol)
+    params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: [:first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates])
   end
 
 end

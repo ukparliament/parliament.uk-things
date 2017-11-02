@@ -1,0 +1,5 @@
+= f.label attribute
+= f.text_field attribute, class: f.object.errors[attribute].present? ? 'invalid' : nil
+- if f.object.errors[attribute].present?
+  - f.object.errors.messages[attribute].each do |message|
+    %span.error_message{ style: 'color: red;' }= message

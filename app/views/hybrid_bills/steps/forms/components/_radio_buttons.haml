@@ -1,0 +1,8 @@
+%div{ class: f.object.errors[attribute].present? ? 'invalid' : nil }
+  = f.radio_button attribute, true, value: true
+  = f.label attribute, 'Yes', value: true
+
+  = f.radio_button attribute, false, value: false
+  = f.label attribute, 'No', value: false
+  - if f.object.errors[attribute].present?
+    %span.error_message{ style: 'color: red;' } Please select one
