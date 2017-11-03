@@ -1,26 +1,27 @@
-- if @person.weblinks? || (Pugin::Feature::Bandiera.show_list_images? && @person.image_id.present?)
-  %section
-    .container
-      .block--border__bottom
-        %h2=t('.title').capitalize
+- if @person.current_mp?
+  - if @person.weblinks? || (Pugin::Feature::Bandiera.show_list_images? && @person.image_id(show_placeholder:false))
+    %section
+      .container
+        .block--border__bottom
+          %h2=t('.title').capitalize
 
-        - if @person.weblinks?
-          %dl.list--definition
-            - if @person.personal_weblinks.present?
-              - @person.personal_weblinks.each do |link|
-                %dt= t('contact_points.website').capitalize + ": "
-                %dd= link_to link, link
+          - if @person.weblinks?
+            %dl.list--definition
+              - if @person.personal_weblinks.present?
+                - @person.personal_weblinks.each do |link|
+                  %dt= t('contact_points.website').capitalize + ": "
+                  %dd= link_to link, link
 
-            - if @person.twitter_weblinks.present?
-              - @person.twitter_weblinks.each do |link|
-                %dt= t('contact_points.twitter').capitalize + ": "
-                %dd= link_to link, link
+              - if @person.twitter_weblinks.present?
+                - @person.twitter_weblinks.each do |link|
+                  %dt= t('contact_points.twitter').capitalize + ": "
+                  %dd= link_to link, link
 
-            - if @person.facebook_weblinks.present?
-              - @person.facebook_weblinks.each do |link|
-                %dt= t('contact_points.facebook').capitalize + ": "
-                %dd= link_to link, link
+              - if @person.facebook_weblinks.present?
+                - @person.facebook_weblinks.each do |link|
+                  %dt= t('contact_points.facebook').capitalize + ": "
+                  %dd= link_to link, link
 
-        - if Pugin::Feature::Bandiera.show_list_images?
-          - if @person.image_id(show_placeholder:false)
-            %p= t('.portrait', name: @person.full_name, link: link_to(t('media.show.available_download'), media_show_path(@person.image_id))).html_safe
+          - if Pugin::Feature::Bandiera.show_list_images?
+            - if @person.image_id(show_placeholder:false)
+              %p= t('.portrait', name: @person.full_name, link: link_to(t('media.show.available_download'), media_show_path(@person.image_id))).html_safe

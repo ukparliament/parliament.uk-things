@@ -7,6 +7,7 @@ RSpec.describe 'people/_related_links' do
       before do
         assign(:person,
           double(:person,
+            current_mp?: true,
             weblinks?: true,
             personal_weblinks: ['http://www.example.com'],
             twitter_weblinks: ['https://www.twitter.com/doesnotexists'],
@@ -44,6 +45,7 @@ RSpec.describe 'people/_related_links' do
       before do
         assign(:person,
           double(:person,
+            current_mp?: true,
             weblinks?: false
           )
         )
@@ -62,6 +64,7 @@ RSpec.describe 'people/_related_links' do
       before do
         assign(:person,
           double(:person,
+            current_mp?: true,
             weblinks?: false,
             image_id: 'XXXXXXXX',
             full_name: 'Test Name',
@@ -85,6 +88,7 @@ RSpec.describe 'people/_related_links' do
       before do
         assign(:person,
           double(:person,
+            current_mp?: true,
             weblinks?: true,
             image_id: false,
             full_name: 'Test Name',
