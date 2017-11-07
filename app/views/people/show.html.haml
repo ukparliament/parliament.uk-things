@@ -36,8 +36,8 @@
 %section
   .container
     %h2= t('.roles').capitalize
-    - unless @history.nil? || @history[:current].empty?
-      = render 'current_roles'
+    - if @current_roles
+      = render 'current_roles', current_roles: @current_roles
 
     - unless @history.nil? || @history[:years].empty?
       .dropdown

@@ -1,0 +1,11 @@
+%li
+  .list--details
+    %h3.content--xs= role_type
+    %h4.lead= role_title
+    - if role.try(:nodes)
+      %p= "Elected #{role.nodes.count} times"
+      %ul.list--bullet
+        - role.nodes.each do |node|
+          %li= "#{node.date_range}"
+    - else
+      %p= "#{role.date_range}"
