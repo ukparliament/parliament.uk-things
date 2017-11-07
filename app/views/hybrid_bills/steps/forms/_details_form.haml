@@ -10,7 +10,10 @@
         %li= message
 
   - if include_group
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of }
+    - if local_assigns.fetch(:group_name, nil)
+      = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of, label_value: group_name }
+    - else
+      = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of }
 
   = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name }
 
@@ -29,8 +32,7 @@
 
   = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email }
 
-  = f.label :receive_updates
-  = f.check_box :receive_updates, class: f.object.errors[:receive_updates].present? ? 'invalid' : nil
+  = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: f, attribute: :receive_updates }
 
   = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone }
 
@@ -55,8 +57,7 @@
 
     = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email }
 
-    = a.label :receive_updates
-    = a.check_box :receive_updates, class: a.object.errors[:receive_updates].present? ? 'invalid' : nil
+    = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: a, attribute: :receive_updates }
 
     = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone }
 

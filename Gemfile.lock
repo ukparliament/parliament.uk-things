@@ -100,7 +100,7 @@ GEM
     hashdiff (0.3.7)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (0.9.0)
+    i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     json (2.1.0)
     json-schema (2.8.0)
@@ -124,8 +124,8 @@ GEM
       simplecov-rcov
       syslog-logger
       webmock
-    mail (2.6.6)
-      mime-types (>= 1.16, < 4)
+    mail (2.7.0)
+      mini_mime (>= 0.1.1)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -145,7 +145,7 @@ GEM
     parliament-ntriple (0.2.0)
       grom (~> 0.5)
     parliament-routes (0.5.0)
-    parliament-ruby (0.9.0)
+    parliament-ruby (0.10.0)
     parliament-utils (0.4.2)
       bandiera-client
       coveralls
@@ -167,7 +167,7 @@ GEM
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
     public_suffix (3.0.0)
-    pugin (1.4.1)
+    pugin (1.5.0)
     puma (3.10.0)
     rack (2.0.3)
     rack-rewrite (1.5.1)
@@ -279,7 +279,7 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
-    tzinfo (1.2.3)
+    tzinfo (1.2.4)
       thread_safe (~> 0.1)
     tzinfo-data (1.2017.3)
       tzinfo (>= 1.0.0)

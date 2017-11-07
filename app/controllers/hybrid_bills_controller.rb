@@ -65,7 +65,7 @@ class HybridBillsController < ApplicationController
       #   redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
       # end
 
-      require 'pry'; binding.pry
+      # require 'pry'; binding.pry
 
       return render template if template
     end
@@ -83,61 +83,92 @@ class HybridBillsController < ApplicationController
   end
 
   def create_hybrid_bill_submission
-    @hybrid_bill_submission = nil
-
     if %W(details).include?(params[:step])
-      @type = session.fetch('hybrid_bill_submission', {})['submission_type']
-      @type = params[:type] if @type.nil?
+      process_petitioner_object
+    end
 
-      return redirect_to hybrid_bill_path(params[:bill_id]) if @type.nil?
+    if %W(document-submission).include?(params[:step])
+      process_document_object
+    end
+  end
 
-      # What object are we trying to build
-      petitioner_object = SUBMISSION_TYPES[@type.to_sym]
+  def process_petitioner_object
+    @type = session.fetch('hybrid_bill_submission', {})['submission_type']
+    @type = params[:type] if @type.nil?
 
-      if petitioner_object
-        # What will the params block for this object be
-        params_symbol = petitioner_object.to_s.underscore.to_sym
+    return redirect_to hybrid_bill_path(params[:bill_id]) if @type.nil?
 
-        begin
-          params_object = params[params_symbol] ? sanitized_params(params_symbol) : {}
-        rescue ActionController::ParameterMissing => e
-          logger.debug 'Redirecting to Hybrid bill home because:'
-          logger.debug e
+    # What object are we trying to build
+    petitioner_object = SUBMISSION_TYPES[@type.to_sym]
 
-          redirect_to hybrid_bill_path(params[:bill_id])
-        end
+    if petitioner_object
+      # What will the params block for this object be
+      params_symbol = petitioner_object.to_s.underscore.to_sym
 
-        petitioner_object = petitioner_object.new(params_object)
-        petitioner_object.valid? if params[params_symbol]
+      # Attempt to get sanitised params for our object
+      begin
+        params_object = params[params_symbol] ? sanitized_params(params_symbol) : {}
+      rescue ActionController::ParameterMissing => e
+        logger.debug 'Redirecting to Hybrid bill home because:'
+        logger.debug e
 
-        # require 'pry'; binding.pry
-
-        if petitioner_object.has_a_rep == 'true'
-          agent_params = petitioner_object.hybrid_bill_agent || {}
-          petitioner_object.hybrid_bill_agent = HybridBillAgent.new(agent_params)
-          petitioner_object.hybrid_bill_agent.valid?
-        else
-          petitioner_object.hybrid_bill_agent = HybridBillAgent.new
-        end
-
-        if params[params_symbol]
-          petitioner_valid = petitioner_object.valid?
-          agent_valid = (petitioner_object.has_a_rep == 'true') ? petitioner_object.hybrid_bill_agent.valid? : true
-
-          if petitioner_valid && agent_valid
-            request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
-
-            response = HybridBillsHelper.api_request.hybridbillpetition('submit.json').post(body: request_json)
-            logger.info "Recieved #{response.response.code}: #{response.response.body}"
-            session[:hybrid_bill_submission][:petition_reference] = JSON.parse(response.body)['Result']
-            session[:hybrid_bill_submission][:object_params] = params[params_symbol]
-            redirect_to hybrid_bill_path(params[:bill_id], step: 'document-submission')
-          end
-        end
+        redirect_to hybrid_bill_path(params[:bill_id])
       end
 
-      @petitioner_object = petitioner_object
+      # Create a new petitioner object with our parameters
+      petitioner_object = petitioner_object.new(params_object)
+
+      # if the user submitted values, is this object valid? (populates the error object)
+      petitioner_object.valid? if params[params_symbol]
+
+      # has the user specified a rep?
+      if petitioner_object.has_a_rep == 'true'
+        # get the agent object parameters
+        agent_params = petitioner_object.hybrid_bill_agent || {}
+        # create a new agent
+        petitioner_object.hybrid_bill_agent = HybridBillAgent.new(agent_params)
+        # check it is valid (populates the error object)
+        petitioner_object.hybrid_bill_agent.valid?
+      else
+        petitioner_object.hybrid_bill_agent = HybridBillAgent.new # create an empty agent
+      end
+
+      # Has the user attempted to submit data? If so, see if we can submit it
+      if params[params_symbol]
+        petitioner_valid = petitioner_object.valid?
+
+        # If the user has asked for a rep, see if the rep is valid. If they have not, rep is valid.
+        agent_valid = (petitioner_object.has_a_rep == 'true') ? petitioner_object.hybrid_bill_agent.valid? : true
+
+        if petitioner_valid && agent_valid
+          request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
+
+          logger.debug(request_json)
+
+          # TODO: Rescue from client and server errors
+          # TODO: Rescue from non-200 status response within a successful response
+          response = HybridBillsHelper.api_request.hybridbillpetition('submit.json').post(body: request_json)
+
+          logger.info "Received #{response.response.code}: #{response.response.body}"
+
+          # Persist our petition reference
+          session[:hybrid_bill_submission][:petition_reference] = JSON.parse(response.response.body)['Response']
+
+          # Persist our successful params (we will use this if the user goes 'back')
+          session[:hybrid_bill_submission][:object_params] = params[params_symbol]
+
+          # Send the successful user to the document upload
+          redirect_to hybrid_bill_path(params[:bill_id], step: 'document-submission')
+        end
+      end
     end
+
+    # Pass the petitioner object to the front-end
+    @petitioner_object = petitioner_object
+  end
+
+  def process_document_object
+
   end
 
   def sanitized_params(symbol)

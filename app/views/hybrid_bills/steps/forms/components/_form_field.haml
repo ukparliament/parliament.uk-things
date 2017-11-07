@@ -1,4 +1,7 @@
-= f.label attribute
+- if local_assigns.fetch(:label_value, nil)
+  = f.label attribute, label_value
+- else
+  = f.label attribute
 = f.text_field attribute, class: f.object.errors[attribute].present? ? 'invalid' : nil
 - if f.object.errors[attribute].present?
   - f.object.errors.messages[attribute].each do |message|
