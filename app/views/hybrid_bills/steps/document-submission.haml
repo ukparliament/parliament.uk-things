@@ -7,8 +7,10 @@
 - if @document_object
   %h2 Errors
   %ul
-    - @document_object.errors.full_messages.each do |message|
-      %li{ style: 'color: red;' }= message
+    - if @document_object.errors[:filename]
+      %li Unrecognised file
+    - if @document_object.errors[:filesize]
+      %li File must be 2mb or less
 
 .block--border__bottom
   = form_tag(hybrid_bill_path(@business_id, step: 'document-submission'), multipart: true) do
