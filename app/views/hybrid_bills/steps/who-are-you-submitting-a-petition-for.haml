@@ -1,12 +1,30 @@
 Who is submitting page:
 
 = form_tag(hybrid_bill_path(@business_id, step: 'details')) do
-  = label_tag 'individual'
-  = radio_button_tag 'type', 'individual'
-  = label_tag 'group of individuals'
-  = radio_button_tag 'type', 'individualgroup'
-  = label_tag 'organisation'
-  = radio_button_tag 'type', 'organisation'
-  = label_tag 'group of organisations'
-  = radio_button_tag 'type', 'organisationgroup'
+  %ol.list--block
+    %li
+      .list--details
+        .input-group
+          = radio_button_tag 'type', 'individual', checked: true
+          = label_tag 'type_individual', 'Individual'
+        %p.radio--desc You are submitting a petition for one person.
+    %li
+      .list--details
+        .input-group
+          = radio_button_tag 'type', 'individualgroup'
+          = label_tag 'type_individualgroup', 'Group of individuals'
+        %p.radio--desc You are submitting a petition for a group of people.
+  %ol.list--block
+    %li
+      .list--details
+        .input-group
+          = radio_button_tag 'type', 'organisation'
+          = label_tag 'type_organisation', 'Organisation'
+        %p.radio--desc You are submitting a petition for a business or organisation.
+    %li
+      .list--details
+        .input-group
+          = radio_button_tag 'type', 'organisationgroup'
+          = label_tag 'type_organisationgroup', 'Group of organisations'
+        %p.radio--desc You are submitting a petition for a group of businesses or organisations.
   = submit_tag 'submit'
