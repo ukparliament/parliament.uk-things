@@ -1,1 +1,8 @@
 This is the terms and condition page
+
+%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan eros eros, sed aliquam arcu posuere eget. Nunc eget varius mi. In interdum tellus ultricies, tincidunt diam a, elementum nisi. Nullam faucibus et mauris id faucibus. Nulla porttitor nec nibh et vulputate. Cras non gravida nisi. Aliquam in rutrum urna. Donec commodo sapien in odio molestie, sit amet blandit velit fermentum. In blandit eros non bibendum auctor. Sed id dapibus neque. Aenean a interdum ipsum. Integer id fermentum risus, non elementum diam. Sed vitae ex lectus.
+
+= form_tag hybrid_bill_path(@business_id, step: 'terms-conditions') do
+  = hidden_field_tag 'hybrid_bill_terms[accepted]', true
+  = submit_tag 'Accept'
+

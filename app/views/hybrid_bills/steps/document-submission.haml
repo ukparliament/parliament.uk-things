@@ -3,6 +3,13 @@
   %li Word Document (doc, docx, rtf, txt, ooxml, odt or PDFformat only)
   %li 10Mb file size limit
   %li No other media types (e.g. pictures or video files)
+
+- if @document_object
+  %h2 Errors
+  %ul
+    - @document_object.errors.full_messages.each do |message|
+      %li{ style: 'color: red;' }= message
+
 .block--border__bottom
   = form_tag(hybrid_bill_path(@business_id, step: 'document-submission'), multipart: true) do
     .file--upload

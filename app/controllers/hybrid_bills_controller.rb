@@ -15,7 +15,7 @@ class HybridBillsController < ApplicationController
     },
     'document-submission':  'hybrid_bills/steps/document-submission',
     'terms-conditions':     'hybrid_bills/steps/terms-conditions',
-    'complete':             'hybrid_bills/steps/confirm'
+    'complete':             'hybrid_bills/steps/complete'
   }
 
   SUBMISSION_TYPES = {
@@ -89,6 +89,14 @@ class HybridBillsController < ApplicationController
 
     if %W(document-submission).include?(params[:step])
       process_document_object
+    end
+
+    if %W(terms-conditions).include?(params[:step])
+      process_terms
+    end
+
+    if %W(complete).include?(params[:step])
+      process_complete
     end
   end
 
@@ -182,24 +190,50 @@ class HybridBillsController < ApplicationController
 
         logger.info "Received #{response.response.code}: #{response.response.body}"
 
-        require 'pry'; binding.pry
-
         # Persist a flag saying we submitted a document
         session[:hybrid_bill_submission][:document_submitted] = true
 
         # Send the successful user to the document upload
         redirect_to hybrid_bill_path(params[:bill_id], step: 'terms-conditions')
+      else
+        @document_object = document_object
       end
-
-      @document_object = document_object
     end
   end
 
   def process_terms
     @petition_reference = session.fetch('hybrid_bill_submission', {})['petition_reference']
-    @document_submitted = session.fetch('hybrid_bill_submission', {}).fetch('petition_reference', false)
+    @document_submitted = session.fetch('hybrid_bill_submission', {}).fetch('document_submitted', false)
 
-    return redirect_to hybrid_bill_path(params[:bill_id]) if @petition_reference.nil? && !@document_submitted
+    return redirect_to hybrid_bill_path(params[:bill_id]) if @petition_reference.nil? || !@document_submitted
+
+    # check that the user has clicked accept
+    if params[:hybrid_bill_terms]
+      # post to the accept point
+      if params[:hybrid_bill_terms][:accepted] == 'true'
+        request_json = HybridBillTermsSerializer.serialize(@petition_reference)
+
+        # TODO: Rescue from client and server errors
+        # TODO: Rescue from non-200 status response within a successful response
+        response = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json').post(body: request_json)
+
+        logger.info "Received #{response.response.code}: #{response.response.body}"
+
+        session[:hybrid_bill_submission][:terms_accepted] = true
+
+        redirect_to hybrid_bill_path(params[:bill_id], step: 'complete')
+      end
+    end
+  end
+
+  def process_complete
+    @petition_reference = session.fetch('hybrid_bill_submission', {})['petition_reference']
+    @document_submitted = session.fetch('hybrid_bill_submission', {}).fetch('document_submitted', false)
+    @terms_accepted = session.fetch('hybrid_bill_submission', {}).fetch('terms_accepted', false)
+
+    return redirect_to hybrid_bill_path(params[:bill_id]) if @petition_reference.nil? || !@document_submitted || !@terms_accepted
+
+    session[:hybrid_bill_submission] = {}
   end
 
   def sanitized_peitioner_params(symbol)
