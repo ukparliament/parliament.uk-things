@@ -107,7 +107,7 @@ class HybridBillsController < ApplicationController
 
       # Attempt to get sanitised params for our object
       begin
-        params_object = params[params_symbol] ? sanitized_params(params_symbol) : {}
+        params_object = params[params_symbol] ? sanitized_peitioner_params(params_symbol) : {}
       rescue ActionController::ParameterMissing => e
         logger.debug 'Redirecting to Hybrid bill home because:'
         logger.debug e
@@ -143,8 +143,6 @@ class HybridBillsController < ApplicationController
         if petitioner_valid && agent_valid
           request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
 
-          logger.debug(request_json)
-
           # TODO: Rescue from client and server errors
           # TODO: Rescue from non-200 status response within a successful response
           response = HybridBillsHelper.api_request.hybridbillpetition('submit.json').post(body: request_json)
@@ -168,12 +166,48 @@ class HybridBillsController < ApplicationController
   end
 
   def process_document_object
+    @petition_reference = session.fetch('hybrid_bill_submission', {})['petition_reference']
 
+    return redirect_to hybrid_bill_path(params[:bill_id]) if @petition_reference.nil?
+
+    if params[:hybrid_bill_document]
+      document_object = HybridBillDocument.new(sanitized_file_params)
+
+      if document_object.valid?
+        request_json = HybridBillDocumentSerializer.serialize(@petition_reference, document_object)
+
+        # TODO: Rescue from client and server errors
+        # TODO: Rescue from non-200 status response within a successful response
+        response = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json').post(body: request_json)
+
+        logger.info "Received #{response.response.code}: #{response.response.body}"
+
+        require 'pry'; binding.pry
+
+        # Persist a flag saying we submitted a document
+        session[:hybrid_bill_submission][:document_submitted] = true
+
+        # Send the successful user to the document upload
+        redirect_to hybrid_bill_path(params[:bill_id], step: 'terms-conditions')
+      end
+
+      @document_object = document_object
+    end
   end
 
-  def sanitized_params(symbol)
+  def process_terms
+    @petition_reference = session.fetch('hybrid_bill_submission', {})['petition_reference']
+    @document_submitted = session.fetch('hybrid_bill_submission', {}).fetch('petition_reference', false)
+
+    return redirect_to hybrid_bill_path(params[:bill_id]) if @petition_reference.nil? && !@document_submitted
+  end
+
+  def sanitized_peitioner_params(symbol)
     params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: [:first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates])
   end
 
+  def sanitized_file_params
+    params.require(:hybrid_bill_document).permit(:file)
+  end
 end
 
