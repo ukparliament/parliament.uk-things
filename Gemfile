@@ -17,10 +17,10 @@ gem 'haml'
 gem 'parliament-ruby', '~> 0.8'
 
 # Parliament Grom Decorators decorates Grom nodes
-gem 'parliament-grom-decorators', '~> 0.11'
+gem 'parliament-grom-decorators', '~> 0.13'
 
 # Converts GeoSparql to GeoJSON
-gem 'geosparql_to_geojson', '~> 0.1'
+gem 'geosparql_to_geojson', '~> 0.2'
 
 # Parliament routing
 gem 'parliament-routes', '~> 0.3'
@@ -35,7 +35,7 @@ gem 'parliament-ntriple', '~> 0.2', require: false
 gem 'bandiera-client'
 
 # Use Pugin for front-end components and templates
-gem 'pugin', '~> 1.3', require: false
+gem 'pugin', '~> 1.5', require: false
 
 # Use dotenv to override environment variables
 gem 'dotenv'

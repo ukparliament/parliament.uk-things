@@ -5,6 +5,6 @@
       %p.lead
         = t('.constituency_in')
         = link_to "#{region.name}", places_show_path(region.gss_code)
-    = render partial: 'shared/map'
+    = render 'shared/map'
 
 = render 'constituencies/constituency'
