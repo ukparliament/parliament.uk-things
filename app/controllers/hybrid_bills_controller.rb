@@ -129,7 +129,11 @@ class HybridBillsController < ApplicationController
 
           request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
 
-          json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+          begin
+            json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+          rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError
+            return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
+          end
 
           # Persist our petition reference
           session[:hybrid_bill_submission][:petition_reference] = json_response['Response']
