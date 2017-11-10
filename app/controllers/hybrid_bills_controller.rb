@@ -160,13 +160,15 @@ class HybridBillsController < ApplicationController
       document_object = HybridBillDocument.new(sanitized_file_params)
 
       if document_object.valid?
+        request = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json')
+
         request_json = HybridBillDocumentSerializer.serialize(@petition_reference, document_object)
 
-        # TODO: Rescue from client and server errors
-        # TODO: Rescue from non-200 status response within a successful response
-        response = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json').post(body: request_json)
-
-        logger.info "Received #{response.response.code}: #{response.response.body}"
+        begin
+          HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError
+          return render 'hybrid_bills/errors/submit_another_way'
+        end
 
         # Persist a flag saying we submitted a document
         session[:hybrid_bill_submission][:document_submitted] = true
@@ -189,13 +191,15 @@ class HybridBillsController < ApplicationController
     if params[:hybrid_bill_terms]
       # post to the accept point
       if params[:hybrid_bill_terms][:accepted] == 'true'
+        request = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json')
+
         request_json = HybridBillTermsSerializer.serialize(@petition_reference)
 
-        # TODO: Rescue from client and server errors
-        # TODO: Rescue from non-200 status response within a successful response
-        response = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json').post(body: request_json)
-
-        logger.info "Received #{response.response.code}: #{response.response.body}"
+        begin
+          HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError
+          return render 'hybrid_bills/errors/submit_another_way'
+        end
 
         session[:hybrid_bill_submission][:terms_accepted] = true
 
