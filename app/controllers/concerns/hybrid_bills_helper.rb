@@ -4,9 +4,12 @@ module HybridBillsHelper
   end
 
   def self.process_request(request, request_json, step)
+    # How long will we wait before timing out a post request
+    post_timeout = 10
+
     begin
-      response = request.post(body: request_json)
-    rescue Parliament::ClientError, Parliament::ServerError => e
+      response = request.post(body: request_json, timeout: post_timeout)
+    rescue Parliament::ClientError, Parliament::ServerError, Net::ReadTimeout => e
       # Something went wrong at AMS level
       Airbrake.notify(e)
 

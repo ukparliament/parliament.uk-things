@@ -131,7 +131,7 @@ class HybridBillsController < ApplicationController
 
           begin
             json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
-          rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError
+          rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
             return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
           end
 
@@ -166,7 +166,7 @@ class HybridBillsController < ApplicationController
 
         begin
           HybridBillsHelper.process_request(request, request_json,'Petition Submission')
-        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError
+        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
           return render 'hybrid_bills/errors/submit_another_way'
         end
 
@@ -197,7 +197,7 @@ class HybridBillsController < ApplicationController
 
         begin
           HybridBillsHelper.process_request(request, request_json,'Petition Submission')
-        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError
+        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
           return render 'hybrid_bills/errors/submit_another_way'
         end
 
