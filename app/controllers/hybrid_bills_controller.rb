@@ -42,31 +42,6 @@ class HybridBillsController < ApplicationController
 
       session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
 
-      # if params[:step] == 'details' && params[:first_name]
-      #   # collect up and submit form data
-      #   request_json = HybridBillSubmissionSerializer.serialize(@business_id, @petitioner_object, @agent_object)
-      #
-      #   response = HybridBillsHelper.api_request.hybridbillpetition.submit.post(body: request_json)
-      #   session[:hybrid_bill_submission][:petition_reference] = JSON.parse(response.response.body)['Result']
-      #   redirect_to hybrid_bill_path(@business_id, step: 'document-submission')
-      # end
-      #
-      # if params[:step] == 'document-submission' && params[:file]
-      #   request_json = HybridBillDocumentSerializer(petition_reference: session['hybrid_bill_submission'][:petition_reference], filename: params[:file].original_file_name, file: params[:file].tempfile)
-      #
-      #   response = HybridBillsHelper.api_request.hybridbillpetitiondocument.submit.post(body: request_json)
-      #   redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
-      # end
-      #
-      # if params[:step] == 'terms-conditions'
-      #   request_json = HybridBillTermsSerializer(petition_reference: session['hybrid_bill_submission'][:petition_reference])
-      #
-      #   response = HybridBillsHelper.api_request.hybridbillpetition.accepttermsandconditions.post(body: request_json)
-      #   redirect_to hybrid_bill_path(@business_id, step: 'terms-conditions')
-      # end
-
-      # require 'pry'; binding.pry
-
       return render template if template
     end
 
@@ -149,16 +124,15 @@ class HybridBillsController < ApplicationController
         agent_valid = (petitioner_object.has_a_rep == 'true') ? petitioner_object.hybrid_bill_agent.valid? : true
 
         if petitioner_valid && agent_valid
+          # https://API_URL/hybridbillpetition/submit.json
+          request = HybridBillsHelper.api_request.hybridbillpetition('submit.json')
+
           request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
 
-          # TODO: Rescue from client and server errors
-          # TODO: Rescue from non-200 status response within a successful response
-          response = HybridBillsHelper.api_request.hybridbillpetition('submit.json').post(body: request_json)
-
-          logger.info "Received #{response.response.code}: #{response.response.body}"
+          json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
 
           # Persist our petition reference
-          session[:hybrid_bill_submission][:petition_reference] = JSON.parse(response.response.body)['Response']
+          session[:hybrid_bill_submission][:petition_reference] = json_response['Response']
 
           # Persist our successful params (we will use this if the user goes 'back')
           session[:hybrid_bill_submission][:object_params] = params[params_symbol]
