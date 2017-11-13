@@ -1,2 +1,22 @@
-%h1 Writing your petition
-=link_to 'Next', hybrid_bill_path(@business_id, step: 'who-are-you-submitting-a-petition-for')
+#content.hero.theme--grey-4
+  .container
+    %h1 Writing your petition
+    %p.lead{:style => "margin-top: 18px;"} Step 1 of 5
+
+%section.section--major
+  .container
+    %p To write your petition download and complete the petition template.
+
+    %p We’ll ask you to upload your completed version later.
+
+%section
+  .container
+    .block--border__bottom
+      %a.btn--primary{:href => ""} Download template as Word document
+
+%section
+  .container
+    %p
+      =link_to 'Next', hybrid_bill_path(@business_id, step: 'who-are-you-submitting-a-petition-for'), :class => "btn--primary"
+    %p
+      =link_to 'Back', hybrid_bill_path(@business_id, step: 'show')

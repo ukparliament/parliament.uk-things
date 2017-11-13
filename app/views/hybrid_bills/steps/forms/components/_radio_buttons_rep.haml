@@ -2,11 +2,11 @@
   .input-group__inline
     .input-group
       = f.radio_button attribute, true, value: true, checked: true
-      = f.label attribute, 'Yes', value: true
+      = f.label attribute, 'Individual above', value: true
   .input-group__inline
     .input-group
       = f.radio_button attribute, false, value: false
-      = f.label attribute, 'No', value: false
+      = f.label attribute, 'Another contact', value: false
 
 - if f.object.errors[attribute].present?
   %p.error_message{ style: 'color: red;' } Please select one
