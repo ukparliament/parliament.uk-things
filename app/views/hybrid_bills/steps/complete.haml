@@ -1,3 +1,58 @@
-This is the thank you page
+#content.section--primary
+  .container
+    %h1 Thank you for your petition
 
-%h1= @petition_reference
+%section
+  .container
+    %br
+    .status--highlight
+      %p.lead
+        Your petition reference number is
+        %strong
+          =@petition_reference
+
+      %p
+        An email with this reference number will be sent to
+        %em
+          test@gmail.com
+        in the next 15 minutes.
+
+%section
+  .container
+    %h2 What happens next
+
+    .timeline
+      %h3 Request for payment emailed
+      %ul.list--block
+        %li{:style => "background-color: transparent;padding-bottom: 6px;"}
+          .list--details
+            %p We’ll email you within 14 days about how to pay the fee.
+
+      %h3 Your petition is checked
+      %ul.list--block
+        %li{:style => "background-color: transparent;padding-bottom: 6px;"}
+          .list--details
+            %p We’ll review your petition and publish it on our website. This will include your name and address. We’ll then send it to the Department for Transport (DfT).
+
+      %h3 The DfT will email you about your petition
+      %ul.list--block
+        %li{:style => "background-color: transparent;padding-bottom: 6px;"}
+          .list--details
+            %p This will happen before the committee starts discussing HS2 phase 2a petitions in Spring 2018.
+
+%section
+  .container
+    %h2 Withdrawing your petition
+
+    %p
+      You can withdraw your petition by emailing us at
+      %a{:href => "mailto:petition@parliament.uk"} petition@parliament.uk
+      \.
+
+    %p Anyone named on a petition can withdraw from the petition, leaving the remaining petitioners to continue with it.
+
+%section
+  .container
+    %h2 Change contact information
+
+    %p If you want to change the main contact for your petition call us on 020 7219 3000.

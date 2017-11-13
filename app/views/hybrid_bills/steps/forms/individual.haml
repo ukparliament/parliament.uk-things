@@ -1,7 +1,8 @@
-this is covering individual section
-%br/
-%br/
-%h1 Petition New Highway Bill
-%h1 Your details
+#content.hero.theme--grey-4
+  .container
+    %h1 Individual’s details
+    %p.lead{:style => "margin-top: 18px;"} Step 3 of 5
 
-= render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: false }
+%section.section--major
+  .container
+    = render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: false }
