@@ -1,0 +1,8 @@
+- if local_assigns.fetch(:label_value, nil)
+  = f.label attribute, label_value
+- else
+  = f.label attribute
+= f.text_field attribute, class: [local_assigns.fetch(:class, ''),(f.object.errors[attribute].present? ? 'invalid' : '')].join(' ')
+- if f.object.errors[attribute].present?
+  - f.object.errors.messages[attribute].each do |message|
+    %p.error_message{ style: 'color: red;' }= message

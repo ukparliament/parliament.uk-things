@@ -1,0 +1,42 @@
+#content.hero.theme--grey-4
+  .container
+    %h1 Upload your completed template
+    %p.lead{:style => "margin-top: 18px;"} Step 4 of 5
+
+- if @document_object
+  %section
+    .container
+      %br
+      .status--highlight.theme--warning
+        %h2 Errors
+        %ul#error-file-upload
+          - if @document_object.errors[:filename]
+            %li Please make sure the file you have uploaded is doc, docx, rtf, txt, odt or pdf.
+          - if @document_object.errors[:filesize]
+            %li The file you have uploaded is too big. Please make sure it is smaller than 2Mb.
+
+%section
+  .container
+    %h2 Uploaded file must
+
+    %ul.list--bullet
+      %li be less than 2Mb in size
+      %li be file type: doc, docx, rtf, txt, odt or PDF
+      %li not include any images, graphics or videos
+    %br
+
+%section
+  .container
+    = form_tag(hybrid_bill_path(@business_id, step: 'document-submission'), multipart: true) do
+      .file--upload{:style => "position: relative; overflow: hidden; margin: 12px 0; padding: 12px 0; background-color: #FFFFFF; width: 70%; text-align: center; border: dashed 2px #CBC9CD;"}
+        .file--upload-icon
+        %h3#file-uploaded-txt Upload your petition template
+
+        %label{for: "file-upload", class: "sr-only"}Click here to upload your petition
+        = file_field_tag 'hybrid_bill_document[file]', class: 'file--uploader', id: 'file-upload', title: 'Click here to upload your petition', "aria-describedby" => "error-file-upload", style: "position: absolute; top: 0; left: 0; margin: 0; padding: 0; cursor: pointer; opacity: 0; filter: alpha(opacity=0); width: 100%; height: 100%; text-align: center;"
+
+      %p.file--uploaded#file-uploaded{:style => "width: 70%; padding: 12px; background-color: #EBE9E8; color: #373151; font-size: 18px;"} No file selected
+
+      %br
+      .box--holder__bordered{:style => "display: flex; width: 100%; border-top: 1px solid #CBC9CD; padding-top: 30px; padding-bottom: 12px;"}
+        = submit_tag 'Next', :class => "btn--primary", :style => "width: 70px;"
