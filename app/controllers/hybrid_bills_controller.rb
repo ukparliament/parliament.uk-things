@@ -55,8 +55,10 @@ class HybridBillsController < ApplicationController
   end
 
   def email
+   if params[:type]
     template = EMAIL_STEP_TEMPLATES[params[:type].to_sym]
     render template if template
+   end 
   end
 
   private
@@ -135,8 +137,12 @@ class HybridBillsController < ApplicationController
 
         if petitioner_valid && agent_valid
           # https://API_URL/hybridbillpetition/submit.json
-          request = HybridBillsHelper.api_request.hybridbillpetition('submit.json')
-
+          begin
+            request = HybridBillsHelper.api_request.hybridbillpetition('submit.json')
+          rescue HybridBillsHelper::HybridBillError
+            return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
+          end
+          
           request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
 
           begin
@@ -170,7 +176,11 @@ class HybridBillsController < ApplicationController
       document_object = HybridBillDocument.new(sanitized_file_params)
 
       if document_object.valid?
-        request = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json')
+        begin 
+          request = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json')
+        rescue HybridBillsHelper::HybridBillError
+          return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
+        end   
 
         request_json = HybridBillDocumentSerializer.serialize(@petition_reference, document_object)
 
@@ -201,7 +211,11 @@ class HybridBillsController < ApplicationController
     if params[:hybrid_bill_terms]
       # post to the accept point
       if params[:hybrid_bill_terms][:accepted] == 'true'
-        request = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json')
+        begin
+          request = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json')
+        rescue HybridBillsHelper::HybridBillError
+          return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
+        end 
 
         request_json = HybridBillTermsSerializer.serialize(@petition_reference)
 
