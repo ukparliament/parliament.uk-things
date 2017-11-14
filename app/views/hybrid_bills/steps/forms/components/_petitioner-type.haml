@@ -1,0 +1,30 @@
+%fieldset
+  %legend.sr-only Please choose who you subitting a petition for
+  .block--border__bottom
+    %ol.list--block
+      %li
+        .list--details
+          .input-group
+            = radio_button_tag 'type', 'individual', checked: true
+            = label_tag 'type_individual', 'Individual', :style => "font-weight:bold;"
+          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_individual"} You are submitting a petition for one person.
+      %li
+        .list--details
+          .input-group
+            = radio_button_tag 'type', 'individualgroup'
+            = label_tag 'type_individualgroup', 'Group of individuals', :style => "font-weight:bold;"
+          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_individualgroup"} You are submitting a petition for a group of people.
+    %ol.list--block
+      %li
+        .list--details
+          .input-group
+            = radio_button_tag 'type', 'organisation'
+            = label_tag 'type_organisation', 'Organisation', :style => "font-weight:bold;"
+          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_organisation"} You are submitting a petition for a business or organisation.
+      %li
+        .list--details
+          .input-group
+            = radio_button_tag 'type', 'organisationgroup'
+            = label_tag 'type_organisationgroup', 'Group of organisations', :style => "font-weight:bold;"
+          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_organisationgroup"} You are submitting a petition for a group of businesses or organisations.
+  = submit_tag 'Next', :class => "btn--primary", :style => "width: 70px;"

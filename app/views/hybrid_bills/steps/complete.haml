@@ -9,12 +9,12 @@
       %p.lead
         Your petition reference number is
         %strong
-          =@petition_reference
+          = @petition_reference
 
       %p
         An email with this reference number will be sent to
         %em
-          test@gmail.com
+          = @email_addresses.join(' and ')
         in the next 15 minutes.
 
 %section

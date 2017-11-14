@@ -1,6 +1,6 @@
 class HybridBillsController < ApplicationController
   before_action :disable_top_navigation, :disable_status_banner
-  before_action :validate_business_id, only: :show
+  before_action :validate_business_id, only: [:show, :email]
   before_action :create_hybrid_bill_submission, only: :show
   before_action :enable_asset_overrides
 
@@ -19,6 +19,13 @@ class HybridBillsController < ApplicationController
     'complete':             'hybrid_bills/steps/complete'
   }
 
+  EMAIL_STEP_TEMPLATES = {
+    'individual':         'hybrid_bills/email/individual',
+    'individualgroup':    'hybrid_bills/email/individualgroup',
+    'organisation':       'hybrid_bills/email/organisation',
+    'organisationgroup':  'hybrid_bills/email/organisationgroup'
+  }
+
   SUBMISSION_TYPES = {
     'individual':         HybridBillIndividualSubmission,
     'individualgroup':    HybridBillIndividualGroupSubmission,
@@ -30,8 +37,6 @@ class HybridBillsController < ApplicationController
   end
 
   def show
-    @business_id = params[:bill_id]
-
     if params[:step]
       template = STEP_TEMPLATES[params[:step].to_sym]
 
@@ -50,12 +55,16 @@ class HybridBillsController < ApplicationController
   end
 
   def email
+    template = EMAIL_STEP_TEMPLATES[params[:type].to_sym]
+    render template if template
   end
 
   private
 
   def validate_business_id
-    raise ActionController::RoutingError, 'invalid petition id' unless params[:bill_id] == '1'
+    @business_id = params[:bill_id]
+
+    raise ActionController::RoutingError, 'invalid petition id' unless @business_id == '1'
   end
 
   def create_hybrid_bill_submission
@@ -213,6 +222,11 @@ class HybridBillsController < ApplicationController
     @petition_reference = session.fetch('hybrid_bill_submission', {})['petition_reference']
     @document_submitted = session.fetch('hybrid_bill_submission', {}).fetch('document_submitted', false)
     @terms_accepted = session.fetch('hybrid_bill_submission', {}).fetch('terms_accepted', false)
+    @email_addresses = []
+
+    @email_addresses << session.fetch('hybrid_bill_submission', {}).fetch('object_params', {}).fetch('email', [])
+    @email_addresses << session.fetch('hybrid_bill_submission', {}).fetch('object_params', {}).fetch('hybrid_bill_agent', {}).fetch('email', [])
+    @email_addresses.flatten!
 
     return redirect_to hybrid_bill_path(params[:bill_id]) if @petition_reference.nil? || !@document_submitted || !@terms_accepted
 
