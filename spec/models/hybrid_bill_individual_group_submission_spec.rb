@@ -5,3 +5,4 @@ RSpec.describe HybridBillIndividualGroupSubmission do
     expect(build(:hybrid_bill_individual_group_submission)).to be_valid
   end
 end
+

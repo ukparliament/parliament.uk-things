@@ -19,7 +19,86 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+# error messages for hybrid bill entities
 en:
+  activemodel:
+    errors:
+      models:
+        hybrid_bill_individual_submission:
+          attributes:
+            first_name:
+              blank: "Please enter a first name"
+            surname:
+              blank: 'Please enter a last name'
+            address_1:
+              blank: 'Please enter first line of address' 
+            telephone:
+              blank: 'Please enter a phone number'
+            email:
+              invalid: 'Please enter a valid email address'
+            postcode:
+              invalid: 'Please enter a valid post code' 
+
+        hybrid_bill_organisation_group_submission:
+          attributes:
+            first_name:
+              blank: "Please enter a first name"
+            surname:
+              blank: 'Please enter a last name'
+            address_1:
+              blank: 'Please enter first line of address' 
+            telephone:
+              blank: 'Please enter a phone number'
+            email:
+              invalid: 'Please enter a valid email address'
+            postcode:
+              invalid: 'Please enter a valid post code' 
+
+        hybrid_bill_organisation_submission:
+          attributes:
+            first_name:
+              blank: "Please enter a first name"
+            surname:
+              blank: 'Please enter a last name'
+            address_1:
+              blank: 'Please enter first line of address' 
+            telephone:
+              blank: 'Please enter a phone number'
+            email:
+              invalid: 'Please enter a valid email address'
+            postcode:
+              invalid: 'Please enter a valid post code' 
+
+        hybrid_bill_individual_group_submission:
+          attributes:
+            first_name:
+              blank: "Please enter a first name"
+            surname:
+              blank: 'Please enter a last name'
+            address_1:
+              blank: 'Please enter first line of address' 
+            telephone:
+              blank: 'Please enter a phone number'
+            email:
+              invalid: 'Please enter a valid email address'
+            postcode:
+              invalid: 'Please enter a valid post code'
+
+        hybrid_bill_agent:
+          attributes:
+            first_name:
+              blank: "Please enter a first name"
+            surname:
+              blank: 'Please enter a last name'
+            address_1:
+              blank: 'Please enter first line of address' 
+            telephone:
+              blank: 'Please enter a phone number'
+            email:
+              invalid: 'Please enter a valid email address'
+            postcode:
+              invalid: 'Please enter a valid post code'  
+
   # global people translations
   mp: 'MP'
   mp_plural: 'MPs'
