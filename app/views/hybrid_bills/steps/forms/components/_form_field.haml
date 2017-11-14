@@ -2,7 +2,11 @@
   = f.label attribute, label_value
 - else
   = f.label attribute
-= f.text_field attribute, class: [local_assigns.fetch(:class, ''),(f.object.errors[attribute].present? ? 'invalid' : '')].join(' ')
-- if f.object.errors[attribute].present?
+
+- errors_present = f.object.errors[attribute].present?
+- error_id = "#{f.object.class.to_s.underscore}_#{attribute.to_s}_error" # Aria described by ID
+= f.text_field attribute, class: [local_assigns.fetch(:class, ''),(errors_present ? 'invalid' : '')].join(' '), maxlength: local_assigns.fetch(:maxlength, nil), aria: { required: local_assigns.fetch(:aria, {}).fetch(:required, nil), describedby: errors_present ? error_id : nil }
+
+- if errors_present
   - f.object.errors.messages[attribute].each do |message|
-    %p.error_message{ style: 'color: red;' }= message
+    %p.error_message{ id: error_id }= message

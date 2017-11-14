@@ -1,12 +1,12 @@
 %div{ class: f.object.errors[attribute].present? ? 'invalid' : nil }
   .input-group__inline
     .input-group
-      = f.radio_button attribute, true, value: true, checked: true
-      = f.label attribute, 'Yes', value: true
+      = f.radio_button attribute, true, value: true, checked: true, class: local_assigns.fetch(:yes_class, nil)
+      = f.label attribute, local_assigns.fetch(:yes_label, 'Yes'), value: true
   .input-group__inline
     .input-group
-      = f.radio_button attribute, false, value: false
-      = f.label attribute, 'No', value: false
+      = f.radio_button attribute, false, value: false, class: local_assigns.fetch(:no_class, nil)
+      = f.label attribute, local_assigns.fetch(:no_label, 'No'), value: false
 
 - if f.object.errors[attribute].present?
-  %p.error_message{ style: 'color: red;' } Please select one
+  %p.error_message Please select one

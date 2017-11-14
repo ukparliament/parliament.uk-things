@@ -5,7 +5,6 @@ class HybridBillsController < ApplicationController
   before_action :enable_asset_overrides
 
   STEP_TEMPLATES = {
-    'send-a-petition':                        'hybrid_bills/steps/send-a-petition',
     'writing-your-petition':                  'hybrid_bills/steps/writing-your-petition',
     'who-are-you-submitting-a-petition-for':  'hybrid_bills/steps/who-are-you-submitting-a-petition-for',
     'details': {
@@ -55,7 +54,8 @@ class HybridBillsController < ApplicationController
   end
 
   def email
-    template = EMAIL_STEP_TEMPLATES[params[:type].to_sym]
+    type_param = params[:type] ? params[:type].to_sym : nil
+    template = EMAIL_STEP_TEMPLATES[type_param]
     render template if template
   end
 
@@ -241,5 +241,3 @@ class HybridBillsController < ApplicationController
     params.require(:hybrid_bill_document).permit(:file)
   end
 end
-
-

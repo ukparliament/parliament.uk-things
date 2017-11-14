@@ -4,27 +4,27 @@
     %ol.list--block
       %li
         .list--details
-          .input-group
+          .input-group.petitioner--type
             = radio_button_tag 'type', 'individual', checked: true
-            = label_tag 'type_individual', 'Individual', :style => "font-weight:bold;"
-          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_individual"} You are submitting a petition for one person.
+            = label_tag 'type_individual', 'Individual'
+          %p.petitioner--desc{ aria: { labelledby: 'type_individual' } } You are submitting a petition for one person.
       %li
         .list--details
-          .input-group
+          .input-group.petitioner--type
             = radio_button_tag 'type', 'individualgroup'
-            = label_tag 'type_individualgroup', 'Group of individuals', :style => "font-weight:bold;"
-          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_individualgroup"} You are submitting a petition for a group of people.
+            = label_tag 'type_individualgroup', 'Group of individuals'
+          %p.petitioner--desc{ aria: { labelledby: 'type_individualgroup' } } You are submitting a petition for a group of people.
     %ol.list--block
       %li
         .list--details
-          .input-group
+          .input-group.petitioner--type
             = radio_button_tag 'type', 'organisation'
-            = label_tag 'type_organisation', 'Organisation', :style => "font-weight:bold;"
-          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_organisation"} You are submitting a petition for a business or organisation.
+            = label_tag 'type_organisation', 'Organisation'
+          %p.petitioner--desc{ aria: { labelledby: 'type_organisation' } } You are submitting a petition for a business or organisation.
       %li
         .list--details
-          .input-group
+          .input-group.petitioner--type
             = radio_button_tag 'type', 'organisationgroup'
-            = label_tag 'type_organisationgroup', 'Group of organisations', :style => "font-weight:bold;"
-          %p{:style => "margin-top: -20px;margin-left: 48px;", "aria-labelledby" => "type_organisationgroup"} You are submitting a petition for a group of businesses or organisations.
-  = submit_tag 'Next', :class => "btn--primary", :style => "width: 70px;"
+            = label_tag 'type_organisationgroup', 'Group of organisations'
+          %p.petitioner--desc{ aria: { labelledby: 'type_organisationgroup' } } You are submitting a petition for a group of businesses or organisations.
+  = submit_tag 'Next', class: 'btn--primary'
