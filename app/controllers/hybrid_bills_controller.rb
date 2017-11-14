@@ -2,6 +2,7 @@ class HybridBillsController < ApplicationController
   before_action :disable_top_navigation, :disable_status_banner
   before_action :validate_business_id, only: :show
   before_action :create_hybrid_bill_submission, only: :show
+  before_action :enable_asset_overrides
 
   STEP_TEMPLATES = {
     'send-a-petition':                        'hybrid_bills/steps/send-a-petition',
@@ -29,7 +30,7 @@ class HybridBillsController < ApplicationController
   end
 
   def show
-  	@business_id = params[:bill_id]
+    @business_id = params[:bill_id]
 
     if params[:step]
       template = STEP_TEMPLATES[params[:step].to_sym]
@@ -90,7 +91,7 @@ class HybridBillsController < ApplicationController
 
       # Attempt to get sanitised params for our object
       begin
-        params_object = params[params_symbol] ? sanitized_peitioner_params(params_symbol) : {}
+        params_object = params[params_symbol] ? sanitized_petitioner_params(params_symbol) : {}
       rescue ActionController::ParameterMissing => e
         logger.debug 'Redirecting to Hybrid bill home because:'
         logger.debug e
@@ -218,7 +219,7 @@ class HybridBillsController < ApplicationController
     session[:hybrid_bill_submission] = {}
   end
 
-  def sanitized_peitioner_params(symbol)
+  def sanitized_petitioner_params(symbol)
     params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: [:first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates])
   end
 
@@ -226,4 +227,5 @@ class HybridBillsController < ApplicationController
     params.require(:hybrid_bill_document).permit(:file)
   end
 end
+
 
