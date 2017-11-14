@@ -4,8 +4,8 @@ class HybridBillDocument
   attr_accessor :file, :mime_type, :filename, :filesize
 
   validates :file, presence: true
-  validates_format_of :filename, presence: true, with: /.(doc|DOC|docx|DOCX|rtf|RTF|txt|TXT|ooxml|OOXML|odt|ODT|pdf|PDF)\z/, message: 'unrecognised file'
-  validates :filesize, numericality: { only_integer: true, less_than: 2150000 }
+  validates_format_of :filename, presence: true, with: FILE_TYPE_REGEX, message: 'unrecognised file'
+  validates :filesize, numericality: { only_integer: true, less_than: 2097152 }
 
   def initialize(attributes)
     super(attributes)

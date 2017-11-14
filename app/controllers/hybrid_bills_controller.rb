@@ -29,7 +29,7 @@ class HybridBillsController < ApplicationController
   end
 
   def show
-  	@business_id = params[:bill_id]
+    @business_id = params[:bill_id]
 
     if params[:step]
       template = STEP_TEMPLATES[params[:step].to_sym]
@@ -76,8 +76,8 @@ class HybridBillsController < ApplicationController
   end
 
   def process_petitioner_object
-    @type = session.fetch('hybrid_bill_submission', {})['submission_type']
-    @type = params[:type] if @type.nil?
+    @type = params[:type]
+    @type = session.fetch('hybrid_bill_submission', {})['submission_type'] if @type.nil?
 
     return redirect_to hybrid_bill_path(params[:bill_id]) if @type.nil?
 
@@ -90,7 +90,7 @@ class HybridBillsController < ApplicationController
 
       # Attempt to get sanitised params for our object
       begin
-        params_object = params[params_symbol] ? sanitized_peitioner_params(params_symbol) : {}
+        params_object = params[params_symbol] ? sanitized_petitioner_params(params_symbol) : {}
       rescue ActionController::ParameterMissing => e
         logger.debug 'Redirecting to Hybrid bill home because:'
         logger.debug e
@@ -129,7 +129,11 @@ class HybridBillsController < ApplicationController
 
           request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
 
-          json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+          begin
+            json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+          rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
+            return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
+          end
 
           # Persist our petition reference
           session[:hybrid_bill_submission][:petition_reference] = json_response['Response']
@@ -156,13 +160,15 @@ class HybridBillsController < ApplicationController
       document_object = HybridBillDocument.new(sanitized_file_params)
 
       if document_object.valid?
+        request = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json')
+
         request_json = HybridBillDocumentSerializer.serialize(@petition_reference, document_object)
 
-        # TODO: Rescue from client and server errors
-        # TODO: Rescue from non-200 status response within a successful response
-        response = HybridBillsHelper.api_request.hybridbillpetitiondocument('submit.json').post(body: request_json)
-
-        logger.info "Received #{response.response.code}: #{response.response.body}"
+        begin
+          HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
+          return render 'hybrid_bills/errors/submit_another_way'
+        end
 
         # Persist a flag saying we submitted a document
         session[:hybrid_bill_submission][:document_submitted] = true
@@ -185,13 +191,15 @@ class HybridBillsController < ApplicationController
     if params[:hybrid_bill_terms]
       # post to the accept point
       if params[:hybrid_bill_terms][:accepted] == 'true'
+        request = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json')
+
         request_json = HybridBillTermsSerializer.serialize(@petition_reference)
 
-        # TODO: Rescue from client and server errors
-        # TODO: Rescue from non-200 status response within a successful response
-        response = HybridBillsHelper.api_request.hybridbillpetition('accepttermsandconditions.json').post(body: request_json)
-
-        logger.info "Received #{response.response.code}: #{response.response.body}"
+        begin
+          HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+        rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
+          return render 'hybrid_bills/errors/submit_another_way'
+        end
 
         session[:hybrid_bill_submission][:terms_accepted] = true
 
@@ -210,7 +218,7 @@ class HybridBillsController < ApplicationController
     session[:hybrid_bill_submission] = {}
   end
 
-  def sanitized_peitioner_params(symbol)
+  def sanitized_petitioner_params(symbol)
     params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: [:first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates])
   end
 
@@ -218,4 +226,5 @@ class HybridBillsController < ApplicationController
     params.require(:hybrid_bill_document).permit(:file)
   end
 end
+
 

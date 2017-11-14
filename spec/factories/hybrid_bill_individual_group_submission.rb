@@ -9,7 +9,9 @@ FactoryBot.define do
     country 'UK'
     telephone '0207 520 0890'
     email 'testing@gmail.com'
-    receive_updates true
+    receive_updates '1'
+    in_the_uk 'true'
+    has_a_rep 'false'
   end
 end
 

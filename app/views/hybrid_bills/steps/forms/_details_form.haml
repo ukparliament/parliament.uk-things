@@ -2,12 +2,12 @@
   %div
     %h3 Errors
     %ul
-      - petitioner_object.errors.full_messages.each do |message|
-        %li= message
+      - petitioner_object.errors.messages.each do |message|
+        %li= message[1].first
     %hr
     %ul
-      - petitioner_object.hybrid_bill_agent.errors.full_messages.each do |message|
-        %li= message
+      - petitioner_object.hybrid_bill_agent.errors.messages.each do |message|
+        %li=  message[1].first
 
   - if include_group
     - if local_assigns.fetch(:group_name, nil)
