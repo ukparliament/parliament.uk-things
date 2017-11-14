@@ -1,1 +1,26 @@
-%h2 body goes here
+%section.section--primary
+  .container
+    %p To write your petition download and complete the petition template.
+    %p You can send your completed version to us by email, post or in person.
+
+    %h2 Send by email
+    %p
+      Email your completed petition template to
+      %a{href: 'mailto:petition@parliament.uk'} petition@parliament.uk
+      \.
+
+    %h2 Send by post
+    %p Post your completed petition template to Hybrid Bills Office, Houses of Parliament, London, SW1A 0AA.
+
+    %h2 Send in person
+    %p Call 020 7219 3000 to arrange a time to deliver your completed petition template.
+
+%section.section--major
+  .container
+    %a.btn--primary.btn--download{href: 'https://s3-eu-west-1.amazonaws.com/web1live.static-assets/hybrid-bills/images/bill-petition-template.docx'} Download template as Word document
+
+%section
+  .container
+    .box--holder__bordered
+      %p
+        =link_to 'Back', hybrid_bill_email_path(@business_id)

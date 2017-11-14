@@ -1,0 +1,13 @@
+%div{ class: f.object.errors[attribute].present? ? 'invalid' : nil }
+  .input-group__inline
+    .input-group
+      = f.radio_button attribute, false, value: false, checked: true, class: local_assigns.fetch(:no_class, nil)
+      = f.label attribute, local_assigns.fetch(:no_label, 'No'), value: false
+  .input-group__inline
+    .input-group
+      = f.radio_button attribute, true, value: true, class: local_assigns.fetch(:yes_class, nil)
+      = f.label attribute, local_assigns.fetch(:yes_label, 'Yes'), value: true
+
+
+- if f.object.errors[attribute].present?
+  %p.error_message Please select one

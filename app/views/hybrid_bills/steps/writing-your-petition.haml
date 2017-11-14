@@ -1,7 +1,7 @@
 #content.hero.theme--grey-4
   .container
     %h1 Writing your petition
-    %p.lead{:style => "margin-top: 18px;"} Step 1 of 5
+    %p.lead Step 1 of 5
 
 %section.section--major
   .container
@@ -12,11 +12,11 @@
 %section
   .container
     .block--border__bottom
-      %a.btn--primary{:href => ""} Download template as Word document
+      %a.btn--primary.btn--download{href: 'https://s3-eu-west-1.amazonaws.com/web1live.static-assets/hybrid-bills/images/bill-petition-template.docx'} Download template as Word document
 
 %section
   .container
     %p
-      =link_to 'Next', hybrid_bill_path(@business_id, step: 'who-are-you-submitting-a-petition-for'), :class => "btn--primary"
+      =link_to 'Next', hybrid_bill_path(@business_id, step: 'who-are-you-submitting-a-petition-for'), class: 'btn--primary'
     %p
-      =link_to 'Back', hybrid_bill_path(@business_id, step: 'show')
+      =link_to 'Back', hybrid_bill_path(@business_id)

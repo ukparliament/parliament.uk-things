@@ -22,12 +22,12 @@
 
     %p
       Any individual, group of individuals, organisation or business affected by the
-      %a{:href => "#"} HS2 bill
+      %a{href: ''} HS2 bill
       can object to it.
 
     %p
       To find out more about the bill, visit the
-      %a{:href => "#"} HS2 bill website
+      %a{href: ''} HS2 bill website
       \.
 
 %section
@@ -48,23 +48,23 @@
 
     %p
       The main contact will receive all petition communications. They will usually be invited to answer questions about it in front of the
-      %a{:href => "#"} HS2 Committee
+      %a{href: ''} HS2 Committee
       \.
 
 %section
   .container
     %h2 After sending your petition
 
-    .timeline{:style => "margin-top: 24px;margin-left:12px;"}
-      %h3{:style => "font-size: 18px;font-weight: normal;margin-bottom: 30px"} If your petition is accepted we will ask you to pay a &pound;20 admin fee.
+    .timeline
+      %h3.timeline--title If your petition is accepted we will ask you to pay a &pound;20 admin fee.
 
-      %h3{:style => "font-size: 18px;font-weight: normal;margin-bottom: 30px"} We’ll email you within 14 days about how to pay the fee.
+      %h3.timeline--title We’ll email you within 14 days about how to pay the fee.
 
-      %h3{:style => "font-size: 18px;font-weight: normal;margin-bottom: 30px"} We’ll review your petition and publish it on our website. This will include your name and address. We’ll then send it to the Department for Transport (DfT).
+      %h3.timeline--title We’ll review your petition and publish it on our website. This will include your name and address. We’ll then send it to the Department for Transport (DfT).
 
-      %h3{:style => "font-size: 18px;font-weight: normal;margin-bottom: 30px"} The DfT will email you about your petition before the committee starts discussing HS2 phase 2a petitions in Spring 2018.
+      %h3.timeline--title The DfT will email you about your petition before the committee starts discussing HS2 phase 2a petitions in Spring 2018.
 
 %section.section--major
   .container
-    =link_to 'Send us your petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition'), :class => "btn--primary"
-    =link_to 'Send us your petition by email, post or in person', hybrid_bill_email_path(@business_id), :class => "btn--primary"
+    =link_to 'Send us your petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition'), class: 'btn--primary'
+    =link_to 'Send us your petition by email, post or in person', hybrid_bill_email_path(@business_id), class: 'btn--primary'
