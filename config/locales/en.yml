@@ -45,6 +45,8 @@ en:
               blank: "Please enter a first name"
             surname:
               blank: 'Please enter a last name'
+            on_behalf_of:
+              blank: "Please enter the names of the organisations"  
             address_1:
               blank: 'Please enter first line of address' 
             telephone:
@@ -58,6 +60,8 @@ en:
           attributes:
             first_name:
               blank: "Please enter a first name"
+            on_behalf_of:
+              blank: "Please enter the organisation name"
             surname:
               blank: 'Please enter a last name'
             address_1:
@@ -73,6 +77,8 @@ en:
           attributes:
             first_name:
               blank: "Please enter a first name"
+            on_behalf_of:
+              blank: "Please enter a name for the group"  
             surname:
               blank: 'Please enter a last name'
             address_1:
@@ -97,7 +103,11 @@ en:
             email:
               invalid: 'Please enter a valid email address'
             postcode:
-              invalid: 'Please enter a valid post code'  
+              invalid: 'Please enter a valid post code' 
+
+  hybrid_bills:    
+    show:
+      something_went_wrong: 'Sorry, something went wrong. Please try again later. If the problem continues call us on 020 7219 3000 or email: petition@parliament.uk.'        
 
   # global people translations
   mp: 'MP'
