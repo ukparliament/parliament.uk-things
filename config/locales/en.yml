@@ -281,6 +281,7 @@ en:
       download_jpeg: 'download jpeg'
       download_original: 'download original'
       download_res_original: '(3797 x 5315)'
+      alt_text_wide_original: '3797 by 5315 pixels'
       download_heading_1: '3:2 portrait'
       download_res_wide_portrait: '(3000 x 2000)'
       alt_text_wide_portrait: '3000 by 2000 pixels'
