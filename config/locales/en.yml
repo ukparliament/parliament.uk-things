@@ -336,6 +336,7 @@ en:
       title: '%{current} %{constituency_plural}'
     map:
       title: # title does not require translation
+      accessibility_title: "Interactive map of "
     contact_points:
       index:
         title: # title does not require translation
