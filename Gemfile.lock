@@ -318,6 +318,7 @@ DEPENDENCIES
   pugin (~> 1.5)
   puma (~> 3.10.0)
   rack-rewrite
+  rack-test (= 0.7.0)
   rack-timeout
   rails (~> 5.1.2)
   rails-controller-testing
