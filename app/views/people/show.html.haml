@@ -44,7 +44,7 @@
         .dropdown__toggle
           %h3= link_to "#{t('.show_history')}", "#"
         .dropdown__content
-          .timeline
+          .track
             - unless @history.nil? || @history[:current].empty?
               %h2= "#{t('.held_currently')}"
               %ul.list--block
