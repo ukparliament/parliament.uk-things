@@ -6,7 +6,7 @@
     /= link_to('Next Parliament', parliament_next_path(@parliament.graph_id)) if @parliament.next_parliament?
     /= link_to('Previous Parliament', parliament_previous_path(@parliament.graph_id))
 
-%section#content
+%section#content{:tabindex => "0"}
   .container
     %ul.list--block
       %li

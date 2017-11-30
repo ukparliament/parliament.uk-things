@@ -1,5 +1,5 @@
 = content_for :title, "Map of #{@constituency.name}"
-#content.section--primary
+#content.section--primary{:tabindex => "0"}
   .container
     %h1= @constituency.name
     = render 'shared/map'
