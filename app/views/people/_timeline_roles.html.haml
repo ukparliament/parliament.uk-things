@@ -22,3 +22,6 @@
 
       - elsif RoleHelper.role_type(role, 'GovernmentIncumbency')
         = render 'timeline_role', role: role, role_type: "#{role.government_position.name}", role_title: t('.government_role').capitalize
+
+      - elsif RoleHelper.role_type(role, 'OppositionIncumbency')
+        = render 'timeline_role', role: role, role_type: "#{role.opposition_position.name}", role_title: t('.opposition_role').capitalize
