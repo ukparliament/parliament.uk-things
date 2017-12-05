@@ -6,5 +6,5 @@
         - if !seat_incumbency.current?
           %li
             .list--details
-              %h3= link_to seat_incumbency.member.display_name, person_path(seat_incumbency.member.graph_id)
+              %h3= link_to(seat_incumbency.member.display_name, person_path(seat_incumbency.member.graph_id))
               %p= seat_incumbency.date_range

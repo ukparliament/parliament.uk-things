@@ -7,11 +7,11 @@
         - if contact_point.email.present?
           %dt= t('contact_points.email').capitalize + ": "
           %dd
-            %a{ href: "mailto:#{contact_point.email}" }= contact_point.email
+            = link_to(contact_point.email, "mailto:#{contact_point.email}")
         - if contact_point.phone_number.present?
           %dt= t('contact_points.phone').capitalize + ": "
           %dd
-            %a{ href: "tel:#{contact_point.phone_number.gsub(/\s+/, "")}" }= contact_point.phone_number.gsub(/\s+/, " ")
+            = link_to(contact_point.phone_number.gsub(/\s+/, " "), "tel:#{contact_point.phone_number.gsub(/\s+/, "")}")
         - if contact_point.postal_addresses.present?
           %dt
             = t('contact_points.address').capitalize + ": "

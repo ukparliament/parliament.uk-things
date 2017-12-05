@@ -4,7 +4,7 @@
     - @constituency.regions.each do |region|
       %p.lead
         = t('.constituency_in')
-        = link_to "#{region.name}", places_show_path(region.gss_code)
+        = link_to(region.name, places_show_path(region.gss_code))
     = render 'shared/map'
 
 = render 'constituencies/constituency'

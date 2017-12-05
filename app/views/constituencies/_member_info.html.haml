@@ -2,14 +2,14 @@
   %li.image__item
     - if Pugin::Feature::Bandiera.show_list_images?
       %figure
-        %a{ href: "#{person_path(@current_incumbency.member.graph_id)}", tabindex: "-1" }
+        = link_to(person_path(@current_incumbency.member.graph_id), {tabindex: "-1"}) do
           - if @current_incumbency.member.image_id(show_placeholder:false)
             %img{ src: "#{ENV['IMAGE_SERVICE_URL']}/#{@current_incumbency.member.image_id}.jpg?crop=CU_1:1&width=186&quality=80", alt: "#{@current_incumbency.member.display_name}" }
           - else
             %img{ src: "#{Pugin::ASSET_LOCATION_URL}/#{Pugin::ASSET_VERSION}/images/placeholder_members_image.png", alt: "placeholder" }
 
     .list--details
-      %h2= link_to @current_incumbency.member.display_name, person_path(@current_incumbency.member.graph_id)
+      %h2= link_to(@current_incumbency.member.display_name, person_path(@current_incumbency.member.graph_id))
       %p= "#{t('people.show.mp_for')} #{@constituency.name}"
       - unless @party.nil?
         %p= @party.name

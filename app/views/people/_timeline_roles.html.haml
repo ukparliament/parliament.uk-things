@@ -5,12 +5,12 @@
         - date_string = role.try(:start_date) && role.try(:end_date) ? " (#{l(role.start_date, format: :year_only)} #{t('to')} #{l(role.end_date, format: :year_only)})" : ''
         - if role.class == GroupingHelper::GroupedObject
           - role_type_start = t('.mp_for')
-          - role_type_link = "#{link_to "#{role.nodes[0].constituency.name} #{date_string}", constituency_path(role.nodes[0].constituency.graph_id)}".html_safe
+          - role_type_link = link_to("#{role.nodes[0].constituency.name} #{date_string}", constituency_path(role.nodes[0].constituency.graph_id))
           - role_type = "#{role_type_start} #{role_type_link}".html_safe
           = render 'timeline_role', role: role, role_type: role_type, role_title: "Elected #{role.nodes.count} times"
         - else
           - role_type_start = t('.mp_for')
-          - role_type_link = "#{link_to "#{role.constituency.name}#{date_string}", constituency_path(role.constituency.graph_id)}".html_safe
+          - role_type_link = link_to("#{role.constituency.name} #{date_string}", constituency_path(role.constituency.graph_id))
           - role_type = "#{role_type_start} #{role_type_link}".html_safe
           = render 'timeline_role', role: role, role_type: role_type, role_title: t('.parliamentary_role').capitalize
 
