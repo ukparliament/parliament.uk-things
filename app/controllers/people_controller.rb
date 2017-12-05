@@ -11,13 +11,14 @@ class PeopleController < ApplicationController
 
     @postcode = flash[:postcode]
 
-    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
+    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
       @request,
       Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Person'),
       Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('SeatIncumbency'),
       Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('HouseIncumbency'),
       Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('FormalBodyMembership'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('GovernmentIncumbency')
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('GovernmentIncumbency'),
+      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('OppositionIncumbency')
     )
 
     @person = @person.first
@@ -32,12 +33,13 @@ class PeopleController < ApplicationController
     roles += @committee_memberships.to_a if Pugin::Feature::Bandiera.show_committees?
     roles += @house_incumbencies.to_a
     roles += @government_incumbencies.to_a if Pugin::Feature::Bandiera.show_government_roles?
+    roles += @opposition_incumbencies.to_a if Pugin::Feature::Bandiera.show_opposition_roles?
 
     @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
       parameters:       [:end_date],
       prepend_rejected: false
-      })
+    })
 
     @most_recent_incumbency = @sorted_incumbencies.last
 
@@ -48,7 +50,6 @@ class PeopleController < ApplicationController
     @history = HistoryHelper.history
 
     @current_roles = @history[:current].reverse!.group_by { |role| Grom::Helper.get_id(role.type) } if @history[:current]
-
 
     # !!!!! CODE BELOW THIS POINT ONLY EXECUTES WHEN YOU HAVE CHECKED THAT THIS PERSON IS YOUR MP !!!!!
     return unless @postcode && @current_incumbency

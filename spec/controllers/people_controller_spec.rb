@@ -54,6 +54,11 @@ RSpec.describe PeopleController, vcr: true do
         expect(government_incumbency.type).to eq('https://id.parliament.uk/schema/GovernmentIncumbency')
       end
 
+      assigns(:opposition_incumbencies).each do |opposition_incumbency|
+        expect(opposition_incumbency).to be_a(Grom::Node)
+        expect(opposition_incumbency.type).to eq('https://id.parliament.uk/schema/OppositionIncumbency')
+      end
+
       expect(assigns(:current_party_membership)).to be_a(Grom::Node)
       expect(assigns(:current_party_membership).type).to eq('https://id.parliament.uk/schema/PartyMembership')
       expect(assigns(:current_party_membership).current?).to be(true)

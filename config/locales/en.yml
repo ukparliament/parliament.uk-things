@@ -228,6 +228,7 @@ en:
       house_of_lords_role: 'House of Lords role'
       committee_role: 'committee role'
       government_role: 'government role'
+      opposition_role: 'opposition role'
       held_currently: 'Held currently'
       held_in: 'Held in the last'
       years: 'years'
@@ -237,6 +238,7 @@ en:
       house_of_lords_role: 'House of Lords role'
       committee_role: 'committee role'
       government_role: 'government role'
+      opposition_role: 'opposition role'
     related_links:
       title: 'related links'
       portrait: "%{name}&#8217;s official portrait is %{link}."

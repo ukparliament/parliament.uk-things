@@ -141,7 +141,7 @@ GEM
     parallel (1.12.0)
     parallel_tests (2.19.0)
       parallel
-    parliament-grom-decorators (0.13.0)
+    parliament-grom-decorators (0.14.0)
     parliament-ntriple (0.2.0)
       grom (~> 0.5)
     parliament-routes (0.5.1)
@@ -161,7 +161,7 @@ GEM
       ast (~> 2.3)
     powerpack (0.1.1)
     public_suffix (3.0.1)
-    pugin (1.6.1)
+    pugin (1.6.3)
     puma (3.10.0)
     rack (2.0.3)
     rack-rewrite (1.5.1)
@@ -268,7 +268,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     timecop (0.9.1)
-    tins (1.15.1)
+    tins (1.16.0)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
@@ -311,12 +311,12 @@ DEPENDENCIES
   haml
   listen (>= 3.0.5, < 3.2)
   parallel_tests
-  parliament-grom-decorators (~> 0.13)
+  parliament-grom-decorators (~> 0.14)
   parliament-ntriple (~> 0.2)
   parliament-routes (~> 0.3)
   parliament-ruby (~> 0.8)
   parliament-utils (~> 0.4)
-  pugin (~> 1.5)
+  pugin (~> 1.6)
   puma (~> 3.10.0)
   rack-rewrite
   rack-timeout
