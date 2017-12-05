@@ -5,7 +5,7 @@ RSpec.describe 'people/show', vcr: true do
   house_of_commons_graph_id = 'KL2k1BGP'
   house_of_lords_graph_id   = 'm1EgVTLj'
   government_graph_id       = 'NprsWxpz'
-
+  opposition_graph_id       = ''
   context 'header' do
     before do
       assign(:person,
@@ -637,6 +637,14 @@ RSpec.describe 'people/show', vcr: true do
                                        graph_id:   government_graph_id,
               )
             ),
+            double(:opposition_incumbency,
+                   type: '/OppositionIncumbency',
+                   date_range: "from #{(Time.zone.now - 5.months).strftime('%-e %b %Y')} to present",
+                   opposition_position: double(:opposition_position,
+                                       name: 'Opposition Role 1',
+                                       graph_id:   opposition_graph_id,
+              )
+            ),
             double(:house_incumbency,
               type: '/HouseIncumbency',
               start_date: Time.zone.now - 2.months,
@@ -660,6 +668,14 @@ RSpec.describe 'people/show', vcr: true do
                  government_position: double(:government_position,
                    name: 'Second Government Positon Name',
                    graph_id:   government_graph_id,
+                 )
+              ),
+              double(:opposition_incumbency,
+                 type: '/OppositionIncumbency',
+                 date_range: "from #{(Time.zone.now - 5.years).strftime('%-e %b %Y')} to #{(Time.zone.now - 3.years).strftime('%-e %b %Y')}",
+                 opposition_position: double(:opposition_position,
+                   name: 'Opposition Role 2',
+                   graph_id:   opposition_graph_id,
                  )
               ),
               double(:house_incumbency,
@@ -721,6 +737,20 @@ RSpec.describe 'people/show', vcr: true do
           end
         end
 
+        context 'Opposition roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Opposition role/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Opposition Role 1/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match("#{(Time.zone.now - 5.months).strftime('%-e %b %Y')} to present")
+          end
+        end
+
         context 'House roles' do
           it 'will render the correct sub-header' do
             expect(rendered).to match(/House of Lords role/)
@@ -766,6 +796,24 @@ RSpec.describe 'people/show', vcr: true do
 
           it 'will render the correct title' do
             expect(rendered).to match(/Second Government Positon Name/)
+          end
+
+          it 'will render start date to present' do
+            expect(rendered).to match((Time.zone.now - 5.years).strftime('%-e %b %Y'))
+          end
+
+          it 'will render present status' do
+            expect(rendered).to match((Time.zone.now - 3.years).strftime('%-e %b %Y'))
+          end
+        end
+
+        context 'Opposition roles' do
+          it 'will render the correct sub-header' do
+            expect(rendered).to match(/Opposition Role 2/)
+          end
+
+          it 'will render the correct title' do
+            expect(rendered).to match(/Opposition Role 2/)
           end
 
           it 'will render start date to present' do
