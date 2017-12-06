@@ -1,12 +1,11 @@
 class HybridBillsController < ApplicationController
-  before_action :disable_top_navigation, :disable_status_banner
-  before_action :validate_business_id, only: [:show, :email]
+  before_action :disable_top_navigation, :disable_status_banner, :enable_asset_overrides
+  before_action :validate_business_id, except: :index
   before_action :create_hybrid_bill_submission, only: :show
-  before_action :enable_asset_overrides
 
   STEP_TEMPLATES = {
-    'writing-your-petition':                  'hybrid_bills/steps/writing-your-petition',
-    'who-are-you-submitting-a-petition-for':  'hybrid_bills/steps/who-are-you-submitting-a-petition-for',
+    'writing-your-petition-online':   'hybrid_bills/steps/writing-your-petition',
+    'petition-online':                'hybrid_bills/steps/who-are-you-submitting-a-petition-for',
     'details': {
       'individual':         'hybrid_bills/steps/forms/individual',
       'individualgroup':    'hybrid_bills/steps/forms/individualgroup',
@@ -15,7 +14,7 @@ class HybridBillsController < ApplicationController
     },
     'document-submission':  'hybrid_bills/steps/document-submission',
     'terms-conditions':     'hybrid_bills/steps/terms-conditions',
-    'complete':             'hybrid_bills/steps/complete'
+    'submission-complete':             'hybrid_bills/steps/complete'
   }
 
   EMAIL_STEP_TEMPLATES = {
@@ -36,21 +35,31 @@ class HybridBillsController < ApplicationController
   end
 
   def show
-    if params[:step]
-      template = STEP_TEMPLATES[params[:step].to_sym]
+    session[:hybrid_bill_submission] = session['hybrid_bill_submission'] || {}
 
-      if params[:type]
-        template = template[params[:type].to_sym]
-      elsif @type
-        template = template[@type.to_sym]
+    if [:pre, :post].include?(status.to_sym)
+      return render "hybrid_bills/#{status.to_s}"
+    elsif status.to_sym == :closed
+      redirect_to hybrid_bills_path, notice: 'This petition has closed'
+    elsif status.to_sym == :active
+      if params[:step]
+        template = STEP_TEMPLATES[params[:step].to_sym]
+
+        if params[:type]
+          template = template[params[:type].to_sym]
+        elsif @type
+          template = template[@type.to_sym]
+        end
+
+        session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
+
+        return render template if template
       end
 
-      session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
-
-      return render template if template
+      session[:hybrid_bill_submission] = {}
+    else
+      raise ActionController
     end
-
-    session[:hybrid_bill_submission] = {}
   end
 
   def email
@@ -59,15 +68,31 @@ class HybridBillsController < ApplicationController
     render template if template
   end
 
+  def choose_type
+    type_param = params[:type] ? params[:type].to_sym : nil
+
+    return redirect_to hybrid_bill_email_path(@business_id) if type_param.nil?
+
+    redirect_to hybrid_bill_email_path(@business_id, type: type_param)
+  end
+
+  def redirect
+    redirect_to hybrid_bill_path(@business_id, step: 'writing-your-petition-online', anchor: 'anchor')
+  end
+
   private
 
   def validate_business_id
-    @business_id = params[:bill_id]
+    @hybrid_bill = HybridBill.find(params[:bill_id])
 
-    raise ActionController::RoutingError, 'invalid petition id' unless @business_id == '1'
+    raise ActionController::RoutingError, 'invalid petition id' if @hybrid_bill.nil?
+
+    @business_id = params[:bill_id]
   end
 
   def create_hybrid_bill_submission
+    return unless status.to_sym == :active
+
     if %W(details).include?(params[:step])
       process_petitioner_object
     end
@@ -80,7 +105,7 @@ class HybridBillsController < ApplicationController
       process_terms
     end
 
-    if %W(complete).include?(params[:step])
+    if %W(submission-complete).include?(params[:step])
       process_complete
     end
   end
@@ -208,7 +233,7 @@ class HybridBillsController < ApplicationController
 
         session[:hybrid_bill_submission][:terms_accepted] = true
 
-        redirect_to hybrid_bill_path(params[:bill_id], step: 'complete')
+        redirect_to hybrid_bill_path(params[:bill_id], step: 'submission-complete')
       end
     end
   end
@@ -234,5 +259,11 @@ class HybridBillsController < ApplicationController
 
   def sanitized_file_params
     params.require(:hybrid_bill_document).permit(:file)
+  end
+
+  def status
+    return params[:status] if params[:status] && Rails.env.development?
+
+    @hybrid_bill.status
   end
 end

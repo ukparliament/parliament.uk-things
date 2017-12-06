@@ -5,7 +5,7 @@
 
 %section.section--major
   .container
-    = form_tag hybrid_bill_email_path(@business_id), method: :get do
+    = form_tag hybrid_bill_email_type_path(@business_id) do
       = render partial: 'hybrid_bills/steps/forms/components/petitioner-type'
 
     %p

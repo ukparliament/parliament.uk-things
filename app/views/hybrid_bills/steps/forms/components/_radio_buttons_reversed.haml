@@ -1,4 +1,4 @@
-%div{ class: f.object.errors[attribute].present? ? 'invalid' : nil }
+%div
   .input-group__inline
     .input-group
       = f.radio_button attribute, false, value: false, checked: true, class: local_assigns.fetch(:no_class, nil)

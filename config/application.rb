@@ -44,5 +44,9 @@ module MembersPrototype
 
     # Add out custom serializers to our autoload paths
     config.autoload_paths += %W["#{config.root}/app/serializers/"]
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      html_tag
+    }
   end
 end
