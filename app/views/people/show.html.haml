@@ -42,7 +42,9 @@
     - unless @history.nil? || @history[:years].empty?
       .dropdown
         .dropdown__toggle
-          %h3= link_to "#{t('.show_history')}", "#"
+          %h3
+            %a{ href: "#" }
+              = t('.show_history')
         .dropdown__content
           .track
             - unless @history.nil? || @history[:current].empty?

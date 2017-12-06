@@ -8,12 +8,12 @@
   - current_roles.fetch('SeatIncumbency', []).each do |role|
     - if role.class == GroupingHelper::GroupedObject
       - first_line_start = t('.mp_for')
-      - first_line_end = "#{link_to role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id)}".html_safe
+      - first_line_end = link_to(role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id))
       - first_line = "#{first_line_start} #{first_line_end}".html_safe
       = render 'current_role', role: role, role_type: "#{t('.parliamentary_role').capitalize}", role_title: first_line
     - else
       - first_line_start = t('.mp_for')
-      - first_line_end = "#{link_to role.constituency.name, constituency_path(role.constituency.graph_id)}".html_safe
+      - first_line_end = link_to(role.constituency.name, constituency_path(role.constituency.graph_id))
       - first_line = "#{first_line_start} #{first_line_end}".html_safe
       = render 'current_role', role: role, role_type: "#{t('.parliamentary_role').capitalize}", role_title: first_line
 
