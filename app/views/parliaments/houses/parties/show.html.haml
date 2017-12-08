@@ -5,7 +5,7 @@
       %span= @party.name
       = link_to("#{@parliament.date_range(date_format: '%Y')} #{t('parliament')}", parliament_path(@parliament.graph_id))
 
-%section#content{:tabindex => "0"}
+%section#content{ tabindex: "0" }
   .container
     %ul.list--block
       %li
