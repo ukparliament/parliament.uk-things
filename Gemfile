@@ -49,6 +49,9 @@ gem 'rack-rewrite'
 # Include time zone information
 gem 'tzinfo-data'
 
+# Support markdown to HTML transformation
+gem 'redcarpet', '~> 3.0'
+
 gem 'vcard', '~> 0.2'
 
 group :development, :test do

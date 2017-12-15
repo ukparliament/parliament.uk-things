@@ -35,42 +35,16 @@ RSpec.describe Parliaments::HousesController, vcr: true do
   end
 
   describe '#data_check' do
-    context 'an available data format is requested' do
-      methods = [
-          {
-            route: 'show',
-            parameters: { parliament_id: 'fHx6P1lb', house_id: 'Kz7ncmrt' },
-            data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_house?parliament_id=fHx6P1lb&house_id=Kz7ncmrt"
-          }
-        ]
-
-      before(:each) do
-        headers = { 'Accept' => 'application/rdf+xml' }
-        request.headers.merge(headers)
-      end
-
-      it 'should have a response with http status redirect (302)' do
-        methods.each do |method|
-          if method.include?(:parameters)
-            get method[:route].to_sym, params: method[:parameters]
-          else
-            get method[:route].to_sym
-          end
-          expect(response).to have_http_status(302)
-        end
-      end
-
-      it 'redirects to the data service' do
-        methods.each do |method|
-          if method.include?(:parameters)
-            get method[:route].to_sym, params: method[:parameters]
-          else
-            get method[:route].to_sym
-          end
-          expect(response).to redirect_to(method[:data_url])
-        end
-      end
-
+    let(:data_check_methods) do
+      [
+        {
+          route: 'show',
+          parameters: { parliament_id: 'fHx6P1lb', house_id: 'Kz7ncmrt' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/parliament_house?parliament_id=fHx6P1lb&house_id=Kz7ncmrt"
+        }
+      ]
     end
+
+    it_behaves_like 'a data service request'
   end
 end

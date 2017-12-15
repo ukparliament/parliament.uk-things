@@ -1,0 +1,9 @@
+.section--primary
+  .container--offset
+    %h1= @article.title
+    = MarkdownHelper.markdown(@article.article_summary)
+
+%section#content{ tabindex: "0" }
+  %article
+    .container--offset
+      = MarkdownHelper.markdown(@article.article_body)
