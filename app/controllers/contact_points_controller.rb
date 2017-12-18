@@ -6,10 +6,7 @@ class ContactPointsController < ApplicationController
   }.freeze
 
   def show
-    @contact_point = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-      @request,
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ContactPoint')
-    ).first
+    @contact_point = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ContactPoint').first
 
     vcard = create_vcard(@contact_point)
     send_data vcard.to_s, filename: 'contact.vcf', disposition: 'attachment', data: { turbolink: false }

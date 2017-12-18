@@ -37,11 +37,7 @@ class ParliamentsController < ApplicationController
   end
 
   def show
-    @parliament, @parties = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-      @request,
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
-    )
+    @parliament, @parties = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ParliamentPeriod', 'Party')
 
     @parliament = @parliament.first
     @parties    = @parties.sort_by(:name)

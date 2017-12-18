@@ -9,12 +9,7 @@ module Houses
     }.freeze
 
     def show
-      @house, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-        @request,
-        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('House'),
-        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
-      )
-
+      @house, @party = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'House', 'Party')
       @house = @house.first
       @party = @party.first
       @current_person_type, @other_person_type = Parliament::Utils::Helpers::HousesHelper.person_type_string(@house)

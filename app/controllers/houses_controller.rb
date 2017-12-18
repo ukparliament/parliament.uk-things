@@ -7,10 +7,7 @@ class HousesController < ApplicationController
   }.freeze
 
   def show
-    @house = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-      @request,
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('House')
-    ).first
+    @house = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'House').first
   end
 
   def lookup

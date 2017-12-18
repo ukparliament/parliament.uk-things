@@ -146,14 +146,14 @@ GEM
       grom (~> 0.5)
     parliament-routes (0.5.1)
     parliament-ruby (0.10.2)
-    parliament-utils (0.5.0)
+    parliament-utils (0.6.0)
       bandiera-client
       coveralls
       haml
       i18n
       parliament-grom-decorators (~> 0.10)
       parliament-ntriple
-      parliament-ruby (~> 0.7)
+      parliament-ruby (~> 0.10)
       pugin
       simplecov
       vcard
@@ -315,7 +315,7 @@ DEPENDENCIES
   parliament-ntriple (~> 0.2)
   parliament-routes (~> 0.3)
   parliament-ruby (~> 0.8)
-  parliament-utils (~> 0.4)
+  parliament-utils (~> 0.6)
   pugin (~> 1.6)
   puma (~> 3.10.0)
   rack-rewrite

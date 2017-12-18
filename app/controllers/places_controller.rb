@@ -10,12 +10,7 @@ class PlacesController < ApplicationController
   # @return [Grom::Node] object with type 'http://data.ordnancesurvey.co.uk/ontology/admingeo/EuropeanRegion'.
 
   def show
-    @place, @constituencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-    @request,
-      'http://data.ordnancesurvey.co.uk/ontology/admingeo/EuropeanRegion',
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup'),
-      ::Grom::Node::BLANK
-    )
+    @place, @constituencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ordnance', 'ConstituencyGroup', ::Grom::Node::BLANK)
 
     @place = @place.first
 

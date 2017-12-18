@@ -10,11 +10,7 @@ class MediaController < ApplicationController
   end
 
   def show
-    @image, @person = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-      @request,
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('MemberImage'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Person')
-    )
+    @image, @person = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'MemberImage', 'Person')
 
     @image = @image.first
 

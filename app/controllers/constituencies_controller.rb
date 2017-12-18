@@ -19,12 +19,7 @@ class ConstituenciesController < ApplicationController
   def show
     @postcode = flash[:postcode]
 
-    @constituency, @seat_incumbencies, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-      @request,
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('SeatIncumbency'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
-    )
+    @constituency, @seat_incumbencies, @party = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ConstituencyGroup', 'SeatIncumbency', 'Party')
     # Instance variable for single MP pages
     @single_mp = true
     @constituency = @constituency.first
@@ -77,10 +72,7 @@ class ConstituenciesController < ApplicationController
   def map
     respond_to do |format|
       format.html do
-        @constituency = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-          @request,
-          Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ConstituencyGroup')
-        ).first
+        @constituency = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ConstituencyGroup').first
 
         @json_location = constituency_map_path(@constituency.graph_id, format: 'json')
       end
