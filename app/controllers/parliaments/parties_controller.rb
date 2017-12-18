@@ -7,11 +7,7 @@ module Parliaments
     }.freeze
 
     def show
-      @parliament, @party = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-        @request,
-        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('ParliamentPeriod'),
-        Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Party')
-      )
+      @parliament, @party = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ParliamentPeriod', 'Party')
 
       raise ActionController::RoutingError, 'Not Found' if @party.empty?
 

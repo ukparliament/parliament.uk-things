@@ -10,16 +10,7 @@ class PeopleController < ApplicationController
     # When calculating history, how many years do we want in each block
 
     @postcode = flash[:postcode]
-
-    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::RequestHelper.filter_response_data(
-      @request,
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('Person'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('SeatIncumbency'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('HouseIncumbency'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('FormalBodyMembership'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('GovernmentIncumbency'),
-      Parliament::Utils::Helpers::RequestHelper.namespace_uri_schema_path('OppositionIncumbency')
-    )
+    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'Person', 'SeatIncumbency', 'HouseIncumbency', 'FormalBodyMembership', 'GovernmentIncumbency', 'OppositionIncumbency')
 
     @person = @person.first
 
