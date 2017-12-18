@@ -14,7 +14,7 @@ class HybridBillsController < ApplicationController
     },
     'document-submission':  'hybrid_bills/steps/document-submission',
     'terms-conditions':     'hybrid_bills/steps/terms-conditions',
-    'submission-complete':             'hybrid_bills/steps/complete'
+    'submission-complete':  'hybrid_bills/steps/complete'
   }
 
   EMAIL_STEP_TEMPLATES = {
