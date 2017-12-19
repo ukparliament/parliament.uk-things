@@ -4,7 +4,7 @@
     %h4.lead= role_title
     - if role.try(:nodes)
       %p= "Elected #{role.nodes.count} times"
-      %ul.list--bullet
+      %ul
         - role.nodes.each do |node|
           %li= "#{node.date_range}"
     - else
