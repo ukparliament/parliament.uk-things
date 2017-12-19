@@ -19,7 +19,6 @@ RSpec.describe 'people/show', vcr: true do
           current_lord?: false,
           weblinks?:     false))
 
-      assign(:house_incumbencies, [])
       assign(:current_incumbency,
         double(:current_incumbency,
           constituency: double(:constituency, name: 'Aberavon', graph_id: constituency_graph_id, date_range: 'from 2010')))
@@ -51,7 +50,6 @@ RSpec.describe 'people/show', vcr: true do
           current_lord?: false,
           weblinks?:     false))
 
-      assign(:house_incumbencies, [])
       assign(:current_incumbency,
         double(:current_incumbency,
           constituency: double(:constituency, name: 'Aberavon', graph_id: constituency_graph_id, date_range: 'from 2010')))
@@ -113,7 +111,6 @@ RSpec.describe 'people/show', vcr: true do
 
   context 'persons status' do
     before do
-      assign(:house_incumbencies, [])
       assign(:current_incumbency,
         double(:current_incumbency,
           constituency: double(:constituency, name: 'Aberavon', graph_id: constituency_graph_id, date_range: 'from 2010')))
@@ -346,9 +343,9 @@ RSpec.describe 'people/show', vcr: true do
 
   context '@current_incumbency and @current_party_membership are present' do
     before do
-      assign(:house_incumbencies, [])
       assign(:seat_incumbencies, [
                double(:seat_incumbency,
+                 house_of_commons?: true,
                  start_date:   Time.zone.now - 2.months,
                  end_date:     nil,
                  current?:     true,
@@ -359,6 +356,7 @@ RSpec.describe 'people/show', vcr: true do
                    start_date: Time.zone.now - 2.months,
                    date_range: 'from 2010')),
                double(:seat_incumbency,
+                 house_of_commons?: true,
                  start_date:   Time.zone.now - 2.months,
                  end_date:     Time.zone.now - 1.week,
                  current?:     false,
@@ -430,6 +428,7 @@ RSpec.describe 'people/show', vcr: true do
 
              assign(:seat_incumbencies, [
                double(:seat_incumbency,
+                 house_of_commons?: true,
                  start_date:   Time.zone.now - 2.months,
                  end_date:     nil,
                  current?:     true,
@@ -468,6 +467,7 @@ RSpec.describe 'people/show', vcr: true do
 
              assign(:seat_incumbencies, [
                double(:seat_incumbency,
+                 house_of_commons?: true,
                  start_date:   Time.zone.now - 2.months,
                  end_date:     nil,
                  current?:     true,
@@ -585,7 +585,7 @@ RSpec.describe 'people/show', vcr: true do
     end
   end
 
-  context '@house_incumbencies, @seat_incumbencies, @government_incumbencies or @committee_memberships are present' do
+  context '@seat_incumbencies, @government_incumbencies or @committee_memberships are present' do
     before do
       assign(:person,
         double(:person,
@@ -614,6 +614,8 @@ RSpec.describe 'people/show', vcr: true do
           start: Time.zone.now - 25.years,
           current: [
             double(:seat_incumbency,
+              house_of_commons?: true,
+              house_of_lords?: false,
               type: '/SeatIncumbency',
               date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
               constituency: double(:constituency,
@@ -645,11 +647,17 @@ RSpec.describe 'people/show', vcr: true do
                                        graph_id:   opposition_graph_id,
               )
             ),
-            double(:house_incumbency,
-              type: '/HouseIncumbency',
+            double(:seat_incumbency,
+              type: '/SeatIncumbency',
+              house_of_commons?: false,
+              house_of_lords?: true,
               start_date: Time.zone.now - 2.months,
               end_date:   nil,
               date_range: "from #{(Time.zone.now - 4.months).strftime('%-e %b %Y')} to present",
+              constituency: double(:constituency,
+                name:       'Fake Place 2',
+                graph_id:   constituency_graph_id,
+              )
             )
           ],
           years: {
@@ -678,11 +686,17 @@ RSpec.describe 'people/show', vcr: true do
                    graph_id:   opposition_graph_id,
                  )
               ),
-              double(:house_incumbency,
-                type: '/HouseIncumbency',
+              double(:seat_incumbency,
+                type: '/SeatIncumbency',
+                house_of_commons?: false,
+                house_of_lords?: true,
                 start_date: Time.zone.now - 6.months,
                 end_date:   Time.zone.now - 1.week,
                 date_range: "from #{(Time.zone.now - 6.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+                constituency: double(:constituency,
+                  name:       'Fake Place 1',
+                  graph_id:   constituency_graph_id,
+                )
               )
             ]
           }

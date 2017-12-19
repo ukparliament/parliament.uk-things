@@ -141,7 +141,7 @@ GEM
     parallel (1.12.0)
     parallel_tests (2.19.0)
       parallel
-    parliament-grom-decorators (0.14.1)
+    parliament-grom-decorators (0.16.1)
     parliament-ntriple (0.2.1)
       grom (~> 0.5)
     parliament-routes (0.5.1)
@@ -311,7 +311,7 @@ DEPENDENCIES
   haml
   listen (>= 3.0.5, < 3.2)
   parallel_tests
-  parliament-grom-decorators (~> 0.14)
+  parliament-grom-decorators (~> 0.16)
   parliament-ntriple (~> 0.2)
   parliament-routes (~> 0.3)
   parliament-ruby (~> 0.8)
