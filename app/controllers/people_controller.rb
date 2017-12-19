@@ -8,9 +8,8 @@ class PeopleController < ApplicationController
 
   def show
     # When calculating history, how many years do we want in each block
-
     @postcode = flash[:postcode]
-    @person, @seat_incumbencies, @house_incumbencies, @committee_memberships, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'Person', 'SeatIncumbency', 'HouseIncumbency', 'FormalBodyMembership', 'GovernmentIncumbency', 'OppositionIncumbency')
+    @person, @seat_incumbencies, @committee_memberships, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'Person', 'SeatIncumbency', 'FormalBodyMembership', 'GovernmentIncumbency', 'OppositionIncumbency')
 
     @person = @person.first
 
@@ -22,7 +21,6 @@ class PeopleController < ApplicationController
     roles = []
     roles += incumbencies
     roles += @committee_memberships.to_a if Pugin::Feature::Bandiera.show_committees?
-    roles += @house_incumbencies.to_a
     roles += @government_incumbencies.to_a if Pugin::Feature::Bandiera.show_government_roles?
     roles += @opposition_incumbencies.to_a if Pugin::Feature::Bandiera.show_opposition_roles?
 
