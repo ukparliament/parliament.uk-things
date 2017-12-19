@@ -1,0 +1,126 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3030/webarticle_by_id?webarticle_id=ccdwcKYM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      - application/n-triples
+      User-Agent:
+      - Ruby
+      Ocp-Apim-Subscription-Key:
+      - "<AUTH_TOKEN>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '1791'
+      Content-Type:
+      - application/n-triples
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Set-Cookie:
+      - ARRAffinity=8e2a056adb1b7abe4eaf33e650cedb436e20433b5855b1a32b1d35b5078580cc;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      Date:
+      - Fri, 15 Dec 2017 10:12:09 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "<https://id.parliament.uk/ccdwcKYM> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WebArticle> .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/title> \"title - 1\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/summary> \"summary - 1\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/body> \"body - 1\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/relatedArticle> <https://id.parliament.uk/5NZbplzc>
+        .\r\n<https://id.parliament.uk/5NZbplzc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WebArticle> .\r\n<https://id.parliament.uk/5NZbplzc>
+        <http://example.com/content/schema/title> \"title - 2\" .\r\n<https://id.parliament.uk/5NZbplzc>
+        <http://example.com/content/schema/summary> \"summary - 2\" .\r\n<https://id.parliament.uk/5NZbplzc>
+        <http://example.com/content/schema/body> \"body - 2\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/topic> <http://example.com/content/6qyxIGp3tCIECKCwqEwoAA>
+        .\r\n<http://example.com/content/6qyxIGp3tCIECKCwqEwoAA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/Topic> .\r\n<http://example.com/content/6qyxIGp3tCIECKCwqEwoAA>
+        <http://example.com/content/schema/name> \"name - 1\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/articleType> <http://example.com/content/6hn6oMzpO8CSGa4Way686i>
+        .\r\n<http://example.com/content/6hn6oMzpO8CSGa4Way686i> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/ArticleType> .\r\n<http://example.com/content/6hn6oMzpO8CSGa4Way686i>
+        <http://example.com/content/schema/name> \"name - 2\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/articleType> <http://example.com/content/6QSF0e74ekC2oeYAq42gQI>
+        .\r\n<http://example.com/content/6QSF0e74ekC2oeYAq42gQI> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/ArticleType> .\r\n<http://example.com/content/6QSF0e74ekC2oeYAq42gQI>
+        <http://example.com/content/schema/name> \"name - 3\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/audience> <http://example.com/content/4livmtHbHqiGaaocqKseUs>
+        .\r\n<http://example.com/content/4livmtHbHqiGaaocqKseUs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/Audience> .\r\n<http://example.com/content/4livmtHbHqiGaaocqKseUs>
+        <http://example.com/content/schema/name> \"name - 4\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/publisher> <http://example.com/content/55mpkMQdy8EQOyymgYmysm>
+        .\r\n<http://example.com/content/55mpkMQdy8EQOyymgYmysm> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/Publisher> .\r\n<http://example.com/content/55mpkMQdy8EQOyymgYmysm>
+        <http://example.com/content/schema/name> \"name - 5\" .\r\n<https://id.parliament.uk/ccdwcKYM>
+        <http://example.com/content/schema/collection> <http://example.com/content/7IqkTIvwxq8eoK0wwkGueM>
+        .\r\n<http://example.com/content/7IqkTIvwxq8eoK0wwkGueM> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/Collection> .\r\n<http://example.com/content/7IqkTIvwxq8eoK0wwkGueM>
+        <http://example.com/content/schema/name> \"name - 6\" .\r\n"
+    http_version:
+  recorded_at: Fri, 15 Dec 2017 10:12:41 GMT
+- request:
+    method: get
+    uri: http://localhost:3030/house_index
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      - application/n-triples
+      User-Agent:
+      - Ruby
+      Ocp-Apim-Subscription-Key:
+      - "<AUTH_TOKEN>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '176'
+      Content-Type:
+      - application/n-triples
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Set-Cookie:
+      - ARRAffinity=8e2a056adb1b7abe4eaf33e650cedb436e20433b5855b1a32b1d35b5078580cc;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      Date:
+      - Fri, 15 Dec 2017 10:12:09 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "<https://id.parliament.uk/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/House> .\r\n<https://id.parliament.uk/1AFu55Hs>
+        <https://id.parliament.uk/schema/houseName> \"houseName - 1\" .\r\n<https://id.parliament.uk/WkUWUBMx>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/House>
+        .\r\n<https://id.parliament.uk/WkUWUBMx> <https://id.parliament.uk/schema/houseName>
+        \"houseName - 2\" .\r\n"
+    http_version:
+  recorded_at: Fri, 15 Dec 2017 10:12:42 GMT
+recorded_with: VCR 4.0.0

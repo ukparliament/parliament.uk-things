@@ -164,8 +164,8 @@ RSpec.describe ConstituenciesController, vcr: true do
   end
 
   describe '#data_check' do
-    context 'an available data format is requested' do
-      METHODS = [
+    let(:data_check_methods) do
+      [
         {
           route: 'lookup',
           parameters: { source: 'mnisId', id: '3274' },
@@ -177,35 +177,9 @@ RSpec.describe ConstituenciesController, vcr: true do
           data_url: "#{ENV['PARLIAMENT_BASE_URL']}/constituency_by_id?constituency_id=vUPobpVT"
         }
       ]
-
-      before(:each) do
-        headers = { 'Accept' => 'application/rdf+xml' }
-        request.headers.merge(headers)
-      end
-
-      it 'should have a response with http status redirect (302)' do
-        METHODS.each do |method|
-          if method.include?(:parameters)
-            get method[:route].to_sym, params: method[:parameters]
-          else
-            get method[:route].to_sym
-          end
-          expect(response).to have_http_status(302)
-        end
-      end
-
-      it 'redirects to the data service' do
-        METHODS.each do |method|
-          if method.include?(:parameters)
-            get method[:route].to_sym, params: method[:parameters]
-          else
-            get method[:route].to_sym
-          end
-          expect(response).to redirect_to(method[:data_url])
-        end
-      end
-
     end
+
+    it_behaves_like 'a data service request'
 
     context 'an unavailable data format is requested' do
       before(:each) do
@@ -218,5 +192,4 @@ RSpec.describe ConstituenciesController, vcr: true do
       end
     end
   end
-
 end

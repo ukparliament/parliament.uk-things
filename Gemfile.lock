@@ -144,7 +144,7 @@ GEM
     parliament-grom-decorators (0.16.1)
     parliament-ntriple (0.2.1)
       grom (~> 0.5)
-    parliament-routes (0.5.1)
+    parliament-routes (0.5.2)
     parliament-ruby (0.10.2)
     parliament-utils (0.6.0)
       bandiera-client
@@ -206,6 +206,7 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-vocab (2.2.8)
       rdf (~> 2.2)
+    redcarpet (3.4.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -324,6 +325,7 @@ DEPENDENCIES
   rails (~> 5.1.2)
   rails-controller-testing
   rake
+  redcarpet (~> 3.0)
   rspec-rails
   rubocop
   simplecov (~> 0.14)
