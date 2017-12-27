@@ -36,7 +36,6 @@ class HybridBillsController < ApplicationController
 
   def show
     session[:hybrid_bill_submission] = session['hybrid_bill_submission'] || {}
-
     if [:pre, :post].include?(status.to_sym)
       return render "hybrid_bills/#{status.to_s}"
     elsif status.to_sym == :closed
