@@ -5,7 +5,7 @@ class HybridBillDocument
 
   validates :file, presence: true
   validates :filename, presence: true, format: { with: /.(doc|DOC|docx|DOCX|rtf|RTF|txt|TXT|ooxml|OOXML|odt|ODT|pdf|PDF)\z/, message: 'unrecognised file' }
-  validates :filesize, numericality: { only_integer: true, less_than: 2150000 }
+  validates :filesize, numericality: { only_integer: true, less_than: 2_150_000 }
 
   def initialize(attributes)
     super(attributes)

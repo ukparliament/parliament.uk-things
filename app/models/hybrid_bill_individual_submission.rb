@@ -1,5 +1,5 @@
 class HybridBillIndividualSubmission < HybridBillBaseSubmission
-	def submitter_type
-		1
-	end
+  def submitter_type
+    1
+  end
 end

@@ -33,7 +33,6 @@ module GroupingHelper
     end
   end
 
-
   # Places unknown and ungrouped Grom::Nodes into sorted_array without calling any further methods on them
   # For Grom::Nodes that need to be grouped, calls create_grouped_objects method and places result into sorted_array
   #
@@ -43,11 +42,11 @@ module GroupingHelper
     sorted_array = []
     data_hash.each do |key, value|
       # Identify Grom::Nodes that don't need to be grouped (either UNKNOWN or singular values)
-      if key == 'UNKNOWN' || value.length == 1
-        sorted_array << value
-      else
-        sorted_array << create_grouped_objects(data_hash, key)
-      end
+      sorted_array << if key == 'UNKNOWN' || value.length == 1
+                        value
+                      else
+                        create_grouped_objects(data_hash, key)
+                      end
     end
     sorted_array.flatten
   end
@@ -67,7 +66,7 @@ module GroupingHelper
 
     start_date = nil
     end_date = nil
-    current_nodes= []
+    current_nodes = []
 
     grouped_object.nodes.each do |node|
       # Find nodes that represents current roles

@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   before_action :data_check, :build_request
 
   ROUTE_MAP = {
-    show:              proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.region_by_id.set_url_params({ region_code: params[:place_id] }) },
+    show: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.region_by_id.set_url_params({ region_code: params[:place_id] }) }
   }.freeze
 
   # Renders a single place given a place id.
@@ -13,6 +13,5 @@ class PlacesController < ApplicationController
     @place, @constituencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'ordnance', 'ConstituencyGroup', ::Grom::Node::BLANK)
 
     @place = @place.first
-
   end
 end

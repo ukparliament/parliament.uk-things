@@ -4,41 +4,40 @@ class HybridBillsController < ApplicationController
   before_action :create_hybrid_bill_submission, only: :show
 
   STEP_TEMPLATES = {
-    'writing-your-petition-online':   'hybrid_bills/steps/writing-your-petition',
-    'petition-online':                'hybrid_bills/steps/who-are-you-submitting-a-petition-for',
-    'details': {
-      'individual':         'hybrid_bills/steps/forms/individual',
-      'individualgroup':    'hybrid_bills/steps/forms/individualgroup',
-      'organisation':       'hybrid_bills/steps/forms/organisation',
-      'organisationgroup':  'hybrid_bills/steps/forms/organisationgroup'
+    'writing-your-petition-online': 'hybrid_bills/steps/writing-your-petition',
+    'petition-online':              'hybrid_bills/steps/who-are-you-submitting-a-petition-for',
+    'details':                      {
+      'individual':        'hybrid_bills/steps/forms/individual',
+      'individualgroup':   'hybrid_bills/steps/forms/individualgroup',
+      'organisation':      'hybrid_bills/steps/forms/organisation',
+      'organisationgroup': 'hybrid_bills/steps/forms/organisationgroup'
     },
-    'document-submission':  'hybrid_bills/steps/document-submission',
-    'terms-conditions':     'hybrid_bills/steps/terms-conditions',
-    'submission-complete':             'hybrid_bills/steps/complete'
-  }
+    'document-submission':          'hybrid_bills/steps/document-submission',
+    'terms-conditions':             'hybrid_bills/steps/terms-conditions',
+    'submission-complete':          'hybrid_bills/steps/complete'
+  }.freeze
 
   EMAIL_STEP_TEMPLATES = {
-    'individual':         'hybrid_bills/email/individual',
-    'individualgroup':    'hybrid_bills/email/individualgroup',
-    'organisation':       'hybrid_bills/email/organisation',
-    'organisationgroup':  'hybrid_bills/email/organisationgroup'
-  }
+    'individual':        'hybrid_bills/email/individual',
+    'individualgroup':   'hybrid_bills/email/individualgroup',
+    'organisation':      'hybrid_bills/email/organisation',
+    'organisationgroup': 'hybrid_bills/email/organisationgroup'
+  }.freeze
 
   SUBMISSION_TYPES = {
-    'individual':         HybridBillIndividualSubmission,
-    'individualgroup':    HybridBillIndividualGroupSubmission,
-    'organisation':       HybridBillOrganisationSubmission,
-    'organisationgroup':  HybridBillOrganisationGroupSubmission
-  }
+    'individual':        HybridBillIndividualSubmission,
+    'individualgroup':   HybridBillIndividualGroupSubmission,
+    'organisation':      HybridBillOrganisationSubmission,
+    'organisationgroup': HybridBillOrganisationGroupSubmission
+  }.freeze
 
-  def index
-  end
+  def index; end
 
   def show
     session[:hybrid_bill_submission] = session['hybrid_bill_submission'] || {}
 
-    if [:pre, :post].include?(status.to_sym)
-      return render "hybrid_bills/#{status.to_s}"
+    if %i[pre post].include?(status.to_sym)
+      return render "hybrid_bills/#{status}"
     elsif status.to_sym == :closed
       redirect_to hybrid_bills_path, notice: 'This petition has closed'
     elsif status.to_sym == :active
@@ -93,21 +92,13 @@ class HybridBillsController < ApplicationController
   def create_hybrid_bill_submission
     return unless status.to_sym == :active
 
-    if %W(details).include?(params[:step])
-      process_petitioner_object
-    end
+    process_petitioner_object if %w[details].include?(params[:step])
 
-    if %W(document-submission).include?(params[:step])
-      process_document_object
-    end
+    process_document_object if %w[document-submission].include?(params[:step])
 
-    if %W(terms-conditions).include?(params[:step])
-      process_terms
-    end
+    process_terms if %w[terms-conditions].include?(params[:step])
 
-    if %W(submission-complete).include?(params[:step])
-      process_complete
-    end
+    process_complete if %w[submission-complete].include?(params[:step])
   end
 
   def process_petitioner_object
@@ -155,15 +146,15 @@ class HybridBillsController < ApplicationController
         petitioner_valid = petitioner_object.valid?
 
         # If the user has asked for a rep, see if the rep is valid. If they have not, rep is valid.
-        agent_valid = (petitioner_object.has_a_rep == 'true') ? petitioner_object.hybrid_bill_agent.valid? : true
+        agent_valid = petitioner_object.has_a_rep == 'true' ? petitioner_object.hybrid_bill_agent.valid? : true
 
         if petitioner_valid && agent_valid
           # https://API_URL/hybridbillpetition/submit.json
-            request = HybridBillsHelper.api_request.hybridbillpetition('submit.json')
-            request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
+          request = HybridBillsHelper.api_request.hybridbillpetition('submit.json')
+          request_json = HybridBillSubmissionSerializer.serialize(params[:bill_id], petitioner_object)
 
           begin
-            json_response = HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+            json_response = HybridBillsHelper.process_request(request, request_json, 'Petition Submission')
           rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
             return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
           end
@@ -196,7 +187,7 @@ class HybridBillsController < ApplicationController
         request_json = HybridBillDocumentSerializer.serialize(@petition_reference, document_object)
 
         begin
-          HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+          HybridBillsHelper.process_request(request, request_json, 'Petition Submission')
         rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
           return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
         end
@@ -226,7 +217,7 @@ class HybridBillsController < ApplicationController
         request_json = HybridBillTermsSerializer.serialize(@petition_reference)
 
         begin
-          HybridBillsHelper.process_request(request, request_json,'Petition Submission')
+          HybridBillsHelper.process_request(request, request_json, 'Petition Submission')
         rescue Parliament::ClientError, Parliament::ServerError, JSON::ParserError, HybridBillsHelper::HybridBillError, Net::ReadTimeout
           return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong'
         end
@@ -254,7 +245,7 @@ class HybridBillsController < ApplicationController
   end
 
   def sanitized_petitioner_params(symbol)
-    params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: [:first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates])
+    params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: %i[first_name surname address_1 address_2 postcode in_the_uk country email telephone receive_updates])
   end
 
   def sanitized_file_params
