@@ -21,6 +21,8 @@ ADD Gemfile.lock /app/
 # Set the working DIR.
 WORKDIR /app
 
+RUN gem update bundler
+
 # Install system and application dependencies.
 RUN echo "Environment (RACK_ENV): $RACK_ENV" && \
     apk --update add --virtual build-dependencies build-base ruby-dev && \
