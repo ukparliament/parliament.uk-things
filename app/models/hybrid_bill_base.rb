@@ -10,8 +10,8 @@ class HybridBillBase
   validates :telephone,       presence: true
   validates :postcode,        format: { with: /\A[a-zA-Z\d\s]{6,9}\z/i }, if: :in_the_uk?
   validates :country,         presence: true
-  validates :receive_updates, inclusion: { in: ['1', '0'] }
-  validates :in_the_uk,       inclusion: { in: ['true', 'false'] }
+  validates :receive_updates, inclusion: { in: %w[1 0] }
+  validates :in_the_uk,       inclusion: { in: %w[true false] }
 
   def in_the_uk?
     @country == 'GB'

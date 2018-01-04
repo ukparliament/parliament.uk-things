@@ -22,11 +22,11 @@ module HistoryHelper
   # @return [Hash] Object with properties of start, current and years
   def self.history
     @history ||= {
-      start: nil,
+      start:   nil,
       current: [],
       # Keys are the time periods
       # Value is array of Grom::Nodes that have occured during this time period
-      years: {}
+      years:   {}
     }
   end
 
@@ -56,7 +56,7 @@ module HistoryHelper
       # e.g. If current year is 2017, end date is 2008 and year_separator is 10...
       # year = ((2017-2008)/10).ceil) * 10 = 0
       # But as it happened within the last 10 years, we want it to be placed in the 10 year time period, not 0
-      year = (((Time.now.year.to_f - entry.end_date.year.to_f) / year_separator).ceil) * year_separator
+      year = ((Time.now.year.to_f - entry.end_date.year.to_f) / year_separator).ceil * year_separator
       year = year_separator if year == 0
 
       @history[:years][year] = [] unless @history[:years][year]
@@ -80,10 +80,9 @@ module HistoryHelper
       @history[:years][year] = Parliament::NTriple::Utils.multi_direction_sort(
         {
           list:       @history[:years][year],
-          parameters: {end_date: :desc, start_date: :desc}
+          parameters: { end_date: :desc, start_date: :desc }
         }
       )
     end
   end
-
 end

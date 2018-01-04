@@ -2,12 +2,12 @@ module HybridBillsHelper
   def self.api_request
     Parliament::Request::UrlRequest.new(
       base_url: ENV['HYBRID_BILL_API_BASE_URL'],
-      headers: {
-        'CMS-Token': ENV['HYBRID_BILL_API_TOKEN'],
+      headers:  {
+        'CMS-Token':    ENV['HYBRID_BILL_API_TOKEN'],
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept':       'application/json'
       },
-      builder: Parliament::Builder::BaseResponseBuilder
+      builder:  Parliament::Builder::BaseResponseBuilder
     )
   end
 
@@ -56,13 +56,13 @@ module HybridBillsHelper
 
   class HybridBillError < StandardError
     def initialize(status_code, success, response)
-      error_string = <<ERROR
-HybridBillError - An unsuccessful response has been recieved from the Business Systems API:
-Status (expected 200) - (got #{status_code})
-Success (expected true) - (get #{success})
+      error_string = <<~ERROR
+        HybridBillError - An unsuccessful response has been recieved from the Business Systems API:
+        Status (expected 200) - (got #{status_code})
+        Success (expected true) - (get #{success})
 
-Response Body:
-#{response}
+        Response Body:
+        #{response}
 ERROR
 
       super(error_string)

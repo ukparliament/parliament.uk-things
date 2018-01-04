@@ -5,8 +5,8 @@ class HybridBillDocumentSerializer
 
     {
       'ReferenceNumber': petition_id,
-      'Filename': document_object.filename,
-      'DocumentData': document_data
+      'Filename':        document_object.filename,
+      'DocumentData':    document_data
     }.to_json
   end
 end
