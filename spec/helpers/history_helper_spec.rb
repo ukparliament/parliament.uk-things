@@ -7,6 +7,7 @@ RSpec.describe HistoryHelper do
 
   after(:each) do
     HistoryHelper.reset
+    Timecop.return
   end
 
   it 'is a module' do
