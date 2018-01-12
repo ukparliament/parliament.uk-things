@@ -35,4 +35,13 @@ RSpec.shared_context 'an incorrect bill id' do
  it 'is not ok' do 
    expect {get :show, params: { bill_id: '90' }}.to raise_error(ActionController::RoutingError, 'invalid petition id')
  end 
-end
+end 
+
+RSpec.shared_context 'a Hybrid Bills Individual Object' do
+
+     before do 
+
+     
+     end
+
+end  
