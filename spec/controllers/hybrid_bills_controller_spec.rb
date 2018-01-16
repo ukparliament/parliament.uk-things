@@ -30,7 +30,7 @@ RSpec.describe HybridBillsController, vcr: false do
       it_behaves_like 'an incorrect bill id'
     end
 
-    describe 'subission steps' do
+    describe 'submission steps' do
       context 'writing-your-petition-online' do
         it_behaves_like 'a hybrid bill simple step', '1234', 'writing-your-petition-online'
       end
