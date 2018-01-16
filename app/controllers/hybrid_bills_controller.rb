@@ -4,8 +4,8 @@ class HybridBillsController < ApplicationController
   before_action :create_hybrid_bill_submission, only: :show
 
   STEP_TEMPLATES = {
-    'writing-your-petition-online': 'hybrid_bills/steps/writing-your-petition',
-    'petition-online':              'hybrid_bills/steps/who-are-you-submitting-a-petition-for',
+    'writing-your-petition-online': 'hybrid_bills/steps/writing-your-petition-online',
+    'petition-online':              'hybrid_bills/steps/petition-online',
     'details':                      {
       'individual':        'hybrid_bills/steps/forms/individual',
       'individualgroup':   'hybrid_bills/steps/forms/individualgroup',
@@ -44,20 +44,18 @@ class HybridBillsController < ApplicationController
       if params[:step]
         template = STEP_TEMPLATES[params[:step].to_sym]
 
-        if params[:type]
-          template = template[params[:type].to_sym]
-        elsif @type
+        if @type
           template = template[@type.to_sym]
         end
 
-        session[:hybrid_bill_submission][:submission_type] = params[:type] if params[:type]
+        session[:hybrid_bill_submission][:submission_type] = @type if @type
 
         return render template if template
       end
 
       session[:hybrid_bill_submission] = {}
     else
-      raise ActionController
+      raise ActionController::RoutingError, "The status #{status} was not expected."
     end
   end
 
@@ -253,7 +251,7 @@ class HybridBillsController < ApplicationController
   end
 
   def status
-    return params[:status] if params[:status] && Rails.env.development?
+    return params[:status] if params[:status] && (Rails.env.development? || Rails.env.test?)
 
     @hybrid_bill.status
   end
