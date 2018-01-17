@@ -1,10 +1,17 @@
-#content.hero.theme--grey-4{:tabindex => "0"}
-  .container
-    %h1 Who are you submitting a petition for?
-    %p.lead Step 1 of 2
+- page_title = title('Petition by email, post or in person. Object to the High Speed Rail (West Midlands – Crewe) Bill')
 
-%section.section--major
+#content.hero.theme--grey-4{ tabindex: '0' }
   .container
+    %h1
+      Petition by email, post or in person
+      %span.sr-only .
+      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
+
+    %h2.typography--light Step 1 of 2
+
+%section
+  .container
+    %h2 Who are you submitting a petition for?
     = form_tag hybrid_bill_email_type_path(@business_id) do
       = render partial: 'hybrid_bills/steps/forms/components/petitioner-type'
 

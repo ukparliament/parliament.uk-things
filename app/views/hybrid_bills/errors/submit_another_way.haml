@@ -1,2 +1,12 @@
-%h1 submit another way
-%h2= @petition_reference
+#content.section--primary{ tabindex: '0' }
+  .container
+    %h1 Object to the High Speed Rail (West Midlands – Crewe) Bill
+
+    %h2 Submit Another Way Content
+
+    %br
+    .status--highlight
+      %p.lead
+        Your petition reference number is
+        %strong
+          = @petition_reference
