@@ -4,17 +4,17 @@ class HybridBillsController < ApplicationController
   before_action :create_hybrid_bill_submission, only: :show
 
   STEP_TEMPLATES = {
-    'writing-your-petition-online': 'hybrid_bills/steps/writing-your-petition-online',
-    'petition-online':              'hybrid_bills/steps/petition-online',
-    'details':                      {
-      'individual':        'hybrid_bills/steps/forms/individual',
-      'individualgroup':   'hybrid_bills/steps/forms/individualgroup',
-      'organisation':      'hybrid_bills/steps/forms/organisation',
-      'organisationgroup': 'hybrid_bills/steps/forms/organisationgroup'
+    'writing-your-petition-online':   'hybrid_bills/steps/writing-your-petition-online',
+    'petition-online':                'hybrid_bills/steps/petition-online',
+    'details': {
+      'individual':         'hybrid_bills/steps/forms/individual',
+      'individualgroup':    'hybrid_bills/steps/forms/individualgroup',
+      'organisation':       'hybrid_bills/steps/forms/organisation',
+      'organisationgroup':  'hybrid_bills/steps/forms/organisationgroup'
     },
-    'document-submission':          'hybrid_bills/steps/document-submission',
-    'terms-conditions':             'hybrid_bills/steps/terms-conditions',
-    'submission-complete':          'hybrid_bills/steps/complete'
+    'document-submission':  'hybrid_bills/steps/document-submission',
+    'terms-conditions':     'hybrid_bills/steps/terms-conditions',
+    'submission-complete':  'hybrid_bills/steps/submission-complete'
   }.freeze
 
   EMAIL_STEP_TEMPLATES = {
@@ -74,7 +74,7 @@ class HybridBillsController < ApplicationController
   end
 
   def redirect
-    redirect_to hybrid_bill_path(@business_id, step: 'writing-your-petition-online', anchor: 'anchor')
+    redirect_to hybrid_bill_path(@business_id, step: 'writing-your-petition-online', anchor: 'complete-petition')
   end
 
   private

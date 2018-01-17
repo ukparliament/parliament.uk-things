@@ -1,8 +1,15 @@
-#content.hero.theme--grey-4{:tabindex => "0"}
+- page_title = title('Group of organisations\' details. Object to the High Speed Rail (West Midlands – Crewe) Bill')
+
+#content.hero.theme--grey-4{ tabindex: '0' }
   .container
-    %h1 Organisation details
-    %p.lead Step 3 of 5
+    %h1
+      Group of organisations' details
+      %span.sr-only .
+      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
+
+    %h2.typography--light Step 3 of 5
 
 %section.section--major
   .container
-    =render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: true, group_name: 'Names of Organisations', group_type: 'organisation' }
+    %h2.sr-only Complete the fields below
+    =render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: true, group_name: 'Names of Organisations', group_type: 'group of organisations' }

@@ -4,27 +4,28 @@
     %ol.list--block
       %li
         .list--details
-          .input-group.petitioner--type
+          .input-group__verbose
             = radio_button_tag 'type', 'individual', checked: true
             = label_tag 'type_individual', 'Individual'
-          %p.petitioner--desc{ aria: { labelledby: 'type_individual' } } You are submitting a petition for one person.
+          %p{ aria: { labelledby: 'type_individual' } } You are submitting a petition for one person.
       %li
         .list--details
-          .input-group.petitioner--type
+          .input-group__verbose
             = radio_button_tag 'type', 'individualgroup'
             = label_tag 'type_individualgroup', 'Group of individuals'
-          %p.petitioner--desc{ aria: { labelledby: 'type_individualgroup' } } You are submitting a petition for a group of people.
+          %p{ aria: { labelledby: 'type_individualgroup' } } You are submitting a petition for a group of people.
     %ol.list--block
       %li
         .list--details
-          .input-group.petitioner--type
+          .input-group__verbose
             = radio_button_tag 'type', 'organisation'
             = label_tag 'type_organisation', 'Organisation'
-          %p.petitioner--desc{ aria: { labelledby: 'type_organisation' } } You are submitting a petition for a business or organisation.
+          %p{ aria: { labelledby: 'type_organisation' } } You are submitting a petition for a business or organisation.
       %li
         .list--details
-          .input-group.petitioner--type
+          .input-group__verbose
             = radio_button_tag 'type', 'organisationgroup'
             = label_tag 'type_organisationgroup', 'Group of organisations'
-          %p.petitioner--desc{ aria: { labelledby: 'type_organisationgroup' } } You are submitting a petition for a group of businesses or organisations.
+          %p{ aria: { labelledby: 'type_organisationgroup' } } You are submitting a petition for a group of businesses or organisations.
+
   = submit_tag 'Next', class: 'btn--primary'

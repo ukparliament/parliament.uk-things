@@ -1,42 +1,36 @@
+- page_title = title('Object to the High Speed Rail (West Midlands – Crewe) Bill')
 
-#content.section--primary{:tabindex => "0"}
+#content.section--primary{ tabindex: '0' }
   .container
-    %h1 Object to the HS2 bill
+    %h1 Object to the High Speed Rail (West Midlands – Crewe) Bill
 
-- if flash[:alert]
-  %section
-    .container
+    - if flash[:alert]
       %br
       .status--highlight.theme--warning
         %p= t(flash[:alert])
 
-%section
-  .container
     %br
     .status--highlight
-      %p The deadline for petitions is 5pm on Monday 8 January 2018.
+      %p The deadline is 5pm on 9 January 2018.
 
 %section
   .container
     %h2 Overview
 
-    %p
-      Any individual, group of individuals, organisation or business affected by the
-      %a{href: ''} HS2 bill
-      can object to it.
+    %p Any individual, group of individuals, organisation or group of organisations affected by the High Speed Rail (West Midlands – Crewe) Bill can object to it.
 
     %p
-      To find out more about the bill, visit the
-      %a{href: ''} HS2 bill website
-      \.
+      To find out more about the Bill, visit the
+      = link_to 'High Speed Two (HS2) Limited website', 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank'
+      %span.sr-only (This link will open in a new window).
 
 %section
   .container
-    %h2 Objecting to the bill
+    %h2 Objecting to the Bill
 
-    %p To object to the HS2 bill you will need to download and complete our petition template.
+    %p To object to the High Speed Rail (West Midlands – Crewe) Bill you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.
 
-    %p We will ask for your name, address and examples of how you are affected by the bill.
+    %p We will ask for your name, address and examples of how you are affected by the Bill.
 
     %p The petition does not require any signatures.
 
@@ -47,24 +41,25 @@
     %p We will ask you to tell us who should be contacted about your petition. This main contact can be you or someone else, for example a friend, family member or lawyer.
 
     %p
-      The main contact will receive all petition communications. They will usually be invited to answer questions about it in front of the
-      %a{href: ''} HS2 Committee
-      \.
+      The main contact will receive all petition communications. They will usually be invited to give evidence about it to the
+      = link_to 'High Speed Rail (West Midlands – Crewe) Bill Committee', 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank'
+      %span.sr-only (This link will open in a new window).
 
 %section
   .container
     %h2 After sending your petition
 
-    .timeline
-      %h3.timeline--title If your petition is accepted we will ask you to pay a &pound;20 admin fee.
+    .track--alternative
+      %h3.typography--light Once we’ve received your petition we’ll ask you to pay a &pound;20 admin fee.
 
-      %h3.timeline--title We’ll email you within 14 days about how to pay the fee.
+      %h3.typography--light We'll publish your petition on our website. This will include your name and address.
 
-      %h3.timeline--title We’ll review your petition and publish it on our website. This will include your name and address. We’ll then send it to the Department for Transport (DfT).
+      %h3.typography--light We’ll send your petition to HS2 Ltd, who may contact you to discuss it.
 
-      %h3.timeline--title The DfT will email you about your petition before the committee starts discussing HS2 phase 2a petitions in Spring 2018.
+      %h3.typography--light We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by the Bill.
 
-%section.section--major
-  .container
-    =link_to 'Send us your petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition'), class: 'btn--primary'
-    =link_to 'Send us your petition by email, post or in person', hybrid_bill_email_path(@business_id), class: 'btn--primary'
+      %h3.typography--light You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.
+
+    .section--major
+      =link_to 'Petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary'
+      =link_to 'Petition by email, post or in person', hybrid_bill_email_path(@business_id), class: 'btn--primary--inverse'

@@ -1,13 +1,18 @@
-#content.hero.theme--grey-4{:tabindex => "0"}
+#content.hero.theme--grey-4{ tabindex: '0' }
   .container
-    %h1 Who are you submitting a petition for?
-    %p.lead Step 2 of 5
+    %h1
+      Petition online
+      %span.sr-only .
+      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
 
-%section.section--major
+    %h2.typography--light Step 2 of 5
+
+%section
   .container
+    %h2.typography--light Who are you submitting a petition for?
+
     = form_tag(hybrid_bill_path(@business_id, step: 'details')) do
       = render partial: 'hybrid_bills/steps/forms/components/petitioner-type'
 
-
     %p
-      =link_to 'Back', hybrid_bill_path(@business_id, step: 'writing-your-petition')
+      =link_to 'Back', hybrid_bill_path(@business_id, step: 'writing-your-petition-online')
