@@ -3,7 +3,7 @@
   .container
     %h1
       %span= @party.name
-      = link_to("#{@parliament.date_range(date_format: '%Y')} #{t('parliament')}", parliament_path(@parliament.graph_id))
+      = link_to("#{@parliament.date_range(date_format: '%Y')} #{t('parliament').capitalize}", parliament_path(@parliament.graph_id))
 %section#content{ tabindex: "0" }
   .container
     %ul.list--block

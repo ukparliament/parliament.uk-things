@@ -8,7 +8,7 @@ RSpec.describe 'parliaments/show', vcr: true do
 
   context 'header' do
     it 'will render the parliament date range' do
-      expect(rendered).to match(/2005 to 2010 parliament/)
+      expect(rendered).to match(/2005 to 2010 Parliament/)
     end
 
     it 'will render a link to view all parliaments' do
