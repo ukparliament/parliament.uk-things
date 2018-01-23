@@ -1,0 +1,19 @@
+.section--primary
+  .container--offset
+    %h1= @concept.name
+
+%section#content{ tabindex: "0" }
+  .container--offset
+    = MarkdownHelper.markdown(@concept.definition)
+
+    - if @concept_articles.any?
+      %h2= "Articles in this section"
+      %ul.list
+        - @concept_articles.each do |article|
+          %li= link_to(article.article_title, article_path(article.graph_id))
+
+    - if @child_concepts.any?
+      %h2= "Other topics in this section"
+      %ul.list
+        - @child_concepts.each do |concept|
+          %li= link_to(concept.name, concept_path(concept.graph_id))

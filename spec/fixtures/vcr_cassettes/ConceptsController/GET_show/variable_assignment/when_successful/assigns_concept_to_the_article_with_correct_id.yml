@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3030/concept_by_id?concept_id=yDYJSViV
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      - application/n-triples
+      User-Agent:
+      - Ruby
+      Ocp-Apim-Subscription-Key:
+      - "<AUTH_TOKEN>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '1565'
+      Content-Type:
+      - application/n-triples
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Set-Cookie:
+      - ARRAffinity=a31eb62e8fa5fccc488f1b764e015b7c6918a5a68c6d31b38f885e3c06338b76;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      Date:
+      - Tue, 30 Jan 2018 16:52:57 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: "<https://id.parliament.uk/yDYJSViV> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Concept> .\r\n<https://id.parliament.uk/yDYJSViV>
+        <https://id.parliament.uk/schema/conceptLabel> \"conceptLabel - 1\" .\r\n<https://id.parliament.uk/yDYJSViV>
+        <https://id.parliament.uk/schema/conceptScopeNote> \"conceptScopeNote - 1\"
+        .\r\n<https://id.parliament.uk/yDYJSViV> <https://id.parliament.uk/schema/conceptHasBroaderConcept>
+        <https://id.parliament.uk/uLvvEbXZ> .\r\n<https://id.parliament.uk/uLvvEbXZ>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Concept>
+        .\r\n<https://id.parliament.uk/uLvvEbXZ> <https://id.parliament.uk/schema/conceptLabel>
+        \"conceptLabel - 2\" .\r\n<https://id.parliament.uk/uLvvEbXZ> <https://id.parliament.uk/schema/conceptScopeNote>
+        \"conceptScopeNote - 2\" .\r\n<https://id.parliament.uk/yDYJSViV> <https://id.parliament.uk/schema/conceptHasSubjectTaggedThing>
+        <https://id.parliament.uk/ES78N8GY> .\r\n<https://id.parliament.uk/ES78N8GY>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WebArticle>
+        .\r\n<https://id.parliament.uk/ES78N8GY> <http://example.com/content/schema/title>
+        \"title - 1\" .\r\n<https://id.parliament.uk/ES78N8GY> <http://example.com/content/schema/summary>
+        \"summary - 1\" .\r\n<https://id.parliament.uk/ES78N8GY> <http://example.com/content/schema/body>
+        \"body - 1\" .\r\n<https://id.parliament.uk/ES78N8GY> <https://id.parliament.uk/schema/subjectTaggedThingHasConcept>
+        <https://id.parliament.uk/yDYJSViV> .\r\n<https://id.parliament.uk/ES78N8GY>
+        <http://example.com/content/schema/articleType> <http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi>
+        .\r\n<http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/ArticleType> .\r\n<http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi>
+        <http://example.com/content/schema/name> \"name - 1\" .\r\n<https://id.parliament.uk/ES78N8GY>
+        <http://example.com/content/schema/collection> <http://example.com/content/1DNoI6R8cckOmoKiqQqkKk>
+        .\r\n<http://example.com/content/1DNoI6R8cckOmoKiqQqkKk> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/Collection> .\r\n<http://example.com/content/1DNoI6R8cckOmoKiqQqkKk>
+        <http://example.com/content/schema/name> \"name - 2\" .\r\n<https://id.parliament.uk/yDYJSViV>
+        <https://id.parliament.uk/schema/conceptHasNarrowerConcept> <https://id.parliament.uk/5A6RS3rN>
+        .\r\n<https://id.parliament.uk/5A6RS3rN> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Concept> .\r\n<https://id.parliament.uk/5A6RS3rN>
+        <https://id.parliament.uk/schema/conceptLabel> \"conceptLabel - 3\" .\r\n<https://id.parliament.uk/5A6RS3rN>
+        <https://id.parliament.uk/schema/conceptScopeNote> \"conceptScopeNote - 3\"
+        .\r\n<https://id.parliament.uk/5A6RS3rN> <https://id.parliament.uk/schema/conceptHasBroaderConcept>
+        <https://id.parliament.uk/yDYJSViV> .\r\n"
+    http_version: 
+  recorded_at: Tue, 30 Jan 2018 16:54:53 GMT
+recorded_with: VCR 4.0.0
