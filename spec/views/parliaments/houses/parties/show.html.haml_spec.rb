@@ -14,7 +14,7 @@ RSpec.describe 'parliaments/houses/parties/show', vcr: true do
     end
 
     it 'will render the parliament date range' do
-      expect(rendered).to match(/2005 to 2010 parliament/)
+      expect(rendered).to match(/2005 to 2010 Parliament/)
     end
   end
 
