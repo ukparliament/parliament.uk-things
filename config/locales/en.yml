@@ -242,6 +242,9 @@ en:
       held_currently: 'Held currently'
       held_in: 'Held in the last'
       years: 'years'
+    previous_roles:
+      held_in: 'Held in the last'
+      years: 'years'
     current_roles:
       mp_for: 'MP for'
       parliamentary_role: 'parliamentary role'
