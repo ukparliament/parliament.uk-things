@@ -16,7 +16,7 @@
           = t('.mp_for')
           = link_to(@current_incumbency.constituency.name, constituency_path(@current_incumbency.constituency.graph_id))
       - else
-        %p
+        %p.lead
           = current_party_details if current_party_details
           = @person.statuses[:house_membership_status].join(' and ')
 
@@ -39,7 +39,7 @@
     - if @current_roles
       = render 'current_roles', current_roles: @current_roles
 
-    - unless @history.nil? || @history[:years].empty?
+    - if @history && @history[:current].any?
       .dropdown
         .dropdown__toggle
           %h3
@@ -47,15 +47,14 @@
               = t('.show_history')
         .dropdown__content
           .track
-            - unless @history.nil? || @history[:current].empty?
-              %h2= "#{t('.held_currently')}"
-              %ul.list--block
-                = render 'timeline_roles', timeline_roles: @history[:current]
-            - @history[:years].keys.sort.each do |year|
-              %h2= "#{t('.held_in')} #{year} #{t('.years')}"
-              %ul.list--block
-                = render 'timeline_roles', timeline_roles: @history[:years][year]
-            - if @history && @history[:start]
-              %h2= @history[:start].year
+            %h2= "#{t('.held_currently')}"
+            %ul.list--block
+              = render 'timeline_roles', timeline_roles: @history[:current]
+            = render 'previous_roles'
+    - elsif @history && @history[:current].empty?
+      .container
+        .track
+          = render 'previous_roles'
+
 
 = render 'related_links'

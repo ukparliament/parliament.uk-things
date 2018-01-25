@@ -210,7 +210,6 @@ en:
       election_history: 'election history'
       roles: 'roles'
       held_currently: 'Held currently'
-      held_in: 'Held in the last'
       show_history: 'Show history'
       years: 'years'
       check_mp: 'Check if %{name} is your MP'
@@ -240,8 +239,8 @@ en:
       government_role: 'government role'
       opposition_role: 'opposition role'
       held_currently: 'Held currently'
-      held_in: 'Held in the last'
-      years: 'years'
+    previous_roles:
+      held_in: "Held in the last %{years} years"
     current_roles:
       mp_for: 'MP for'
       parliamentary_role: 'parliamentary role'
