@@ -30,7 +30,7 @@ class HybridBill
 
   # Has to go after initialize because it initializes a HybridBill
   HYBRID_BILLS = {
-    '1' => ::HybridBill.new(Time.utc(2017, 12, 1, 12, 0, 0), Time.utc(2018, 1, 16, 9, 0, 0), Time.utc(2020, 1, 1, 9, 0, 0), Time.utc(2020, 1, 2, 9, 0, 0))
+    '1' => ::HybridBill.new(Time.utc(2017, 12, 1, 12, 0, 0), Time.utc(2018, 1, 30, 20, 0, 0), Time.utc(2018, 2, 26, 17, 0, 0), Time.utc(2020, 1, 2, 9, 0, 0))
   }.freeze
 
   def status
