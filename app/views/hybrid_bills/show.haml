@@ -9,9 +9,13 @@
       .status--highlight.theme--warning
         %p= t(flash[:alert])
 
-    %br
+    %div(data-browser='javascript')
+      %br
+      .status--highlight.theme--caution
+        %p JavaScript is currently switched off in your browser. Switch it on for a better experience.
+
     .status--highlight
-      %p The deadline is 5pm on 9 January 2018.
+      %p The deadline is 5pm on 26 February 2018.
 
 %section
   .container
@@ -61,5 +65,13 @@
       %h3.typography--light You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.
 
     .section--major
-      =link_to 'Petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary'
+      %div(data-browser='cookies')
+        .status--highlight.theme--warning
+          %p
+            = link_to 'Cookies', 'http:https://beta.parliament.uk/meta/cookie-policy'
+            are currently blocked. Allow all cookies to petition online.
+
+          %p If you don’t want to allow all cookies, you can petition by email, post or in person.
+
+      =link_to 'Petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary', data:{ browser: 'button' }
       =link_to 'Petition by email, post or in person', hybrid_bill_email_path(@business_id), class: 'btn--primary--inverse'

@@ -51,7 +51,10 @@
   .container
     %h2 Changing contact information
 
-    %p If you want to change the main contact for your petition call us on 020 7219 3250.
+    %p
+      If you want to change the main contact for your petition call us on
+      = link_to '020 7219 3250', 'tel:02072193250'
+      \.
 
     .section--major
       = link_to 'Finish', hybrid_bill_path(@business_id), class: 'btn--primary'
