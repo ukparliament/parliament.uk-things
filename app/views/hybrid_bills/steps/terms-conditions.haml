@@ -29,7 +29,7 @@
         = link_to 'Department for Transport', 'https://www.gov.uk/government/organisations/department-for-transport', target: '_blank'
         %span.sr-only (This link will open in a new window).
         and
-        = link_to 'High Speed Two (HS2) Limited website', 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank'
+        = link_to 'High Speed Two (HS2) Limited', 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank'
         %span.sr-only (This link will open in a new window).
         after the petition has been received by the Private Bill Office.
 
@@ -59,7 +59,7 @@
       .block--border__bottom
         %fieldset
           %legend.sr-only Please confirm you agree to the terms and conditions
-          = check_box_tag 'enableSubmit'
+          = check_box_tag 'enableSubmit',  data:{ submit: 'disabled' }
           = label_tag 'enableSubmit', 'I agree to the terms and conditions'
           = hidden_field_tag 'hybrid_bill_terms[accepted]', true
       = submit_tag 'Send petition', class: 'btn--primary'
