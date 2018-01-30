@@ -17,7 +17,7 @@
       %p
         This petition reference and the information on this page will be sent to
         %em
-          = @email_addresses.join(' and ')
+          = @email_addresses.join(' and')
         in the next 15 minutes.
 
 %section
@@ -41,20 +41,32 @@
 
     %p
       You can withdraw your petition by emailing us at
-      = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
+      = succeed "." do
+        = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
 
     %p Anyone named on a petition can withdraw from the petition, leaving the remaining petitioners to continue with it.
 
     %p Withdrawn petitions will not be removed from the website.
 
-%section
-  .container
     %h2 Changing contact information
 
     %p
       If you want to change the main contact for your petition call us on
-      = link_to '020 7219 3250', 'tel:02072193250'
-      \.
+      = succeed "." do
+        = link_to '020 7219 3250', 'tel:02072193250'
 
-    .section--major
-      = link_to 'Finish', hybrid_bill_path(@business_id), class: 'btn--primary'
+%section
+  .container
+    %h2 Give feedback
+    %p
+      Help us improve this petitioning process by completing our
+      = succeed "." do
+        = link_to 'feedback form', 'https://www.smartsurvey.co.uk/s/BQVV8/', target: '_blank'
+      %span.sr-only (This link will open in a new window).
+
+    %h2 Bill updates
+    %p
+      For news and updates on the Bill, visit the
+      = succeed "." do
+        = link_to 'High Speed Rail (West Midlands – Crewe) Bill Committee website', 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank'
+      %span.sr-only (This link will open in a new window).

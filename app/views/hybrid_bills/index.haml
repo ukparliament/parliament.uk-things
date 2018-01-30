@@ -8,12 +8,13 @@
       Hybrid Bills mix the characteristics of
       = link_to 'Public Bills', 'http://www.parliament.uk/about/how/laws/bills/public/', target: '_blank'
       %span.sr-only
-        This link will open in a new window
+        This link will open in a new window.
       and
-      = link_to 'Private Bills', 'http://www.parliament.uk/about/how/laws/bills/private/', target: '_blank'
+      = succeed "." do
+        = link_to 'Private Bills', 'http://www.parliament.uk/about/how/laws/bills/private/', target: '_blank'
       %span.sr-only
-        This link will open in a new window
-      \. They often propose works of national importance in a specific area of the UK.
+        This link will open in a new window.
+      They often propose works of national importance in a specific area of the UK.
 
     %p For example, the Channel Tunnel Bills passed in the 1970s and 1980s and the Crossrail Bill passed in 2008.
 
@@ -21,9 +22,10 @@
 
     %p
       To find out more, read our
-      = link_to 'Hybrid Bill Background Paper', 'http://researchbriefings.parliament.uk/ResearchBriefing/Summary/SN06736', target: '_blank'
+      = succeed "." do
+        = link_to 'Hybrid Bill Background Paper', 'http://researchbriefings.parliament.uk/ResearchBriefing/Summary/SN06736', target: '_blank'
       %span.sr-only
-        This link will open in a new window
+        This link will open in a new window.
 
 %section
   .container
