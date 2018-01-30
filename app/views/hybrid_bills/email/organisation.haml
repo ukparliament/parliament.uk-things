@@ -18,8 +18,8 @@
     %h2 Send by email
     %p
       Email your completed petition template to
-      = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
-      \.
+      = succeed "." do
+        = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
 
     %h2 Send by post
     %p Post your completed petition template to Hybrid Bills Office, Houses of Parliament, London, SW1A 0AA.
@@ -47,7 +47,12 @@
               If you need a different format, email
               = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
               or phone
-              = link_to '020 7219 3250', 'tel:02072193250'
-              \.
+              = succeed "." do
+                = link_to '020 7219 3250', 'tel:02072193250'
 
-      = link_to 'Finish', hybrid_bill_path(@business_id), class: 'btn--primary'
+      %h2 Bill updates
+      %p
+        For news and updates on the Bill, visit the
+        = succeed "." do
+          = link_to 'High Speed Rail (West Midlands – Crewe) Bill Committee website', 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank'
+        %span.sr-only (This link will open in a new window).
