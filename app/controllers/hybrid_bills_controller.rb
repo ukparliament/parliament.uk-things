@@ -228,20 +228,25 @@ class HybridBillsController < ApplicationController
   end
 
   def process_complete
-    @petition_reference = session.fetch('hybrid_bill_submission', {})['petition_reference']
-    @document_submitted = session.fetch('hybrid_bill_submission', {}).fetch('document_submitted', false)
-    @terms_accepted = session.fetch('hybrid_bill_submission', {}).fetch('terms_accepted', false)
-    @email_addresses = []
-    @email_addresses << session.fetch('hybrid_bill_submission', {}).fetch('object_params', {}).fetch('email', [])
+    session_hash = session.to_hash
 
-    if session['hybrid_bill_submission']['object_params']['has_a_rep'] == "true"
-      @email_addresses << session.fetch('hybrid_bill_submission', {}).fetch('object_params', {}).fetch('hybrid_bill_agent', {}).fetch('email', [])
+    @petition_reference = session_hash.dig('hybrid_bill_submission', 'petition_reference')
+    @document_submitted = session_hash.dig('hybrid_bill_submission', 'document_submitted') || false
+    @terms_accepted     = session_hash.dig('hybrid_bill_submission', 'terms_accepted') || false
+
+    return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong' if @petition_reference.nil? || !@document_submitted || !@terms_accepted
+
+    @email_addresses    = []
+    @email_addresses    << session_hash.dig('hybrid_bill_submission', 'object_params', 'email') || []
+
+    if session_hash.dig('hybrid_bill_submission', 'object_params', 'has_a_rep') == "true"
+      @email_addresses << session_hash.dig('hybrid_bill_submission', 'object_params', 'hybrid_bill_agent', 'email') || []
       @email_addresses.flatten!
     end
-    return redirect_to hybrid_bill_path(params[:bill_id]), alert: '.something_went_wrong' if @petition_reference.nil? || !@document_submitted || !@terms_accepted
+
     session[:hybrid_bill_submission] = {}
   end
-    
+
   def sanitized_petitioner_params(symbol)
     params.require(symbol).permit(:on_behalf_of, :first_name, :surname, :address_1, :address_2, :postcode, :in_the_uk, :country, :email, :telephone, :receive_updates, :has_a_rep, hybrid_bill_agent: %i[first_name surname address_1 address_2 postcode in_the_uk country email telephone receive_updates])
   end
