@@ -1,10 +1,19 @@
 .section--primary
-  .container
-    .block--border__bottom.block--offset
-      %h1= @article.title
-      = MarkdownHelper.markdown(@article.article_summary)
+  .container--offset
+    %h1= @article.title
+    = MarkdownHelper.markdown(@article.article_summary)
 
 %section#content{ tabindex: "0" }
-  %article
-    .container--offset
+  .container.flex--2__2-1
+    %article
       = MarkdownHelper.markdown(@article.article_body)
+
+    %aside
+      - if @related_articles
+        .block.theme--grey-4
+          %h2= 'Related Articles'
+          %ul.list--pipe
+            - @related_articles.each do |article|
+              %li
+                .list--details
+                  = link_to(article.article_title, article_path(article.graph_id))

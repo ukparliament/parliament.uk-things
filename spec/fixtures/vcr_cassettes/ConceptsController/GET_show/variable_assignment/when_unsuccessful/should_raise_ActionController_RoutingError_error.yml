@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3030/concept_by_id?concept_id=asdf1234
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      - application/n-triples
+      User-Agent:
+      - Ruby
+      Ocp-Apim-Subscription-Key:
+      - "<AUTH_TOKEN>"
+  response:
+    status:
+      code: 200
+      message: Internal Server Error
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '56'
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Set-Cookie:
+      - ARRAffinity=a31eb62e8fa5fccc488f1b764e015b7c6918a5a68c6d31b38f885e3c06338b76;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      Date:
+      - Tue, 30 Jan 2018 18:07:30 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: ""
+    http_version:
+  recorded_at: Tue, 30 Jan 2018 18:09:25 GMT
+recorded_with: VCR 4.0.0
