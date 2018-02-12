@@ -13,8 +13,7 @@ class ConceptsController < ApplicationController
     raise ActionController::RoutingError, 'Concept Not Found' unless @concept
 
     # Returns array of Concept Grom::Nodes
-    @parent_concepts = @concept.parent_concepts.sort_by(&:name)
-    @child_concepts = @concept.child_concepts.sort_by(&:name)
+    @narrower_concepts = @concept.narrower_concepts.sort_by(&:name)
     @concept_articles = @concept.tagged_articles.sort_by(&:article_title)
 
   end
