@@ -12,8 +12,8 @@
         - @concept_articles.each do |article|
           %li= link_to(article.article_title, article_path(article.graph_id))
 
-    - if @child_concepts.any?
+    - if @narrower_concepts.any?
       %h2= "Other topics in this section"
       %ul.list
-        - @child_concepts.each do |concept|
+        - @narrower_concepts.each do |concept|
           %li= link_to(concept.name, concept_path(concept.graph_id))
