@@ -1,7 +1,7 @@
 %li
   .list--details
-    %h3.typography--xs= role_type
-    %h4.lead= role_title
+    %h3.milli= role_type
+    %h4= role_title
     - if role.try(:nodes)
       %p= "Elected #{role.nodes.count} times"
       %ul
