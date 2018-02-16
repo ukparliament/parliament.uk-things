@@ -17,6 +17,7 @@ RSpec.describe 'people/show', vcr: true do
           graph_id:     '7TX8ySd4',
           current_mp?:   true,
           current_lord?: false,
+          mnis_id:       '1357',
           weblinks?:     false))
 
       assign(:current_incumbency,
@@ -34,6 +35,39 @@ RSpec.describe 'people/show', vcr: true do
 
     it 'will render the display name' do
       expect(rendered).to match(/Test Display Name/)
+    end
+  end
+
+  context 'activity links' do
+    before :each do
+      assign(:person,
+        double(:person,
+          display_name: 'Test Display Name',
+          full_title:   'Test Title',
+          full_name:    'Test Full Name',
+          statuses:     { house_membership_status: ['Current MP'] },
+          graph_id:     '7TX8ySd4',
+          current_mp?:   true,
+          current_lord?: false,
+          mnis_id:       '1357',
+          weblinks?:     false
+        )
+      )
+      assign(:current_incumbency,
+        double(:current_incumbency,
+          constituency: double(:constituency, name: 'Aberavon', graph_id: constituency_graph_id, date_range: 'from 2010')))
+      assign(:most_recent_incumbency, nil)
+      assign(:history, { start: nil, current: [], years: {} })
+
+      assign(:seat_incumbencies, count: 2)
+      assign(:committee_memberships, count: 2)
+      assign(:government_incumbencies, count: 2)
+      allow(Pugin::Feature::Bandiera).to receive(:show_activity_links?).and_return(true)
+      render
+    end
+
+    it 'will render an activity link' do
+      expect(rendered).to match('This is our beta website, pages are being tested and improved. You can view <a href="http://www.parliament.uk/biographies/Commons/member/1357">a version of this page</a> on the current website.')
     end
   end
 
