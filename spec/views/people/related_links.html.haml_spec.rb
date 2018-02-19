@@ -73,6 +73,11 @@ RSpec.describe 'people/_related_links' do
             facebook_weblinks: []
           )
         )
+        assign(:most_recent_incumbency,
+          double(:most_recent_incumbency,
+            house: double(:house, name: 'House of Commons')
+          )
+        )
 
         allow(Pugin::Feature::Bandiera).to receive(:show_list_images?).and_return(true)
 

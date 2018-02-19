@@ -64,12 +64,12 @@ RSpec.describe 'people/show', vcr: true do
         render
       end
 
-      it 'will render full name and title' do
+      it 'will render full name and display name' do
         expect(rendered).to match(/Test Full Name/)
       end
 
-      it 'will render title' do
-        expect(rendered).to match(/Test Title/)
+      it 'will render display name' do
+        expect(rendered).to match(/Test Display Name/)
       end
     end
 
@@ -102,8 +102,12 @@ RSpec.describe 'people/show', vcr: true do
           render
         end
 
-        it 'will render full name and title' do
-          expect(rendered).to match(/Test Title/)
+        it 'will render full name' do
+          expect(rendered).to match(/Test Full Name/)
+        end
+
+        it 'will render display name' do
+          expect(rendered).to match(/Test Display Name/)
         end
       end
     end
@@ -767,7 +771,7 @@ RSpec.describe 'people/show', vcr: true do
 
         context 'House roles' do
           it 'will render the correct sub-header' do
-            expect(rendered).to match(/House of Lords role/)
+            expect(rendered).to match(/Parliamentary role/)
           end
 
           it 'will render the correct title' do
@@ -841,7 +845,7 @@ RSpec.describe 'people/show', vcr: true do
 
         context 'House roles' do
           it 'will render the correct sub-header' do
-            expect(rendered).to match(/House of Lords role/)
+            expect(rendered).to match(/Parliamentary role/)
           end
 
           it 'will render the correct title' do
