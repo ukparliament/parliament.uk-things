@@ -1,0 +1,20 @@
+.section--primary
+  .container--offset
+    %h1= sanitize @collection.name
+    %p= MarkdownHelper.markdown(sanitize @collection.description).html_safe
+
+%section#content{ tabindex: '0' }
+  .container
+    %h2= t('.in_this_section')
+    %ul.list--block__inline-50
+      - if @collection.articles.any?
+        - @collection.articles.each do |article|
+          %li
+            .list--details
+              %h3= link_to(sanitize(article.article_title), article_path(article.graph_id))
+
+      - if @collection.subcollections.any?
+        - @collection.subcollections.each do |subcollection|
+          %li
+            .list--details
+              %h3= link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))

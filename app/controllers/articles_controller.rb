@@ -13,5 +13,6 @@ class ArticlesController < ApplicationController
     raise ActionController::RoutingError, 'Article Not Found' unless @article
 
     @related_articles = @article.related_articles
+    @collections = @article.collections
   end
 end

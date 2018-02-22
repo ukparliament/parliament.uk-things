@@ -1,19 +1,27 @@
-.section--primary
-  .container--offset
-    %h1= sanitize @article.title
-    = MarkdownHelper.markdown(sanitize @article.article_summary).html_safe
+.container.flex--2__2-1
+  %article{ tabindex: '0', id: 'content' }
+    %header
+      %h1= sanitize @article.title
+      = MarkdownHelper.markdown(sanitize @article.article_summary).html_safe
 
-%section#content{ tabindex: "0" }
-  .container.flex--2__2-1
-    %article
+    %div{ role: 'main' }
       = MarkdownHelper.markdown(sanitize @article.article_body).html_safe
 
-    %aside
-      - if @related_articles
-        .block.theme--grey-4
-          %h2= 'Related Articles'
-          %ul.list--pipe
-            - @related_articles.each do |article|
-              %li
-                .list--details
-                  = link_to(sanitize(article.article_title), article_path(article.graph_id))
+  %aside
+    - if @related_articles.any?
+      .block
+        %h2= t('.related_articles')
+        %ul.list--pipe
+          - @related_articles.each do |article|
+            %li
+              .list--details
+                = link_to(sanitize(article.article_title), article_path(article.graph_id))
+
+    - if @collections.any?
+      .block
+        %h2= t('.collection_articles')
+        %ul.list--pipe
+          - @collections.each do |collection|
+            %li
+              .list--details
+                = link_to(sanitize(collection.name), collection_path(collection.graph_id))
