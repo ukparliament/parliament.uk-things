@@ -10,4 +10,4 @@
   - f.object.errors.messages[attribute].each do |message|
     %p.message--error{ id: error_id }= message
 
-= f.text_field attribute, class: local_assigns.fetch(:class, nil), pattern: local_assigns.fetch(:pattern, nil), maxlength: local_assigns.fetch(:maxlength, nil), aria: { required: local_assigns.fetch(:aria, {}).fetch(:required, nil), describedby: errors_present ? error_id : nil }, data: { postcode: local_assigns.fetch(:data, {}).fetch(:postcode, nil) }
+= f.text_field attribute, class: local_assigns.fetch(:class, nil), required: local_assigns.fetch(:required, nil), pattern: local_assigns.fetch(:pattern, nil), maxlength: local_assigns.fetch(:maxlength, nil), aria: { required: local_assigns.fetch(:aria, {}).fetch(:required, nil), describedby: errors_present ? error_id : nil }, data: { postcode: local_assigns.fetch(:data, {}).fetch(:postcode, nil) }

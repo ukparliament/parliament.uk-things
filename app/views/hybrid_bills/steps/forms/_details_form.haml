@@ -1,7 +1,8 @@
 = form_for petitioner_object, url: hybrid_bill_path(business_id, step: 'details') do |f|
   - if f.object.errors.any?
     .status--highlight.theme--warning
-      %p{ aria: { live: 'assertive' } } Your form has errors. Please correct them and submit again.
+      %h2{ aria: { live: 'assertive' } } Your form has errors.
+      %p Please correct these errors and submit again.
     %br
 
   %fieldset
@@ -9,18 +10,18 @@
 
     - if include_group
       - if local_assigns.fetch(:group_name, nil)
-        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of, label_value: group_name }
+        = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of, label_value: group_name, required: 'true' }
         %h2 Details of individual in #{group_type}
 
       - else
         = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name, label_value: 'First name(s)', aria: { required: 'true' }, maxlength: 255 }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name, label_value: 'First name(s)', aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :surname, label_value: 'Last name', aria: { required: 'true' }, maxlength: 255 }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :surname, label_value: 'Last name', aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
     %br
-    %span Are you based in the UK?
+    %p Are you based in the UK?
     %fieldset
       %legend.sr-only Please select the country you're based in
       = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :in_the_uk, yes_class: 'js-country-uk', no_class: 'js-country-row' }
@@ -28,21 +29,21 @@
       = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: f, attribute: :country }
     %br
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1, label_value: 'Address line 1', aria: { required: 'true' }, maxlength: 255 }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1, label_value: 'Address line 1', aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
     = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_2, label_value: 'Address line 2 (optional)', aria: { required: 'false' }, maxlength: 255 }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :postcode, label_value: 'Post code', class: 'input__sm', aria: { required: 'true' }, maxlength: 8, pattern: '[0-9a-zA-Z ]{5,}', data: { postcode: 'petitioner' } }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :postcode, label_value: 'Post code', class: 'input__sm', aria: { required: 'true' }, maxlength: 8, required: 'true', pattern: '[0-9a-zA-Z ]{5,}', data: { postcode: 'petitioner' } }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email, aria: { required: 'true' }, maxlength: 255 }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email, aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
     = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: f, attribute: :receive_updates }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone, label_value: 'Phone', class: 'input__md', aria: { required: 'true' }, maxlength: 20 }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone, label_value: 'Phone', class: 'input__md', aria: { required: 'true' }, maxlength: 20, required: 'true' }
 
   %h2 Who should be contacted about this petition?
   %fieldset
-    %legend.sr-only Please confrim who should be contacted about this petition
+    %legend.sr-only Please confirm who should be contacted about this petition
     = render partial: 'hybrid_bills/steps/forms/components/radio_buttons_reversed', locals: { f: f, attribute: :has_a_rep, no_label: 'Individual above', no_class: 'js-ind-check', yes_label: 'Another contact', yes_class: 'js-rep-check' }
 
   .block--border__bottom
@@ -57,7 +58,7 @@
           = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname, label_value: 'Last name', aria: { required: 'true' }, maxlength: 255 }
 
           %br
-          %span Are you based in the UK?
+          %p Are you based in the UK?
           %fieldset
             %legend.sr-only Please select the country you're based in
             = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: a, attribute: :in_the_uk, yes_class: 'js-country-uk-rep', no_class: 'js-country-row-rep' }

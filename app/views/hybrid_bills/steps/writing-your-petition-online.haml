@@ -1,21 +1,21 @@
-- page_title = title('Writing your petition online. Object to the High Speed Rail (West Midlands – Crewe) Bill')
+- page_title = title('Writing your petition online. Object to the High Speed Rail (West Midlands to Crewe) Bill')
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
       Writing your petition - online
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
+      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
 
     %h2.typography--light Step 1 of 5
 
 %section
   .container
 
-    %div(data-browser='javascript')
+    %noscript
       %br
       .status--highlight.theme--caution
-        %p JavaScript is currently switched off in your browser. Switch it on for a better experience.
+        %p= t('javascript_disabled')
 
     %h2 To write your petition
 
@@ -52,30 +52,35 @@
 
     = form_tag hybrid_bill_path(@business_id, step: 'petition-online') do
       .block--border__bottom
-        %fieldset
-          %legend.sr-only Please confrim that you completed your petition template
-          .input-group__inline
-            .input-group
+        .section--minor
+          %fieldset
+            %legend.sr-only Please confirm that you completed your petition template
+            .input-group__inline
               = radio_button_tag 'petition-check', 'yes', class: 'js-petition-check-yes'
               = label_tag 'petition-check_yes', 'Yes'
-          .input-group__inline
-            .input-group
+            .input-group__inline
               = radio_button_tag 'petition-check', 'no', true, class: 'js-petition-check-no',  data:{ submit: 'disabled' }
               = label_tag 'petition-check_no', 'No'
 
         .status--highlight.theme--caution#petitionCheckStatus
           %p Complete your petition template before you continue
 
-        %div(data-browser='cookies')
-          .status--highlight.theme--warning
-            %p
-              = link_to 'Cookies', 'http:https://beta.parliament.uk/meta/cookie-policy'
-              are currently blocked. Allow all cookies to petition online.
+      %noscript
+        .status--highlight.theme--warning
+          %p
+            = t('cookies_disabled_a')
+            = link_to 'https://beta.parliament.uk/meta/cookie-policy' do
+              = t('cookies')
+            = t('cookies_disabled_b')
 
-            %p
-              If you don’t want to allow all cookies, you can
-              =link_to 'petition by email, post or in person', hybrid_bill_email_path(@business_id)
-              \.
+          %p= t('cookies_disabled_c')
+
+          %p
+            = t('cookies_disabled_d')
+            = succeed "." do
+              = link_to hybrid_bill_email_path(@business_id) do
+                = t('hybrid_bills.object_by_email')
+        %br
 
       = submit_tag 'Next', class: 'btn--primary'
 
