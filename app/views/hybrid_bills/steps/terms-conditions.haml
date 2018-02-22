@@ -1,11 +1,11 @@
-- page_title = title('Terms and conditions. Object to the High Speed Rail (West Midlands – Crewe) Bill')
+- page_title = title('Terms and conditions. Object to the High Speed Rail (West Midlands to Crewe) Bill')
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
       Terms and conditions
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
+      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
 
     %h2.typography--light Step 5 of 5
 
@@ -18,19 +18,26 @@
     %ul
       %li
         kept in the
-        = link_to 'Private Bill Office', 'http://www.parliament.uk/about/how/laws/bills/private/office/', target: '_blank'
-        %span.sr-only (This link will open in a new window)
+        = succeed " " do
+          = link_to 'http://www.parliament.uk/about/how/laws/bills/private/office/', target: '_blank' do
+            Private Bill Office
+            %span.sr-only> (This link will open in a new window)
         and as a record in the
-        = link_to 'Parliamentary Archives', 'http://www.parliament.uk/business/publications/parliamentary-archives/', target: '_blank'
-        %span.sr-only (This link will open in a new window)
+        = link_to 'http://www.parliament.uk/business/publications/parliamentary-archives/', target: '_blank' do
+          Parliamentary Archives
+          %span.sr-only> (This link will open in a new window)
 
       %li
         sent to the
-        = link_to 'Department for Transport', 'https://www.gov.uk/government/organisations/department-for-transport', target: '_blank'
-        %span.sr-only (This link will open in a new window)
+        = succeed " " do
+          = link_to 'https://www.gov.uk/government/organisations/department-for-transport', target: '_blank' do
+            Department for Transport
+            %span.sr-only> (This link will open in a new window)
         and
-        = link_to 'High Speed Two (HS2) Limited', 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank'
-        %span.sr-only (This link will open in a new window)
+        = succeed " " do
+          = link_to 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank' do
+            High Speed Two (HS2) Limited
+            %span.sr-only> (This link will open in a new window)
         after the petition has been received by the Private Bill Office
 
     %p We will publish your petition on UK Parliament’s website. This will include your name and address.
@@ -59,7 +66,7 @@
       .block--border__bottom
         %fieldset
           %legend.sr-only Please confirm you agree to the terms and conditions
-          = check_box_tag 'enableSubmit', 'accepted', false, 'data-submit': 'disabled', 'aria-required': 'true'
-          = label_tag 'enableSubmit', 'I agree to the terms and conditions'
+          = check_box_tag 'termsAccept', 'accepted', false, 'data-submit': 'disabled', 'aria-required': 'true', 'required': 'true'
+          = label_tag 'termsAccept', 'I agree to the terms and conditions'
           = hidden_field_tag 'hybrid_bill_terms[accepted]', true
       = submit_tag 'Send petition', class: 'btn--primary'

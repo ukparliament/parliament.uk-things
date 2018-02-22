@@ -1,11 +1,11 @@
-- page_title = title('Thank you for your petition. Object to the High Speed Rail (West Midlands – Crewe) Bill')
+- page_title = title('Thank you for your petition. Object to the High Speed Rail (West Midlands to Crewe) Bill')
 
 #content.section--primary{ tabindex: '0' }
   .container
     %h1
       Thank you for your petition
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
+      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
 
     %br
     .status--highlight
@@ -61,12 +61,14 @@
     %p
       Help us improve this petitioning process by completing our
       = succeed "." do
-        = link_to 'feedback form', 'https://www.smartsurvey.co.uk/s/BQVV8/', target: '_blank'
-      %span.sr-only (This link will open in a new window).
+        = link_to 'https://www.smartsurvey.co.uk/s/BQVV8/', target: '_blank' do
+          feedback form
+          %span.sr-only> (This link will open in a new window).
 
     %h2 Bill updates
     %p
       For news and updates on the Bill, visit the
       = succeed "." do
-        = link_to 'High Speed Rail (West Midlands – Crewe) Bill Committee website', 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank'
-      %span.sr-only (This link will open in a new window).
+        = link_to 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank' do
+          High Speed Rail (West Midlands to Crewe) Bill Committee website
+          %span.sr-only> (This link will open in a new window).

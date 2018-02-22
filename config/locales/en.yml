@@ -106,8 +106,45 @@ en:
               invalid: 'Please enter a valid post code'
 
   hybrid_bills:
+    # Global hybrid bills translations
+    hs2: 'High Speed Rail (West Midlands to Crewe)'
+    hs2_bill: 'bill'
+    hs2_ap: 'additional provision'
+    hs2_ap_one: 'one'
+    object_to: 'Object to the'
+    the_bill: 'the bill'
+    object_to_the_bill: 'Object to the bill'
+    object_to_ap_one: 'Object to additional provision one'
+    of_the: 'of the'
+    object_by_email: 'petition by email, post or in person'
+    index:
+      title: 'hybrid bills'
+      intro_a: 'Hybrid bills mix the characteristics of'
+      public_bills: 'Public Bills'
+      intro_b: 'and'
+      private_bills: 'Private Bills'
+      intro_c: 'They often propose works of national importance in a specific area of the UK.'
+      intro_d: 'For example, the Channel Tunnel Bills passed in the 1970s and 1980s and the Crossrail Bill passed in 2008.'
+      intro_e: 'Changes to the law proposed by a hybrid bill affect the general public and impact specific individuals, groups or organisations.'
+      hybrid_bill_paper_text: 'To find out more, read our'
+      hybrid_bill_paper_link: 'Hybrid Bill Background Paper'
+      object_hybrid_bill: 'objecting to a hybrid bill'
+      object_hybrid_bill_a: 'Any individual, group of individuals, organisation or group of organisations affected by a hybrid bill can object to it.'
+      object_hybrid_bill_b: 'This can lead to changes being made to the bill, called additional provisions.'
+      object_hybrid_bill_c: 'Objecting to additional provisions is separate to objecting to the original bill.'
+      current_hybrid_bills: 'current hybrid bills'
     show:
-      something_went_wrong: 'Sorry, something went wrong. Please try again later. If the problem continues call us on 020 7219 3000 or email: petition@parliament.uk.'
+      petition_status: 'The deadline is 5pm on Monday 26 February 2018.'
+      something_went_wrong: 'Sorry, something went wrong. Please try again later. If the problem continues call us on 020 7219 3250 or email: prbohoc@parliament.uk.'
+
+  # global transactional messaging
+  open_new_window_link: '(This link will open in a new window)'
+  javascript_disabled: 'JavaScript is currently switched off in your browser. Switch it on for a better experience.'
+  cookies: 'cookies'
+  cookies_disabled_a: 'JavaScript is switched off in your browser. This might mean'
+  cookies_disabled_b: 'are blocked.'
+  cookies_disabled_c: 'Allow all cookies to petition online.'
+  cookies_disabled_d: 'If you don’t want to allow all cookies, you can'
 
   # global people translations
   mp: 'MP'

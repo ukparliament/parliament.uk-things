@@ -1,11 +1,11 @@
-- page_title = title('Upload your completed template. Object to the High Speed Rail (West Midlands – Crewe) Bill')
+- page_title = title('Upload your completed template. Object to the High Speed Rail (West Midlands to Crewe) Bill')
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
       Upload your completed template
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands – Crewe) Bill
+      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
 
     %h2.typography--light Step 4 of 5
 
@@ -39,7 +39,7 @@
           .list-details
             %h3 Upload your petition template
 
-            = file_field_tag 'hybrid_bill_document[file]', id: 'fileUpload', 'data-file-upload': 'button', 'data-file-size': '2097152'
+            = file_field_tag 'hybrid_bill_document[file]', id: 'fileUpload', 'data-file-upload': 'button', 'data-file-size': '2097152', 'required': 'true'
             %label{for: 'fileUpload', class: 'btn--primary'} Choose file
 
             %p{ 'data-file-upload': 'status' } No file(s) selected

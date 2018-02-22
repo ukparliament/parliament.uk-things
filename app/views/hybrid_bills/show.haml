@@ -1,39 +1,40 @@
-- page_title = title('Object to the High Speed Rail (West Midlands – Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.section--primary{ tabindex: '0' }
   .container
-    %h1 Object to the High Speed Rail (West Midlands – Crewe) Bill
+    %h1= page_title
 
     - if flash[:alert]
       %br
       .status--highlight.theme--warning
         %p= t(flash[:alert])
 
-    %div(data-browser='javascript')
+    %noscript
       %br
       .status--highlight.theme--caution
-        %p JavaScript is currently switched off in your browser. Switch it on for a better experience.
+        %p= t('javascript_disabled')
 
     .status--highlight
-      %p The deadline is 5pm on 26 February 2018.
+      %p= t('.petition_status')
 
 %section
   .container
     %h2 Overview
 
-    %p Any individual, group of individuals, organisation or group of organisations affected by the High Speed Rail (West Midlands – Crewe) Bill can object to it.
+    %p Any individual, group of individuals, organisation or group of organisations affected by the High Speed Rail (West Midlands to Crewe) Bill can object to it.
 
     %p
       To find out more about the Bill, visit the
       = succeed "." do
-        = link_to 'High Speed Two (HS2) Limited website', 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank'
-      %span.sr-only (This link will open in a new window).
+        = link_to 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank' do
+          High Speed Two (HS2) Limited website
+          %span.sr-only> (This link will open in a new window).
 
 %section
   .container
     %h2 Objecting to the Bill
 
-    %p To object to the High Speed Rail (West Midlands – Crewe) Bill you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.
+    %p To object to the High Speed Rail (West Midlands to Crewe) Bill you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.
 
     %p We will ask for your name, address and examples of how you are affected by the Bill.
 
@@ -48,8 +49,9 @@
     %p
       The main contact will receive all petition communications. They will usually be invited to give evidence about it to the
       = succeed "." do
-        = link_to 'High Speed Rail (West Midlands – Crewe) Bill Committee', 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank'
-      %span.sr-only (This link will open in a new window).
+        = link_to 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank' do
+          High Speed Rail (West Midlands to Crewe) Bill Committee
+          %span.sr-only> (This link will open in a new window).
 
 %section
   .container
@@ -67,13 +69,21 @@
       %h3.typography--light You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.
 
     .section--major
-      %div(data-browser='cookies')
+      %noscript
         .status--highlight.theme--warning
           %p
-            = link_to 'Cookies', 'http:https://beta.parliament.uk/meta/cookie-policy'
-            are currently blocked. Allow all cookies to petition online.
+            = t('cookies_disabled_a')
+            = link_to 'https://beta.parliament.uk/meta/cookie-policy' do
+              = t('cookies')
+            = t('cookies_disabled_b')
 
-          %p If you don’t want to allow all cookies, you can petition by email, post or in person.
+          %p= t('cookies_disabled_c')
 
-      =link_to 'Petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary', data:{ browser: 'button' }
+          %p
+            = succeed "." do
+              = t('cookies_disabled_d')
+              = t('hybrid_bills.object_by_email')
+            
+
+      =link_to 'Petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary'
       =link_to 'Petition by email, post or in person', hybrid_bill_email_path(@business_id), class: 'btn--primary--inverse'
