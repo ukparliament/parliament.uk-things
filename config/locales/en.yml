@@ -271,7 +271,6 @@ en:
     timeline_roles:
       mp_for: 'MP for'
       parliamentary_role: 'parliamentary role'
-      house_of_lords_role: 'House of Lords role'
       committee_role: 'committee role'
       government_role: 'government role'
       opposition_role: 'opposition role'
@@ -281,7 +280,6 @@ en:
     current_roles:
       mp_for: 'MP for'
       parliamentary_role: 'parliamentary role'
-      house_of_lords_role: 'House of Lords role'
       committee_role: 'committee role'
       government_role: 'government role'
       opposition_role: 'opposition role'

@@ -16,7 +16,7 @@
             = render 'timeline_role', role: role, role_type: role_type, role_title: t('.parliamentary_role').capitalize
 
         - elsif role.house_of_lords?
-          = render 'timeline_role', role: role, role_type: "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}", role_title: t('.house_of_lords_role')
+          = render 'timeline_role', role: role, role_type: "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}", role_title: t('.parliamentary_role').capitalize
 
       - elsif RoleHelper.role_type(role, 'FormalBodyMembership')
         = render 'timeline_role', role: role, role_type: "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}", role_title: t('.committee_role').capitalize

@@ -18,7 +18,7 @@
         - first_line = "#{first_line_start} #{first_line_end}".html_safe
         = render 'current_role', role: role, role_type: "#{t('.parliamentary_role').capitalize}", role_title: first_line
     - else
-      = render 'current_role', role: role, role_type: "#{t('.house_of_lords_role')}", role_title: "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
+      = render 'current_role', role: role, role_type: "#{t('.parliamentary_role').capitalize}", role_title: "#{t('member').capitalize} #{t('of_the')} #{t('house_of_lords')}"
 
   - current_roles.fetch('FormalBodyMembership', []).each do |role|
     = render 'current_role', role: role, role_type: "#{t('.committee_role').capitalize}", role_title: "#{t('member').capitalize} #{t('of_the')} #{role.formal_body.name}"
