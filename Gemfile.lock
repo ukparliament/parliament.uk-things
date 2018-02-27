@@ -82,7 +82,7 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
-    ffi (1.9.21)
+    ffi (1.9.23)
     geosparql_to_geojson (0.2.0)
       json-schema (~> 2.8)
     globalid (0.4.1)
@@ -141,10 +141,10 @@ GEM
     parallel (1.12.1)
     parallel_tests (2.21.1)
       parallel
-    parliament-grom-decorators (0.16.4)
+    parliament-grom-decorators (0.17.0)
     parliament-ntriple (0.2.1)
       grom (~> 0.5)
-    parliament-routes (0.5.4)
+    parliament-routes (0.6.0)
     parliament-ruby (0.10.2)
     parliament-utils (0.6.1)
       bandiera-client
@@ -157,8 +157,8 @@ GEM
       pugin
       simplecov
       vcard
-    parser (2.4.0.2)
-      ast (~> 2.3)
+    parser (2.5.0.2)
+      ast (~> 2.4.0)
     powerpack (0.1.1)
     public_suffix (3.0.2)
     pugin (1.6.14)
@@ -311,9 +311,9 @@ DEPENDENCIES
   haml
   listen (>= 3.0.5, < 3.2)
   parallel_tests
-  parliament-grom-decorators (~> 0.16)
+  parliament-grom-decorators (~> 0.17)
   parliament-ntriple (~> 0.2)
-  parliament-routes (~> 0.3)
+  parliament-routes (~> 0.6)
   parliament-ruby (~> 0.8)
   parliament-utils (~> 0.6)
   pugin (~> 1.6)
