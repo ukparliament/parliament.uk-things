@@ -1,4 +1,4 @@
-- page_title = title("#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
+- page_title = title("#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.section--primary{ tabindex: '0' }
   .container
@@ -15,58 +15,65 @@
         %p= t('javascript_disabled')
 
     .status--highlight
-      %p= t('.petition_status')
+      %p= t('hybrid_bills.petition_status_active')
 
 %section
   .container
-    %h2 Overview
+    %h2= t('.overview').capitalize
 
-    %p Any individual, group of individuals, organisation or group of organisations affected by the High Speed Rail (West Midlands to Crewe) Bill can object to it.
+    %p= t('.overview_a_bill')
 
     %p
-      To find out more about the Bill, visit the
+      = t('.overview_b')
       = succeed "." do
         = link_to 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank' do
-          High Speed Two (HS2) Limited website
-          %span.sr-only> (This link will open in a new window).
+          = t('.overview_c')
+          %span.sr-only>
+            = t('open_new_window_link')
 
 %section
   .container
-    %h2 Objecting to the Bill
+    %h2= t('.object_bill').capitalize
 
-    %p To object to the High Speed Rail (West Midlands to Crewe) Bill you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.
+    %p= "#{t('.object_bill_a_bill')} #{t('.object_bill_a')}"
 
-    %p We will ask for your name, address and examples of how you are affected by the Bill.
+    %p= "#{t('.object_bill_b')} #{t('.object_bill_b_bill')}"
 
-    %p The petition does not require any signatures.
+    %p= t('.object_bill_c')
 
 %section
   .container
-    %h2 Contact details
+    %h2= t('.contact_details').capitalize
 
-    %p We will ask you to tell us who should be contacted about your petition. This main contact can be you or someone else, for example a friend, family member or lawyer.
+    %p= t('.contact_details_a')
 
     %p
-      The main contact will receive all petition communications. They will usually be invited to give evidence about it to the
+      = t('.contact_details_b')
       = succeed "." do
         = link_to 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank' do
-          High Speed Rail (West Midlands to Crewe) Bill Committee
-          %span.sr-only> (This link will open in a new window).
+          = t('hybrid_bills.hs2_committee')
+          %span.sr-only>
+            = t('open_new_window_link')
 
 %section
   .container
-    %h2 After sending your petition
+    %h2= t('.after_sending_petition').capitalize
 
     .track--alternative
-      %h3.typography--light Once we’ve received your petition we’ll ask you to pay a &pound;20 admin fee.
+      %h3.typography--light
+        = t('.after_sending_petition_a')
 
-      %h3.typography--light We'll publish your petition on our website. This will include your name and address.
+      %h3.typography--light
+        = t('.after_sending_petition_b')
 
-      %h3.typography--light We’ll send your petition to HS2 Ltd, who may contact you to discuss it.
+      %h3.typography--light
+        = t('.after_sending_petition_c')
 
-      %h3.typography--light We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by the Bill.
+      %h3.typography--light
+        = "#{t('.after_sending_petition_d')} #{t('.object_bill_b_bill')}"
 
-      %h3.typography--light You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.
+      %h3.typography--light
+        = t('.after_sending_petition_e')
 
     .section--major
       %noscript
@@ -83,7 +90,7 @@
             = succeed "." do
               = t('cookies_disabled_d')
               = t('hybrid_bills.object_by_email')
-            
 
-      =link_to 'Petition on our website', hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary'
-      =link_to 'Petition by email, post or in person', hybrid_bill_email_path(@business_id), class: 'btn--primary--inverse'
+
+      =link_to t('hybrid_bills.object_online').capitalize, hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary'
+      =link_to t('hybrid_bills.object_by_email').capitalize, hybrid_bill_email_path(@business_id), class: 'btn--primary--inverse'

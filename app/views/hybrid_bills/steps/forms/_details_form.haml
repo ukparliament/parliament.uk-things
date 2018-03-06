@@ -1,84 +1,90 @@
 = form_for petitioner_object, url: hybrid_bill_path(business_id, step: 'details') do |f|
   - if f.object.errors.any?
     .status--highlight.theme--warning
-      %h2{ aria: { live: 'assertive' } } Your form has errors.
-      %p Please correct these errors and submit again.
+      %h2{ aria: { live: 'assertive' } }
+        = t('user_forms.error_title').capitalize
+      %p= t('user_forms.error_text').capitalize
     %br
 
   %fieldset
-    %legend.sr-only Please provide details for the petitioner(s)
+    %legend.sr-only
+      = t('hybrid_bills.user_details_form.petition_legend').capitalize
 
     - if include_group
       - if local_assigns.fetch(:group_name, nil)
         = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of, label_value: group_name, required: 'true' }
-        %h2 Details of individual in #{group_type}
+        %h2= "#{t('hybrid_bills.pet_details').capitalize} #{t('hybrid_bills.pet_of')} #{t('hybrid_bills.individual')} #{t('hybrid_bills.pet_in')} #{group_type}"
 
       - else
         = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :on_behalf_of }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name, label_value: 'First name(s)', aria: { required: 'true' }, maxlength: 255, required: 'true' }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :first_name, label_value: t('user_forms.first_name').capitalize, aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :surname, label_value: 'Last name', aria: { required: 'true' }, maxlength: 255, required: 'true' }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :surname, label_value: t('user_forms.last_name').capitalize, aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
     %br
-    %p Are you based in the UK?
+    %p= t('user_forms.country_uk')
     %fieldset
-      %legend.sr-only Please select the country you're based in
+      %legend.sr-only
+        = t('user_forms.country_select_legend').capitalize
       = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :in_the_uk, yes_class: 'js-country-uk', no_class: 'js-country-row' }
     #countrySelect
       = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: f, attribute: :country }
     %br
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1, label_value: 'Address line 1', aria: { required: 'true' }, maxlength: 255, required: 'true' }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1, label_value: t('user_forms.address_1').capitalize, aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_2, label_value: 'Address line 2 (optional)', aria: { required: 'false' }, maxlength: 255 }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_2, label_value: "#{t('user_forms.address_2').capitalize} #{t('user_forms.optional')}", aria: { required: 'false' }, maxlength: 255 }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :postcode, label_value: 'Post code', class: 'input__sm', aria: { required: 'true' }, maxlength: 8, required: 'true', pattern: '[0-9a-zA-Z ]{5,}', data: { postcode: 'petitioner' } }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :postcode, label_value: t('user_forms.postcode').capitalize, class: 'input__sm', aria: { required: 'true' }, maxlength: 8, required: 'true', pattern: '[0-9a-zA-Z ]{5,}', data: { postcode: 'petitioner' } }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email, aria: { required: 'true' }, maxlength: 255, required: 'true' }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :email, label_value: t('user_forms.email').capitalize, aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
     = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: f, attribute: :receive_updates }
 
-    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone, label_value: 'Phone', class: 'input__md', aria: { required: 'true' }, maxlength: 20, required: 'true' }
+    = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone, label_value: t('user_forms.telephone').capitalize, class: 'input__md', aria: { required: 'true' }, maxlength: 20, required: 'true' }
 
-  %h2 Who should be contacted about this petition?
+  %h2= t('hybrid_bills.user_details_form.petition_contact').capitalize
   %fieldset
-    %legend.sr-only Please confirm who should be contacted about this petition
-    = render partial: 'hybrid_bills/steps/forms/components/radio_buttons_reversed', locals: { f: f, attribute: :has_a_rep, no_label: 'Individual above', no_class: 'js-ind-check', yes_label: 'Another contact', yes_class: 'js-rep-check' }
+    %legend.sr-only
+      = t('hybrid_bills.user_details_form.petition_contact_legend').capitalize
+    = render partial: 'hybrid_bills/steps/forms/components/radio_buttons_reversed', locals: { f: f, attribute: :has_a_rep, no_label: t('hybrid_bills.user_details_form.petition_contact_opt_a').capitalize, no_class: 'js-ind-check', yes_label: t('hybrid_bills.user_details_form.petition_contact_opt_b').capitalize, yes_class: 'js-rep-check' }
 
   .block--border__bottom
     #repForm
-      %h3 Main contact's details
+      %h3= t('hybrid_bills.user_details_form.main_contact').capitalize
       = f.fields_for :hybrid_bill_agent, petitioner_object.hybrid_bill_agent do |a|
         %fieldset
-          %legend.sr-only Please provide details for the main contact
+          %legend.sr-only
+            = t('hybrid_bills.user_details_form.main_contact_legend').capitalize
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :first_name, label_value: 'First name(s)', aria: { required: 'true' }, maxlength: 255 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :first_name, label_value: t('user_forms.first_name').capitalize, maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname, label_value: 'Last name', aria: { required: 'true' }, maxlength: 255 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname, label_value: t('user_forms.last_name').capitalize, maxlength: 255 }
 
           %br
-          %p Are you based in the UK?
+          %p= t('user_forms.country_uk')
           %fieldset
-            %legend.sr-only Please select the country you're based in
+            %legend.sr-only
+              = t('user_forms.country_select_legend').capitalize
             = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: a, attribute: :in_the_uk, yes_class: 'js-country-uk-rep', no_class: 'js-country-row-rep' }
           #countrySelectRep
             = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: a, attribute: :country }
           %br
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_1, label_value: 'Address line 1', aria: { required: 'true' }, maxlength: 255 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_1, label_value: t('user_forms.address_1').capitalize, maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_2, label_value: 'Address line 2 (optional)', aria: { required: 'false' }, maxlength: 255 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_2, label_value: "#{t('user_forms.address_2').capitalize} #{t('user_forms.optional')}", maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :postcode, label_value: 'Post code', class: 'input__sm', aria: { required: 'true' }, maxlength: 20 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :postcode, label_value: t('user_forms.postcode').capitalize, class: 'input__sm', maxlength: 20 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email, aria: { required: 'true' }, maxlength: 255 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email, label_value: t('user_forms.email').capitalize, maxlength: 255 }
 
           = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: a, attribute: :receive_updates }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone, label_value: 'Phone', class: 'input__md', aria: { required: 'true' }, maxlength: 20 }
+          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone, label_value: t('user_forms.telephone').capitalize, class: 'input__md', maxlength: 20 }
 
-  = f.submit 'Next', class: 'btn--primary'
+  = f.submit t('user_forms.next_button').capitalize, class: 'btn--primary'
 
 %p
-  =link_to 'Back', hybrid_bill_path(@business_id, step: 'petition-online')
+  =link_to t('user_forms.back_button').capitalize, hybrid_bill_path(@business_id, step: 'petition-online')

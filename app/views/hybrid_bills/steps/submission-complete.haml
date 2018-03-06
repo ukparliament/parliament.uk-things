@@ -1,74 +1,87 @@
-- page_title = title('Thank you for your petition. Object to the High Speed Rail (West Midlands to Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.submission-complete.title').capitalize}. #{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.section--primary{ tabindex: '0' }
   .container
     %h1
-      Thank you for your petition
+      = t('hybrid_bills.submission-complete.title').capitalize
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
+      %span= "#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
     %br
     .status--highlight
       %p.lead
-        Your petition reference is
+        = t('hybrid_bills.submission-complete.petition_ref').capitalize
         %strong
           = @petition_reference
 
       %p
-        This petition reference and the information on this page will be sent to
+        = t('hybrid_bills.submission-complete.petition_ref_a')
         %em
           = @email_addresses.join(' and')
-        in the next 15 minutes.
+        = t('hybrid_bills.submission-complete.petition_ref_b')
 
 %section
   .container
-    %h2 What happens next
+    %h2= t('hybrid_bills.submission-complete.what_next').capitalize
 
     .track--alternative
-      %h3.typography--light We'll email you within 14 days about how to pay the &pound;20 admin fee.
+      %h3.typography--light
+        = t('hybrid_bills.submission-complete.what_next_a')
 
-      %h3.typography--light We'll publish your petition on our website. This will include your name and address.
+      %h3.typography--light
+        = t('hybrid_bills.submission-complete.what_next_b')
 
-      %h3.typography--light We’ll send your petition to HS2 Ltd, who may contact you to discuss it.
+      %h3.typography--light
+        = t('hybrid_bills.submission-complete.what_next_c')
 
-      %h3.typography--light We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by the Bill.
+      %h3.typography--light
+        = "#{t('hybrid_bills.submission-complete.what_next_d')} #{t('hybrid_bills.show.object_bill_b_bill')}"
 
-      %h3.typography--light You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.
-
-%section
-  .container
-    %h2 Withdrawing your petition
-
-    %p
-      You can withdraw your petition by emailing us at
-      = succeed "." do
-        = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
-
-    %p Anyone named on a petition can withdraw from the petition, leaving the remaining petitioners to continue with it.
-
-    %p Withdrawn petitions will not be removed from the website.
-
-    %h2 Changing contact information
-
-    %p
-      If you want to change the main contact for your petition call us on
-      = succeed "." do
-        = link_to '020 7219 3250', 'tel:02072193250'
+      %h3.typography--light
+        = t('hybrid_bills.submission-complete.what_next_e')
 
 %section
   .container
-    %h2 Give feedback
+    %h2= t('hybrid_bills.submission-complete.withdrawing').capitalize
+
     %p
-      Help us improve this petitioning process by completing our
+      = t('hybrid_bills.submission-complete.withdrawing_a')
+      = succeed "." do
+        = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
+
+    %p= t('hybrid_bills.submission-complete.withdrawing_b')
+
+    %p= t('hybrid_bills.submission-complete.withdrawing_c')
+
+%section
+  .container
+    %h2= t('hybrid_bills.submission-complete.change_contact').capitalize
+
+    %p
+      = t('hybrid_bills.submission-complete.change_contact_a')
+      = succeed "." do
+        = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"
+
+%section
+  .container
+    %h2= t('hybrid_bills.submission-complete.feedback').capitalize
+
+    %p
+      = t('hybrid_bills.submission-complete.feedback_a')
       = succeed "." do
         = link_to 'https://www.smartsurvey.co.uk/s/BQVV8/', target: '_blank' do
-          feedback form
-          %span.sr-only> (This link will open in a new window).
+          = t('hybrid_bills.submission-complete.feedback_b')
+          %span.sr-only>
+            = t('open_new_window_link')
 
-    %h2 Bill updates
+%section
+  .container
+    %h2= t('hybrid_bills.email.bill_updates').capitalize
+
     %p
-      For news and updates on the Bill, visit the
+      = t('hybrid_bills.email.bill_updates_a')
       = succeed "." do
         = link_to 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank' do
-          High Speed Rail (West Midlands to Crewe) Bill Committee website
-          %span.sr-only> (This link will open in a new window).
+          = "#{t('hybrid_bills.hs2_committee')} #{t('hybrid_bills.hs2_website')}"
+          %span.sr-only>
+            = t('open_new_window_link')

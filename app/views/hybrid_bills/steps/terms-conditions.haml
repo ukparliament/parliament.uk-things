@@ -1,64 +1,69 @@
-- page_title = title('Terms and conditions. Object to the High Speed Rail (West Midlands to Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.terms-conditions.title').capitalize}. #{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
-      Terms and conditions
+      = t('hybrid_bills.terms-conditions.title').capitalize
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
+      %span= "#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
-    %h2.typography--light Step 5 of 5
+    %h2.typography--light
+      = "#{t('hybrid_bills.step_5').capitalize} #{t('hybrid_bills.step_1_5')}"
 
 %section
   .container
-    %h2 Personal information
+    %h2= t('hybrid_bills.terms-conditions.personal_info').capitalize
 
-    %p A copy of this petition and information provided in the online form will be:
+    %p= t('hybrid_bills.terms-conditions.personal_info_a')
 
     %ul
       %li
-        kept in the
+        = t('hybrid_bills.terms-conditions.personal_info_b')
         = succeed " " do
           = link_to 'http://www.parliament.uk/about/how/laws/bills/private/office/', target: '_blank' do
-            Private Bill Office
-            %span.sr-only> (This link will open in a new window)
-        and as a record in the
+            = t('hybrid_bills.terms-conditions.personal_info_c')
+            %span.sr-only>
+              = t('open_new_window_link')
+        = t('hybrid_bills.terms-conditions.personal_info_d')
         = link_to 'http://www.parliament.uk/business/publications/parliamentary-archives/', target: '_blank' do
-          Parliamentary Archives
-          %span.sr-only> (This link will open in a new window)
+          = t('hybrid_bills.terms-conditions.personal_info_e')
+          %span.sr-only>
+            = t('open_new_window_link')
 
       %li
-        sent to the
+        = t('hybrid_bills.terms-conditions.personal_info_f')
         = succeed " " do
           = link_to 'https://www.gov.uk/government/organisations/department-for-transport', target: '_blank' do
-            Department for Transport
-            %span.sr-only> (This link will open in a new window)
-        and
+            = t('hybrid_bills.terms-conditions.personal_info_g')
+            %span.sr-only>
+              = t('open_new_window_link')
+        = t('hybrid_bills.terms-conditions.personal_info_h')
         = succeed " " do
           = link_to 'https://www.gov.uk/government/organisations/high-speed-two-limited', target: '_blank' do
-            High Speed Two (HS2) Limited
-            %span.sr-only> (This link will open in a new window)
-        after the petition has been received by the Private Bill Office
+            = t('hybrid_bills.terms-conditions.personal_info_i')
+            %span.sr-only>
+              = t('open_new_window_link')
+        = t('hybrid_bills.terms-conditions.personal_info_j')
 
-    %p We will publish your petition on UK Parliament’s website. This will include your name and address.
+    %p= t('hybrid_bills.terms-conditions.personal_info_k')
 
-    %p The personal information you have provided may be kept in a database by both Private Bill Offices.
-
-%section
-  .container
-    %h2 Communications
-
-    %p Private Bill Office staff may call or email any of the people named in the petition to verify the information provided. 
-
-    %p Communications may be stored in databases to keep track of information you have given or received. This information may be shared between the Private Bill Offices.
+    %p= t('hybrid_bills.terms-conditions.personal_info_l')
 
 %section
   .container
-    %h2 Consent and confirmation
+    %h2= t('hybrid_bills.terms-conditions.comms').capitalize
 
-    %p The information you have provided in the petition and online form is accurate.
+    %p= t('hybrid_bills.terms-conditions.comms_a')
 
-    %p If you have completed the form on behalf of an individual, a group of individuals, an organisation, or a group of organisations, you have been authorised to do so.
+    %p= t('hybrid_bills.terms-conditions.comms_b')
+
+%section
+  .container
+    %h2= t('hybrid_bills.terms-conditions.consent').capitalize
+
+    %p= t('hybrid_bills.terms-conditions.consent_a')
+
+    %p= t('hybrid_bills.terms-conditions.consent_b')
 
     %br
 
@@ -67,6 +72,6 @@
         %fieldset
           %legend.sr-only Please confirm you agree to the terms and conditions
           = check_box_tag 'termsAccept', 'accepted', false, 'data-submit': 'disabled', 'aria-required': 'true', 'required': 'true'
-          = label_tag 'termsAccept', 'I agree to the terms and conditions'
+          = label_tag 'termsAccept', t('user_forms.terms_conditions_accept').capitalize
           = hidden_field_tag 'hybrid_bill_terms[accepted]', true
-      = submit_tag 'Send petition', class: 'btn--primary'
+      = submit_tag t('hybrid_bills.terms-conditions.send_petition_button').capitalize, class: 'btn--primary'
