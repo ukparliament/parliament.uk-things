@@ -1,15 +1,17 @@
-- page_title = title('Group of organisations’ details. Object to the High Speed Rail (West Midlands to Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.group_organisations_owned').capitalize} #{t('hybrid_bills.pet_details')}. #{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
-      Group of organisations' details
+      = "#{t('hybrid_bills.group_organisations_owned').capitalize} #{t('hybrid_bills.pet_details')}"
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
+      %span= "#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
-    %h2.typography--light Step 3 of 5
+    %h2.typography--light
+      = "#{t('hybrid_bills.step_3').capitalize} #{t('hybrid_bills.step_1_5')}"
 
 %section.section--major
   .container
-    %h2.sr-only Complete the fields below
-    =render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: true, group_name: 'Names of Organisations', group_type: 'group of organisations' }
+    %h2.sr-only
+      = t('user_forms.complete_fields').capitalize
+    =render partial: 'hybrid_bills/steps/forms/details_form', locals: { petitioner_object: @petitioner_object, business_id: @business_id, include_group: true, group_name: t('hybrid_bills.user_details_form.group_organisations_name'), group_type: t('hybrid_bills.group_organisations') }

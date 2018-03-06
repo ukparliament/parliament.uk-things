@@ -1,19 +1,20 @@
-- page_title = title('Petition by email, post or in person. Object to the High Speed Rail (West Midlands to Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.object_by_email').capitalize}. #{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
-      Petition by email, post or in person
+      = t('hybrid_bills.object_by_email').capitalize
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
+      %span= "#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
-    %h2.typography--light Step 1 of 2
+    %h2.typography--light
+      = "#{t('hybrid_bills.step_1').capitalize} #{t('hybrid_bills.step_1_2')}"
 
 %section
   .container
-    %h2 Who are you submitting a petition for?
+    %h2= t('.subtitle').capitalize
     = form_tag hybrid_bill_email_type_path(@business_id) do
       = render partial: 'hybrid_bills/steps/forms/components/petitioner-type'
 
     %p
-      =link_to 'Back', hybrid_bill_path(@business_id)
+      =link_to t('user_forms.back_button').capitalize, hybrid_bill_path(@business_id)

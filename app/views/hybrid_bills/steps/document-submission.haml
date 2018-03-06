@@ -1,33 +1,36 @@
-- page_title = title('Upload your completed template. Object to the High Speed Rail (West Midlands to Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.document-submission.title').capitalize}. #{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
-      Upload your completed template
+      = t('hybrid_bills.document-submission.title').capitalize
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
+      %span= "#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
-    %h2.typography--light Step 4 of 5
+    %h2.typography--light
+      = "#{t('hybrid_bills.step_4').capitalize} #{t('hybrid_bills.step_1_5')}"
 
 - if @document_object
   %section
     .container
       %br
       .status--highlight.theme--warning
-        %h2 Errors
+        %h2= t('hybrid_bills.document-submission.upload_error_title').capitalize
         %ul#error-file-upload
           - if @document_object.errors[:filename]
-            %li{ aria: { live: 'assertive'} } Please make sure the file you have uploaded is doc, docx, rtf, txt, odt or pdf.
+            %li{ aria: { live: 'assertive'} }
+              = t('hybrid_bills.document-submission.upload_error_a').capitalize
           - if @document_object.errors[:filesize]
-            %li{ aria: { live: 'assertive'} } The file you have uploaded is too big. Please make sure it is smaller than 2 MB.
+            %li{ aria: { live: 'assertive'} }
+              = t('hybrid_bills.document-submission.upload_error_b').capitalize
 
 %section
   .container
-    %h2 Uploaded file must
+    %h2= t('hybrid_bills.document-submission.upload_requirements_title').capitalize
 
     %ul
-      %li be less than 2 MB in size
-      %li not include any images, graphics or videos
+      %li= t('hybrid_bills.document-submission.upload_requirements_a')
+      %li= t('hybrid_bills.document-submission.upload_requirements_b')
     %br
 
     = form_tag(hybrid_bill_path(@business_id, step: 'document-submission'), multipart: true) do
@@ -37,21 +40,23 @@
             = render partial: 'pugin/icons/file'
 
           .list-details
-            %h3 Upload your petition template
+            %h3= t('hybrid_bills.document-submission.upload_template').capitalize
 
             = file_field_tag 'hybrid_bill_document[file]', id: 'fileUpload', 'data-file-upload': 'button', 'data-file-size': '2097152', 'required': 'true'
-            %label{for: 'fileUpload', class: 'btn--primary'} Choose file
+            %label{for: 'fileUpload', class: 'btn--primary'}
+              = t('user_forms.choose_file').capitalize
 
-            %p{ 'data-file-upload': 'status' } No file(s) selected
+            %p{ 'data-file-upload': 'status' }
+              = t('user_forms.select_file').capitalize
 
-      = submit_tag 'Next', class: 'btn--primary'
+      = submit_tag t('user_forms.next_button').capitalize, class: 'btn--primary'
 
     %br
     .block.accent--mint
-      %h3 Help and support
+      %h3= t('hybrid_bills.help_support').capitalize
       %p
-        For more information email
-        = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
-        or phone
+        = t('hybrid_bills.help_support_a')
+        = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
+        = t('hybrid_bills.help_support_b')
         = succeed "." do
-          = link_to '020 7219 3250', 'tel:02072193250'
+          = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"

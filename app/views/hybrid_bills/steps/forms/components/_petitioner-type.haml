@@ -1,31 +1,37 @@
 %fieldset
-  %legend.sr-only Please choose who you submitting a petition for
+  %legend.sr-only
+    = t('hybrid_bills.email.legend').capitalize
   .block--border__bottom
     %ol.list--block
       %li
         .list--details
           .input-group__verbose
             = radio_button_tag 'type', 'individual', checked: true
-            = label_tag 'type_individual', 'Individual'
-          %p{ aria: { labelledby: 'type_individual' } } You are submitting a petition for one person.
+            = label_tag 'type_individual', t('hybrid_bills.individual').capitalize
+          %p{ aria: { labelledby: 'type_individual' } }
+            = t('hybrid_bills.individual_desc')
       %li
         .list--details
           .input-group__verbose
             = radio_button_tag 'type', 'individualgroup'
-            = label_tag 'type_individualgroup', 'Group of individuals'
-          %p{ aria: { labelledby: 'type_individualgroup' } } You are submitting a petition for a group of people.
+            = label_tag 'type_individualgroup', t('hybrid_bills.group_individuals').capitalize
+          %p{ aria: { labelledby: 'type_individualgroup' } }
+            = t('hybrid_bills.group_individuals_desc')
+
     %ol.list--block
       %li
         .list--details
           .input-group__verbose
             = radio_button_tag 'type', 'organisation'
-            = label_tag 'type_organisation', 'Organisation'
-          %p{ aria: { labelledby: 'type_organisation' } } You are submitting a petition for a business or organisation.
+            = label_tag 'type_organisation', t('hybrid_bills.organisation').capitalize
+          %p{ aria: { labelledby: 'type_organisation' } }
+            = t('hybrid_bills.organisation_desc')
       %li
         .list--details
           .input-group__verbose
             = radio_button_tag 'type', 'organisationgroup'
-            = label_tag 'type_organisationgroup', 'Group of organisations'
-          %p{ aria: { labelledby: 'type_organisationgroup' } } You are submitting a petition for a group of businesses or organisations.
+            = label_tag 'type_organisationgroup', t('hybrid_bills.group_organisations').capitalize
+          %p{ aria: { labelledby: 'type_organisationgroup' } }
+            = t('hybrid_bills.group_organisations_desc')
 
-  = submit_tag 'Next', class: 'btn--primary'
+  = submit_tag t('user_forms.next_button').capitalize, class: 'btn--primary'

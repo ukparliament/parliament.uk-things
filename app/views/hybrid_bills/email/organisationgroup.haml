@@ -1,34 +1,36 @@
-- page_title = title('Writing your petition - group of organisations. Object to the High Speed Rail (West Midlands to Crewe) Bill')
+- page_title = title("#{t('hybrid_bills.email.writing_petition').capitalize} #{t('hybrid_bills.hyphen')} #{t('hybrid_bills.group_organisations')}. #{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}")
 
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
-      Writing your petition - group of organisations
+      = "#{t('hybrid_bills.email.writing_petition').capitalize} #{t('hybrid_bills.hyphen')} #{t('hybrid_bills.group_organisations')}"
       %span.sr-only .
-      %span Object to the High Speed Rail (West Midlands to Crewe) Bill
+      %span= "#{t('hybrid_bills.object_to').capitalize} #{t('hybrid_bills.the')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
-    %h2.typography--light Step 2 of 2
+    %h2.typography--light
+      = "#{t('hybrid_bills.step_2').capitalize} #{t('hybrid_bills.step_1_2')}"
 
 %section.section--primary
   .container
-    %h2.sr-only How to write your petition
-    %p To write your petition, download and complete the petition template.
-    %p You can send your completed version to us by email, post or in person.
+    %h2.sr-only
+      = t('hybrid_bills.email.writing_petition_how').capitalize
+    %p= t('hybrid_bills.email.writing_petition_how_a')
+    %p= t('hybrid_bills.email.writing_petition_how_b')
 
-    %h2 Send by email
+    %h2= t('hybrid_bills.email.send_email').capitalize
     %p
-      Email your completed petition template to
+      = t('hybrid_bills.email.send_email_a')
       = succeed "." do
-        = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
+        = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
 
-    %h2 Send by post
-    %p Post your completed petition template to Hybrid Bills Office, Houses of Parliament, London, SW1A 0AA.
+    %h2= t('hybrid_bills.email.send_post').capitalize
+    %p= t('hybrid_bills.email.send_post_a')
 
-    %h2 Send in person
+    %h2= t('hybrid_bills.email.send_person').capitalize
     %p
-      Call
-      = link_to '020 7219 3250', 'tel:02072193250'
-      to arrange a time to deliver your completed petition template.
+      = t('hybrid_bills.email.send_person_a')
+      = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"
+      = t('hybrid_bills.email.send_person_b')
 
     .section--major
       %ol.list--pipe__deep
@@ -37,22 +39,24 @@
             = render partial: 'pugin/icons/file'
 
           .list--details
-            %h3 Petition template
+            %h3= t('hybrid_bills.help_support_template').capitalize
 
             %a{ href: 'https://s3-eu-west-1.amazonaws.com/web1live.static-assets-public/_hybrid-bills/documents/HS2-Phase-2a-Petition-Pack-Group-Of-Organisations.doc', class: 'btn--primary' }
               = render partial: 'pugin/icons/download'
-              Download template as Word document
+              = t('user_forms.word_download_button')
 
             %p
-              If you need a different format, email
-              = link_to 'prbohoc@parliament.uk', 'mailto:prbohoc@parliament.uk'
-              or phone
+              = t('hybrid_bills.help_support_format')
+              = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
+              = t('hybrid_bills.help_support_b')
               = succeed "." do
-                = link_to '020 7219 3250', 'tel:02072193250'
+                = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"
 
-      %h2 Bill updates
+      %h2= t('hybrid_bills.email.bill_updates').capitalize
       %p
-        For news and updates on the Bill, visit the
-        = link_to 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank' do
-          High Speed Rail (West Midlands to Crewe) Bill Committee website
-          %span.sr-only (This link will open in a new window).
+        = t('hybrid_bills.email.bill_updates_a')
+        = succeed "." do
+          = link_to 'http://www.parliament.uk/business/committees/committees-a-z/commons-select/high-speed-rail-west-midlands-crewe-bill-select-committee-commons', target: '_blank' do
+            = "#{t('hybrid_bills.hs2_committee')} #{t('hybrid_bills.hs2_website')}"
+            %span.sr-only>
+              = t('open_new_window_link')
