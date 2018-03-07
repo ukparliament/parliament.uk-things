@@ -1,12 +1,12 @@
 .section--primary
   .container--offset
-    %h1= @article.title
-    = MarkdownHelper.markdown(@article.article_summary)
+    %h1= sanitize @article.title
+    = MarkdownHelper.markdown(sanitize @article.article_summary).html_safe
 
 %section#content{ tabindex: "0" }
   .container.flex--2__2-1
     %article
-      = MarkdownHelper.markdown(@article.article_body)
+      = MarkdownHelper.markdown(sanitize @article.article_body).html_safe
 
     %aside
       - if @related_articles
@@ -16,4 +16,4 @@
             - @related_articles.each do |article|
               %li
                 .list--details
-                  = link_to(article.article_title, article_path(article.graph_id))
+                  = link_to(sanitize(article.article_title), article_path(article.graph_id))

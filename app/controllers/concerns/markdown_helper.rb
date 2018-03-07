@@ -4,6 +4,6 @@ module MarkdownHelper
   # @return template [String] Template as HTML
   def self.markdown(template)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, tables: true)
-    markdown.render(template).html_safe
+    markdown.render(template)
   end
 end
