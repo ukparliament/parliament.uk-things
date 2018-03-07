@@ -23,4 +23,4 @@
 
         - if Pugin::Feature::Bandiera.show_list_images? && @person.image_id(show_placeholder:false)
           - name = @most_recent_incumbency.house.name == 'House of Lords' ? @person.display_name : @person.full_name
-          %p= t('.portrait', name: name, link: link_to(t('media.show.available_download'), media_show_path(@person.image_id))).html_safe
+          %p= sanitize t('.portrait', name: name, link: link_to(t('media.show.available_download'), media_show_path(@person.image_id)))
