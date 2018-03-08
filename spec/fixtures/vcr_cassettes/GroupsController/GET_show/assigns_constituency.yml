@@ -64,7 +64,7 @@ http_interactions:
         <https://id.parliament.uk/nOf8e3OT> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/HouseSeat> .
         <https://id.parliament.uk/nOf8e3OT> <https://id.parliament.uk/schema/houseSeatHasConstituencyGroup> <https://id.parliament.uk/ktX94Yrb> .
         <https://id.parliament.uk/ktX94Yrb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/ConstituencyGroup> .
-        <https://id.parliament.uk/ktX94Yrb> <https://id.parliament.uk/schema/constituencyGroupName> "constituencyGroupName - 1" .
+        <https://id.parliament.uk/ktX94Yrb> <https://id.parliament.uk/schema/constituencyGroupName> "Camberwell and Peckham" .
         <https://id.parliament.uk/IPCnKfRA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/PartyMembership> .
         <https://id.parliament.uk/IPCnKfRA> <https://id.parliament.uk/schema/partyMembershipHasParty> <https://id.parliament.uk/LEYIBvV9> .
         <https://id.parliament.uk/LEYIBvV9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Party> .

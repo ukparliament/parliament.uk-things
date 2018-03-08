@@ -1,3 +1,33 @@
 #content.section--primary{ tabindex: "0" }
   .container
-    %h1= "#{title(@group.name)} (#{@group.date_range})"  if @group.name.present?
+  - if @group.is_joint?
+    %h1= "#{title(@group.formal_body_name)}"  if @group.formal_body_name.present?
+    %h2= "Joint (Commons and Lords) #{@formal_body_type.name} committee"
+    %h3= "#{@group.date_range}"
+
+  - else 
+    %h1= 'This is the else block'
+    %h1= "#{title(@group.formal_body_name)}"
+    %h3= "#{@house.name}"
+
+  %h1= 'About the committee'
+  %h3= "#{@group.formal_body_remit}"
+
+  %h1= 'Committee members'
+
+  - if @group.is_chair?
+    %h2= "#{@person.display_name}"
+    %h3= 'Committee chair'
+    %h3= "image id for member is #{@person.image_id}" 
+
+  %h3= "#{@party.name} MP for #{@constituency.name}"  
+
+  %h2= "number of committee members: #{@group.member_count}"
+
+  %h1= 'Contact us'
+
+  %h2= "Email: #{@contact_point.email}"
+  %h2= "Phone: #{@contact_point.phone_number}"
+  %h2= "Address: #{@group.formal_body_name}, #{@postal_address.full_address}"
+
+  

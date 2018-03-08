@@ -71,6 +71,8 @@ http_interactions:
         <https://id.parliament.uk/LEYIBvV9> <https://id.parliament.uk/schema/partyName> "partyName - 1" .
         <https://id.parliament.uk/ZY0Mx1bp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/MemberImage> .
         <https://id.parliament.uk/168eTafq> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/ContactPoint> .
+        <https://id.parliament.uk/168eTafq> <https://id.parliament.uk/schema/email> "fakeemail@gmail.com" .
+        <https://id.parliament.uk/168eTafq> <https://id.parliament.uk/schema/phoneNumber> "0208 123 4567" .
         <https://id.parliament.uk/168eTafq> <https://id.parliament.uk/schema/contactPointHasPostalAddress> <https://id.parliament.uk/nDs0SLUm> .
         <https://id.parliament.uk/nDs0SLUm> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/PostalAddress> .
         <https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/addressLine1> "addressLine1 - 1" .
@@ -78,7 +80,7 @@ http_interactions:
         <https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/postCode> "postCode - 1" .
         <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/count> "12"^^<http://www.w3.org/2001/XMLSchema#integer> .
     http_version: 
-  recorded_at: Thu, 08 Mar 2018 18:23:52 GMT
+  recorded_at: Thu, 08 Mar 2018 18:23:53 GMT
 - request:
     method: get
     uri: http://localhost:3030/house_index
@@ -119,5 +121,5 @@ http_interactions:
         .\r\n<https://id.parliament.uk/WkUWUBMx> <https://id.parliament.uk/schema/houseName>
         \"houseName - 2\" .\r\n"
     http_version: 
-  recorded_at: Thu, 08 Mar 2018 18:23:52 GMT
+  recorded_at: Thu, 08 Mar 2018 18:23:53 GMT
 recorded_with: VCR 4.0.0
