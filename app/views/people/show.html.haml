@@ -56,5 +56,9 @@
         .track
           = render 'previous_roles'
 
-
 = render 'related_links'
+
+- if @current_incumbency && Pugin::Feature::Bandiera.show_activity_links?
+  .container
+    .status--highlight.theme--purple--light
+      = "#{t('.link_to_original', link: link_to(t('.link_to_original_version'), "http://www.parliament.uk/biographies/Commons/member/#{@person.mnis_id}"))}".html_safe

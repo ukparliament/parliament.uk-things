@@ -442,6 +442,8 @@ en:
       check_mp_alternative: 'Check if this is your MP'
       correct_mp: '%{name} is the MP for the postcode entered.'
       incorrect_mp: '%{name} is not the MP for the postcode entered.  Your MP is '
+      link_to_original: 'This is our beta website, pages are being tested and improved. You can view %{link} on the current website.'
+      link_to_original_version: 'a version of this page'
     image:
       figcaption: 'The official MP portraits are %{link}'
       available_download: 'available to download'
