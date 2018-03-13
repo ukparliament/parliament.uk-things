@@ -60,9 +60,15 @@ class HybridBillsController < ApplicationController
   end
 
   def email
-    type_param = params[:type] ? params[:type].to_sym : nil
-    template = EMAIL_STEP_TEMPLATES[type_param]
-    render template if template
+    if status.to_sym == :active
+      type_param = params[:type] ? params[:type].to_sym : nil
+      template = EMAIL_STEP_TEMPLATES[type_param]
+      render template if template
+    elsif status.to_sym == :closed
+      redirect_to hybrid_bills_path, notice: 'This petition has closed'
+    else
+      redirect_to hybrid_bill_path(params[:bill_id])
+    end
   end
 
   def choose_type
