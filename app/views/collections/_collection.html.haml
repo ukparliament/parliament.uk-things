@@ -1,0 +1,29 @@
+.container
+  .article--wrapper
+    %article{ id: 'content', tabindex: '0' }
+      %header
+        - if collection.parents.any?
+          = render partial: "collections/delimited_links", locals: { collections: collection.parents }
+
+        %h1= title(sanitize(collection.name))
+
+      %div{ role: 'main' }
+        = MarkdownHelper.markdown(collection.description)
+
+      - if collection.parents.any?
+        %footer
+          %h2= "Up to:"
+          = render partial: "collections/delimited_links", locals: { collections: collection.parents }
+
+    %aside
+      %h2= sanitize(collection.name)
+      .block
+        %ul.list--pipe
+          - collection.articles.each do |article|
+            %li
+              .list--details
+                = link_to(sanitize(article.article_title), article_path(article.graph_id))
+          - collection.subcollections.each do |subcollection|
+            %li
+              .list--details
+                = link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))

@@ -1,27 +1,31 @@
-.container.flex--2__2-1
-  %article{ tabindex: '0', id: 'content' }
-    %header
-      %h1= sanitize @article.title
-      = MarkdownHelper.markdown(sanitize @article.article_summary).html_safe
+.container
+  .article--wrapper
+    %article{ id: 'content', tabindex: '0' }
+      %header
+        - if @collections.any?
+          = render partial: 'collections/delimited_links', locals: { collections: @collections }
 
-    %div{ role: 'main' }
-      = MarkdownHelper.markdown(sanitize @article.article_body).html_safe
+        %h1= title(sanitize(@article.title))
+        = MarkdownHelper.markdown(@article.article_summary)
 
-  %aside
-    - if @related_articles.any?
-      .block
-        %h2= t('.related_articles')
-        %ul.list--pipe
-          - @related_articles.each do |article|
-            %li
-              .list--details
-                = link_to(sanitize(article.article_title), article_path(article.graph_id))
+      %div{ role: 'main' }
+        = MarkdownHelper.markdown(@article.article_body)
 
-    - if @collections.any?
-      .block
-        %h2= t('.collection_articles')
-        %ul.list--pipe
-          - @collections.each do |collection|
-            %li
-              .list--details
-                = link_to(sanitize(collection.name), collection_path(collection.graph_id))
+      - if @collections.any?
+        %footer
+          %h2= t('.up_to')
+          = render partial: 'collections/delimited_links', locals: { collections: @collections }
+
+    %aside
+      - @collections.each do |collection|
+        %h2= sanitize(collection.name)
+        .block
+          %ul.list--pipe
+            - collection.articles.each do |article|
+              %li
+                .list--details
+                  = link_to(sanitize(article.article_title), article_path(article.graph_id))
+            - collection.subcollections.each do |subcollection|
+              %li
+                .list--details
+                  = link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))

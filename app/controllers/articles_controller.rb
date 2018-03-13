@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
     @article = articles.find { |article| article.graph_id == params[:article_id] }
     raise ActionController::RoutingError, 'Article Not Found' unless @article
 
-    @related_articles = @article.related_articles
     @collections = @article.collections
   end
 end
