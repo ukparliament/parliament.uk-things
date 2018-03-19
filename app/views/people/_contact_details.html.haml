@@ -1,6 +1,18 @@
 - if @person.current_mp? || @person.current_lord?
   - if @current_incumbency.contact_points.empty?
-    %p= t('.empty_contact_details')
+    - if @person.current_lord?
+      %dl.list--definition
+        %dt= t('contact_points.email').capitalize + ": "
+        %dd
+          = link_to(t('contact_points.fallback.lords.email'), "mailto:#{t('contact_points.fallback.lords.email')}")
+        %dt= t('contact_points.phone').capitalize + ": "
+        %dd
+          = link_to(t('contact_points.fallback.lords.phone').gsub(/\s+/, " "), "tel:#{t('contact_points.fallback.lords.phone').gsub(/\s+/, "")}")
+        %dt
+          = t('contact_points.address').capitalize + ": "
+          %dd= t('contact_points.fallback.lords.address')
+    - else
+      %p= t('.empty_contact_details')
   - else
     %dl.list--definition
       - @current_incumbency.contact_points.each do |contact_point|

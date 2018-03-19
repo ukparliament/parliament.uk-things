@@ -533,6 +533,11 @@ en:
     website: 'website'
     twitter: 'twitter'
     facebook: 'facebook'
+    fallback:
+      lords:
+        email: 'contactholmember@parliament.uk'
+        phone: '020 7219 5353'
+        address: 'House of Lords, London, SW1A 0PW'
   # constituencies translations
   constituencies:
     index:
