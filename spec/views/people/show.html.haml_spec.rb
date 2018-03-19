@@ -610,8 +610,10 @@ RSpec.describe 'people/show', vcr: true do
       end
 
       context 'no contact details' do
-        it 'will render no contact details' do
-          expect(rendered).to match(/Empty Contact Details/)
+        it 'will render fallback contact details' do
+          expect(rendered).to match(/020 7219 5353/)
+          expect(rendered).to match(/contactholmember@parliament.uk/)
+          expect(rendered).to match(/House of Lords, London, SW1A 0PW/)
         end
       end
 
