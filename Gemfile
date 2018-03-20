@@ -14,7 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'haml'
 
 # Use Parliament-Ruby for web requests
-gem 'parliament-ruby', '~> 0.8'
+gem 'parliament-ruby', '1.0.0.pre4'
 
 # Parliament Grom Decorators decorates Grom nodes
 gem 'parliament-grom-decorators', '~> 0.19'
