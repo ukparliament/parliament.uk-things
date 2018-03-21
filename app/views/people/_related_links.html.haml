@@ -1,4 +1,4 @@
-- if @person.weblinks? || (Pugin::Feature::Bandiera.show_list_images? && @person.image_id(show_placeholder:false))
+- if (@person.weblinks? && @person.current_mp?) || (Pugin::Feature::Bandiera.show_list_images? && @person.image_id(show_placeholder:false))
   %section
     .container
       .block--border__bottom
