@@ -108,8 +108,10 @@ en:
     # Global hybrid bills translations
     hs2: 'High Speed Rail (West Midlands to Crewe)'
     hs2_bill: 'bill'
+    hs2_bill_ap: ‘Additional Provision’
     hs2_ap: 'Additional Provision'
     hs2_ap_one: '1'
+    hs2_ap_two: '2'
     object_to: 'Object to'
     the_bill: 'the bill'
     object_to_the_bill: 'Object to the bill'
@@ -125,6 +127,10 @@ en:
     petition_status_pre: 'The petitioning period will open on Tuesday 30 January 2018.'
     petition_status_active: 'The deadline is 5pm on Monday 26 February 2018.'
     petition_status_post: 'The deadline has passed.'
+    ap_petition_status_pre: 'The petitioning period will open on Thursday 29th March 2018.'
+    ap_petition_status_active: 'The deadline is 5pm on Friday 27 April 2018.'
+    ap_petition_status_post: 'The deadline has passed.'
+      
     # help and support
     help_support: 'help and support'
     help_support_a: 'For more information email'
@@ -174,6 +180,7 @@ en:
       object_hybrid_bill_b: 'This can lead to changes being made to the bill, called additional provisions.'
       object_hybrid_bill_c: 'Objecting to additional provisions is separate to objecting to the original bill.'
       current_hybrid_bills: 'current hybrid bills'
+      past_hybrid_bills: 'past hybrid bills'
     # home page
     show:
       overview: 'overview'
