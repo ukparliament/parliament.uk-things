@@ -138,11 +138,11 @@ en:
     # id relates committee business id for additional provision 1
     id2:
       # title
-      object_title: 'Object to the Additional Provision of the'
+      object_title: 'Object to the Additional Provision to the'
       # show page
-      overview_a: 'Any individual, group of individuals, organisation or group of organisations affected by the Additional Provision of the High Speed Rail (West Midlands to Crewe) Bill can object to it'
+      overview_a: 'Any individual, group of individuals, organisation or group of organisations affected by the Additional Provision to the High Speed Rail (West Midlands to Crewe) Bill can object to it'
       objecting_subtitle: 'Objecting to the Additional Provision'
-      objecting_a: 'To object to the Additional Provision of the High Speed Rail (West Midlands to Crewe) Bill you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.'
+      objecting_a: 'To object to the Additional Provision you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.'
       objecting_b: 'We will ask for your name, address and examples of how you’re affected by the Additional Provision.'
       after_sending_petition_a: 'Once we’ve received your petition we’ll ask you to pay a £20 admin fee, unless you paid it when objecting to the original bill'
       after_sending_petition_b: 'We’ll publish your petition on our website. This will include your name and address.'
@@ -163,12 +163,12 @@ en:
       what_next_e: 'You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.'
       # petition status
       petition_status_pre: 'You can object from Thursday 29 March 2018.'
-      petition_status_active: 'The deadline is 5pm on Friday 27 April 2018.'
+      petition_status_active: 'The deadline is 1pm on Friday 27 April 2018.'
       petition_status_post: 'The deadline has passed.'
     # Global hybrid bills translations
     hs2: 'High Speed Rail (West Midlands to Crewe)'
     hs2_bill: 'bill'
-    hs2_ap: 'Additional Provision of the'
+    hs2_ap: 'Additional Provision to the'
     object_to: 'Object to'
     the_bill: 'the bill'
     object_to_the_bill: 'Object to the bill'
