@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   before_action :data_check, :build_request, :disable_top_navigation
 
   ROUTE_MAP = {
-    show:  proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.collection_by_id.set_url_params({ collection_id: params[:collection_id] }) }
+    show: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.collection_by_id.set_url_params({ collection_id: params[:collection_id] }) }
   }.freeze
 
   def show

@@ -718,15 +718,14 @@ en:
   places:
     all_regions: 'All Regions.'
     region_constituencies: 'Find constituencies by region.'
+  # collection translations
+  collections:
+    root_collection:
+      in_this_section: 'In this section'
   # article translations
   articles:
     show:
-      related_articles: 'Related Articles'
-      collection_articles: 'Collections this article belongs to'
-  # collection translations
-  collections:
-    show:
-      in_this_section: 'In this section'
+      up_to: 'Up to:'
   # no content translations
   no_content:
     empty_list:

@@ -1,8 +1,8 @@
 .section--primary
   .container--offset
-    %h1= @concept.name
+    %h1= title(sanitize(@concept.name))
 
-%section#content{ tabindex: "0" }
+%section{ id: 'content', tabindex: "0" }
   .container--offset
     = MarkdownHelper.markdown(@concept.definition)
 
@@ -10,10 +10,10 @@
       %h2= "Articles in this section"
       %ul.list
         - @concept_articles.each do |article|
-          %li= link_to(article.article_title, article_path(article.graph_id))
+          %li= link_to(sanitize(article.article_title), article_path(article.graph_id))
 
     - if @narrower_concepts.any?
       %h2= "Other topics in this section"
       %ul.list
         - @narrower_concepts.each do |concept|
-          %li= link_to(concept.name, concept_path(concept.graph_id))
+          %li= link_to(sanitize(concept.name), concept_path(concept.graph_id))
