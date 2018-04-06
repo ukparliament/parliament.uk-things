@@ -1,0 +1,11 @@
+%header
+  %h1= title(sanitize(title))
+
+  -# All the collections an Article sits in
+  - if local_assigns[:collections] && collections.any?
+    %p
+      %span.typography--heavy= t('.in')
+      = render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
+
+  - if local_assigns[:summary]
+    = MarkdownHelper.markdown(summary)

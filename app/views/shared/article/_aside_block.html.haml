@@ -1,0 +1,15 @@
+%h2= sanitize(title)
+.block
+  %ul.list--pipe
+    - collection.articles.each do |article|
+      - if graph_id == article.graph_id
+        %li.active
+          .list--details= sanitize(article.article_title)
+      - else
+        %li
+          .list--details
+            = link_to(sanitize(article.article_title), article_path(article.graph_id))
+    - collection.subcollections.each do |subcollection|
+      %li
+        .list--details
+          = link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))

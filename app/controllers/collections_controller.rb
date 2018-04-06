@@ -14,6 +14,5 @@ class CollectionsController < ApplicationController
     # Finds the collection we are looking for, as GET request may return multiple Collections
     @collection = collections.find { |collection| collection.graph_id == params[:collection_id] }
     raise ActionController::RoutingError, 'Collection Not Found' unless @collection
-
   end
 end
