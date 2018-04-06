@@ -12,7 +12,8 @@ RSpec.describe GroupsController, vcr: true do
 
     it 'assigns @group' do
       expect(assigns(:group)).to be_a(Grom::Node)
-      expect(assigns(:group).type).to eq('https://id.parliament.uk/schema/Group')
+      expect(assigns(:group).type).to include('https://id.parliament.uk/schema/Group')
+      expect(assigns(:group).type).to include('https://id.parliament.uk/schema/FormalBody')
       expect(assigns(:group).member_count).to eq(12)
     end
 
@@ -44,14 +45,7 @@ RSpec.describe GroupsController, vcr: true do
     it 'assigns @constituency' do
       expect(assigns(:constituency)).to be_a(Grom::Node)
       expect(assigns(:constituency).type).to eq('https://id.parliament.uk/schema/ConstituencyGroup')
-      expect(assigns(:constituency).name).to eq('Camberwell and Peckham')
-    end
-
-    it 'assigns @contact_point' do
-      expect(assigns(:contact_point)).to be_a(Grom::Node)
-      expect(assigns(:contact_point).type).to eq('https://id.parliament.uk/schema/ContactPoint')
-      expect(assigns(:contact_point).email).to eq('fakeemail@gmail.com')
-      expect(assigns(:contact_point).phone_number).to eq('0208 123 4567')
+      expect(assigns(:constituency).name).to eq('constituencyGroupName - 1')
     end
 
     it 'assigns @postal_address' do

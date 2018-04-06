@@ -7,78 +7,133 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
       Accept:
       - "*/*"
       - application/n-triples
-      User-Agent:
-      - Ruby
       Ocp-Apim-Subscription-Key:
       - "<AUTH_TOKEN>"
+      Expect:
+      - ''
   response:
     status:
       code: 200
       message: OK
     headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '1165'
       Content-Type:
       - application/n-triples
-      Content-Disposition:
-      - inline; filename="index"
-      Last-Modified:
-      - Thu, 08 Mar 2018 10:14:13 GMT
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '5574'
+      Content-Encoding:
+      - gzip
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Set-Cookie:
+      - ARRAffinity=340e63cd33f60639be9ed6022402f918d196026bdfa43e62ef6564b017e09241;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Fri, 06 Apr 2018 08:03:17 GMT
     body:
       encoding: UTF-8
-      string: |
-        <https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Group> .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/groupName> "groupName - 1" .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/groupStartDate> "2001-01-17+00:00"^^<http://www.w3.org/2001/XMLSchema#date> .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyRemit> "formalBodyRemit - 1" .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyHasFormalBodyChair> <https://id.parliament.uk/5lOcrEH6> .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyHasLeadHouse> <https://id.parliament.uk/1AFu55Hs> .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyName> "formalBodyName - 1" .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyStartDate> "2001-01-17+00:00"^^<http://www.w3.org/2001/XMLSchema#date> .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyHasHouse> <https://id.parliament.uk/1AFu55Hs> .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyHasFormalBodyType> <https://id.parliament.uk/McZ1Sjuj> .
-        <https://id.parliament.uk/5lOcrEH6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Position> .
-        <https://id.parliament.uk/5lOcrEH6> <https://id.parliament.uk/schema/positionHasIncumbency> <https://id.parliament.uk/PlZahGSw> .
-        <https://id.parliament.uk/PlZahGSw> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Incumbency> .
-        <https://id.parliament.uk/PlZahGSw> <https://id.parliament.uk/schema/incumbencyStartDate> "2017-11-01+00:00"^^<http://www.w3.org/2001/XMLSchema#date> .
-        <https://id.parliament.uk/PlZahGSw> <https://id.parliament.uk/schema/incumbencyHasPerson> <https://id.parliament.uk/Jhxlo2zC> .
-        <https://id.parliament.uk/McZ1Sjuj> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/FormalBodyType> .
-        <https://id.parliament.uk/McZ1Sjuj> <https://id.parliament.uk/schema/formalbodyTypeName> "formalbodyTypeName - 1" .
-        <https://id.parliament.uk/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/House> .
-        <https://id.parliament.uk/1AFu55Hs> <https://id.parliament.uk/schema/houseName> "houseName - 1" .
-        <https://id.parliament.uk/1AFu55Hs> <https://id.parliament.uk/schema/houseHasContactPoint> <https://id.parliament.uk/168eTafq> .
-        <https://id.parliament.uk/Jhxlo2zC> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Person> .
-        <https://id.parliament.uk/Jhxlo2zC> <https://id.parliament.uk/schema/partyMemberHasPartyMembership> <https://id.parliament.uk/IPCnKfRA> .
-        <https://id.parliament.uk/Jhxlo2zC> <https://id.parliament.uk/schema/memberHasParliamentaryIncumbency> <https://id.parliament.uk/QdTSVPgu> .
-        <https://id.parliament.uk/Jhxlo2zC> <https://id.parliament.uk/schema/memberHasMemberImage> <https://id.parliament.uk/ZY0Mx1bp> .
-        <https://id.parliament.uk/Jhxlo2zC> <http://example.com/F31CBD81AD8343898B49DC65743F0BDF> "F31CBD81AD8343898B49DC65743F0BDF - 1" .
-        <https://id.parliament.uk/QdTSVPgu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/ParliamentIncumbency> .
-        <https://id.parliament.uk/QdTSVPgu> <https://id.parliament.uk/schema/seatIncumbencyHasHouseSeat> <https://id.parliament.uk/nOf8e3OT> .
-        <https://id.parliament.uk/nOf8e3OT> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/HouseSeat> .
-        <https://id.parliament.uk/nOf8e3OT> <https://id.parliament.uk/schema/houseSeatHasConstituencyGroup> <https://id.parliament.uk/ktX94Yrb> .
-        <https://id.parliament.uk/ktX94Yrb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/ConstituencyGroup> .
-        <https://id.parliament.uk/ktX94Yrb> <https://id.parliament.uk/schema/constituencyGroupName> "constituencyGroupName - 1" .
-        <https://id.parliament.uk/IPCnKfRA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/PartyMembership> .
-        <https://id.parliament.uk/IPCnKfRA> <https://id.parliament.uk/schema/partyMembershipHasParty> <https://id.parliament.uk/LEYIBvV9> .
-        <https://id.parliament.uk/LEYIBvV9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Party> .
-        <https://id.parliament.uk/LEYIBvV9> <https://id.parliament.uk/schema/partyName> "partyName - 1" .
-        <https://id.parliament.uk/ZY0Mx1bp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/MemberImage> .
-        <https://id.parliament.uk/168eTafq> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/ContactPoint> .
-        <https://id.parliament.uk/168eTafq> <https://id.parliament.uk/schema/contactPointHasPostalAddress> <https://id.parliament.uk/nDs0SLUm> .
-        <https://id.parliament.uk/nDs0SLUm> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/PostalAddress> .
-        <https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/addressLine1> "addressLine1 - 1" .
-        <https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/addressLine2> "addressLine2 - 1" .
-        <https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/postCode> "postCode - 1" .
-        <https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/count> "12"^^<http://www.w3.org/2001/XMLSchema#integer> .
+      string: "<https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Group> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Resource>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/groupName>
+        \"groupName - 1\" .\r\n<https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/groupStartDate>
+        \"2001-01-17+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <https://id.parliament.uk/schema/formalBodyRemit> \"formalBodyRemit - 1\"
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyHasFormalBodyChair>
+        <https://id.parliament.uk/5lOcrEH6> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <https://id.parliament.uk/schema/formalBodyHasLeadHouse> <https://id.parliament.uk/1AFu55Hs>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyName>
+        \"formalBodyName - 1\" .\r\n<https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyStartDate>
+        \"2001-01-17+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <https://id.parliament.uk/schema/formalBodyHasHouse> <https://id.parliament.uk/1AFu55Hs>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <https://id.parliament.uk/schema/formalBodyHasFormalBodyType>
+        <https://id.parliament.uk/McZ1Sjuj> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <https://id.parliament.uk/schema/formalBodyHasContactPoint> <https://id.parliament.uk/P2ASZWLB>
+        .\r\n<https://id.parliament.uk/5lOcrEH6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Position> .\r\n<https://id.parliament.uk/5lOcrEH6>
+        <https://id.parliament.uk/schema/positionHasIncumbency> <https://id.parliament.uk/PlZahGSw>
+        .\r\n<https://id.parliament.uk/PlZahGSw> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Incumbency> .\r\n<https://id.parliament.uk/PlZahGSw>
+        <https://id.parliament.uk/schema/incumbencyStartDate> \"2017-11-01+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/PlZahGSw> <https://id.parliament.uk/schema/incumbencyHasPerson>
+        <https://id.parliament.uk/Jhxlo2zC> .\r\n<https://id.parliament.uk/McZ1Sjuj>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/FormalBodyType>
+        .\r\n<https://id.parliament.uk/McZ1Sjuj> <https://id.parliament.uk/schema/formalbodyTypeName>
+        \"formalbodyTypeName - 1\" .\r\n<https://id.parliament.uk/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/House> .\r\n<https://id.parliament.uk/1AFu55Hs>
+        <https://id.parliament.uk/schema/houseName> \"houseName - 1\" .\r\n<https://id.parliament.uk/1AFu55Hs>
+        <https://id.parliament.uk/schema/houseHasContactPoint> <https://id.parliament.uk/168eTafq>
+        .\r\n<https://id.parliament.uk/Jhxlo2zC> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Person> .\r\n<https://id.parliament.uk/Jhxlo2zC>
+        <https://id.parliament.uk/schema/partyMemberHasPartyMembership> <https://id.parliament.uk/IPCnKfRA>
+        .\r\n<https://id.parliament.uk/Jhxlo2zC> <https://id.parliament.uk/schema/memberHasParliamentaryIncumbency>
+        <https://id.parliament.uk/QdTSVPgu> .\r\n<https://id.parliament.uk/Jhxlo2zC>
+        <https://id.parliament.uk/schema/memberHasMemberImage> <https://id.parliament.uk/ZY0Mx1bp>
+        .\r\n<https://id.parliament.uk/Jhxlo2zC> <https://id.parliament.uk/schema/personGivenName>
+        \"personGivenName - 1\" .\r\n<https://id.parliament.uk/Jhxlo2zC> <http://example.com/A5EE13ABE03C4D3A8F1A274F57097B6C>
+        \"A5EE13ABE03C4D3A8F1A274F57097B6C - 1\" .\r\n<https://id.parliament.uk/Jhxlo2zC>
+        <http://example.com/F31CBD81AD8343898B49DC65743F0BDF> \"F31CBD81AD8343898B49DC65743F0BDF
+        - 1\" .\r\n<https://id.parliament.uk/cs9yvhxj> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/FormalBodyMembership> .\r\n<https://id.parliament.uk/cs9yvhxj>
+        <https://id.parliament.uk/schema/formalBodyMembershipStartDate> \"2017-10-30+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/QdTSVPgu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ParliamentIncumbency> .\r\n<https://id.parliament.uk/QdTSVPgu>
+        <https://id.parliament.uk/schema/seatIncumbencyHasHouseSeat> <https://id.parliament.uk/nOf8e3OT>
+        .\r\n<https://id.parliament.uk/nOf8e3OT> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/HouseSeat> .\r\n<https://id.parliament.uk/nOf8e3OT>
+        <https://id.parliament.uk/schema/houseSeatHasConstituencyGroup> <https://id.parliament.uk/ktX94Yrb>
+        .\r\n<https://id.parliament.uk/ktX94Yrb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ConstituencyGroup> .\r\n<https://id.parliament.uk/ktX94Yrb>
+        <https://id.parliament.uk/schema/constituencyGroupName> \"constituencyGroupName
+        - 1\" .\r\n<https://id.parliament.uk/IPCnKfRA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/PartyMembership> .\r\n<https://id.parliament.uk/IPCnKfRA>
+        <https://id.parliament.uk/schema/partyMembershipHasParty> <https://id.parliament.uk/LEYIBvV9>
+        .\r\n<https://id.parliament.uk/LEYIBvV9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Party> .\r\n<https://id.parliament.uk/LEYIBvV9>
+        <https://id.parliament.uk/schema/partyName> \"partyName - 1\" .\r\n<https://id.parliament.uk/ZY0Mx1bp>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/MemberImage>
+        .\r\n<https://id.parliament.uk/168eTafq> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ContactPoint> .\r\n<https://id.parliament.uk/168eTafq>
+        <https://id.parliament.uk/schema/contactPointHasPostalAddress> <https://id.parliament.uk/nDs0SLUm>
+        .\r\n<https://id.parliament.uk/P2ASZWLB> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ContactPoint> .\r\n<https://id.parliament.uk/P2ASZWLB>
+        <https://id.parliament.uk/schema/email> \"email - 1\" .\r\n<https://id.parliament.uk/nDs0SLUm>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/PostalAddress>
+        .\r\n<https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/addressLine1>
+        \"addressLine1 - 1\" .\r\n<https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/addressLine2>
+        \"addressLine2 - 1\" .\r\n<https://id.parliament.uk/nDs0SLUm> <https://id.parliament.uk/schema/postCode>
+        \"postCode - 1\" .\r\n<https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/TemporalThing> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/MnisThing>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ExternalThing> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/NamedThing>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ContactableThing> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/FormalBody>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/MnisFormalBody> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> _:node19743504 .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/SelectCommittee>
+        .\r\n<https://id.parliament.uk/P7Ne09WK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/ParliamentaryCommittee> .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> _:node19743508 .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> _:node19743512 .\r\n<https://id.parliament.uk/P7Ne09WK>
+        <https://id.parliament.uk/schema/count> \"12\"^^<http://www.w3.org/2001/XMLSchema#integer>
+        .\r\n"
     http_version: 
-  recorded_at: Thu, 08 Mar 2018 18:23:52 GMT
+  recorded_at: Fri, 06 Apr 2018 08:03:18 GMT
 - request:
     method: get
     uri: http://localhost:3030/house_index
@@ -86,30 +141,40 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
       Accept:
       - "*/*"
       - application/n-triples
-      User-Agent:
-      - Ruby
       Ocp-Apim-Subscription-Key:
       - "<AUTH_TOKEN>"
+      Expect:
+      - ''
   response:
     status:
       code: 200
       message: OK
     headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '176'
       Content-Type:
       - application/n-triples
-      Content-Disposition:
-      - inline; filename="index"
-      Last-Modified:
-      - Wed, 24 Jan 2018 15:22:19 GMT
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '460'
+      Content-Encoding:
+      - gzip
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Set-Cookie:
+      - ARRAffinity=340e63cd33f60639be9ed6022402f918d196026bdfa43e62ef6564b017e09241;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Fri, 06 Apr 2018 08:03:17 GMT
     body:
       encoding: UTF-8
       string: "<https://id.parliament.uk/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -119,5 +184,5 @@ http_interactions:
         .\r\n<https://id.parliament.uk/WkUWUBMx> <https://id.parliament.uk/schema/houseName>
         \"houseName - 2\" .\r\n"
     http_version: 
-  recorded_at: Thu, 08 Mar 2018 18:23:52 GMT
+  recorded_at: Fri, 06 Apr 2018 08:03:18 GMT
 recorded_with: VCR 4.0.0
