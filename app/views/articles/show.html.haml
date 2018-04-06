@@ -1,31 +1,11 @@
 .container
   .article--wrapper
     %article{ id: 'content', tabindex: '0' }
-      %header
-        - if @collections.any?
-          = render partial: 'collections/delimited_links', locals: { collections: @collections }
+      = render partial: 'shared/article/header', locals: { title: @article.title, summary: @article.article_summary, collections: @collections }
+      = render partial: 'shared/article/main', locals: { content: @article.article_body }
+      = render partial: 'shared/article/footer', locals: { collections: @collections }
 
-        %h1= title(sanitize(@article.title))
-        = MarkdownHelper.markdown(@article.article_summary)
-
-      %div{ role: 'main' }
-        = MarkdownHelper.markdown(@article.article_body)
-
-      - if @collections.any?
-        %footer
-          %h2= t('.up_to')
-          = render partial: 'collections/delimited_links', locals: { collections: @collections }
-
-    %aside
-      - @collections.each do |collection|
-        %h2= sanitize(collection.name)
-        .block
-          %ul.list--pipe
-            - collection.articles.each do |article|
-              %li
-                .list--details
-                  = link_to(sanitize(article.article_title), article_path(article.graph_id))
-            - collection.subcollections.each do |subcollection|
-              %li
-                .list--details
-                  = link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))
+    - if @collections.any?
+      %aside
+        - @collections.each do |collection|
+          = render partial: 'shared/article/aside_block', locals: { title: collection.name, collection: collection, graph_id: @article.graph_id }

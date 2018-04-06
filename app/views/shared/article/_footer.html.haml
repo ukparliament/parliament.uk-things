@@ -1,0 +1,5 @@
+- if local_assigns[:collections] && collections.any?
+  %footer
+    %p
+      %span.typography--heavy= t('.up_to')
+      = render partial: "shared/article/delimited_collection_links", locals: { links: collections }

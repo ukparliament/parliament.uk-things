@@ -722,10 +722,6 @@ en:
   collections:
     root_collection:
       in_this_section: 'In this section'
-  # article translations
-  articles:
-    show:
-      up_to: 'Up to:'
   # no content translations
   no_content:
     empty_list:
@@ -738,6 +734,11 @@ en:
       no_mp: 'There is currently no MP for your constituency.'
   # shared partial translations
   shared:
+    article:
+      header:
+        in: 'In:'
+      footer:
+        up_to: 'Up to:'
     dissolution_message:
       description_text: 'There are currently no MPs because Parliament has been dissolved before the general election on 8 June.'
       description_link: 'Find your constituency'

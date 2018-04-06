@@ -1,4 +1,0 @@
-%p
-  - collections.each_with_index do |collection, index|
-    = link_to(sanitize(collection.name), collection_path(collection.graph_id))
-    = ", " if index != (collections.size - 1)
