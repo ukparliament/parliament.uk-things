@@ -1,11 +1,11 @@
 #content.section--primary{ tabindex: "0" }
   .container
-  - if @group.is_joint?
+  - if @group.joint?
     %h1= "#{title(@group.formal_body_name)}"  if @group.formal_body_name.present?
     %h2= "Joint (Commons and Lords) #{@formal_body_type.name} committee"
     %h3= "#{@group.date_range}"
 
-  - else 
+  - else
     %h1= 'This is the else block'
     %h1= "#{title(@group.formal_body_name)}"
     %h3= "#{@house.name}"
@@ -15,19 +15,21 @@
 
   %h1= 'Committee members'
 
-  - if @group.is_chair?
+  - if @group.has_chair?
     %h2= "#{@person.display_name}"
     %h3= 'Committee chair'
-    %h3= "image id for member is #{@person.image_id}" 
+    %h3= "image id for member is #{@person.image_id}"
 
-  %h3= "#{@party.name} MP for #{@constituency.name}"  
+  %h3= "#{@party.name} MP for #{@constituency.name}"
 
   %h2= "number of committee members: #{@group.member_count}"
 
   %h1= 'Contact us'
 
-  %h2= "Email: #{@contact_point.email}"
-  %h2= "Phone: #{@contact_point.phone_number}"
+  - @group.contact_points.each do |contact_point|
+    - if contact_point.email.present?
+      %h2= "Email: #{contact_point.email}"
+    - if contact_point.phone_number.present?
+      %h2= "Email: #{contact_point.email}"
   %h2= "Address: #{@group.formal_body_name}, #{@postal_address.full_address}"
 
-  
