@@ -2,20 +2,20 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3030/collection_by_id?collection_id=xxxxxxx7
+    uri: http://localhost:3030/collection_by_id?collection_id=PzOslRFq
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
       Accept:
       - "*/*"
       - application/n-triples
-      User-Agent:
-      - Ruby
       Ocp-Apim-Subscription-Key:
       - "<AUTH_TOKEN>"
+      Expect:
+      - ''
   response:
     status:
       code: 200
@@ -26,22 +26,27 @@ http_interactions:
       Pragma:
       - no-cache
       Content-Length:
-      - '678'
+      - '1642'
       Content-Type:
       - application/n-triples
+      Content-Encoding:
+      - gzip
       Expires:
       - "-1"
       Request-Context:
       - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
       Set-Cookie:
-      - ARRAffinity=340e63cd33f60639be9ed6022402f918d196026bdfa43e62ef6564b017e09241;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
+      - ARRAffinity=b67cf4989142f516cf1224c1da63f82fb954c6d5a9d7f17d287740c0647a1f76;Path=/;HttpOnly;Domain=fixedquery201710091000.azurewebsites.net
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Wed, 07 Mar 2018 16:14:52 GMT
+      - Mon, 09 Apr 2018 10:30:07 GMT
     body:
-      encoding: ASCII-8BIT
-      string: ""
+      encoding: UTF-8
+      string: "<https://id.parliament.uk/Q8wlHEK2>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WebArticle>
+        .\r\n<https://id.parliament.uk/Q8wlHEK2> <http://example.com/content/schema/title>
+        \"title - 7\" .\r\n"
     http_version:
-  recorded_at: Wed, 07 Mar 2018 16:15:32 GMT
+  recorded_at: Mon, 09 Apr 2018 10:32:37 GMT
 recorded_with: VCR 4.0.0

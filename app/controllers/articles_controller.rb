@@ -13,5 +13,8 @@ class ArticlesController < ApplicationController
     raise ActionController::RoutingError, 'Article Not Found' unless @article
 
     @collections = @article.collections
+
+    # Gathers the root collections for the collections which the article appears in
+    @root_collections = @article.collections.map(&:orphaned_ancestors).flatten
   end
 end

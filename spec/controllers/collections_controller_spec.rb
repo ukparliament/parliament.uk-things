@@ -6,28 +6,40 @@ RSpec.describe CollectionsController, vcr: true do
     context 'variable assignment' do
       context 'when successful' do
         before(:each) do
-          get :show, params: { collection_id: 'xxxxxxx7' }
+          get :show, params: { collection_id: 'PzOslRFq' }
         end
         it 'should have a response with a http status ok (200)' do
           expect(response).to have_http_status(:ok)
         end
 
-        it 'assigns @collection as a Grom::Node' do
-          expect(assigns(:collection)).to be_a(Grom::Node)
+        context 'assigns @collection' do
+          it 'as a Grom::Node' do
+            expect(assigns(:collection)).to be_a(Grom::Node)
+          end
+
+          it 'as a Grom::Node of type Collection' do
+            expect(assigns(:collection).type).to eq('http://example.com/content/schema/Collection')
+          end
+
+          it 'to the article with correct id' do
+            expect(assigns(:collection).graph_id).to eq('PzOslRFq')
+          end
         end
 
-        it 'assigns @collection as a Grom::Node of type Collection' do
-          expect(assigns(:collection).type).to eq('http://example.com/content/schema/Collection')
-        end
+        context 'assigns @root_collections' do
+          it 'to be an array of Grom::Nodes' do
+            expect(assigns(:root_collections).first).to be_a(Grom::Node)
+          end
 
-        it 'assigns @collection to the article with correct id' do
-          expect(assigns(:collection).graph_id).to eq('xxxxxxx7')
+          it 'to be an array of Grom::Nodes of type Collection' do
+            expect(assigns(:root_collections).map(&:type).uniq).to eq(['http://example.com/content/schema/Collection'])
+          end
         end
       end
 
       context 'when unsuccessful' do
         it 'should raise ActionController::RoutingError error' do
-          expect { get :show, params: { collection_id: 'xxxxxxx7' } }.to raise_error(ActionController::RoutingError, 'Collection Not Found')
+          expect { get :show, params: { collection_id: 'PzOslRFq' } }.to raise_error(ActionController::RoutingError, 'Collection Not Found')
         end
       end
     end
@@ -38,8 +50,8 @@ RSpec.describe CollectionsController, vcr: true do
       [
         {
           route: 'show',
-          parameters: { collection_id: 'xxxxxxx7' },
-          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/collection_by_id?collection_id=xxxxxxx7"
+          parameters: { collection_id: 'PzOslRFq' },
+          data_url: "#{ENV['PARLIAMENT_BASE_URL']}/collection_by_id?collection_id=PzOslRFq"
         }
       ]
     end
@@ -52,7 +64,7 @@ RSpec.describe CollectionsController, vcr: true do
         request.headers.merge(headers)
       end
       it 'should raise ActionController::UnknownFormat error' do
-        expect{ get :show, params: { collection_id: 'xxxxxxx7' } }.to raise_error(ActionController::UnknownFormat)
+        expect{ get :show, params: { collection_id: 'PzOslRFq' } }.to raise_error(ActionController::UnknownFormat)
       end
     end
   end

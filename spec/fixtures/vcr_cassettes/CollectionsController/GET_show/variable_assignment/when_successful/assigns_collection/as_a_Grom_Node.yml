@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3030/webarticle_by_id?webarticle_id=oxGevlNF
+    uri: http://localhost:3030/collection_by_id?collection_id=PzOslRFq
     body:
       encoding: US-ASCII
       string: ''
@@ -26,7 +26,7 @@ http_interactions:
       Pragma:
       - no-cache
       Content-Length:
-      - '2503'
+      - '1642'
       Content-Type:
       - application/n-triples
       Content-Encoding:
@@ -40,31 +40,20 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Mon, 09 Apr 2018 10:33:26 GMT
+      - Mon, 09 Apr 2018 10:30:07 GMT
     body:
       encoding: UTF-8
-      string: "<https://id.parliament.uk/oxGevlNF> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <https://id.parliament.uk/schema/WebArticle> .\r\n<https://id.parliament.uk/oxGevlNF>
-        <http://example.com/content/schema/title> \"title - 1\" .\r\n<https://id.parliament.uk/oxGevlNF>
-        <http://example.com/content/schema/body> \"body - 1\" .\r\n<https://id.parliament.uk/oxGevlNF>
-        <https://id.parliament.uk/schema/subjectTaggedThingHasConcept> <https://id.parliament.uk/AIg8zyho>
-        .\r\n<https://id.parliament.uk/AIg8zyho> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <https://id.parliament.uk/schema/Concept> .\r\n<https://id.parliament.uk/AIg8zyho>
-        <https://id.parliament.uk/schema/conceptLabel> \"conceptLabel - 1\" .\r\n<https://id.parliament.uk/oxGevlNF>
-        <http://example.com/content/schema/articleType> <http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi>
-        .\r\n<http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://example.com/content/schema/ArticleType> .\r\n<http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi>
-        <http://example.com/content/schema/name> \"name - 1\" .\r\n<https://id.parliament.uk/oxGevlNF>
-        <http://example.com/content/schema/articleHasCollection> <https://id.parliament.uk/PzOslRFq>
-        .\r\n<https://id.parliament.uk/PzOslRFq> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+      string: "<https://id.parliament.uk/PzOslRFq> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
         <http://example.com/content/schema/Collection> .\r\n<https://id.parliament.uk/PzOslRFq>
         <http://example.com/content/schema/collectionName> \"collectionName - 1\"
         .\r\n<https://id.parliament.uk/PzOslRFq> <http://example.com/content/schema/collectionDescription>
-        \"collectionDescription - 1\" .\r\n<https://id.parliament.uk/PzOslRFq> <http://example.com/content/schema/collectionHasParent>
-        <https://id.parliament.uk/pTdLFumO> .\r\n<https://id.parliament.uk/pTdLFumO>
-        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/content/schema/Collection>
-        .\r\n<https://id.parliament.uk/pTdLFumO> <http://example.com/content/schema/collectionName>
-        \"collectionName - 2\" .\r\n<https://id.parliament.uk/pTdLFumO> <http://example.com/content/schema/collectionDescription>
+        \"collectionDescription - 1\" .\r\n<https://id.parliament.uk/PzOslRFq> <http://example.com/content/schema/collectionExtendedDescription>
+        \"collectionExtendedDescription - 1\" .\r\n<https://id.parliament.uk/PzOslRFq>
+        <http://example.com/content/schema/collectionHasParent> <https://id.parliament.uk/pTdLFumO>
+        .\r\n<https://id.parliament.uk/pTdLFumO> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <http://example.com/content/schema/Collection> .\r\n<https://id.parliament.uk/pTdLFumO>
+        <http://example.com/content/schema/collectionName> \"collectionName - 2\"
+        .\r\n<https://id.parliament.uk/pTdLFumO> <http://example.com/content/schema/collectionDescription>
         \"collectionDescription - 2\" .\r\n<https://id.parliament.uk/pTdLFumO> <http://example.com/content/schema/collectionHasParent>
         <https://id.parliament.uk/6i8XQAfD> .\r\n<https://id.parliament.uk/6i8XQAfD>
         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.com/content/schema/Collection>
@@ -74,10 +63,11 @@ http_interactions:
         <https://id.parliament.uk/8MHJ9zSp> .\r\n<https://id.parliament.uk/8MHJ9zSp>
         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WebArticle>
         .\r\n<https://id.parliament.uk/8MHJ9zSp> <http://example.com/content/schema/title>
-        \"title - 2\" .\r\n<https://id.parliament.uk/8MHJ9zSp> <http://example.com/content/schema/articleType>
-        <http://example.com/content/6ROrcWq8yAEW4wOAqQMqGi> .\r\n<https://id.parliament.uk/PzOslRFq>
-        <http://example.com/content/schema/collectionHasArticle> <https://id.parliament.uk/oxGevlNF>
-        .\r\n<https://id.parliament.uk/PzOslRFq> <http://example.com/content/schema/collectionHasArticle>
+        \"title - 1\" .\r\n<https://id.parliament.uk/PzOslRFq> <http://example.com/content/schema/collectionHasArticle>
+        <https://id.parliament.uk/oxGevlNF> .\r\n<https://id.parliament.uk/oxGevlNF>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WebArticle>
+        .\r\n<https://id.parliament.uk/oxGevlNF> <http://example.com/content/schema/title>
+        \"title - 2\" .\r\n<https://id.parliament.uk/PzOslRFq> <http://example.com/content/schema/collectionHasArticle>
         <https://id.parliament.uk/wSBO4xfC> .\r\n<https://id.parliament.uk/wSBO4xfC>
         <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WebArticle>
         .\r\n<https://id.parliament.uk/wSBO4xfC> <http://example.com/content/schema/title>
@@ -100,5 +90,5 @@ http_interactions:
         .\r\n<https://id.parliament.uk/Q8wlHEK2> <http://example.com/content/schema/title>
         \"title - 7\" .\r\n"
     http_version: 
-  recorded_at: Mon, 09 Apr 2018 10:35:56 GMT
+  recorded_at: Mon, 09 Apr 2018 10:32:37 GMT
 recorded_with: VCR 4.0.0

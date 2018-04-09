@@ -40,7 +40,7 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       Date:
-      - Mon, 09 Apr 2018 10:33:26 GMT
+      - Mon, 09 Apr 2018 10:33:24 GMT
     body:
       encoding: UTF-8
       string: "<https://id.parliament.uk/oxGevlNF> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
@@ -100,5 +100,5 @@ http_interactions:
         .\r\n<https://id.parliament.uk/Q8wlHEK2> <http://example.com/content/schema/title>
         \"title - 7\" .\r\n"
     http_version: 
-  recorded_at: Mon, 09 Apr 2018 10:35:56 GMT
+  recorded_at: Mon, 09 Apr 2018 10:35:54 GMT
 recorded_with: VCR 4.0.0

@@ -44,6 +44,17 @@ RSpec.describe 'articles/show', vcr: true do
     )
   }
 
+  let!(:root_collections) {
+    assign(:root_collections,
+      [
+        double(:root_collection,
+          name:     'Test root collection',
+          graph_id: 'zxcvbnmj'
+        )
+      ]
+    )
+  }
+
   let!(:article_graph_id)              { 'a3d21x98' }
   let!(:article_title_text)            { 'This is a test Title.' }
   let!(:article_body_text)             { '__This__ is an article body' }
@@ -74,6 +85,21 @@ RSpec.describe 'articles/show', vcr: true do
       }
       it 'will not render the shared/article/aside_block partial' do
         expect(response).not_to render_template(partial: 'shared/article/_aside_block')
+      end
+    end
+
+    context 'when root collections exist' do
+      it 'will render the shared/article/delimited_collection_links partial' do
+        expect(response).to render_template(partial: 'shared/article/_delimited_collection_links', count: 3)
+      end
+    end
+
+    context 'when root collections do not exist' do
+      let!(:root_collections) {
+        assign(:root_collections, [])
+      }
+      it 'will not render the shared/article/delimited_collection_links partial' do
+        expect(response).to render_template(partial: 'shared/article/_delimited_collection_links', count: 2)
       end
     end
   end
