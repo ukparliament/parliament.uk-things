@@ -11,8 +11,10 @@
         %li
           .list--details
             %h3= link_to(sanitize(article.article_title), article_path(article.graph_id))
+            = MarkdownHelper.markdown(article.article_summary)
 
       - collection.subcollections.each do |subcollection|
         %li
           .list--details
             %h3= link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))
+            = MarkdownHelper.markdown(subcollection.description)
