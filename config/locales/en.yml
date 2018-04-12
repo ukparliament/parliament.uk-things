@@ -739,6 +739,7 @@ en:
         in: 'In:'
       footer:
         up_to: 'Up to:'
+        print: 'print page'
     dissolution_message:
       description_text: 'There are currently no MPs because Parliament has been dissolved before the general election on 8 June.'
       description_link: 'Find your constituency'
