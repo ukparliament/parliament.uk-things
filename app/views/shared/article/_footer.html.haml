@@ -1,5 +1,13 @@
-- if local_assigns[:collections] && collections.any?
-  %footer
+%footer
+  - if local_assigns[:collections] && collections.any?
     %p
       %span.typography--heavy= t('.up_to')
-      = render partial: "shared/article/delimited_collection_links", locals: { links: collections }
+      = render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
+
+  %ul.list--inline
+    // Print button
+    %li.visually-hidden{ aria: { hidden: 'true' } }
+      .list--details
+        = render partial: 'pugin/icons/print'
+        %a.btn--print{ href: '#' }
+          = t('.print').capitalize
