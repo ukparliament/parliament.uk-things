@@ -16,7 +16,7 @@ class PeopleController < ApplicationController
     @current_party_membership = @person.current_party_membership
 
     # Only seat incumbencies, not committee roles are being grouped
-    incumbencies = GroupingHelper.group(@seat_incumbencies, :constituency, :graph_id)
+    incumbencies = RoleGroupingHelper.group(@seat_incumbencies, :constituency, :graph_id)
 
     roles = []
     roles += incumbencies

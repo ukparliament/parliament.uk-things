@@ -53,10 +53,5 @@ module MembersPrototype
     config.action_view.field_error_proc = Proc.new { |html_tag, instance|
       html_tag
     }
-
-    # Allow table HTML tags as sanitized
-    config.after_initialize do
-      ActionView::Base.sanitized_allowed_tags += %w(table thead tbody tfoot tr th td)
-    end
   end
 end
