@@ -1,7 +1,7 @@
 .section--primary
   .container--offset
     %h1= title(sanitize(collection.name))
-    = MarkdownHelper.markdown(collection.description)
+    = Parliament::Utils::Helpers::MarkdownHelper.markdown(collection.description)
 
 %section{ id: 'content', tabindex: '0' }
   .container
@@ -11,10 +11,10 @@
         %li
           .list--details
             %h3= link_to(sanitize(article.article_title), article_path(article.graph_id))
-            = MarkdownHelper.markdown(article.article_summary)
+            = Parliament::Utils::Helpers::MarkdownHelper.markdown(article.article_summary)
 
       - collection.subcollections.each do |subcollection|
         %li
           .list--details
             %h3= link_to(sanitize(subcollection.name), collection_path(subcollection.graph_id))
-            = MarkdownHelper.markdown(subcollection.description)
+            = Parliament::Utils::Helpers::MarkdownHelper.markdown(subcollection.description)

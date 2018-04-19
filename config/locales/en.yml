@@ -24,10 +24,14 @@ en:
   activemodel:
     errors:
       models:
+        hybrid_bill_document:
+          attributes:
+            filesize:
+              less_than: 'must be less than 2150000'
         hybrid_bill_individual_submission:
           attributes:
             first_name:
-              blank: "Please enter a first name"
+              blank: 'Please enter a first name'
             surname:
               blank: 'Please enter a last name'
             address_1:
@@ -435,6 +439,8 @@ en:
   time:
     formats:
       default: '%-d %b %Y'
+  date:
+    abbr_month_names: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   # global error message translations
   error:
     no_constituency: "we couldn't find the postcode you entered."

@@ -4,7 +4,7 @@
 
 %section{ id: 'content', tabindex: "0" }
   .container--offset
-    = MarkdownHelper.markdown(@concept.definition)
+    = Parliament::Utils::Helpers::MarkdownHelper.markdown(@concept.definition)
 
     - if @concept_articles.any?
       %h2= "Articles in this section"
