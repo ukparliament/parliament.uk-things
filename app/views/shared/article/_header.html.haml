@@ -8,4 +8,4 @@
       = render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
 
   - if local_assigns[:summary]
-    = MarkdownHelper.markdown(summary)
+    = Parliament::Utils::Helpers::MarkdownHelper.markdown(summary)
