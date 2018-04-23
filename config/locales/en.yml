@@ -447,6 +447,19 @@ en:
     lookup_unavailable: 'postcode check is currently unavailable.'
     postcode_invalid: "we couldn't find the postcode you entered."
     no_mp: "We couldn't find an MP for that postcode.  Your constituency is"
+  # questions translations
+  questions:
+    show:
+      answer: 'answer'
+      answer_expected_from: 'answer expected from the'
+      mp_for: 'MP for'
+      not_answered: 'not yet answered'
+      question: 'question'
+      question_for: 'question for'
+      asked_on: 'asked on'
+      answered_on: 'aswered on'
+      by: 'by'
+      
   # people translations
   people:
     index:
