@@ -6,6 +6,15 @@ class GroupsController < ApplicationController
   }.freeze
 
   def show
-    @group = @request.get.first
+  	@group, @contact_points, @postal_address = Parliament::Utils::Helpers::FilterHelper.filter(
+      @request,
+      'Group',
+      'ContactPoint',
+      'PostalAddress'
+    )
+
+  	@group = @group.first
+    @postal_address = @postal_address.first
+    @chair_people = @group.chair_people if @group.formal_body?
   end
 end
