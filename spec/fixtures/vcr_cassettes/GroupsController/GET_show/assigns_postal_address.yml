@@ -54,9 +54,9 @@ http_interactions:
         <https://id.parliament.uk/E86yZWtX> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/ContactPoint> .
         <https://id.parliament.uk/E86yZWtX> <https://id.parliament.uk/schema/contactPointHasPostalAddress> <https://id.parliament.uk/5QqvJVgV> .
         <https://id.parliament.uk/5QqvJVgV> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/PostalAddress> .
-        <https://id.parliament.uk/5QqvJVgV> <https://id.parliament.uk/schema/addressLine1> "House of Lords" .
-        <https://id.parliament.uk/5QqvJVgV> <https://id.parliament.uk/schema/addressLine2> "London" .
-        <https://id.parliament.uk/5QqvJVgV> <https://id.parliament.uk/schema/postCode> "SW1A 0PW" .
+        <https://id.parliament.uk/5QqvJVgV> <https://id.parliament.uk/schema/addressLine1> "addressLine1 - 1" .
+        <https://id.parliament.uk/5QqvJVgV> <https://id.parliament.uk/schema/addressLine2> "addressLine2 - 1" .
+        <https://id.parliament.uk/5QqvJVgV> <https://id.parliament.uk/schema/postCode> "postCode - 1" .
         <https://id.parliament.uk/5XgerVrp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/Person> .
         <https://id.parliament.uk/5XgerVrp> <https://id.parliament.uk/schema/personFamilyName> "Hollick" .
         <https://id.parliament.uk/5XgerVrp> <https://id.parliament.uk/schema/personGivenName> "Clive" .
@@ -318,7 +318,7 @@ http_interactions:
         <https://id.parliament.uk/DBFruMTZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> _:node19743508 .
         <https://id.parliament.uk/DBFruMTZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> _:node19743512 .
         <https://id.parliament.uk/DBFruMTZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> _:node19775343 .
-        <https://id.parliament.uk/DBFruMTZ> <https://id.parliament.uk/schema/memberCount> "13"^^<http://www.w3.org/2001/XMLSchema#integer> .
+        <https://id.parliament.uk/DBFruMTZ> <https://id.parliament.uk/schema/count> "13"^^<http://www.w3.org/2001/XMLSchema#integer> .
     http_version:
   recorded_at: Tue, 24 Apr 2018 15:48:05 GMT
 - request:
