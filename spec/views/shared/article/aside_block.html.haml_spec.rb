@@ -51,7 +51,7 @@ RSpec.describe 'shared/article/_aside_block' do
       end
 
       it 'will use an active class for the list item containing the active article title' do
-        expect(rendered).to have_css('li.active .list--details', text: article_title_text)
+        expect(rendered).to have_css('li.active .card__details', text: article_title_text)
       end
     end
 

@@ -36,18 +36,19 @@
     = form_tag(hybrid_bill_path(@business_id, step: 'document-submission'), multipart: true) do
       %ol.list--pipe__deep
         %li
-          %figure.svg--icon{ 'data-file-upload': 'icon' }
-            = render partial: 'pugin/icons/file'
+          .card
+            %figure{ 'data-file-upload': 'icon' }
+              = render partial: 'pugin/icons/file'
 
-          .list-details
-            %h3= t('hybrid_bills.document-submission.upload_template').capitalize
+            .card__details
+              %h3= t('hybrid_bills.document-submission.upload_template').capitalize
 
-            = file_field_tag 'hybrid_bill_document[file]', id: 'fileUpload', 'data-file-upload': 'button', 'data-file-size': '2097152', 'required': 'true'
-            %label{for: 'fileUpload', class: 'btn--primary'}
-              = t('user_forms.choose_file').capitalize
+              = file_field_tag 'hybrid_bill_document[file]', id: 'fileUpload', 'data-file-upload': 'button', 'data-file-size': '2097152', 'required': 'true'
+              %label{for: 'fileUpload', class: 'btn--primary'}
+                = t('user_forms.choose_file').capitalize
 
-            %p{ 'data-file-upload': 'status' }
-              = t('user_forms.select_file').capitalize
+              %p{ 'data-file-upload': 'status' }
+                = t('user_forms.select_file').capitalize
 
       = submit_tag t('user_forms.next_button').capitalize, class: 'btn--primary'
 
