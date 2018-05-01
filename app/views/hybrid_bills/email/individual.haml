@@ -35,22 +35,23 @@
     .section--major
       %ol.list--pipe__deep
         %li
-          %figure.svg--icon.svg--file__word
-            = render partial: 'pugin/icons/file'
+          .card--large
+            %figure.svg--file__word
+              = render partial: 'pugin/icons/file'
 
-          .list--details
-            %h3= t('hybrid_bills.help_support_template').capitalize
+            .card__details
+              %h3= t('hybrid_bills.help_support_template').capitalize
 
-            %a{ href: "#{t('hybrid_bills.hb_s3_bucket')}#{t('hybrid_bills.id' + @business_id + '.template_offline_ind')}", class: 'btn--primary' }
-              = render partial: 'pugin/icons/download'
-              = t('user_forms.word_download_button')
+              %a{ href: "#{t('hybrid_bills.hb_s3_bucket')}#{t('hybrid_bills.id' + @business_id + '.template_offline_ind')}", class: 'btn--primary' }
+                = render partial: 'pugin/icons/download'
+                = t('user_forms.word_download_button')
 
-            %p
-              = t('hybrid_bills.help_support_format')
-              = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
-              = t('hybrid_bills.help_support_b')
-              = succeed "." do
-                = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"
+              %p
+                = t('hybrid_bills.help_support_format')
+                = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
+                = t('hybrid_bills.help_support_b')
+                = succeed "." do
+                  = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"
 
       %h2= t('hybrid_bills.email.bill_updates').capitalize
       %p

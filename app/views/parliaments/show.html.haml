@@ -10,11 +10,14 @@
   .container
     %ul.list--block
       %li
-        .list--details
-          %h2= link_to(t('mps_and_lords'), parliament_members_path(@parliament.graph_id))
+        .card
+          .card__details
+            %h2= link_to(t('mps_and_lords'), parliament_members_path(@parliament.graph_id))
       %li
-        .list--details
-          %h2= link_to(t('party_plural').capitalize, parliament_parties_path(@parliament.graph_id))
+        .card
+          .card__details
+            %h2= link_to(t('party_plural').capitalize, parliament_parties_path(@parliament.graph_id))
       %li
-        .list--details
-          %h2= link_to(t('constituency_plural').capitalize, parliament_constituencies_path(@parliament.graph_id))
+        .card
+          .card__details
+            %h2= link_to(t('constituency_plural').capitalize, parliament_constituencies_path(@parliament.graph_id))

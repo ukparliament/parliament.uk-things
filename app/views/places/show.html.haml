@@ -3,6 +3,7 @@
     %h1= @place.name
     %ol.list--block
       %li
-        .list--details
-          %h2= link_to(t('constituency_plural').capitalize, places_show_constituencies_path(@place.gss_code))
-          %p= "#{@place.constituency_count} #{t('constituency_plural').capitalize}"
+        .card
+          .card__details
+            %h2= link_to(t('constituency_plural').capitalize, places_show_constituencies_path(@place.gss_code))
+            %p= "#{@place.constituency_count} #{t('constituency_plural').capitalize}"
