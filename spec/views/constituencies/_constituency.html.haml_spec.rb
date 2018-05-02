@@ -92,7 +92,6 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
 
       it 'will render current MP' do
         expect(rendered).to match(/MP/)
-        expect(rendered).to match(/Test Display Name/)
       end
 
       context '@current_incumbency.start_date.nil?' do
