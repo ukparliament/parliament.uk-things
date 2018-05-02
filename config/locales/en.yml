@@ -459,7 +459,7 @@ en:
       mp_for: 'MP for'
       not_answered: 'not yet answered'
       question: 'question'
-      question_for: 'question for'
+      for: 'for'
       asked_on: 'asked on'
       answered_on: 'answered on'
       by: 'by'
