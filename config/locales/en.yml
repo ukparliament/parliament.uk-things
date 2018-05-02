@@ -461,9 +461,9 @@ en:
       question: 'question'
       question_for: 'question for'
       asked_on: 'asked on'
-      answered_on: 'aswered on'
+      answered_on: 'answered on'
       by: 'by'
-      
+
   # people translations
   people:
     index:
