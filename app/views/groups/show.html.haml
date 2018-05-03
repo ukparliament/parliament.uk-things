@@ -35,8 +35,8 @@
               %li
                 .card
                   - if Pugin::Feature::Bandiera.show_list_images?
-                    %figure
-                      %a{href: "/people/#{chair_person.graph_id}", tabindex: "-1"}
+                    %figure.avatar--round
+                      = link_to(person_path(chair_person.graph_id), { aria: { hidden: "true" }, tabindex: "-1" }) do
                         %picture
                           - if chair_person.image_id != "placeholder"
                             %img{ src: "#{ENV['IMAGE_SERVICE_URL']}/#{chair_person.image_id}.jpeg?crop=CU_1:1&width=186&quality=80", alt: "#{chair_person.display_name}" }
@@ -45,7 +45,7 @@
 
                   .card__details
                     %h2
-                      %a{href: "/people/#{chair_person.graph_id}"}= chair_person.display_name
+                      = link_to(chair_person.display_name, person_path(chair_person.graph_id))
                     %p= "#{t('committee').capitalize} #{t('chair')}"
                     %p
                       - if chair_person.current_mp?
