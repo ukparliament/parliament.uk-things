@@ -184,7 +184,7 @@ en:
     of_the: 'of the'
     the: 'the'
     hyphen: '-'
-    hb_s3_bucket: 'https://s3-eu-west-1.amazonaws.com/web1live.static-assets-public/_hybrid-bills/documents/'
+    hb_s3_bucket: 'https://static.parliament.uk/assets-public/_hybrid-bills/documents/'
     # help and support
     help_support: 'help and support'
     help_support_a: 'For more information email'
