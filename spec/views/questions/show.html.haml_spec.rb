@@ -155,10 +155,6 @@ RSpec.describe 'questions/show', vcr: true do
         double(:answering_body,
           name: 'Department of Health'))
 
-      assign(:answer,
-        double(:answer,
-          text: ''))
-
       assign(:asking_person_seat_incumbency,
         double(:asking_person_seat_incumbency,
         current?:  false,
@@ -170,6 +166,10 @@ RSpec.describe 'questions/show', vcr: true do
       context 'answer' do
         it 'will not render the answer text' do
           expect(rendered).not_to match(/Answer text1/)
+        end
+
+        it 'will render not yet answered' do
+          expect(rendered).to match(/Not yet answered/)
         end
       end
   end

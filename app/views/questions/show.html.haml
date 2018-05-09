@@ -1,7 +1,7 @@
 .section--primary
   .container
     %h1= title("#{t('.question').capitalize} #{@question.uin}")
-    %p.lead= "#{t('.for').capitalize} #{@answering_body.name}"
+    %p.lead= "#{t('.question_for').capitalize} #{@answering_body.name}"
 
 %section{ id: 'content', tabindex: '0' }
   .container
@@ -14,10 +14,10 @@
 
     -# Answer
     .block--border__bottom
-      - if !@answer.text.empty?
-        %h2= t('.answer').capitalize
+      %h2= t('.answer').capitalize
+      - if @answer.present?
         = @answer.text.html_safe
         = render partial: 'person_details', locals: { person: @answering_person, role: "#{@government_position.name}", incumbency: @answering_person_government_incumbency, submitted_on: "#{t('.answered_on').capitalize} #{@answer.answer_given_date.strftime('%d %B %Y')} #{t('.by')}" }
       - else
-        %h2= t('.not_answered').capitalize
-        %p= "#{t('.answer_expected_from').capitalize} #{@answering_body.name}"
+        .status--highlight.theme--purple--light
+          = t('.not_answered').capitalize
