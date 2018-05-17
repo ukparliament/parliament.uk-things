@@ -63,9 +63,6 @@ group :development, :test do
 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
-  # Use parallel_tests to run specs across all CPU cores locally
-  gem 'parallel_tests'
-
   # Use FactoryBot for building models in tests
   gem 'factory_bot_rails'
 end
