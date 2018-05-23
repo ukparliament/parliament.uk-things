@@ -1,7 +1,8 @@
 .section--primary
   .container
-    %h1= title("#{t('.question').capitalize} #{@question.uin}")
-    %p.lead= "#{t('.for').capitalize} #{@answering_body.name}"
+    %h1= title(@question.heading)
+    - if @answering_body
+      %p.lead= "#{t('.for').capitalize} #{@answering_body.name}"
 
 %section{ id: 'content', tabindex: '0' }
   .container
@@ -9,15 +10,16 @@
     -# Question
     .block--border__bottom
       %h2= t('.question').capitalize
-      %p= @question.text
-      = render partial: 'person_details', locals: { person: @asking_person, role: "#{t('.mp_for')} #{@constituency.name}", incumbency: @asking_person_seat_incumbency, submitted_on: "#{t('.asked_on').capitalize} #{@question.asked_at_date.strftime('%d %B %Y')} #{t('.by')}" }
+      = sanitize @question.text
+      - role = @asking_person_seat_incumbency.house_of_lords? ? "#{t('.member_of').capitalize} #{t('house_of_lords')}" : "#{t('.mp_for')} #{@constituency.name}"
+      = render partial: 'person_details', locals: { person: @asking_person, role: role, incumbency: @asking_person_seat_incumbency, submitted_on: "#{t('.asked_on').capitalize} #{@question.asked_at_date.strftime('%d %B %Y')} #{t('.by')}" }
 
     -# Answer
     .block--border__bottom
-      - if !@answer.text.empty?
-        %h2= t('.answer').capitalize
-        = @answer.text.html_safe
+      %h2= t('.answer').capitalize
+      - if @answer.present?
+        = sanitize @answer_text
         = render partial: 'person_details', locals: { person: @answering_person, role: "#{@government_position.name}", incumbency: @answering_person_government_incumbency, submitted_on: "#{t('.answered_on').capitalize} #{@answer.answer_given_date.strftime('%d %B %Y')} #{t('.by')}" }
       - else
-        %h2= t('.not_answered').capitalize
-        %p= "#{t('.answer_expected_from').capitalize} #{@answering_body.name}"
+        .status--highlight.theme--purple--light
+          = t('.not_answered').capitalize

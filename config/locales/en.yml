@@ -457,12 +457,13 @@ en:
       answer: 'answer'
       answer_expected_from: 'answer expected from the'
       mp_for: 'MP for'
-      not_answered: 'not yet answered'
+      not_answered: 'not yet answered.'
       question: 'question'
       for: 'for'
       asked_on: 'asked on'
       answered_on: 'answered on'
       by: 'by'
+      member_of: 'member of the'
 
   # people translations
   people:
