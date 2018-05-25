@@ -3,9 +3,9 @@
     .card
       .card__details
         - if RoleHelper.role_type(role, 'SeatIncumbency')
-          - if role.class == GroupingHelper::GroupedObject || role&.house_of_commons?
+          - if role.class == RoleGroupingHelper::RoleGroupedObject || role&.house_of_commons?
             - date_string = role.try(:start_date) && role.try(:end_date) ? " (#{l(role.start_date, format: :year_only)} #{t('to')} #{l(role.end_date, format: :year_only)})" : ''
-            - if role.class == GroupingHelper::GroupedObject
+            - if role.class == RoleGroupingHelper::RoleGroupedObject
               - role_type_start = t('.mp_for')
               - role_type_link = link_to("#{role.nodes[0].constituency.name} #{date_string}", constituency_path(role.nodes[0].constituency.graph_id))
               - role_type = sanitize "#{role_type_start} #{role_type_link}"

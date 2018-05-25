@@ -1,0 +1,30 @@
+.section--primary#content{ tabindex: "0" }
+  .container
+    %h1= title(@work_packageable_thing.name)
+
+    %ul
+      %li
+        = 'This is a'
+        = link_to("#{@procedure.name.downcase}", procedure_path(@procedure.graph_id))
+        = 'work package'
+
+      - unless @work_packageable_thing.weblink.empty?
+        = link_to(@work_packageable_thing.weblink) do
+          %li= "Read the related information"
+
+    - if @completed_business_items.any?
+      %h2= 'Completed steps'
+      .track--alternative
+        - @completed_business_items.each do |completed_business_item|
+          = render partial: 'work_packages/business_item', locals: { business_item: completed_business_item }
+
+    - if @scheduled_business_items.any?
+      %h2= 'Scheduled steps'
+      .track--alternative
+        - @scheduled_business_items.each do |scheduled_business_item|
+          = render partial: 'work_packages/business_item', locals: { business_item: scheduled_business_item }
+
+    - if @business_items_with_no_date.any?
+      %h2= 'Completed steps with no date'
+      - @business_items_with_no_date.each do |business_item_with_no_date|
+        = render partial: 'work_packages/business_item', locals: { business_item: business_item_with_no_date }

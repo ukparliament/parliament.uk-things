@@ -6,8 +6,8 @@
     = render 'current_role', role: role, role_type: "#{t('.opposition_role').capitalize}", role_title: "#{role.opposition_position.name}"
 
   - current_roles.fetch('SeatIncumbency', []).each do |role|
-    - if role.class == GroupingHelper::GroupedObject || role&.house_of_commons?
-      - if role.class == GroupingHelper::GroupedObject
+    - if role.class == RoleGroupingHelper::RoleGroupedObject || role&.house_of_commons?
+      - if role.class == RoleGroupingHelper::RoleGroupedObject
         - first_line_start = t('.mp_for')
         - first_line_end = link_to(role.nodes[0].constituency.name, constituency_path(role.nodes[0].constituency.graph_id))
         - first_line = "#{first_line_start} #{first_line_end}".html_safe
