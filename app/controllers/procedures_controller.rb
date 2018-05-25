@@ -5,20 +5,18 @@ class ProceduresController < ApplicationController
     show: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.procedure_by_id.set_url_params({ procedure_id: params[:procedure_id] }) }
   }.freeze
 
-  # @return [Grom::Node] object with type 'https://id.parliament.uk/schema/Procedure'.
-
   def show
-    @procedure = Parliament::Utils::Helpers::FilterHelper.filter(
+    @procedure, @work_packages = Parliament::Utils::Helpers::FilterHelper.filter(
       @request,
-      'Procedure'
+      'Procedure',
+      'WorkPackage'
     )
 
     @procedure = @procedure.first
-    @work_packageable_things = @procedure.work_packages.map(&:work_packageable_thing)
 
-    @work_packageable_things = Parliament::NTriple::Utils.multi_direction_sort({
-      list: @work_packageable_things,
-      parameters: { oldest_business_item_date: :desc, name: :asc },
+    @work_packages = Parliament::NTriple::Utils.multi_direction_sort({
+      list: @work_packages.nodes,
+      parameters: { oldest_business_item_date: :desc, work_packageable_thing_name: :asc },
       prepend_rejected: false
     })
 

@@ -1,0 +1,197 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3030/procedure_by_id?procedure_id=5S6p4YsP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Ruby
+      Accept:
+      - "*/*"
+      - application/n-triples
+      Ocp-Apim-Subscription-Key:
+      - "<AUTH_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '1208'
+      Content-Type:
+      - application/n-triples
+      Content-Encoding:
+      - gzip
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 30 May 2018 09:34:09 GMT
+    body:
+      encoding: UTF-8
+      string: "<https://id.parliament.uk/5S6p4YsP> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/Procedure> .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureName> \"procedureName - 1\" .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/CERw4sxU>
+        .\r\n<https://id.parliament.uk/CERw4sxU> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/CERw4sxU>
+        <https://example.com/oldestBusinessItemDate> \"2017-09-07+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/8lYUKjib> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackageableThing> .\r\n<https://id.parliament.uk/8lYUKjib>
+        <https://id.parliament.uk/schema/workPackageableThingName> \"workPackageableThingName
+        - 1\" .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/fpP6wtRy> .\r\n<https://id.parliament.uk/fpP6wtRy>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/fpP6wtRy> <https://example.com/oldestBusinessItemDate>
+        \"2018-01-01+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/PjQFqiyZ>
+        .\r\n<https://id.parliament.uk/PjQFqiyZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/PjQFqiyZ>
+        <https://example.com/oldestBusinessItemDate> \"2018-05-01+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/yxN0RDlj> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackageableThing> .\r\n<https://id.parliament.uk/yxN0RDlj>
+        <https://id.parliament.uk/schema/workPackageableThingName> \"workPackageableThingName
+        - 2\" .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/lq49zoKs> .\r\n<https://id.parliament.uk/lq49zoKs>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/lq49zoKs> <https://example.com/oldestBusinessItemDate>
+        \"2018-05-14+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/LFLdzMuO>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackageableThing>
+        .\r\n<https://id.parliament.uk/LFLdzMuO> <https://id.parliament.uk/schema/workPackageableThingName>
+        \"workPackageableThingName - 3\" .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/I4duwcuB>
+        .\r\n<https://id.parliament.uk/I4duwcuB> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/I4duwcuB>
+        <https://example.com/oldestBusinessItemDate> \"2018-05-10+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/bS94erG6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackageableThing> .\r\n<https://id.parliament.uk/bS94erG6>
+        <https://id.parliament.uk/schema/workPackageableThingName> \"workPackageableThingName
+        - 4\" .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/KAaIQyCC> .\r\n<https://id.parliament.uk/KAaIQyCC>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/KAaIQyCC> <https://example.com/oldestBusinessItemDate>
+        \"2018-05-08+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/upP2FHa4>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackageableThing>
+        .\r\n<https://id.parliament.uk/upP2FHa4> <https://id.parliament.uk/schema/workPackageableThingName>
+        \"workPackageableThingName - 5\" .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/HEvio9nu>
+        .\r\n<https://id.parliament.uk/HEvio9nu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/HEvio9nu>
+        <https://example.com/oldestBusinessItemDate> \"2017-05-12+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/FoUx7Oxo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackageableThing> .\r\n<https://id.parliament.uk/FoUx7Oxo>
+        <https://id.parliament.uk/schema/workPackageableThingName> \"workPackageableThingName
+        - 6\" .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/26Y9ftes> .\r\n<https://id.parliament.uk/26Y9ftes>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/26Y9ftes> <https://example.com/oldestBusinessItemDate>
+        \"2018-05-14+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/Q2dC6z5O>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackageableThing>
+        .\r\n<https://id.parliament.uk/Q2dC6z5O> <https://id.parliament.uk/schema/workPackageableThingName>
+        \"workPackageableThingName - 7\" .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/yc9xS1RL>
+        .\r\n<https://id.parliament.uk/yc9xS1RL> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/yc9xS1RL>
+        <https://example.com/oldestBusinessItemDate> \"2018-01-22+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/Ix8dPawU> .\r\n<https://id.parliament.uk/Ix8dPawU>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/Ix8dPawU> <https://example.com/oldestBusinessItemDate>
+        \"2018-05-10+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/9PfnbabC>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackageableThing>
+        .\r\n<https://id.parliament.uk/9PfnbabC> <https://id.parliament.uk/schema/workPackageableThingName>
+        \"workPackageableThingName - 8\" .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/0ifq7ERi>
+        .\r\n<https://id.parliament.uk/0ifq7ERi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/0ifq7ERi>
+        <https://example.com/oldestBusinessItemDate> \"2018-05-16+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/5U4yBcY4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackageableThing> .\r\n<https://id.parliament.uk/5U4yBcY4>
+        <https://id.parliament.uk/schema/workPackageableThingName> \"workPackageableThingName
+        - 9\" .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/E5XlAFS8> .\r\n<https://id.parliament.uk/E5XlAFS8>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/E5XlAFS8> <https://example.com/oldestBusinessItemDate>
+        \"2018-05-02+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/HJ7BlYte>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackageableThing>
+        .\r\n<https://id.parliament.uk/HJ7BlYte> <https://id.parliament.uk/schema/workPackageableThingName>
+        \"workPackageableThingName - 10\" .\r\n<https://id.parliament.uk/5S6p4YsP>
+        <https://id.parliament.uk/schema/procedureHasWorkPackage> <https://id.parliament.uk/kToX7wTu>
+        .\r\n<https://id.parliament.uk/kToX7wTu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackage> .\r\n<https://id.parliament.uk/kToX7wTu>
+        <https://example.com/oldestBusinessItemDate> \"2018-05-21+00:00\"^^<http://www.w3.org/2001/XMLSchema#date>
+        .\r\n<https://id.parliament.uk/0yfUO88U> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/WorkPackageableThing> .\r\n<https://id.parliament.uk/0yfUO88U>
+        <https://id.parliament.uk/schema/workPackageableThingName> \"workPackageableThingName
+        - 11\" .\r\n<https://id.parliament.uk/5S6p4YsP> <https://id.parliament.uk/schema/procedureHasWorkPackage>
+        <https://id.parliament.uk/yixwrcqc> .\r\n<https://id.parliament.uk/yixwrcqc>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackage>
+        .\r\n<https://id.parliament.uk/yixwrcqc> <https://example.com/oldestBusinessItemDate>
+        \"2018-02-28+00:00\"^^<http://www.w3.org/2001/XMLSchema#date> .\r\n<https://id.parliament.uk/bJgVNka4>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/WorkPackageableThing>
+        .\r\n<https://id.parliament.uk/bJgVNka4> <https://id.parliament.uk/schema/workPackageableThingName>
+        \"workPackageableThingName - 12\" .\r\n"
+    http_version: 
+  recorded_at: Wed, 30 May 2018 09:34:09 GMT
+- request:
+    method: get
+    uri: http://localhost:3030/house_index
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Ruby
+      Accept:
+      - "*/*"
+      - application/n-triples
+      Ocp-Apim-Subscription-Key:
+      - "<AUTH_TOKEN>"
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '176'
+      Content-Type:
+      - application/n-triples
+      Content-Encoding:
+      - gzip
+      Expires:
+      - "-1"
+      Request-Context:
+      - appId=cid-v1:330aa411-57af-491f-b22a-1cab7d08a6a9
+      Strict-Transport-Security:
+      - max-age=31536000
+      Date:
+      - Wed, 30 May 2018 09:34:09 GMT
+    body:
+      encoding: UTF-8
+      string: "<https://id.parliament.uk/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+        <https://id.parliament.uk/schema/House> .\r\n<https://id.parliament.uk/1AFu55Hs>
+        <https://id.parliament.uk/schema/houseName> \"houseName - 1\" .\r\n<https://id.parliament.uk/WkUWUBMx>
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://id.parliament.uk/schema/House>
+        .\r\n<https://id.parliament.uk/WkUWUBMx> <https://id.parliament.uk/schema/houseName>
+        \"houseName - 2\" .\r\n"
+    http_version: 
+  recorded_at: Wed, 30 May 2018 09:34:09 GMT
+recorded_with: VCR 4.0.0

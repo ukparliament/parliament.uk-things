@@ -5,7 +5,7 @@ RSpec.describe 'work_packages/show', vcr: true do
     assign(:work_packageable_thing,
       double(:work_packageable_thing,
         name:'Test work package name',
-        weblink: 'www.legislation.gov/test-memorandum',
+        weblink: 'www.legislation.gov/test-memorandum'
       )
     )
   }
@@ -91,14 +91,14 @@ RSpec.describe 'work_packages/show', vcr: true do
         expect(response).to match(/Completed stages/)
       end
 
-      it 'will render the work_packages/business_item partial' do
-        expect(response).to render_template(partial: 'work_packages/_business_item')
+      it 'will render the work_packages/completed_business_item partial' do
+        expect(response).to render_template(partial: 'work_packages/_completed_business_item')
       end
     end
 
     context 'when they do not exist' do
-      it 'will not render the work_packages/business_item partial' do
-        expect(response).not_to render_template(partial: 'work_packages/_business_item')
+      it 'will not render the work_packages/completed_business_item partial' do
+        expect(response).not_to render_template(partial: 'work_packages/_completed_business_item')
       end
     end
   end
@@ -113,14 +113,14 @@ RSpec.describe 'work_packages/show', vcr: true do
         expect(response).to match(/Scheduled upcoming stages/)
       end
 
-      it 'will render the work_packages/business_item partial' do
-        expect(response).to render_template(partial: 'work_packages/_business_item')
+      it 'will render the work_packages/scheduled_business_item partial' do
+        expect(response).to render_template(partial: 'work_packages/_scheduled_business_item')
       end
     end
 
     context 'when they do not exist' do
-      it 'will not render the work_packages/business_item partial' do
-        expect(response).not_to render_template(partial: 'work_packages/_business_item')
+      it 'will not render the work_packages/scheduled_business_item partial' do
+        expect(response).not_to render_template(partial: 'work_packages/_scheduled_business_item')
       end
     end
   end
@@ -132,17 +132,17 @@ RSpec.describe 'work_packages/show', vcr: true do
       }
 
       it 'will render heading' do
-        expect(response).to match(/Completed stages with no date/)
+        expect(response).to match(/Completed steps with no date/)
       end
 
-      it 'will render the work_packages/business_item partial' do
-        expect(response).to render_template(partial: 'work_packages/_business_item')
+      it 'will render the work_packages/no_date_business_item partial' do
+        expect(response).to render_template(partial: 'work_packages/_no_date_business_item')
       end
     end
 
     context 'when they do not exist' do
-      it 'will not render the work_packages/business_item partial' do
-        expect(response).not_to render_template(partial: 'work_packages/_business_item')
+      it 'will not render the work_packages/no_date_business_item partial' do
+        expect(response).not_to render_template(partial: 'work_packages/_no_date_business_item')
       end
     end
   end

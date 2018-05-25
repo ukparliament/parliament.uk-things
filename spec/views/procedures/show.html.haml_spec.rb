@@ -9,20 +9,19 @@ RSpec.describe 'procedures/show', vcr: true do
     )
   }
 
-  let!(:work_packageable_thing) {
-    assign(:work_packageable_thing,
-      double(:work_packageable_thing,
-        name: 'Work Packageable Thing Test Name',
-        graph_id: 'asdf1234',
+  let!(:work_package) {
+    assign(:work_package,
+      double(:work_package,
+        work_packageable_thing_name: 'Work Packageable Thing Test Name',
+        graph_id: 'qwerzxcv',
         oldest_business_item_date: DateTime.new(2018,05,04)
       )
     )
   }
 
-  let!(:work_packageable_things) {
-    assign(:work_packageable_things, [work_packageable_thing])
+  let!(:work_packages) {
+    assign(:work_packages, [work_package])
   }
-
   before(:each) do
     render
   end
@@ -33,9 +32,9 @@ RSpec.describe 'procedures/show', vcr: true do
     end
   end
 
-  context 'work packageable things' do
-    it 'displays name with a link' do
-      expect(rendered).to match(/<a href="\/work-packages\/asdf1234">Work Packageable Thing Test Name<\/a>/)
+  context 'work package' do
+    it 'displays name of work packageable thing with a link' do
+      expect(rendered).to match(/<a href="\/work-packages\/qwerzxcv">Work Packageable Thing Test Name<\/a>/)
     end
 
     context 'oldest business item date' do
@@ -46,12 +45,12 @@ RSpec.describe 'procedures/show', vcr: true do
       end
 
       context 'does not exist' do
-        let!(:work_packageable_thing) {
-          assign(:work_packageable_thing,
-            double(:work_packageable_thing,
-              name: 'Work Packageable Thing Test Name',
-              graph_id: 'asdf1234',
-              oldest_business_item_date: nil
+        let!(:work_package) {
+          assign(:work_package,
+            double(:work_package,
+              work_packageable_thing_name: 'Work Packageable Thing Test Name',
+              graph_id: 'qwerzxcv',
+              oldest_business_item_date: nil,
             )
           )
         }

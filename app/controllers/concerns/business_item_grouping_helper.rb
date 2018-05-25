@@ -19,7 +19,7 @@ class BusinessItemGroupingHelper
     grouped = []
 
     grouped_object = BusinessItemGroupingHelper::BusinessItemGroupedObject.new
-    grouped_object.nodes = data_hash[key]
+    grouped_object.nodes = data_hash[key].sort_by(&:shortest_distance_of_procedure_steps)
 
     # Set properties of the object
     grouped_object.type = grouped_object.nodes.first.type

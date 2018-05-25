@@ -137,7 +137,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     parallel (1.12.1)
-    parliament-grom-decorators (0.27.1)
+    parliament-grom-decorators (0.27.2)
     parliament-ntriple (0.3.0)
       grom (~> 0.5)
     parliament-routes (0.6.5)
@@ -306,7 +306,7 @@ DEPENDENCIES
   geosparql_to_geojson (~> 0.2)
   haml
   listen (>= 3.0.5, < 3.2)
-  parliament-grom-decorators (~> 0.23)
+  parliament-grom-decorators (~> 0.2)
   parliament-ntriple (~> 0.2)
   parliament-routes (~> 0.6)
   parliament-ruby (= 1.0.0.pre6)

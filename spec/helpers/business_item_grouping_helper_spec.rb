@@ -14,11 +14,11 @@ RSpec.describe BusinessItemGroupingHelper do
     end
 
     context 'with data' do
-      let(:node1) { double('node1', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
-      let(:node2) { double('node2', :type => 'BusinessItem', :date => DateTime.new(2015, 2, 16))}
-      let(:node3) { double('node3', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
-      let(:node4) { double('node4', :type => 'BusinessItem', :date => DateTime.new(2013, 1, 7))}
-      let(:node5) { double('node5', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
+      let(:node1) { double('node1', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8),  shortest_distance_of_procedure_steps: 0)}
+      let(:node2) { double('node2', :type => 'BusinessItem', :date => DateTime.new(2015, 2, 16), shortest_distance_of_procedure_steps: 1)}
+      let(:node3) { double('node3', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8),  shortest_distance_of_procedure_steps: 1)}
+      let(:node4) { double('node4', :type => 'BusinessItem', :date => DateTime.new(2013, 1, 7),  shortest_distance_of_procedure_steps: 0)}
+      let(:node5) { double('node5', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8),  shortest_distance_of_procedure_steps: 0)}
       let(:node6) { double('node6', :type => 'BusinessItem', :date => nil)}
       let(:node7) { double('node7', :type => 'BusinessItem', :date => nil)}
       let(:data)  {[node2, node1, node5, node4, node7, node3, node6]}
@@ -37,9 +37,9 @@ RSpec.describe BusinessItemGroupingHelper do
     end
 
     context 'with data' do
-      let(:node1) { double('node1', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
-      let(:node3) { double('node2', :type => 'BusinessItem', :date => DateTime.new(2015, 2, 16))}
-      let(:node2) { double('node3', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
+      let(:node1) { double('node1', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8),  shortest_distance_of_procedure_steps: 1)}
+      let(:node3) { double('node2', :type => 'BusinessItem', :date => DateTime.new(2015, 2, 16), shortest_distance_of_procedure_steps: 0)}
+      let(:node2) { double('node3', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8),  shortest_distance_of_procedure_steps: 1)}
       let(:node4) { double('node4', :type => 'BusinessItem', :date => nil)}
       let(:node5) { double('node5', :type => 'BusinessItem', :date => nil)}
       let(:data_hash) {{
@@ -60,8 +60,8 @@ RSpec.describe BusinessItemGroupingHelper do
     end
 
     context 'with data' do
-      let(:node1) { double('node1', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
-      let(:node2) { double('node4', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8))}
+      let(:node1) { double('node1', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8), shortest_distance_of_procedure_steps: 3)}
+      let(:node2) { double('node4', :type => 'BusinessItem', :date => DateTime.new(2017, 4, 8), shortest_distance_of_procedure_steps: 2)}
       let(:data_hash) {{
         DateTime.new(2017, 4, 8) => [node1, node2]
       }}
@@ -74,8 +74,8 @@ RSpec.describe BusinessItemGroupingHelper do
         expect(@grouped[0].class).to eq(BusinessItemGroupingHelper::BusinessItemGroupedObject)
       end
 
-      it 'with nodes that have been grouped' do
-        expect(@grouped[0].nodes).to eq([node1, node2])
+      it 'with nodes that have been sorted by shortest distance of procedure steps' do
+        expect(@grouped[0].nodes).to eq([node2, node1])
       end
 
       it 'with a date' do

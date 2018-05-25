@@ -10,11 +10,10 @@
         = link_to("#{@procedure.name.downcase} #{t('.procedure')}", 'https://www.parliament.uk/about/how/laws/delegated/').html_safe
 
     %ol.list--block
-      - @work_packageable_things.each do |work_packageable_thing|
+      - @work_packages.each do |work_package|
         %li
-          .list--details
-            -# Name of the work packageable thing, and link
-            %h2= link_to(work_packageable_thing.name, work_package_path(work_packageable_thing.graph_id))
-            -# Date of the oldest business item
-            - if work_packageable_thing.oldest_business_item_date
-              %p= "#{l(work_packageable_thing.oldest_business_item_date, format: :default)}"
+          .card
+            .card__details
+              %h2= link_to(work_package.work_packageable_thing_name, work_package_path(work_package.graph_id))
+              - if work_package.oldest_business_item_date
+                %p= "#{l(work_package.oldest_business_item_date, format: :default)}"
