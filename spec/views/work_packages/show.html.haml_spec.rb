@@ -88,7 +88,7 @@ RSpec.describe 'work_packages/show', vcr: true do
       }
 
       it 'will render heading' do
-        expect(response).to match(/Completed steps/)
+        expect(response).to match(/Completed stages/)
       end
 
       it 'will render the work_packages/business_item partial' do
@@ -110,7 +110,7 @@ RSpec.describe 'work_packages/show', vcr: true do
       }
 
       it 'will render heading' do
-        expect(response).to match(/Scheduled steps/)
+        expect(response).to match(/Scheduled upcoming stages/)
       end
 
       it 'will render the work_packages/business_item partial' do
@@ -132,7 +132,7 @@ RSpec.describe 'work_packages/show', vcr: true do
       }
 
       it 'will render heading' do
-        expect(response).to match(/Completed steps with no date/)
+        expect(response).to match(/Completed stages with no date/)
       end
 
       it 'will render the work_packages/business_item partial' do
