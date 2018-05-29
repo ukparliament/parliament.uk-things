@@ -7,15 +7,13 @@
       %ul.list--block
         %li
           .list--details
-            %ul.list--block
-              - business_item_node.sorted_procedure_steps_by_distance.each do |procedure_step|
-                %p
-                  - procedure_step.houses.each do |house|
-                    %span.hint= house.name
-                  = procedure_step.name
-              - unless business_item_node.weblink.empty?
-                %a{ href: "#{business_item_node.weblink}"}
-                  = 'Find out more about this stage'
+            - business_item_node.sorted_procedure_steps_by_distance.each do |procedure_step|
+              %p
+                - procedure_step.houses.each do |house|
+                  %span.hint= house.name
+                = procedure_step.name
+            - unless business_item_node.weblink.empty?
+              %p= link_to t('.find_out_more_stage'), "#{business_item_node.weblink}"
 
 - else
   - if business_item.date
@@ -25,12 +23,10 @@
     %ul.list--block
       %li
         .list--details
-          %ul.list--block
-            - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
-              %p
-                - procedure_step.houses.each do |house|
-                  %span.hint= house.name
-                = procedure_step.name
-            - unless business_item.weblink.empty?
-              %a{ href: "#{business_item.weblink}" }
-                = 'Find out more about this stage'
+          - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
+            %p
+              - procedure_step.houses.each do |house|
+                %span.hint= house.name
+              = procedure_step.name
+          - unless business_item.weblink.empty?
+            %p= link_to t('.find_out_more_stage'), "#{business_item.weblink}"

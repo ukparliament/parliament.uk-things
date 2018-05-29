@@ -451,6 +451,26 @@ en:
     lookup_unavailable: 'postcode check is currently unavailable.'
     postcode_invalid: "we couldn't find the postcode you entered."
     no_mp: "We couldn't find an MP for that postcode.  Your constituency is"
+  # procedures translations
+  procedures:
+    show:
+      work_package: 'work package'
+      procedure: 'procedure'
+      list_ordering_description: 'This list is in date order. The date shown relates to the first recorded stage of the procedure.'
+      find_out_more: 'Find out more about the'
+  # work packages translations
+  work_packages:
+    show:
+      this_is: 'this is a'
+      work_package: 'work package'
+      view_all: 'view all'
+      related_information: 'Read the related information'
+      completed_stages: 'Completed stages'
+      completed_stages_no_date: 'Completed stages with no date'
+      scheduled_stages: 'Scheduled upcoming stages'
+      possible_stages: 'Possible upcoming stages'
+    business_item:
+      find_out_more_stage: 'Find out more about this stage'
   # questions translations
   questions:
     show:
@@ -464,7 +484,6 @@ en:
       answered_on: 'answered on'
       by: 'by'
       member_of: 'member of the'
-
   # people translations
   people:
     index:
@@ -648,7 +667,6 @@ en:
       mp_for: 'MP for'
       member_of: 'member of the'
       contact_us: 'contact us'
-
   # parties translations
   parties:
     index:
@@ -735,7 +753,6 @@ en:
       search_by_postcode: 'Enter your full postcode, for example SW1A 0AA.'
       do_not_know_postcode: "Don't know your postcode? Find it on the %{link}."
       do_not_know_postcode_link: 'Royal Mail postcode finder'
-
   # parliament translations
   parliaments:
     find_mp_a_to_z: 'Find an MP by A-Z list'

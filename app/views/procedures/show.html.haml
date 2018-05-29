@@ -1,19 +1,20 @@
+- page_title = title("#{@procedure.name.downcase.capitalize} #{t('.work_package').pluralize}")
+
 .section--primary#content{ tabindex: "0" }
   .container
-    %h1= title("#{@procedure.name.downcase.capitalize} work packages")
-    %p= 'This list is in date order. The date shown relates to the first recorded stage of the procedure.'
+    %h1= page_title
+    %p= t('.list_ordering_description')
     %p
-      = 'Find out more about the'
+      = t('.find_out_more')
       = succeed "." do
-        = link_to("#{@procedure.name.downcase} procedure", 'https://www.parliament.uk/about/how/laws/delegated/').html_safe
+        = link_to("#{@procedure.name.downcase} #{t('.procedure')}", 'https://www.parliament.uk/about/how/laws/delegated/').html_safe
 
-    %ul.list--block
+    %ol.list--block
       - @work_packageable_things.each do |work_packageable_thing|
         %li
-          .card
-            .card__details
-              -# Name of the work packageable thing, and link
-              %h2= link_to(work_packageable_thing.name, work_package_path(work_packageable_thing.graph_id))
-              -# Date of the oldest business item
-              - if work_packageable_thing.oldest_business_item_date
-                %p= "#{l(work_packageable_thing.oldest_business_item_date, format: :default)}"
+          .list--details
+            -# Name of the work packageable thing, and link
+            %h2= link_to(work_packageable_thing.name, work_package_path(work_packageable_thing.graph_id))
+            -# Date of the oldest business item
+            - if work_packageable_thing.oldest_business_item_date
+              %p= "#{l(work_packageable_thing.oldest_business_item_date, format: :default)}"
