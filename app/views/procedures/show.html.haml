@@ -9,11 +9,15 @@
       = succeed "." do
         = link_to("#{@procedure.name.downcase} #{t('.procedure')}", 'https://www.parliament.uk/about/how/laws/delegated/').html_safe
 
-    %ol.list--block
-      - @work_packages.each do |work_package|
-        %li
-          .card
-            .card__details
-              %h2= link_to(work_package.work_packageable_thing_name, work_package_path(work_package.graph_id))
-              - if work_package.oldest_business_item_date
-                %p= "#{l(work_package.oldest_business_item_date, format: :default)}"
+    - if @work_packages.none?
+      = t('no_content.empty_list.no_results')
+
+    - else
+      %ol.list--block
+        - @work_packages.each do |work_package|
+          %li
+            .card
+              .card__details
+                %h2= link_to(work_package.work_packageable_thing_name, work_package_path(work_package.graph_id))
+                - if work_package.oldest_business_item_date
+                  %p= "#{l(work_package.oldest_business_item_date, format: :default)}"

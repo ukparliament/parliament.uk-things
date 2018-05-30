@@ -783,6 +783,7 @@ en:
       parties:
         description: "Sorry there are no results for '%{letter}'"
       no_mp: 'There is currently no MP for your constituency.'
+      no_results: 'There are no results'
   # shared partial translations
   shared:
     article:
