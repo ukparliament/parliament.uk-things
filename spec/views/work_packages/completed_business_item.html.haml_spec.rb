@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'work_packages/_business_item', vcr: true do
+RSpec.describe 'work_packages/_completed_business_item', vcr: true do
   let!(:grouped_business_item){
     assign(:grouped_business_item,
       double(:grouped_business_item,
@@ -50,10 +50,10 @@ RSpec.describe 'work_packages/_business_item', vcr: true do
     )
   }
 
-  context 'business items' do
+  context 'completed business items' do
     context 'when they are grouped' do
       before(:each) do
-        render partial: 'work_packages/business_item', locals: { business_item: grouped_business_item }
+        render partial: 'work_packages/completed_business_item', locals: { business_item: grouped_business_item }
       end
 
       it 'displays date' do
@@ -76,7 +76,7 @@ RSpec.describe 'work_packages/_business_item', vcr: true do
 
     context 'when they are not grouped' do
       before(:each) do
-        render partial: 'work_packages/business_item', locals: { business_item: ungrouped_business_item }
+        render partial: 'work_packages/completed_business_item', locals: { business_item: ungrouped_business_item }
       end
 
       it 'displays laying date' do

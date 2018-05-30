@@ -24,6 +24,16 @@ RSpec.describe ProceduresController, vcr: true do
           expect(assigns(:procedure).graph_id).to eq('5S6p4YsP')
         end
       end
+
+      context 'assigns @work_packages' do
+        it 'as a Grom::Node' do
+          expect(assigns(:work_packages)).to be_a(Array)
+        end
+
+        it 'as a Grom::Node of type WorkPackage' do
+          expect(assigns(:work_packages).first.type).to eq('https://id.parliament.uk/schema/WorkPackage')
+        end
+      end
     end
   end
 

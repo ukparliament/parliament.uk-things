@@ -1,7 +1,5 @@
 - if business_item.class == BusinessItemGroupingHelper::BusinessItemGroupedObject
-  - if business_item.date
-    %h3= "#{l(business_item.date, format: :default)}"
-
+  %h3= "#{l(business_item.date, format: :default)}"
   - business_item.nodes.each do |business_item_node|
     - if business_item_node.sorted_procedure_steps_by_distance.any? || !business_item_node.weblink.empty?
       %ul.list--block
@@ -16,9 +14,7 @@
               %p= link_to t('.find_out_more_stage'), "#{business_item_node.weblink}"
 
 - else
-  - if business_item.date
-    %h3= "#{l(business_item.date, format: :default)}"
-
+  %h3= "#{l(business_item.date, format: :default)}"
   - if business_item.sorted_procedure_steps_by_distance.any? || !business_item.weblink.empty?
     %ul.list--block
       %li
