@@ -22,16 +22,14 @@
         - @completed_business_items.each do |completed_business_item|
           = render partial: 'work_packages/completed_business_item', locals: { business_item: completed_business_item }
 
+    - if @business_items_with_no_date.any?
+      %h2= t('.completed_stages_no_date')
+      %ul.list--block
+        - @business_items_with_no_date.each do |business_item_with_no_date|
+          = render partial: 'work_packages/no_date_business_item', locals: { business_item: business_item_with_no_date }
+
     - if @scheduled_business_items.any?
       %h2= t('.scheduled_stages')
-      .track--alternative
+      %ol.list--block.list--2
         - @scheduled_business_items.each do |scheduled_business_item|
           = render partial: 'work_packages/scheduled_business_item', locals: { business_item: scheduled_business_item }
-
-    - if @business_items_with_no_date.any?
-      %h2= 'Completed steps with no date'
-      %ul.list--block
-        %li
-          .list--details
-            - @business_items_with_no_date.each do |business_item_with_no_date|
-              = render partial: 'work_packages/no_date_business_item', locals: { business_item: business_item_with_no_date }

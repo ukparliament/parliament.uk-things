@@ -469,8 +469,7 @@ en:
       completed_stages_no_date: 'Completed stages with no date'
       scheduled_stages: 'Scheduled upcoming stages'
       possible_stages: 'Possible upcoming stages'
-    business_item:
-      find_out_more_stage: 'Find out more about this stage'
+    find_out_more_stage: 'Find out more about this stage'
   # questions translations
   questions:
     show:

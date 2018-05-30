@@ -132,7 +132,7 @@ RSpec.describe 'work_packages/show', vcr: true do
       }
 
       it 'will render heading' do
-        expect(response).to match(/Completed steps with no date/)
+        expect(response).to match(/Completed stages with no date/)
       end
 
       it 'will render the work_packages/no_date_business_item partial' do

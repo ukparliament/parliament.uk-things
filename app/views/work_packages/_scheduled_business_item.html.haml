@@ -1,15 +1,12 @@
-%h3= "#{l(business_item.date, format: :default)}"
+%li
+  .card__details
+    %h3= "#{l(business_item.date, format: :default)}"
 
-- if business_item.sorted_procedure_steps_by_distance.any? || !business_item.weblink.empty?
-  %ul.list--block
-    %li
-      .list--details
-        %ul.list--block
-          - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
-            %p
-              - procedure_step.houses.each do |house|
-                %span.hint= house.name
-              = procedure_step.name
-          - unless business_item.weblink.empty?
-            %a{ href: "#{business_item.weblink}" }
-              = 'Find out more about this stage'
+    - if business_item.sorted_procedure_steps_by_distance.any? || !business_item.weblink.empty?
+      - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
+        %p
+          - procedure_step.houses.each do |house|
+            %span.hint= house.name
+          = procedure_step.name
+      - unless business_item.weblink.empty?
+        %p= link_to t('work_packages.find_out_more_stage'), "#{business_item.weblink}"
