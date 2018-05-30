@@ -1,5 +1,5 @@
 class ProceduresController < ApplicationController
-  before_action :data_check, :build_request
+  before_action :data_check, :build_request, :disable_top_navigation
 
   ROUTE_MAP = {
     show: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.procedure_by_id.set_url_params({ procedure_id: params[:procedure_id] }) }
