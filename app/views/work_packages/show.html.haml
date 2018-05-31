@@ -13,22 +13,29 @@
       %li= link_to("#{t('.view_all').capitalize} #{@procedure.name.downcase} #{t('.work_package').pluralize}", procedure_path(@procedure.graph_id))
 
       - unless @work_packageable_thing.weblink.empty?
-        = link_to(@work_packageable_thing.weblink) do
-          %li= t('.related_information')
+        %li
+          = link_to(@work_packageable_thing.weblink) do
+            = t('.related_information')
 
-    - if @completed_business_items.any?
+- if @completed_business_items.any?
+  %section.section--wide
+    .container
       %h2= t('.completed_stages')
       .track--alternative
         - @completed_business_items.each do |completed_business_item|
           = render partial: 'work_packages/completed_business_item', locals: { business_item: completed_business_item }
 
-    - if @business_items_with_no_date.any?
+- if @business_items_with_no_date.any?
+  %section.section--wide
+    .container
       %h2= t('.completed_stages_no_date')
       %ul.list--block
         - @business_items_with_no_date.each do |business_item_with_no_date|
           = render partial: 'work_packages/no_date_business_item', locals: { business_item: business_item_with_no_date }
 
-    - if @scheduled_business_items.any?
+- if @scheduled_business_items.any?
+  %section.section--wide
+    .container
       %h2= t('.scheduled_stages')
       %ol.list--block.list--2
         - @scheduled_business_items.each do |scheduled_business_item|
