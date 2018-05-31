@@ -19,9 +19,9 @@ class WorkPackagesController < ApplicationController
     @work_package = @work_package.first
     @procedure = @procedure.first
 
-    # Group business items by their date
-    grouped_business_items = BusinessItemGroupingHelper.group(@business_items, :date)
+    @completed_business_items, @scheduled_business_items, @business_items_with_no_date = BusinessItemHelper.arrange_by_date(@business_items.nodes)
 
-    @completed_business_items, @scheduled_business_items, @business_items_with_no_date = BusinessItemHelper.arrange_by_date(grouped_business_items)
+    # Group completed business items by their date
+    @completed_business_items = BusinessItemGroupingHelper.group(@completed_business_items, :date)
   end
 end
