@@ -1,12 +1,12 @@
-.section--primary
-  .container--offset
+.hero.theme--grey-4
+  .container
     %h1= title(sanitize(collection.name))
     = Parliament::Utils::Helpers::MarkdownHelper.markdown(collection.description)
 
-%section{ id: 'content', tabindex: '0' }
+%section{ class: 'section--wide', id: 'content', tabindex: '0' }
   .container
     %h2= t('.in_this_section')
-    %ul.list--block.list--2
+    %ul.list--block.list--3
       - collection.articles.each do |article|
         %li
           .card
