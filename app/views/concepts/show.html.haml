@@ -1,9 +1,9 @@
 .section--primary
-  .container--offset
+  .container
     %h1= title(sanitize(@concept.name))
 
 %section{ id: 'content', tabindex: "0" }
-  .container--offset
+  .container
     = Parliament::Utils::Helpers::MarkdownHelper.markdown(@concept.definition)
 
     - if @concept_articles.any?
