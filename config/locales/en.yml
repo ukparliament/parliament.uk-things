@@ -467,6 +467,7 @@ en:
       related_information: 'Read the related information'
       completed_stages: 'Completed stages'
       completed_stages_no_date: 'Completed stages with no date'
+      completed_stages_no_date_description: 'These stages will appear in the timeline above when a date is available.'
       scheduled_stages: 'Scheduled upcoming stages'
       possible_stages: 'Possible upcoming stages'
     find_out_more_stage: 'Find out more about this stage'
