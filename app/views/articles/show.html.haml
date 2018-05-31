@@ -1,9 +1,9 @@
-.container
-  .article--wrapper
+.article--wrapper
+  .container
     %article{ id: 'content', tabindex: '0' }
       - if @root_collections.any?
         %p= render partial: 'shared/article/delimited_collection_links', locals: { links: @root_collections }
-        
+
       = render partial: 'shared/article/header', locals: { title: @article.title, summary: @article.article_summary, collections: @collections }
       = render partial: 'shared/article/main', locals: { content: @article.article_body }
       = render partial: 'shared/article/footer', locals: { collections: @collections }
