@@ -461,9 +461,8 @@ en:
   # work packages translations
   work_packages:
     show:
-      this_is: 'this is a'
-      work_package: 'work package'
-      view_all: 'view all'
+      procedure: 'procedure'
+      subject_to: 'subject to the'
       related_information: 'Read the related information'
       completed_stages: 'Completed stages'
       completed_stages_no_date: 'Completed stages with no date'

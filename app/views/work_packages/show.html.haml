@@ -6,11 +6,8 @@
 
     %ul
       %li
-        = t('.this_is').capitalize
-        = @procedure.name.downcase
-        = t('.work_package')
-
-      %li= link_to("#{t('.view_all').capitalize} #{@procedure.name.downcase} #{t('.work_package').pluralize}", procedure_path(@procedure.graph_id))
+        =t('.subject_to').capitalize
+        = link_to("#{@procedure.name.downcase} #{t('.procedure')}", procedure_path(@procedure.graph_id))
 
       - unless @work_packageable_thing.weblink.empty?
         %li
