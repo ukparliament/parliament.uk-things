@@ -19,7 +19,8 @@
       %ol.list--block
         - @work_packages.each do |work_package|
           %li
-            .card__details
-              %h2= link_to(work_package.work_packageable_thing_name, work_package_path(work_package.graph_id))
-              - if work_package.oldest_business_item_date
-                %p= "#{l(work_package.oldest_business_item_date, format: :default)}"
+            .card
+              .card__details
+                %h2= link_to(work_package.work_packageable_thing_name, work_package_path(work_package.graph_id))
+                - if work_package.oldest_business_item_date
+                  %p= "#{l(work_package.oldest_business_item_date, format: :default)}"
