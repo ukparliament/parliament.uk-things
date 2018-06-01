@@ -57,7 +57,7 @@ RSpec.describe 'work_packages/_completed_business_item', vcr: true do
       end
 
       it 'displays date' do
-        expect(rendered).to match(/5 Apr 2018/)
+        expect(rendered).to match(/5 April 2018/)
       end
 
       it 'displays house name' do

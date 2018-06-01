@@ -24,7 +24,7 @@ RSpec.describe 'work_packages/_scheduled_business_item', vcr: true do
     end
 
     it 'displays laying date' do
-      expect(rendered).to match(/23 Jun 2018/)
+      expect(rendered).to match(/23 June 2018/)
     end
 
     it 'displays house name' do
