@@ -15,8 +15,6 @@
               = "#{t('commons')} #{@group.committee_type} #{t('committee')}"
             - else
               = "#{t('lords')} #{@group.committee_type} #{t('committee')}"
-        - else
-          = @group.name
 
   - if @group.formal_body? && @group.remit.present?
     %section
