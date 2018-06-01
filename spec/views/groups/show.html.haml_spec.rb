@@ -8,7 +8,7 @@ RSpec.describe 'groups/show' do
         graph_id: 'df5n8bxs',
         joint?: false,
         select_committee?: true,
-        houses: [double(:house, name: 'House of Commmons')],
+        houses: [double(:house, name: 'House of Commons')],
         committee_type: 'select',
         remit: 'Some test remit, illustrating what the group is all about',
         member_count: 13,
