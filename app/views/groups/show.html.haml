@@ -11,7 +11,7 @@
           - if @group.joint?
             = "#{t('joint_committee')} #{@group.committee_type} #{t('committee')}"
           - else
-            - if @group.houses.size == 1 && @group.houses.first.name == "House of Commmons"
+            - if @group.houses.size == 1 && @group.houses.first.name == "House of Commons"
               = "#{t('commons')} #{@group.committee_type} #{t('committee')}"
             - else
               = "#{t('lords')} #{@group.committee_type} #{t('committee')}"
