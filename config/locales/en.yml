@@ -443,6 +443,8 @@ en:
   time:
     formats:
       default: '%-d %B %Y'
+  date:
+    abbr_month_names: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   # global error message translations
   error:
     no_constituency: "we couldn't find the postcode you entered."
