@@ -28,7 +28,7 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
       end
 
       it 'will not render start date' do
-        expect(rendered).not_to match("from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')}")
+        expect(rendered).not_to match("from #{(Time.zone.now - 1.month).strftime('%-d %B %Y')}")
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
       end
 
       it 'will render start date' do
-        expect(rendered).to match("from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')}")
+        expect(rendered).to match("from #{(Time.zone.now - 1.month).strftime('%-d %B %Y')}")
       end
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
       end
 
       it 'will render the end date' do
-        expect(rendered).to match("to #{(Time.zone.now - 1.day).strftime('%-e %b %Y')}")
+        expect(rendered).to match("to #{(Time.zone.now - 1.day).strftime('%-d %B %Y')}")
       end
     end
   end
@@ -102,13 +102,13 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
           end
 
           it 'will not render current incumbency start date' do
-            expect(rendered).not_to match("#{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present")
+            expect(rendered).not_to match("#{(Time.zone.now - 1.month).strftime('%-d %B %Y')} to present")
           end
         end
 
         context 'is not nil' do
           before do
-            assign(:current_incumbency, double(:current_incumbency, date_range: "#{(Time.zone.now - 1.month).strftime('%-e %b %Y')} to present", member: double(:member, display_name: 'Test Display Name', graph_id: '7TX8ySd4')))
+            assign(:current_incumbency, double(:current_incumbency, date_range: "#{(Time.zone.now - 1.month).strftime('%-d %B %Y')} to present", member: double(:member, display_name: 'Test Display Name', graph_id: '7TX8ySd4')))
             render
           end
         end
@@ -146,8 +146,8 @@ RSpec.describe 'constituencies/_constituency', vcr: true do
 
     it 'will list constituency' do
       expect(rendered).to match(/Constituency/)
-      expect(rendered).to match("from #{(Time.zone.now - 1.month).strftime('%-e %b %Y')}")
-      expect(rendered).to match("to #{(Time.now - 1.day).strftime('%-e %b %Y')}")
+      expect(rendered).to match("from #{(Time.zone.now - 1.month).strftime('%-d %B %Y')}")
+      expect(rendered).to match("to #{(Time.now - 1.day).strftime('%-d %B %Y')}")
     end
   end
 
