@@ -59,21 +59,22 @@
   .container
     %h2= t('.after_sending_petition').capitalize
 
-    .track--alternative
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_a')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_b')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_c')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_d')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_e')}"
+    %ul.track--alternative
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_a')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_b')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_c')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_d')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.after_sending_petition_e')}"
 
     .section--major
       %noscript

@@ -24,13 +24,13 @@
 
     %br
     %p= t('user_forms.country_uk')
-    %fieldset
-      %legend.sr-only
-        = t('user_forms.country_select_legend').capitalize
-      = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :in_the_uk, yes_class: 'js-country-uk', no_class: 'js-country-row' }
-    #countrySelect
-      = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: f, attribute: :country }
-    %br
+    %div{ data: { toggle: t('dropdown.item') } }
+      %fieldset
+        %legend.sr-only
+          = t('user_forms.country_select_legend').capitalize
+        = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: f, attribute: :in_the_uk, data_tag: { toggle: t('dropdown.parent_item') } }
+      %div{ data: { toggle: t('dropdown.content') } }
+        = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: f, attribute: :country }
 
     = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :address_1, label_value: t('user_forms.address_1').capitalize, aria: { required: 'true' }, maxlength: 255, required: 'true' }
 
@@ -45,44 +45,46 @@
     = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: f, attribute: :telephone, label_value: t('user_forms.telephone').capitalize, class: 'input__md', aria: { required: 'true' }, maxlength: 20, required: 'true' }
 
   %h2= t('hybrid_bills.user_details_form.petition_contact').capitalize
-  %fieldset
-    %legend.sr-only
-      = t('hybrid_bills.user_details_form.petition_contact_legend').capitalize
-    = render partial: 'hybrid_bills/steps/forms/components/radio_buttons_reversed', locals: { f: f, attribute: :has_a_rep, no_label: t('hybrid_bills.user_details_form.petition_contact_opt_a').capitalize, no_class: 'js-ind-check', yes_label: t('hybrid_bills.user_details_form.petition_contact_opt_b').capitalize, yes_class: 'js-rep-check' }
+  %div{ data: { toggle: t('dropdown.item') } }
+    %fieldset
+      %legend.sr-only
+        = t('hybrid_bills.user_details_form.petition_contact_legend').capitalize
+      = render partial: 'hybrid_bills/steps/forms/components/radio_buttons_reversed', locals: { f: f, attribute: :has_a_rep, no_label: t('hybrid_bills.user_details_form.petition_contact_opt_a').capitalize, yes_label: t('hybrid_bills.user_details_form.petition_contact_opt_b').capitalize, data_tag: { toggle: t('dropdown.parent_item') } }
 
-  .block--border__bottom
-    #repForm
-      %h3= t('hybrid_bills.user_details_form.main_contact').capitalize
-      = f.fields_for :hybrid_bill_agent, petitioner_object.hybrid_bill_agent do |a|
-        %fieldset
-          %legend.sr-only
-            = t('hybrid_bills.user_details_form.main_contact_legend').capitalize
-
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :first_name, label_value: t('user_forms.first_name').capitalize, maxlength: 255 }
-
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname, label_value: t('user_forms.last_name').capitalize, maxlength: 255 }
-
-          %br
-          %p= t('user_forms.country_uk')
+    .block--border__bottom
+      %div{ data: { toggle: t('dropdown.content') } }
+        %h3= t('hybrid_bills.user_details_form.main_contact').capitalize
+        = f.fields_for :hybrid_bill_agent, petitioner_object.hybrid_bill_agent do |a|
           %fieldset
             %legend.sr-only
-              = t('user_forms.country_select_legend').capitalize
-            = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: a, attribute: :in_the_uk, yes_class: 'js-country-uk-rep', no_class: 'js-country-row-rep' }
-          #countrySelectRep
-            = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: a, attribute: :country }
-          %br
+              = t('hybrid_bills.user_details_form.main_contact_legend').capitalize
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_1, label_value: t('user_forms.address_1').capitalize, maxlength: 255 }
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :first_name, label_value: t('user_forms.first_name').capitalize, maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_2, label_value: "#{t('user_forms.address_2').capitalize} #{t('user_forms.optional')}", maxlength: 255 }
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :surname, label_value: t('user_forms.last_name').capitalize, maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :postcode, label_value: t('user_forms.postcode').capitalize, class: 'input__sm', maxlength: 20 }
+            %br
+            %p= t('user_forms.country_uk')
+            %div{ data: { toggle: t('dropdown.item')}}
+              %fieldset
+                %legend.sr-only
+                  = t('user_forms.country_select_legend').capitalize
+                = render partial: 'hybrid_bills/steps/forms/components/radio_buttons', locals: { f: a, attribute: :in_the_uk, data_tag: { toggle: t('dropdown.parent_item') } }
+              %div{ data: { toggle: t('dropdown.content') } }
+                = render partial: 'hybrid_bills/steps/forms/components/country_select', locals: { f: a, attribute: :country }
+              %br
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email, label_value: t('user_forms.email').capitalize, maxlength: 255 }
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_1, label_value: t('user_forms.address_1').capitalize, maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: a, attribute: :receive_updates }
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :address_2, label_value: "#{t('user_forms.address_2').capitalize} #{t('user_forms.optional')}", maxlength: 255 }
 
-          = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone, label_value: t('user_forms.telephone').capitalize, class: 'input__md', maxlength: 20 }
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :postcode, label_value: t('user_forms.postcode').capitalize, class: 'input__sm', maxlength: 20 }
+
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :email, label_value: t('user_forms.email').capitalize, maxlength: 255 }
+
+            = render partial: 'hybrid_bills/steps/forms/components/check_box', locals: { f: a, attribute: :receive_updates }
+
+            = render partial: 'hybrid_bills/steps/forms/components/form_field', locals: { f: a, attribute: :telephone, label_value: t('user_forms.telephone').capitalize, class: 'input__md', maxlength: 20 }
 
   = f.submit t('user_forms.next_button').capitalize, class: 'btn--primary'
 

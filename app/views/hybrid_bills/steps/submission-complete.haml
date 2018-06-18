@@ -18,21 +18,22 @@
   .container
     %h2= t('hybrid_bills.submission-complete.what_next').capitalize
 
-    .track--alternative
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_a')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_b')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_c')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_d')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_e')}"
+    %ul.track--alternative
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_a')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_b')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_c')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_d')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_e')}"
 
 %section
   .container
