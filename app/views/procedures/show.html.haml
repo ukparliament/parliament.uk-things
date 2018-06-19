@@ -6,7 +6,7 @@
     %p
       = t('.find_out_more')
       = succeed "." do
-        = link_to("#{@procedure.name.downcase} #{t('.procedure')}", 'https://www.parliament.uk/about/how/laws/delegated/').html_safe
+        = link_to("#{@procedure.name.downcase} #{t('.procedure')}", 'https://www.parliament.uk/about/how/laws/secondary-legislation/').html_safe
 
     %h2= t('.work_package').pluralize.capitalize
     %p= t('.list_ordering_description')
