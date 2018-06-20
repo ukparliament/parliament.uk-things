@@ -2,7 +2,8 @@
 
 #content.section--primary{ tabindex: '0' }
   .container
-    %h1= page_title
+    %h1
+      %span= page_title
 
     .status--highlight
       %p= "#{t('hybrid_bills.id' + @business_id + '.petition_status_post')}"

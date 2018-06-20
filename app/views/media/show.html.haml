@@ -4,7 +4,9 @@
 .section--primary#content{ tabindex: "0" }
   .container
     .block--border__bottom
-      %h1= title("#{t('.title').capitalize} #{@person.display_name}")
+      %h1
+        %span= title("#{t('.title').capitalize} #{@person.display_name}")
+
       - if @image.graph_id
         %figure
           %picture

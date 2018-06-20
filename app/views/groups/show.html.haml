@@ -4,7 +4,8 @@
 
   #content.section--primary{ tabindex: '0' }
     .container
-      %h1= page_title
+      %h1
+        %span= page_title
 
       %p.lead
         - if @group.formal_body? && @group.select_committee?

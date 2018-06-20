@@ -50,7 +50,7 @@ RSpec.describe 'shared/article/_header' do
 
   context 'converted to HTML' do
     it 'will render the title correctly' do
-      expect(rendered).to match(/<h1>This is a test Title.<\/h1>/)
+      expect(rendered).to match(/<h1>\n<span>This is a test Title.<\/span>\n<span class=\'context\'>\nIn:\n<a href=\"\/collections\/h93dvh57\">This is a test Collection.<\/a>\n\n\n<\/span>\n<\/h1>/)
     end
 
     it 'will render the summary correctly' do
@@ -63,7 +63,7 @@ RSpec.describe 'shared/article/_header' do
     let!(:article_body_text)  { '<script>__This__ is an article body</script>' }
 
     it 'will render the sanitized article title correctly' do
-      expect(rendered).to match(/<h1>This is a test Title.<\/h1>/)
+      expect(rendered).to match(/<h1>\n<span>This is a test Title.<\/span>\n<span class=\'context\'>\nIn:\n<a href=\"\/collections\/h93dvh57\">This is a test Collection.<\/a>\n\n\n<\/span>\n<\/h1>/)
     end
 
     it 'will render the sanitized article summary correctly' do

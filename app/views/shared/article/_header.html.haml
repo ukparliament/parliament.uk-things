@@ -1,11 +1,18 @@
 %header
-  %h1= title(sanitize(title))
+  %h1
 
-  -# All the collections an Article sits in
-  - if local_assigns[:collections] && collections.any?
-    %p
-      %span.typography--heavy= t('.in')
-      = render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
+    -# All the collections an Article sits in
+    - if local_assigns[:root_collections] && root_collections.any?
+      %small= render partial: 'shared/article/delimited_collection_links', locals: { links: root_collections }
+
+    -# Title
+    %span= title(sanitize(title))
+
+    -# All the collections an Article sits in
+    - if local_assigns[:collections] && collections.any?
+      %span.context
+        = t('.in')
+        = render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
 
   - if local_assigns[:summary]
     = Parliament::Utils::Helpers::MarkdownHelper.markdown(summary)

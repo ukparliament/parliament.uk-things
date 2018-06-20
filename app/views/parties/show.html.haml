@@ -1,6 +1,7 @@
 #content.section--primary{ tabindex: "0" }
   .container
-    %h1= title(@party.name) if @party.name.present?
+    %h1
+      %span= title(@party.name) if @party.name.present?
 
 - if @party.current?
   %section
