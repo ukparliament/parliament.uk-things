@@ -1,7 +1,7 @@
-.dropdown
+.dropdown{ data: { toggle: t('dropdown.item') } }
   .dropdown__toggle
     %h3
-      %a{ href: "#" }
+      %a{ href: "#", data: { toggle: t('dropdown.parent_item') } }
         = t('.title')
   .dropdown__content
     %p= t('.mps_can_help_with')

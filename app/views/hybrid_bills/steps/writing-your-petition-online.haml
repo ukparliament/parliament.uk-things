@@ -54,19 +54,19 @@
     %h2= t('hybrid_bills.writing-your-petition-online.completed_template').capitalize
 
     = form_tag hybrid_bill_path(@business_id, step: 'petition-online') do
-      .block--border__bottom
+      .block--border__bottom{ class: t('dropdown.open'), data: { toggle: t('dropdown.item') } }
         .section--minor
           %fieldset
             %legend.sr-only
               = t('hybrid_bills.writing-your-petition-online.completed_template_legend').capitalize
             .input-group__inline
-              = radio_button_tag 'petition-check', 'yes', class: 'js-petition-check-yes'
-              = label_tag 'petition-check_yes', t('user_forms.yes_radio').capitalize
+              = radio_button_tag 'petition-chk', 'yes', false, data: { toggle: t('dropdown.parent_item') }
+              = label_tag 'petition-chk_yes', t('user_forms.yes_radio').capitalize
             .input-group__inline
-              = radio_button_tag 'petition-check', 'no', true, class: 'js-petition-check-no',  data:{ submit: 'disabled' }
-              = label_tag 'petition-check_no', t('user_forms.no_radio').capitalize
+              = radio_button_tag 'petition-chk', 'no', true, data: { submit: 'disabled', toggle: t('dropdown.parent_item') }
+              = label_tag 'petition-chk_no', t('user_forms.no_radio').capitalize
 
-        .status--highlight.theme--caution#petitionCheckStatus
+        .status--highlight.theme--caution{ class: t('dropdown.open'), data: { toggle: t('dropdown.content') } }
           %p= t('hybrid_bills.writing-your-petition-online.complete_template').capitalize
 
       %noscript

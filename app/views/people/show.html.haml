@@ -40,20 +40,21 @@
       = render 'current_roles', current_roles: @current_roles
 
     - if @history && @history[:current].any?
-      .dropdown
+      .dropdown{ data: { toggle: t('dropdown.item') } }
         .dropdown__toggle
           %h3
-            %a{ href: "#" }
+            %a{ href: "#", data: { toggle: t('dropdown.parent_item') } }
               = t('.show_history')
         .dropdown__content
-          .track
-            %h2= "#{t('.held_currently')}"
-            %ul.list--block
-              = render 'timeline_roles', timeline_roles: @history[:current]
-            = render 'previous_roles'
+          %ul.track
+            %li
+              %h2= "#{t('.held_currently')}"
+              %ul.list--block
+                = render 'timeline_roles', timeline_roles: @history[:current]
+              = render 'previous_roles'
     - elsif @history && @history[:current].empty?
-      .container
-        .track
+      %ul.track
+        %li
           = render 'previous_roles'
 
 = render 'related_links'
