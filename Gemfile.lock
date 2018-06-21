@@ -312,7 +312,7 @@ DEPENDENCIES
   parliament-ntriple (~> 0.2)
   parliament-routes (~> 0.6)
   parliament-ruby (= 1.0.0.pre6)
-  parliament-utils (~> 0.8)
+  parliament-utils (~> 0.8, >= 0.8.5)
   pugin (~> 1.7)
   puma (~> 3.10.0)
   rack-rewrite
