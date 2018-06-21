@@ -1,6 +1,7 @@
 .hero.theme--grey-4
   .container
-    %h1= title(sanitize(collection.name))
+    %h1
+      %span= title(sanitize(collection.name))
     = Parliament::Utils::Helpers::MarkdownHelper.markdown(collection.description)
 
 %section{ class: 'section--wide', id: 'content', tabindex: '0' }

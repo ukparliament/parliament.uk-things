@@ -2,7 +2,8 @@
 
 .section--primary#content{ tabindex: "0" }
   .container
-    %h1= page_title
+    %h1
+      %span= page_title
 
     %ul
       %li
@@ -18,9 +19,10 @@
   %section.section--wide
     .container
       %h2= t('.completed_stages')
-      .track--alternative
+      %ul.track--alternative
         - @completed_business_items.each do |completed_business_item|
-          = render partial: 'work_packages/completed_business_item', locals: { business_item: completed_business_item }
+          %li
+            = render partial: 'work_packages/completed_business_item', locals: { business_item: completed_business_item }
 
 - if @business_items_with_no_date.any?
   %section.section--wide

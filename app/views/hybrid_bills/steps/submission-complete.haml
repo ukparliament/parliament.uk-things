@@ -3,9 +3,9 @@
 #content.section--primary{ tabindex: '0' }
   .container
     %h1
-      = t('hybrid_bills.submission-complete.title').capitalize
+      %span= t('hybrid_bills.submission-complete.title').capitalize
       %span.sr-only .
-      %span= "#{t('hybrid_bills.id' + @business_id + '.object_title')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
+      %span.context= "#{t('hybrid_bills.id' + @business_id + '.object_title')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
     .status--highlight
       %p
@@ -18,21 +18,22 @@
   .container
     %h2= t('hybrid_bills.submission-complete.what_next').capitalize
 
-    .track--alternative
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_a')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_b')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_c')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_d')}"
-
-      %h3.typography--light
-        = "#{t('hybrid_bills.id' + @business_id + '.what_next_e')}"
+    %ul.track--alternative
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_a')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_b')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_c')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_d')}"
+      %li
+        %h3.typography--light
+          = "#{t('hybrid_bills.id' + @business_id + '.what_next_e')}"
 
 %section
   .container

@@ -2,10 +2,7 @@
   .container
 
     %article{ id: 'content', tabindex: '0' }
-      - if root_collections.any?
-        %p= render partial: 'shared/article/delimited_collection_links', locals: { links: root_collections }
-
-      = render partial: 'shared/article/header', locals: { title: collection.name, collections: collection.parents }
+      = render partial: 'shared/article/header', locals: { title: collection.name, collections: collection.parents, root_collections: root_collections }
       = render partial: 'shared/article/main', locals: { content: collection.extended_description }
       = render partial: 'shared/article/footer', locals: { collections: collection.parents }
 

@@ -1,6 +1,7 @@
 .section--primary
   .container
-    %h1= title(sanitize(@concept.name))
+    %h1
+      %span= title(sanitize(@concept.name))
 
 %section{ id: 'content', tabindex: "0" }
   .container

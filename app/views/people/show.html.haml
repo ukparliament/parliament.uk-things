@@ -1,24 +1,24 @@
 .section--primary#content{ tabindex: "0" }
   .container
-    %h1= title(@person.display_name)
+    %h1
+      %span= title(@person.display_name)
+      %span.context
+        - if @most_recent_incumbency.nil? || @most_recent_incumbency.house.name == 'House of Lords'
+          ="#{@person.full_name}" unless @person.display_name == @person.full_name
 
-    %p.lead
-      - if @most_recent_incumbency.nil? || @most_recent_incumbency.house.name == 'House of Lords'
-        ="#{@person.full_name}" unless @person.display_name == @person.full_name
+        - if @current_party_membership && @current_incumbency
+          - current_party_details = link_to(@current_party_membership.party.name, party_path(@current_party_membership.party.graph_id))
 
-      - if @current_party_membership && @current_incumbency
-        - current_party_details = link_to(@current_party_membership.party.name, party_path(@current_party_membership.party.graph_id))
-
-      - unless @person.statuses[:house_membership_status].empty?
-        - if @person.current_mp?
-          = current_party_details if current_party_details
-          = t('.mp_for')
-          = link_to(@current_incumbency.constituency.name, constituency_path(@current_incumbency.constituency.graph_id))
-        - else
-          - unless @person.display_name == @person.full_name
-            %br
-          = current_party_details + ' -' if current_party_details
-          = @person.statuses[:house_membership_status].join(' and ')
+        - unless @person.statuses[:house_membership_status].empty?
+          - if @person.current_mp?
+            = current_party_details if current_party_details
+            = t('.mp_for')
+            = link_to(@current_incumbency.constituency.name, constituency_path(@current_incumbency.constituency.graph_id))
+          - else
+            - unless @person.display_name == @person.full_name
+              %br
+            = current_party_details + ' -' if current_party_details
+            = @person.statuses[:house_membership_status].join(' and ')
 
     - if Pugin::Feature::Bandiera.show_list_images?
       - if @person.image_id(show_placeholder:false)
@@ -40,20 +40,21 @@
       = render 'current_roles', current_roles: @current_roles
 
     - if @history && @history[:current].any?
-      .dropdown
+      .dropdown{ data: { toggle: t('dropdown.item') } }
         .dropdown__toggle
           %h3
-            %a{ href: "#" }
+            %a{ href: "#", data: { toggle: t('dropdown.parent_item') } }
               = t('.show_history')
         .dropdown__content
-          .track
-            %h2= "#{t('.held_currently')}"
-            %ul.list--block
-              = render 'timeline_roles', timeline_roles: @history[:current]
-            = render 'previous_roles'
+          %ul.track
+            %li
+              %h2= "#{t('.held_currently')}"
+              %ul.list--block
+                = render 'timeline_roles', timeline_roles: @history[:current]
+              = render 'previous_roles'
     - elsif @history && @history[:current].empty?
-      .container
-        .track
+      %ul.track
+        %li
           = render 'previous_roles'
 
 = render 'related_links'

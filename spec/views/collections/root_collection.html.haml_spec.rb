@@ -47,7 +47,7 @@ RSpec.describe 'collections/_root_collection' do
   context 'collection' do
     context 'converted to HTML' do
       it 'name will render correctly' do
-        expect(rendered).to match(/<h1>This is a test Collection.<\/h1>/)
+        expect(rendered).to match(/<h1>\n<span>This is a test Collection.<\/span>\n<\/h1>/)
       end
 
       it 'description will render correctly' do
@@ -60,7 +60,7 @@ RSpec.describe 'collections/_root_collection' do
       let!(:collection_description_text) { '<script>__This__ is a Collection description</script>' }
 
       it 'sanitized name will render correctly' do
-        expect(rendered).to match(/<h1>This is a test Collection name.<\/h1>/)
+        expect(rendered).to match(/<h1>\n<span>This is a test Collection name.<\/span>\n<\/h1>/)
       end
 
       it 'sanitized extended description will render correctly' do
