@@ -3,7 +3,8 @@
 #content.section--primary{ tabindex: "0" }
   .container
 
-    %h1= "#{@party.name} - #{@house.name}"
+    %h1
+      %span= "#{@party.name} - #{@house.name}"
 
 %section
   .container
@@ -18,8 +19,8 @@
 
     - if @party.member_count == 0
 
-      - if Parliament::Utils::Helpers::HousesHelper.commons?(@house)
-        = render 'shared/dissolution_message'
+      -# - if Parliament::Utils::Helpers::HousesHelper.commons?(@house)
+      -#   = render 'shared/dissolution_message'
 
       %ul.list--block
         %li

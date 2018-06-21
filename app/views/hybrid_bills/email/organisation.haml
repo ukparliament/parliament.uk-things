@@ -3,9 +3,9 @@
 #content.hero.theme--grey-4{ tabindex: '0' }
   .container
     %h1
-      = "#{t('hybrid_bills.email.writing_petition').capitalize} #{t('hybrid_bills.hyphen')} #{t('hybrid_bills.organisation')}"
+      %span= "#{t('hybrid_bills.email.writing_petition').capitalize} #{t('hybrid_bills.hyphen')} #{t('hybrid_bills.organisation')}"
       %span.sr-only .
-      %span= "#{t('hybrid_bills.id' + @business_id + '.object_title')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
+      %span.context= "#{t('hybrid_bills.id' + @business_id + '.object_title')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"
 
     %h2.typography--light
       = "#{t('hybrid_bills.step_2').capitalize} #{t('hybrid_bills.step_1_2')}"

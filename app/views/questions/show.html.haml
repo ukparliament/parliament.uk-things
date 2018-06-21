@@ -1,8 +1,9 @@
 .section--primary
   .container
-    %h1= title(@question.heading)
-    - if @answering_body
-      %p.lead= "#{t('.for').capitalize} #{@answering_body.name}"
+    %h1
+      %span= title(@question.heading)
+      - if @answering_body
+        %span.context= "#{t('.for').capitalize} #{@answering_body.name}"
 
 %section{ id: 'content', tabindex: '0' }
   .container
