@@ -603,6 +603,11 @@ en:
       download_res_thumbnail: '(1500 x 1500)'
       alt_text_thumbnail: '1500 by 1500 pixels'
       no_portrait: 'There is currently no official portrait for this MP.'
+  # concepts translations
+  concepts:
+    show:
+      articles_about_concept: 'Articles about this concept'
+      narrower_concepts: 'Narrower concepts'
   # contact points translations
   contact_points:
     index:
