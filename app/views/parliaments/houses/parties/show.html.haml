@@ -2,8 +2,8 @@
 %section.section--primary
   .container
     %h1
+      %small= link_to("#{@parliament.date_range(date_format: '%Y')} #{t('parliament').capitalize}", parliament_path(@parliament.graph_id))
       %span= @party.name
-      %span= link_to("#{@parliament.date_range(date_format: '%Y')} #{t('parliament').capitalize}", parliament_path(@parliament.graph_id))
 
 %section#content{ tabindex: "0" }
   .container
