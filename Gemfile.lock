@@ -144,7 +144,7 @@ GEM
     parliament-routes (0.6.5)
     parliament-ruby (1.0.0.pre6)
       typhoeus (~> 1.3)
-    parliament-utils (0.8.5)
+    parliament-utils (0.8.7)
       bandiera-client
       coveralls
       haml
@@ -160,7 +160,7 @@ GEM
       ast (~> 2.4.0)
     powerpack (0.1.2)
     public_suffix (3.0.2)
-    pugin (1.9.0)
+    pugin (1.9.1)
     puma (3.10.0)
     rack (2.0.5)
     rack-rewrite (1.5.1)
