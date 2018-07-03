@@ -21,6 +21,17 @@
 
 # error messages for hybrid bill entities
 en:
+  helpers:
+    person_description_helper:
+      former_description: "%{name} began work in Parliament in %{start_date} and finished in %{end_date}."
+      current_roles_description: "%{name} is currently %{roles}. %{pronoun} %{incumbency}."
+      formal_body_membership_role_name:
+        first: "a member of the %{role}"
+        other: "the %{role}"
+      commons:
+        seat_incumbency_text: "became an MP in %{start_date}"
+      lords:
+        seat_incumbency_text: "became a member of the House of Lords in %{start_date}"
   activemodel:
     errors:
       models:
