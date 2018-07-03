@@ -1,6 +1,6 @@
 - if BANDIERA_CLIENT.enabled?('parliament', 'show-person-description-string')
   %p.lead
-  - if @history[:current].any?
-    = PersonDescriptionHelper.current_description(@person, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", @current_roles)
-  - elsif @history[:current].empty?
-    = PersonDescriptionHelper.former_description(@person.display_name, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", "#{l(@sorted_incumbencies.last.end_date, format: :year_only)}")
+    - if @history[:current].any?
+      = PersonDescriptionHelper.current_description(@person, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", @current_roles)
+    - elsif @history[:current].empty?
+      = PersonDescriptionHelper.former_description(@person.display_name, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", "#{l(@sorted_incumbencies.last.end_date, format: :year_only)}")
