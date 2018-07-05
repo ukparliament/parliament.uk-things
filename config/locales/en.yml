@@ -258,11 +258,12 @@ en:
       contact_details_a: 'We will ask you to tell us who should be contacted about your petition. This main contact can be you or someone else, for example a friend, family member or lawyer.'
       contact_details_b: 'The main contact will receive all petition communications. They will usually be invited to give evidence about it to the'
       after_sending_petition: 'after sending your petition'
-      something_went_wrong: 'Sorry, something went wrong. Please try again later. If the problem continues call us on 020 7219 3250 or email: prbohoc@parliament.uk.'
+      something_went_wrong_title: 'Sorry, something went wrong'
+      something_went_wrong: 'Please try again later. If the problem continues call us on 020 7219 3250 or email: prbohoc@parliament.uk.'
     # petition by email, post or in person pages
     email:
       subtitle: 'who are you submitting a petition for?'
-      legend: 'please choose who you submitting a petition for'
+      legend: 'please choose who you are submitting a petition for'
       writing_petition: 'writing your petition'
       writing_petition_how: 'how to write your petition'
       writing_petition_how_a: 'To write your petition, download and complete the petition template.'

@@ -15,14 +15,13 @@
     .container
       %br
       .status--highlight.theme--warning
-        %h2= t('hybrid_bills.document-submission.upload_error_title').capitalize
+        %h2{ aria: { live: 'assertive'} }
+          = t('hybrid_bills.document-submission.upload_error_title').capitalize
         %ul#error-file-upload
           - if @document_object.errors[:filename]
-            %li{ aria: { live: 'assertive'} }
-              = t('hybrid_bills.document-submission.upload_error_a').capitalize
+            %li= t('hybrid_bills.document-submission.upload_error_a').capitalize
           - if @document_object.errors[:filesize]
-            %li{ aria: { live: 'assertive'} }
-              = t('hybrid_bills.document-submission.upload_error_b').capitalize
+            %li= t('hybrid_bills.document-submission.upload_error_b').capitalize
 
 %section
   .container

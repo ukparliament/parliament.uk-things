@@ -8,6 +8,8 @@
     - if flash[:alert]
       %br
       .status--highlight.theme--warning
+        %h2{ aria: { live: 'assertive'} }
+          = t('.something_went_wrong_title')
         %p= t(flash[:alert])
 
     %noscript
