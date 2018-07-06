@@ -9,20 +9,19 @@ class PeopleController < ApplicationController
   def show
     # When calculating history, how many years do we want in each block
     @postcode = flash[:postcode]
-    @person, @seat_incumbencies, @committee_memberships, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'Person', 'SeatIncumbency', 'FormalBodyMembership', 'GovernmentIncumbency', 'OppositionIncumbency')
+    @person, @seat_incumbencies, @government_incumbencies, @opposition_incumbencies = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'Person', 'SeatIncumbency', 'GovernmentIncumbency', 'OppositionIncumbency')
 
     @person = @person.first
 
     @current_party_membership = @person.current_party_membership
 
     # Only seat incumbencies, not committee roles are being grouped
-    incumbencies = RoleGroupingHelper.group(@seat_incumbencies, :constituency, :graph_id)
+    incumbencies = Parliament::Utils::Helpers::RoleGroupingHelper.group(@seat_incumbencies, :constituency, :graph_id)
 
     roles = []
     roles += incumbencies
-    roles += @committee_memberships.to_a if Pugin::Feature::Bandiera.show_committees?
-    roles += @government_incumbencies.to_a if Pugin::Feature::Bandiera.show_government_roles?
-    roles += @opposition_incumbencies.to_a if Pugin::Feature::Bandiera.show_opposition_roles?
+    roles += @government_incumbencies.to_a
+    roles += @opposition_incumbencies.to_a
 
     @sorted_incumbencies = Parliament::NTriple::Utils.sort_by({
       list:             @person.incumbencies,
@@ -34,9 +33,9 @@ class PeopleController < ApplicationController
 
     @current_incumbency = @most_recent_incumbency&.current? ? @most_recent_incumbency : nil
 
-    HistoryHelper.reset
-    HistoryHelper.add(roles)
-    @history = HistoryHelper.history
+    Parliament::Utils::Helpers::HistoryHelper.reset
+    Parliament::Utils::Helpers::HistoryHelper.add(roles)
+    @history = Parliament::Utils::Helpers::HistoryHelper.history
 
     @current_roles = @history[:current].reverse!.group_by { |role| Grom::Helper.get_id(role.type) } if @history[:current]
 

@@ -20,9 +20,8 @@
             = current_party_details + ' -' if current_party_details
             = @person.statuses[:house_membership_status].join(' and ')
 
-    - if Pugin::Feature::Bandiera.show_list_images?
-      - if @person.image_id(show_placeholder:false)
-        = render 'image'
+    - if @person.image_id(show_placeholder:false)
+      = render 'image'
 
     - if @history
       = render 'roles_description'
@@ -36,29 +35,6 @@
           = render 'when_to_contact'
         = render 'contact_details'
 
-%section
-  .container
-    %h2= t('.roles').capitalize
-    - if @current_roles
-      = render 'current_roles', current_roles: @current_roles
-
-    - if @history && @history[:current].any?
-      .dropdown{ data: { toggle: t('dropdown.item') } }
-        .dropdown__toggle
-          %h3
-            %a{ href: "#", data: { toggle: t('dropdown.parent_item') } }
-              = t('.show_history')
-        .dropdown__content
-          %ul.track
-            %li
-              %h2= "#{t('.held_currently')}"
-              %ul.list--block
-                = render 'timeline_roles', timeline_roles: @history[:current]
-              = render 'previous_roles'
-    - elsif @history && @history[:current].empty?
-      %ul.track
-        %li
-          = render 'previous_roles'
 
 = render 'related_links'
 

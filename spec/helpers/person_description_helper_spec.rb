@@ -1,21 +1,6 @@
 require_relative '../rails_helper'
 
 RSpec.describe PersonDescriptionHelper do
-  let(:formal_body_membership) {double(:formal_body_membership,
-    formal_body: double(:formal_body,
-    name: 'Example formal body name')
-    )
-  }
-  let(:formal_body_membership2) {double(:formal_body_membership2,
-    formal_body: double(:formal_body,
-    name: 'Example formal body name 2')
-    )
-  }
-  let(:formal_body_membership3) {double(:formal_body_membership3,
-    formal_body: double(:formal_body,
-    name: 'Example formal body name 3')
-    )
-  }
   let(:opposition_role) {double(:opposition_role,
     opposition_position: double(:opposition_position,
     name: 'Example opposition position name')
@@ -30,7 +15,7 @@ RSpec.describe PersonDescriptionHelper do
     house_of_commons?: true
   )}
 
-  let(:current_roles) {{'FormalBodyMembership' => [formal_body_membership, formal_body_membership2, formal_body_membership3], 'OppositionIncumbency' => [opposition_role], 'GovernmentIncumbency' => [government_role], 'SeatIncumbency' => [seat_incumbency]}}
+  let(:current_roles) {{'OppositionIncumbency' => [opposition_role], 'GovernmentIncumbency' => [government_role], 'SeatIncumbency' => [seat_incumbency]}}
 
   context '#current_description' do
     let(:first_incumbency_start_date){'2007'}
@@ -41,7 +26,7 @@ RSpec.describe PersonDescriptionHelper do
     }
 
     it 'returns the appropriate current description for a person' do
-      expect(PersonDescriptionHelper.current_description(person, first_incumbency_start_date, current_roles)).to eq('Example person name is currently Example government position name, Example opposition position name, a member of the Example formal body name, the Example formal body name 2, and the Example formal body name 3. He became an MP in 2007.')
+      expect(PersonDescriptionHelper.current_description(person, first_incumbency_start_date, current_roles)).to eq('Example person name is currently Example government position name and Example opposition position name. He became an MP in 2007.')
     end
   end
 
@@ -56,7 +41,7 @@ RSpec.describe PersonDescriptionHelper do
   end
 
   context '#seat_incumbency_text' do
-    let(:seat_incumbency) {double('seat_incumbency', :house_of_commons? => true, :class => RoleGroupingHelper::RoleGroupedObject)}
+    let(:seat_incumbency) {double('seat_incumbency', :house_of_commons? => true, :class => Parliament::Utils::Helpers::RoleGroupingHelper::RoleGroupedObject)}
     let(:first_incumbency_start_date) {'1996'}
 
     it 'can return seat incumbency text' do
@@ -67,7 +52,7 @@ RSpec.describe PersonDescriptionHelper do
   context '#seat_incumbency_is_grouped_object?' do
 
     context 'with a grouped object' do
-      let(:grouped_object) { RoleGroupingHelper::RoleGroupedObject.new }
+      let(:grouped_object) { Parliament::Utils::Helpers::RoleGroupingHelper::RoleGroupedObject.new }
 
       it 'returns true' do
         expect(PersonDescriptionHelper.send(:seat_incumbency_is_grouped_object?, grouped_object)).to eq(true)
@@ -95,58 +80,28 @@ RSpec.describe PersonDescriptionHelper do
 
   context '#current_roles_description' do
     let(:seat_incumbency_text) {' became an MP in 1996'}
-    let(:current_roles_text) {'shadow home secretary, a Member of the Example Committee and Committee on Examples'}
+    let(:current_roles_text) {'shadow home secretary'}
     let(:person_display_name) {'Example Name'}
     let(:person_pronoun) {'She'}
 
     it 'returns the current roles description' do
-      expect(PersonDescriptionHelper.send(:current_roles_description, person_display_name, current_roles_text, person_pronoun, seat_incumbency_text)).to eq('Example Name is currently shadow home secretary, a Member of the Example Committee and Committee on Examples. She  became an MP in 1996.')
-    end
-  end
-
-  context '#fetch_formal_body_memberships' do
-    let(:current_roles) {{'FormalBodyMembership' => ['formal_body_membership'], 'OppositionIncumbency' => ['opposition_incumbency']}}
-
-    it 'fetches the formal body memberships from current roles' do
-      expect(PersonDescriptionHelper.send(:fetch_formal_body_memberships, current_roles)).to eq(['formal_body_membership'])
+      expect(PersonDescriptionHelper.send(:current_roles_description, person_display_name, current_roles_text, person_pronoun, seat_incumbency_text)).to eq('Example Name is currently shadow home secretary. She  became an MP in 1996.')
     end
   end
 
   context '#fetch_current_role_names' do
     context 'with all the required data' do
       it 'makes an array of all the current role names' do
-        expect(PersonDescriptionHelper.send(:fetch_current_role_names, current_roles)).to eq(['Example government position name', 'Example opposition position name', 'a member of the Example formal body name', 'the Example formal body name 2', 'the Example formal body name 3'])
+        expect(PersonDescriptionHelper.send(:fetch_current_role_names, current_roles)).to eq(['Example government position name', 'Example opposition position name'])
       end
     end
 
     context 'with incorrect data' do
-      let(:current_roles) {{'FormalBodyMembership' => [formal_body_membership, formal_body_membership2, formal_body_membership3], 'NonsenseName' => [opposition_role], 'GovernmentIncumbency' => [government_role], 'SeatIncumbency' => [seat_incumbency]}}
+      let(:current_roles) {{'NonsenseName' => [opposition_role], 'GovernmentIncumbency' => [government_role], 'SeatIncumbency' => [seat_incumbency]}}
 
       it 'makes an array of all the current role names available' do
-        expect(PersonDescriptionHelper.send(:fetch_current_role_names, current_roles)).to eq(['Example government position name', 'a member of the Example formal body name', 'the Example formal body name 2', 'the Example formal body name 3'])
+        expect(PersonDescriptionHelper.send(:fetch_current_role_names, current_roles)).to eq(['Example government position name'])
       end
-    end
-  end
-
-  context '#formal_body_membership_role_name' do
-    let(:role_name){'Example formal body name'}
-    let(:current_role) {double(:current_role,
-      formal_body: double(:formal_body,
-      name: 'Example formal body name')
-      )
-    }
-    let(:first_formal_body_membership) {double(:first_formal_body_membership,
-      formal_body: double(:formal_body,
-      name: 'Example formal body name 2')
-      )
-    }
-
-    it 'returns the appropriate formal body description for the first formal body name' do
-      expect(PersonDescriptionHelper.send(:formal_body_membership_role_name, current_role, current_role, role_name)).to eq('a member of the Example formal body name')
-    end
-
-    it 'returns the appropriate formal body description for formal body name that are not first' do
-      expect(PersonDescriptionHelper.send(:formal_body_membership_role_name, current_role, first_formal_body_membership, role_name)).to eq('the Example formal body name')
     end
   end
 

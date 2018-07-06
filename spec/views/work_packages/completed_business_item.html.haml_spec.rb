@@ -4,7 +4,7 @@ RSpec.describe 'work_packages/_completed_business_item', vcr: true do
   let!(:grouped_business_item){
     assign(:grouped_business_item,
       double(:grouped_business_item,
-        class: BusinessItemGroupingHelper::BusinessItemGroupedObject,
+        class: Parliament::Utils::Helpers::BusinessItemGroupingHelper::BusinessItemGroupedObject,
         date: DateTime.new(2018,04,05),
         nodes: [
           double(:grouped_business_item_node,

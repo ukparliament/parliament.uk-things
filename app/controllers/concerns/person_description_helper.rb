@@ -1,6 +1,6 @@
 module PersonDescriptionHelper
   # Builds description of person using current roles
-  ROLES = {'GovernmentIncumbency' => :government_position, 'OppositionIncumbency' => :opposition_position, 'FormalBodyMembership' => :formal_body}.freeze
+  ROLES = {'GovernmentIncumbency' => :government_position, 'OppositionIncumbency' => :opposition_position}.freeze
 
   class << self
     # Returns former description string
@@ -57,7 +57,7 @@ module PersonDescriptionHelper
     # @param seat_incumbency [Grom::Node] Seat incumbency object
     # @return [Boolean] True if seat_incumbency is a RoleGroupedObject
     def seat_incumbency_is_grouped_object?(seat_incumbency)
-      seat_incumbency.is_a?(RoleGroupingHelper::RoleGroupedObject)
+      seat_incumbency.is_a?(Parliament::Utils::Helpers::RoleGroupingHelper::RoleGroupedObject)
     end
 
     # Returns person name with seat incumbency text
@@ -80,20 +80,11 @@ module PersonDescriptionHelper
       t('current_roles_description', name: person_display_name, roles: current_roles_text, pronoun: person_pronoun, incumbency: seat_incumbency_text)
     end
 
-    # Fetches formal body memberships from current_roles
-    #
-    # @param current_roles [Hash] Hash of current roles grouped by role type
-    # @return [Array] Array of current roles with the type 'FormalBodyMembership'
-    def fetch_formal_body_memberships(current_roles)
-      current_roles.fetch('FormalBodyMembership', [])
-    end
-
     # Fetches names for current roles based on role type
     #
     # @param current_roles [Hash] Hash of current roles grouped by role type
     # @return [Array] Array of strings of current role names
     def fetch_current_role_names(current_roles)
-      formal_body_memberships = fetch_formal_body_memberships(current_roles)
       current_role_names = []
       ROLES.keys.each do |role_type|
         current_roles.fetch(role_type, []).each do |current_role|
@@ -101,22 +92,10 @@ module PersonDescriptionHelper
 
           break if role_name.nil?
 
-          current_role_names << role_name unless role_type == 'FormalBodyMembership'
-          current_role_names << formal_body_membership_role_name(current_role, formal_body_memberships[0], role_name) if role_type == 'FormalBodyMembership'
+          current_role_names << role_name
         end
       end
       current_role_names
-    end
-
-    # Returns formal body membership role name
-    #
-    # @param current_role [Grom::Node] Role object
-    # @param first_formal_body_membership [Grom::Node] First formal body membership object
-    # @param role_name [String] Role name for formal body membership
-    # @return [String] String of formal body membership role name
-    def formal_body_membership_role_name(current_role, first_formal_body_membership, role_name)
-      translation_key = current_role == first_formal_body_membership ? 'first' : 'other'
-      t("formal_body_membership_role_name.#{translation_key}", role: role_name)
     end
 
     # Returns role name using role type and role
