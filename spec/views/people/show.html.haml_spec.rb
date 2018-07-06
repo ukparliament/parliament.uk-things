@@ -869,7 +869,11 @@ RSpec.describe 'people/show', vcr: true do
           end
 
           it 'checks if person description is inside a lead paragraph' do
-            expect(rendered).to match(/<p class='lead'>\nTest Display Name is currently Test Government Position Name, Opposition Role 1, a member of the Test Committee Name 1, the Test Committee Name 2, and the Test Committee Name 3. She became an MP in 2013.\n<\/p>/)
+            expect(rendered).to match(/<p class='lead'>\nTest Display Name is currently Test Government Position Name, Opposition Role 1, a member of the Test Committee Name 1, the Test Committee Name 2, and the Test Committee Name 3. She became an MP in 2013./)
+          end
+
+          it 'checks if person description has a view all roles link' do
+            expect(rendered).to have_link('View all roles', href: '/people/9BSfSFxq/associations')
           end
         end
 
