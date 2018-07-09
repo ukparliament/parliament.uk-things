@@ -7,6 +7,7 @@ pipelines:
       STATIC_ASSET_LOCATION_URL: https://s3-eu-west-1.amazonaws.com/web1live.static-assets
       RAILS_LOG_TO_STDOUT: true
       RACK_ENV: production
+      PARLIAMENT_API_VERSION: Live
     materials:
       parliament.uk-things-git:
         git: https://github.com/ukparliament/parliament.uk-things.git
