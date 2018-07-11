@@ -63,7 +63,7 @@ RSpec.describe 'questions/show', vcr: true do
       end
 
       it 'will render the correct question asked at date' do
-        expect(rendered).to match(/Asked on 24 November 2017 by/)
+        expect(rendered).to match(/Asked on 24 November 2017/)
       end
     end
 
@@ -112,7 +112,7 @@ RSpec.describe 'questions/show', vcr: true do
       end
 
       it 'will render the correct answer given date' do
-        expect(rendered).to match(/Answered on 25 December 2017 by/)
+        expect(rendered).to match(/Answered on 25 December 2017/)
       end
     end
 

@@ -139,7 +139,7 @@ GEM
     parliament-routes (0.6.7)
     parliament-ruby (1.0.0)
       typhoeus (~> 1.3)
-    parliament-utils (0.9.0)
+    parliament-utils (0.10.1)
       bandiera-client
       coveralls
       haml
@@ -151,7 +151,7 @@ GEM
       redcarpet (~> 3.0)
       simplecov
       vcard
-    parser (2.5.1.0)
+    parser (2.5.1.2)
       ast (~> 2.4.0)
     powerpack (0.1.2)
     public_suffix (3.0.2)
@@ -221,10 +221,10 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    rubocop (0.58.0)
+    rubocop (0.58.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.5)
+      parser (>= 2.5, != 2.5.1.1)
       powerpack (~> 0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
