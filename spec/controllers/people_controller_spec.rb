@@ -29,7 +29,7 @@ RSpec.describe PeopleController, vcr: true do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'assigns @person, @seat_incumbencies, @committee_memberships, @government_incumbencies, @current_party_membership,
+    it 'assigns @person, @seat_incumbencies, @government_incumbencies, @current_party_membership,
     @most_recent_incumbency and @current_incumbency' do
       expect(assigns(:person)).to be_a(Grom::Node)
       expect(assigns(:person).type).to eq('https://id.parliament.uk/schema/Person')
@@ -37,11 +37,6 @@ RSpec.describe PeopleController, vcr: true do
       assigns(:seat_incumbencies).each do |seat_incumbency|
         expect(seat_incumbency).to be_a(Grom::Node)
         expect(seat_incumbency.type).to eq('https://id.parliament.uk/schema/SeatIncumbency')
-      end
-
-      assigns(:committee_memberships).each do |committee_membership|
-        expect(committee_membership).to be_a(Grom::Node)
-        expect(committee_membership.type).to eq('https://id.parliament.uk/schema/FormalBodyMembership')
       end
 
       assigns(:government_incumbencies).each do |government_incumbency|
@@ -93,34 +88,11 @@ RSpec.describe PeopleController, vcr: true do
       end
     end
 
-    context 'with bandiera turned on' do
-      before(:each) do
-        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(true)
-        allow(Pugin::Feature::Bandiera).to receive(:show_government_roles?).and_return(true)
-        get :show, params: { person_id: '1CRqwuTp' }
-      end
-
-      it 'adds committee memberships and government roles to history' do
-        history = controller.instance_variable_get(:@history)
-        count = 0
-        history[:years].keys.each { |year| count = count + history[:years][year].length }
-        expect(count).to eq(6)
-      end
-    end
-
-    context 'with bandiera turned off' do
-      before(:each) do
-        allow(Pugin::Feature::Bandiera).to receive(:show_committees?).and_return(false)
-        allow(Pugin::Feature::Bandiera).to receive(:show_government_roles?).and_return(false)
-        get :show, params: { person_id: '1CRqwuTp' }
-      end
-
-      it 'does not add committee memberships or government roles to history' do
-        history = controller.instance_variable_get(:@history)
-        count = 0
-        history[:years].keys.each { |year| count = count + history[:years][year].length }
-        expect(count).to eq(1)
-      end
+    it 'adds government roles and opposition roles to history' do
+      history = controller.instance_variable_get(:@history)
+      count = 0
+      history[:years].keys.each { |year| count = count + history[:years][year].length }
+      expect(count).to eq(5)
     end
   end
 

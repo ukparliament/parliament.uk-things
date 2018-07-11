@@ -1,4 +1,4 @@
-- if business_item.class == BusinessItemGroupingHelper::BusinessItemGroupedObject
+- if business_item.class == Parliament::Utils::Helpers::BusinessItemGroupingHelper::BusinessItemGroupedObject
   %h3= "#{l(business_item.date, format: :default)}"
   - business_item.nodes.each do |business_item_node|
     - if business_item_node.sorted_procedure_steps_by_distance.any? || !business_item_node.weblink.empty?
