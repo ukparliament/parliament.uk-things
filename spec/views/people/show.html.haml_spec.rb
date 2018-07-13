@@ -782,6 +782,10 @@ RSpec.describe 'people/show', vcr: true do
         it 'shows current person description' do
           expect(rendered).to match(/Test Display Name is currently Test Government Position Name, Opposition Role 1, and Opposition Role 2. She became an MP in 2013./)
         end
+
+        it 'shows a link to all person\'s roles' do
+          expect(rendered).to have_link("View all Test Display Name's roles", href: "#{person_path('9BSfSFxq')}/associations")
+        end
       end
     end
   end
@@ -823,6 +827,10 @@ RSpec.describe 'people/show', vcr: true do
 
     it 'shows the former person description' do
       expect(rendered).to match(/Test Display Name began work in Parliament in 2013 and finished in 2017./)
+    end
+
+    it 'shows a link to all person\'s roles' do
+      expect(rendered).to have_link("View all Test Display Name's roles", href: "#{person_path('7TX8ySd4')}/associations")
     end
   end
 end

@@ -541,6 +541,7 @@ en:
       link_to_original: 'This is our beta website, pages are being tested and improved. You can view %{link} on the current website.'
       link_to_original_version: 'a version of this page'
       associations: 'associations'
+      view_all_roles: "View all %{name}'s roles"
     image:
       figcaption: 'The official MP portraits are %{link}'
       available_download: 'available to download'
