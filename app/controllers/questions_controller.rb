@@ -8,9 +8,9 @@ class QuestionsController < ApplicationController
   def show
     @question, @answer = Parliament::Utils::Helpers::FilterHelper.filter(@request, 'Question', 'Answer')
     @question = @question.first
-    @asking_person = @question.asking_person
-    @asking_person_seat_incumbency = @asking_person.seat_incumbencies.first
-    @constituency = @asking_person_seat_incumbency.constituency
+    @asking_person = @question.asking_person if @question.asking_person
+    @asking_person_seat_incumbency = @asking_person.seat_incumbencies.first if @asking_person
+    @constituency = @asking_person_seat_incumbency.constituency if @asking_person_seat_incumbency
     @answering_body = @question.answering_body_allocation.answering_body if @question.answering_body_allocation.present?
 
     return unless @answer.present?

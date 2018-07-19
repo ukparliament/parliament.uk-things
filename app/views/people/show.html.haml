@@ -26,19 +26,18 @@
     - if @history
       = render 'roles_description'
 
-- if @current_incumbency && @current_party_membership
-  %section
-    .container
-      .block
-        %h2= "#{t('.contact').capitalize}"
-        - if @person.current_mp?
-          = render 'when_to_contact'
-        = render 'contact_details'
-
-
-= render 'related_links'
-
-- if @current_incumbency && Pugin::Feature::Bandiera.show_activity_links?
+%section
   .container
-    .status--highlight.theme--purple--light
-      = "#{t('.link_to_original', link: link_to(t('.link_to_original_version'), "http://www.parliament.uk/biographies/Commons/member/#{@person.mnis_id}"))}".html_safe
+    - if @current_incumbency && @current_party_membership
+      .block--border__bottom
+        .block
+          %h2= "#{t('.contact').capitalize}"
+          - if @person.current_mp?
+            = render 'when_to_contact'
+          = render 'contact_details'
+    = render 'written_questions'
+    = render 'related_links'
+
+    - if @current_incumbency && Pugin::Feature::Bandiera.show_activity_links?
+      .status--highlight.theme--purple--light
+        = "#{t('.link_to_original', link: link_to(t('.link_to_original_version'), "http://www.parliament.uk/biographies/Commons/member/#{@person.mnis_id}"))}".html_safe
