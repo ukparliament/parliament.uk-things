@@ -541,6 +541,13 @@ en:
       link_to_original: 'This is our beta website, pages are being tested and improved. You can view %{link} on the current website.'
       link_to_original_version: 'a version of this page'
       associations: 'associations'
+      written_questions:
+        title: "Written questions"
+        most_recently_asked: "Most recently asked"
+        view_all: "View all %{name} written questions"
+        not_asked: "%{name} has not asked any written questions"
+        awaiting_answer: "Awaiting answer from the %{department}"
+        answered_by: "Answered by the %{department}"
     image:
       figcaption: 'The official MP portraits are %{link}'
       available_download: 'available to download'
