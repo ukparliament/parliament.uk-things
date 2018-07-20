@@ -30,7 +30,7 @@ RSpec.describe PeopleController, vcr: true do
     end
 
     it 'assigns @person, @seat_incumbencies, @government_incumbencies, @current_party_membership,
-    @most_recent_incumbency and @current_incumbency' do
+    @most_recent_incumbency, @current_incumbency and @question' do
       expect(assigns(:person)).to be_a(Grom::Node)
       expect(assigns(:person).type).to eq('https://id.parliament.uk/schema/Person')
 
@@ -58,6 +58,9 @@ RSpec.describe PeopleController, vcr: true do
 
       expect(assigns(:current_incumbency)).to be_a(Grom::Node)
       expect(assigns(:current_incumbency).current?).to be(true)
+
+      expect(assigns(:question)).to be_a(Grom::Node)
+      expect(assigns(:question).type).to eq('https://id.parliament.uk/schema/Question')
     end
 
     it 'renders the show template' do

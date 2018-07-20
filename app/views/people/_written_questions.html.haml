@@ -1,0 +1,26 @@
+- name_possessive = @person.given_name + (@person.given_name[-1,1] == 's' ? "'" : "'s")
+
+.block--border__bottom
+  - if @question
+    %h2= t('people.show.written_questions.title')
+    %p= t('people.show.written_questions.most_recently_asked')
+
+    .block
+      .card
+        .card__details
+          %h3= link_to(@question.heading, question_path(@question.graph_id))
+
+          - if @question.answers.empty?
+            %p= t('people.show.written_questions.awaiting_answer', department: @question.answering_body_allocation.answering_body.name) if @question.answering_body_allocation
+
+          - if @question.answers.any? && @question.answering_body_allocation
+            %p= t('people.show.written_questions.answered_by', department: @question.answering_body_allocation.answering_body.name)
+
+          - if @question.asked_at_date
+            %time{ datetime: l(@question.asked_at_date, format: '%y-%m-%d') }= l(@question.asked_at_date, format: '%d %B %Y')
+
+    = link_to(t('people.show.written_questions.view_all', name: name_possessive), person_questions_written_path(@person.graph_id), class: ['btn--primary'])
+
+  - else
+    .status--highlight
+      %p= t('people.show.written_questions.not_asked', name: @person.display_name)
