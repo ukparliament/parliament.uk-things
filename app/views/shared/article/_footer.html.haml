@@ -7,8 +7,5 @@
   %ul.list--inline
     // Print button
     %li.visually-hidden{ aria: { hidden: 'true' } }
-      .card
-        .card__details
-          = render partial: 'pugin/icons/print'
-          %a.btn--print{ href: '#' }
-            = t('print').capitalize
+      = render partial: 'pugin/icons/print'
+      %a.btn--print{ href: '#' }= t('print').capitalize
