@@ -544,7 +544,7 @@ en:
       written_questions:
         title: "Written questions"
         most_recently_asked: "Most recently asked"
-        view_all: "View all %{name} written questions"
+        view_all: "View all written questions"
         not_asked: "%{name} has not asked any written questions"
         awaiting_answer: "Awaiting answer from the %{department}"
         answered_by: "Answered by the %{department}"
