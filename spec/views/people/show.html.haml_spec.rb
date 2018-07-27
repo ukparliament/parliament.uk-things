@@ -892,7 +892,7 @@ RSpec.describe 'people/show', vcr: true do
       end
 
       it 'displays a call to action to view all questions' do
-        expect(rendered).to have_link("View all Test's written questions", href: person_questions_written_path("7TX8ySd4"), class: "btn--primary")
+        expect(rendered).to have_link("View all written questions", href: person_questions_written_path("7TX8ySd4"), class: "btn--primary")
       end
     end
 
