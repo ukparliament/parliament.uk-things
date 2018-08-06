@@ -9,7 +9,8 @@
 
       .block.theme--mint--light.accent
         - if @asking_person
-          %p.typography--heavy= "#{@asking_person.full_name}"
+          %p.typography--heavy
+            = link_to(@asking_person.full_name, person_questions_written_path(@asking_person.graph_id))
         - if @question.asked_at_date
           %time{ datetime: @question.asked_at_date.strftime('%d-%m-%Y') }= "#{t('.asked_on').capitalize} #{@question.asked_at_date.strftime('%d %B %Y')}"
 
