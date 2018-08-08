@@ -11,13 +11,13 @@ RSpec.describe 'questions/show', vcr: true do
 
       assign(:asking_person,
         double(:asking_person,
-          full_name: 'Name1 Name2',
+          display_name: 'Name1 Name2',
           image_id: '6789101',
           graph_id: 'hfFS7SEH'))
 
       assign(:answering_person,
         double(:answering_person,
-          full_name: 'Name3 Name4',
+          display_name: 'Name3 Name4',
           image_id: '1357910',
           graph_id: 'j3tFA6NO'))
 
@@ -178,7 +178,7 @@ RSpec.describe 'questions/show', vcr: true do
 
       assign(:asking_person,
         double(:asking_person,
-          full_name: 'Name1 Name2',
+          display_name: 'Name1 Name2',
           image_id: '6789101',
           graph_id: 'hfFS7SEH'))
 
