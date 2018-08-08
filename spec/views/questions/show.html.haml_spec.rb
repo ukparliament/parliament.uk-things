@@ -27,7 +27,8 @@ RSpec.describe 'questions/show', vcr: true do
 
       assign(:answering_body,
         double(:answering_body,
-          name: 'Department of Health'))
+          name: 'Department of Health',
+          graph_id: 'qjSEa2Ms'))
 
       assign(:answer,
         double(:answer,
@@ -166,7 +167,8 @@ RSpec.describe 'questions/show', vcr: true do
 
       assign(:answering_body,
         double(:answering_body,
-          name: 'Department of Health'))
+          name: 'Department of Health',
+          graph_id: 'qjSEa2Ms'))
 
       assign(:asking_person_seat_incumbency,
         double(:asking_person_seat_incumbency,
