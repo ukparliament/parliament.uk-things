@@ -16,7 +16,8 @@
 
       .block.accent--purple
         - if @answering_body
-          %p.typography--heavy= "#{@answering_body.name}"
+          %p.typography--heavy
+            = link_to(@answering_body.name, group_questions_written_answered_path(@answering_body.graph_id))
         - if @answer.present?
           %time{ datetime: @answer.answer_given_date.strftime('%d-%m-%Y') }= "#{t('.answered_on').capitalize} #{@answer.answer_given_date.strftime('%d %B %Y')}"
         - else
