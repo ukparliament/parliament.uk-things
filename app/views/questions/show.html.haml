@@ -36,7 +36,7 @@
     .block--border__bottom
       %h2= t('.answer').capitalize
       - if @answer.present?
-        = render partial: 'person_details', locals: { body: @answer_text, person: @answering_person, role: "#{@government_position.name}", incumbency: @answering_person_government_incumbency }
+        = render partial: 'person_details', locals: { body: @answer_text, person: @answering_person, role: @government_position_name, incumbency: @answering_person_government_incumbency }
       - else
         .status--highlight
           = t('.not_answered').capitalize

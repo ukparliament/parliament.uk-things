@@ -41,6 +41,11 @@ RSpec.describe QuestionsController, vcr: true do
         expect(assigns(:government_position).type).to eq('https://id.parliament.uk/schema/GovernmentPosition')
       end
 
+      it 'assigns @government_position_name' do
+        expect(assigns(:government_position_name)).to be_a(String)
+        expect(assigns(:government_position_name)).to eq('positionName - 1')
+      end
+
       it 'assigns @answering_body' do
         expect(assigns(:answering_body)).to be_a(Grom::Node)
         expect(assigns(:answering_body).type).to eq('https://id.parliament.uk/schema/Group')
@@ -59,6 +64,13 @@ RSpec.describe QuestionsController, vcr: true do
       it 'renders the show template' do
         expect(response).to render_template('show')
       end
+
+      context 'if the answering person has no government incumbency' do
+        it '@government_position is nil' do
+          expect(assigns(:government_position)).to eq(nil)
+          expect(assigns(:government_position_name)).to eq(nil)
+        end
+      end
     end
 
     context 'with no answer' do
@@ -76,19 +88,5 @@ RSpec.describe QuestionsController, vcr: true do
         expect(assigns(:answer)).to be_empty
       end
     end
-  end
-
-  describe '#data_check' do
-    let(:data_check_methods) do
-      [
-        {
-          route:      'show',
-          parameters: { question_id: 'bKNLIS4T' },
-          data_url:   "#{ENV['PARLIAMENT_BASE_URL']}/question_by_id?question_id=bKNLIS4T"
-        }
-      ]
-    end
-
-    it_behaves_like 'a data service request'
   end
 end

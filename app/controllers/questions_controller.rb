@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
     @answer_text = AnswerHelper.add_url_class_to_anchors(@answer.text.dup)
     @answering_person = @answer.answering_person
     @answering_person_government_incumbency = @answering_person.government_incumbencies.first
-    @government_position = @answering_person_government_incumbency.government_position
+    @government_position = @answering_person_government_incumbency&.government_position
+    @government_position_name = @government_position&.name
   end
 end

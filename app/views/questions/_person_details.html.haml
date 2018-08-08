@@ -9,8 +9,9 @@
   .card__details
     %h3
       = link_to(person.full_name, person_path(person.graph_id))
-    %p.typography--heavy
-      = role
-      - if incumbency && !incumbency.current?
-        = "until #{incumbency.end_date.strftime('%d %B %Y')}"
+    - if role.present?
+      %p.typography--heavy
+        = role
+        - if incumbency && !incumbency.current?
+          = "until #{incumbency.end_date.strftime('%d %B %Y')}"
 = sanitize body
