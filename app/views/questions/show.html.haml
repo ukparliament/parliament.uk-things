@@ -12,13 +12,13 @@
           %p.typography--heavy
             = link_to(@asking_person.display_name, person_questions_written_path(@asking_person.graph_id))
         - if @question.asked_at_date
-          %time{ datetime: @question.asked_at_date.strftime('%d-%m-%Y') }= "#{t('.asked_on').capitalize} #{@question.asked_at_date.strftime('%d %B %Y')}"
+          %time{ datetime: l(@question.asked_at_date, format: :datetime) }= "#{t('.asked_on').capitalize} #{l(@question.asked_at_date, format: :default)}"
 
       .block.accent--purple
         - if @answering_body
           %p.typography--heavy= "#{@answering_body.name}"
         - if @answer.present?
-          %time{ datetime: @answer.answer_given_date.strftime('%d-%m-%Y') }= "#{t('.answered_on').capitalize} #{@answer.answer_given_date.strftime('%d %B %Y')}"
+          %time{ datetime: l(@answer.answer_given_date, format: :datetime) }= "#{t('.answered_on').capitalize} #{l(@answer.answer_given_date, format: :default)}"
         - else
           %p= t('.not_answered').capitalize
 

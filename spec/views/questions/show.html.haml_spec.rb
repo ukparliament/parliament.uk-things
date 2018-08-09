@@ -5,7 +5,7 @@ RSpec.describe 'questions/show', vcr: true do
     before do
       assign(:question,
         double(:question,
-          asked_at_date: Date.parse('24 Nov 2017'),
+          asked_at_date: Time.parse('24 Nov 2017'),
           text: 'Question text1',
           heading: 'Question heading1'))
 
@@ -32,19 +32,19 @@ RSpec.describe 'questions/show', vcr: true do
       assign(:answer,
         double(:answer,
           text: 'Answer text1',
-          answer_given_date: Date.parse('25 Dec 2017')))
+          answer_given_date: Time.parse('25 Dec 2017')))
 
       assign(:answer_text, 'Answer text1')
 
       assign(:answering_person_government_incumbency,
         double(:answering_person_government_incumbency,
         current?:  false,
-        end_date:  Date.parse('24 Jan 2018')))
+        end_date:  Time.parse('24 Jan 2018')))
 
       assign(:asking_person_seat_incumbency,
         double(:asking_person_seat_incumbency,
         current?:  false,
-        end_date:  Date.parse('24 Feb 2018'),
+        end_date:  Time.parse('24 Feb 2018'),
         house_of_lords?: false))
 
       assign(:government_position_name, 'Minister')
@@ -141,7 +141,7 @@ RSpec.describe 'questions/show', vcr: true do
         assign(:asking_person_seat_incumbency,
           double(:asking_person_seat_incumbency,
           current?:  false,
-          end_date:  Date.parse('24 Feb 2018'),
+          end_date:  Time.parse('24 Feb 2018'),
           house_of_lords?: true))
           render
       end
@@ -172,7 +172,7 @@ RSpec.describe 'questions/show', vcr: true do
       assign(:question,
         double(:question,
           uin: '123456',
-          asked_at_date: Date.parse('24 Nov 2017'),
+          asked_at_date: Time.parse('24 Nov 2017'),
           text: 'Question text1',
           heading: 'Question heading1'))
 
@@ -193,7 +193,7 @@ RSpec.describe 'questions/show', vcr: true do
       assign(:asking_person_seat_incumbency,
         double(:asking_person_seat_incumbency,
         current?:  false,
-        end_date:  Date.parse('24 Feb 2018'),
+        end_date:  Time.parse('24 Feb 2018'),
         house_of_lords?: false))
 
         render

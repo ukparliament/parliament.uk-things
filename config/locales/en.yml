@@ -463,6 +463,7 @@ en:
   time:
     formats:
       default: '%-d %B %Y'
+      datetime: '%Y-%m-%d'
   date:
     abbr_month_names: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   # global error message translations
