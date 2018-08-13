@@ -1,5 +1,5 @@
 class HybridBillsController < ApplicationController
-  before_action :disable_top_navigation, :disable_status_banner, :enable_asset_overrides
+  before_action :disable_status_banner, :enable_asset_overrides
   before_action :validate_business_id, except: :index
   before_action :create_hybrid_bill_submission, only: :show
 
