@@ -1,5 +1,5 @@
 class ConceptsController < ApplicationController
-  before_action :data_check, :build_request, :disable_top_navigation
+  before_action :data_check, :build_request
 
   ROUTE_MAP = {
     show: proc { |params| Parliament::Utils::Helpers::ParliamentHelper.parliament_request.concept_by_id.set_url_params({ concept_id: params[:concept_id] }) }
