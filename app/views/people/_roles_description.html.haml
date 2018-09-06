@@ -1,6 +1,6 @@
 %p.lead
-  - if @history[:current].any?
+  - if @history[:current].any? && @sorted_incumbencies.first
     = PersonDescriptionHelper.current_description(@person, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", @current_roles)
-  - elsif @history[:current].empty?
+  - elsif @history[:current].empty? && @sorted_incumbencies.first && @sorted_incumbencies.last
     = PersonDescriptionHelper.former_description(@person.display_name, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", "#{l(@sorted_incumbencies.last.end_date, format: :year_only)}")
   = link_to('View all roles', person_associations_path(@person.graph_id))
