@@ -562,7 +562,8 @@ en:
       immigration: 'immigration'
       school_closures: 'school closures and funding'
       transport: 'transport facilities'
-      who_else_can_help: 'Who else can help with my issue?'
+      if_you_live_in_scotland_wales_northern_ireland: "If you live in Scotland, Wales or Northern Ireland you may need to contact representatives from your national parliament or assembly."
+      who_should_i_contact_with_my_issue: 'Who should I contact with my issue?'
       contact_postcode: 'Please include your postcode when contacting your MP.'
     timeline_roles:
       mp_for: 'MP for'
