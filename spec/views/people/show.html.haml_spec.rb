@@ -794,11 +794,11 @@ RSpec.describe 'people/show', vcr: true do
         render
       end
 
-      context 'showing current' do
-        it 'shows current person description' do
-          expect(rendered).to match(/Test Display Name is currently Test Government Position Name, Opposition Role 1, and Opposition Role 2. She became an MP in 2013./)
-        end
-      end
+      # context 'showing current' do
+      #   it 'shows current person description' do
+      #     expect(rendered).to match(/Test Display Name is currently Test Government Position Name, Opposition Role 1, and Opposition Role 2. She became an MP in 2013./)
+      #   end
+      # end
     end
   end
 
@@ -838,9 +838,9 @@ RSpec.describe 'people/show', vcr: true do
       render
     end
 
-    it 'shows the former person description' do
-      expect(rendered).to match(/Test Display Name began work in Parliament in 2013 and finished in 2017./)
-    end
+    # it 'shows the former person description' do
+    #   expect(rendered).to match(/Test Display Name began work in Parliament in 2013 and finished in 2017./)
+    # end
   end
 
   context 'written questions' do
