@@ -26,10 +26,10 @@ gem 'geosparql_to_geojson', '~> 0.2'
 gem 'parliament-routes', '~> 0.6'
 
 # Parliament-Utils gem for generic set up and configuration
-gem 'parliament-utils', '~> 0.8', '>= 0.8.5', require: false
+gem 'parliament-utils', '~> 0.11', '>= 0.11.1', require: false
 
 # Parliament NTriple processes N-triple data
-gem 'parliament-ntriple', '~> 0.2', require: false
+gem 'parliament-ntriple', '= 0.3.0', require: false
 
 # Use bandiera-client for feature flagging
 gem 'bandiera-client'
