@@ -100,6 +100,93 @@ RSpec.describe 'people/show', vcr: true do
       it 'will render display name' do
         expect(rendered).to match(/Test Display Name/)
       end
+
+      context 'with history' do
+        let(:history) do
+          {
+            start: Time.zone.now - 25.years,
+            current: [
+              double(:seat_incumbency,
+                     house_of_commons?: true,
+                     house_of_lords?: false,
+                     type: '/SeatIncumbency',
+                     date_range: "from #{(Time.zone.now - 2.months).strftime('%-e %b %Y')} to present",
+                     constituency: double(:constituency,
+                                          name:       'Aberconwy',
+                                          graph_id:   constituency_graph_id,
+                                          )
+              ),
+              double(:government_incumbency,
+                     type: '/GovernmentIncumbency',
+                     date_range: "from #{(Time.zone.now - 5.months).strftime('%-e %b %Y')} to present",
+                     government_position: double(:government_position,
+                                                 name: 'Test Government Position Name',
+                                                 graph_id:   government_graph_id,
+                                                 )
+              ),
+              double(:opposition_incumbency,
+                     type: '/OppositionIncumbency',
+                     date_range: "from #{(Time.zone.now - 5.months).strftime('%-e %b %Y')} to present",
+                     opposition_position: double(:opposition_position,
+                                                 name: 'Opposition Role 1',
+                                                 graph_id:   opposition_graph_id,
+                                                 )
+              ),
+              double(:seat_incumbency,
+                     type: '/SeatIncumbency',
+                     house_of_commons?: true,
+                     house_of_lords?: false,
+                     start_date: Time.zone.now - 2.months,
+                     end_date:   nil,
+                     date_range: "from #{(Time.zone.now - 4.months).strftime('%-e %b %Y')} to present",
+                     constituency: double(:constituency,
+                                          name:       'Fake Place 2',
+                                          graph_id:   constituency_graph_id,
+                                          )
+              )
+            ],
+            years: {
+              '10': [
+                double(:government_incumbency,
+                       type: '/GovernmentIncumbency',
+                       date_range: "from #{(Time.zone.now - 5.years).strftime('%-e %b %Y')} to #{(Time.zone.now - 3.years).strftime('%-e %b %Y')}",
+                       government_position: double(:government_position,
+                                                   name: 'Second Government Positon Name',
+                                                   graph_id:   government_graph_id,
+                                                   )
+                ),
+                double(:opposition_incumbency,
+                       type: '/OppositionIncumbency',
+                       date_range: "from #{(Time.zone.now - 5.years).strftime('%-e %b %Y')} to #{(Time.zone.now - 3.years).strftime('%-e %b %Y')}",
+                       opposition_position: double(:opposition_position,
+                                                   name: 'Opposition Role 2',
+                                                   graph_id:   opposition_graph_id,
+                                                   )
+                ),
+                double(:seat_incumbency,
+                       type: '/SeatIncumbency',
+                       house_of_commons?: true,
+                       house_of_lords?: false,
+                       start_date: Time.zone.now - 6.months,
+                       date_range: "from #{(Time.zone.now - 6.months).strftime('%-e %b %Y')} to #{(Time.zone.now - 1.week).strftime('%-e %b %Y')}",
+                       constituency: double(:constituency,
+                                            name:       'Fake Place 1',
+                                            graph_id:   constituency_graph_id,
+                                            )
+                )
+              ]
+            }
+          }
+        end
+
+        before :each do
+          assign(:history, history)
+        end
+
+        it 'does not render role description' do
+          expect(rendered).not_to include("/associations")
+        end
+      end
     end
 
     context 'is not nil' do
@@ -107,7 +194,7 @@ RSpec.describe 'people/show', vcr: true do
         before do
           assign(:most_recent_incumbency,
             double(:most_recent_incumbency,
-              house: double(:house, name: 'House of Commons')))
+              house: double(:house, name: 'House of Commons', graph_id: '1AFu55Hs')))
           render
         end
 
@@ -120,7 +207,7 @@ RSpec.describe 'people/show', vcr: true do
         before do
           assign(:most_recent_incumbency,
             double(:most_recent_incumbency,
-              house: double(:house, name: 'House of Lords')))
+              house: double(:house, name: 'House of Lords', graph_id: 'WkUWUBMx')))
 
           render
         end
@@ -793,12 +880,6 @@ RSpec.describe 'people/show', vcr: true do
 
         render
       end
-
-      # context 'showing current' do
-      #   it 'shows current person description' do
-      #     expect(rendered).to match(/Test Display Name is currently Test Government Position Name, Opposition Role 1, and Opposition Role 2. She became an MP in 2013./)
-      #   end
-      # end
     end
   end
 
@@ -837,10 +918,6 @@ RSpec.describe 'people/show', vcr: true do
       ])
       render
     end
-
-    # it 'shows the former person description' do
-    #   expect(rendered).to match(/Test Display Name began work in Parliament in 2013 and finished in 2017./)
-    # end
   end
 
   context 'written questions' do

@@ -3,7 +3,7 @@
     %h1
       %span= title(@person.display_name)
       %span.context
-        - if @most_recent_incumbency.nil? || @most_recent_incumbency.house.name == 'House of Lords'
+        - if @most_recent_incumbency.nil? || Parliament::Utils::Helpers::HousesHelper.lords?(@most_recent_incumbency&.house)
           ="#{@person.full_name}" unless @person.display_name == @person.full_name
 
         - if @current_party_membership && @current_incumbency
@@ -23,7 +23,7 @@
     - if @person.image_id(show_placeholder:false)
       = render 'image'
 
-    - if @history && @most_recent_incumbency.house.name != 'House of Lords'
+    - if @history && Parliament::Utils::Helpers::HousesHelper.commons?(@most_recent_incumbency&.house)
       = render 'roles_description'
 
 %section

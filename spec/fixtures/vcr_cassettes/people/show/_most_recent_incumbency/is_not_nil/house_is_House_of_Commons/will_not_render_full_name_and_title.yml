@@ -42,9 +42,9 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: "<http://id.ukpds.org/1AFu55Hs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/1AFu55Hs> <http://id.ukpds.org/schema/houseName>
+        <https://id.parliament.uk/schema/House> .\r\n<http://id.ukpds.org/1AFu55Hs> <http://id.ukpds.org/schema/houseName>
         \"houseName - 1\" .\r\n<http://id.ukpds.org/WkUWUBMx> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
-        <http://id.ukpds.org/schema/House> .\r\n<http://id.ukpds.org/WkUWUBMx> <http://id.ukpds.org/schema/houseName>
+        <https://id.parliament.uk/schema/House> .\r\n<http://id.ukpds.org/WkUWUBMx> <http://id.ukpds.org/schema/houseName>
         \"houseName - 2\" .\r\n"
     http_version: 
   recorded_at: Tue, 10 Oct 2017 13:15:43 GMT
