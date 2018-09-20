@@ -1,9 +1,7 @@
 .dropdown{ data: { toggle: t('dropdown.item') } }
-  .dropdown__toggle
-    %h3
-      %a{ href: "#", data: { toggle: t('dropdown.parent_item') } }
-        = t('.title')
-  .dropdown__content
+  %button.btn--toggle{ data: { toggle: t('dropdown.parent_item') } }
+    = t('.title')
+  .dropdown__details{ data: { toggle: t('dropdown.content') } }
     %p= t('.mps_can_help_with')
     %ul
       %li= t('.hospitals_nhs')

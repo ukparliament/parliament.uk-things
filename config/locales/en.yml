@@ -447,8 +447,6 @@ en:
   # global dropdown translations
   dropdown:
     item: 'item'
-    next_item: 'next-item'
-    previous_item: 'previous-item'
     parent_item: 'parent-item'
     content: 'content'
     open: 'open'
