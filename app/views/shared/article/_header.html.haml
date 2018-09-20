@@ -1,9 +1,9 @@
 %header
-  %h1
+  -# All the collections an Article sits in
+  - if local_assigns[:root_collections] && root_collections.any?
+    %small= render partial: 'shared/article/delimited_collection_links', locals: { links: root_collections }
 
-    -# All the collections an Article sits in
-    - if local_assigns[:root_collections] && root_collections.any?
-      %small= render partial: 'shared/article/delimited_collection_links', locals: { links: root_collections }
+  %h1
 
     -# Title
     %span= title(sanitize(title))
