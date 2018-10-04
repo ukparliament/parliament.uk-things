@@ -42,7 +42,7 @@
             .card__details
               %h3= t('hybrid_bills.help_support_template').capitalize
 
-              %a{ href: "#{t('hybrid_bills.hb_s3_bucket')}#{t('hybrid_bills.id' + @business_id + '.template_offline_ind')}", class: 'btn--primary' }
+              %a{ href: "#{t('hybrid_bills.hb_s3_bucket')}#{t('hybrid_bills.id' + @business_id + '.template_offline_ind')}", class: 'btn--primary', download: true }
                 = render partial: 'pugin/icons/download'
                 = t('user_forms.word_download_button')
 
