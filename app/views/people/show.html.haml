@@ -35,7 +35,6 @@
           - if @person.current_mp?
             = render 'when_to_contact'
           = render 'contact_details'
-    = render 'written_questions'
     = render 'related_links'
 
     - if @current_incumbency && Pugin::Feature::Bandiera.show_activity_links?
