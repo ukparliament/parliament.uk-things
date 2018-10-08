@@ -444,6 +444,7 @@ en:
   find_results: 'Find results from current parliament.uk websites.'
   does_not_search_beta: "This search doesn't search beta.parliament.uk"
   open_new_window: "website opens in a new window"
+  possessive: "'s"
   # global dropdown translations
   dropdown:
     item: 'item'
@@ -547,6 +548,9 @@ en:
         not_asked: "%{name} has not asked any written questions"
         awaiting_answer: "Awaiting answer from the %{department}"
         answered_by: "Answered by the %{department}"
+      roles_description:
+        view_all_roles: "View all roles"
+        roles_in_parliament: "roles in Parliament"
     image:
       figcaption: 'The official MP portraits are %{link}'
       available_download: 'available to download'

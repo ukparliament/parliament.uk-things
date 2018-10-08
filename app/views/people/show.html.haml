@@ -23,7 +23,7 @@
     - if @person.image_id(show_placeholder:false)
       = render 'image'
 
-    - if @history && Parliament::Utils::Helpers::HousesHelper.commons?(@most_recent_incumbency&.house)
+    - if @history
       = render 'roles_description'
 
 %section
