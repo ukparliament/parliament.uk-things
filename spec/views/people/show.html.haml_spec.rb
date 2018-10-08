@@ -62,7 +62,7 @@ RSpec.describe 'people/show', vcr: true do
     end
 
     it 'will render an activity link' do
-      expect(rendered).to match('This is our beta website, pages are being tested and improved. You can view <a href="http://www.parliament.uk/biographies/Commons/member/1357">a version of this page</a> on the current website.')
+      expect(rendered).to match('This is our beta website, pages are being tested and improved. We keep a record of <a href="/articles/SVKhjGF3">known issues</a>. You can view a non-test <a href="http://www.parliament.uk/biographies/Commons/member/1357">version of this page</a> on the current website.')
     end
   end
 

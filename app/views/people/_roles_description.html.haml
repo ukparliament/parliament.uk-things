@@ -6,5 +6,4 @@
       = PersonDescriptionHelper.former_description(@person.display_name, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", "#{l(@sorted_incumbencies.last.end_date, format: :year_only)}")
     = link_to(t('people.show.roles_description.view_all_roles'), person_associations_path(@person.graph_id))
   - else
-    = @person.display_name + t('possessive')
-    = link_to(t('people.show.roles_description.roles_in_parliament'), person_associations_path(@person.graph_id))
+    = sanitize t('people.show.roles_description.simple_sentence', person_name: @person.display_name, link: link_to(t('people.show.roles_description.simple_sentence_link_text'), person_associations_path(@person.graph_id)))
