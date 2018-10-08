@@ -538,8 +538,10 @@ en:
       check_mp_alternative: 'Check if this is your MP'
       correct_mp: '%{name} is the MP for the postcode entered.'
       incorrect_mp: '%{name} is not the MP for the postcode entered.  Your MP is '
-      link_to_original: 'This is our beta website, pages are being tested and improved. You can view %{link} on the current website.'
-      link_to_original_version: 'a version of this page'
+      link_to_original: 'This is our beta website, pages are being tested and improved. We keep a record of %{known_issues_link}. You can view a non-test %{original_site_link} on the current website.'
+      original_version_link_text: 'version of this page'
+      known_issues_link_text: 'known issues'
+      known_issues_graph_id: 'SVKhjGF3'
       associations: 'associations'
       written_questions:
         title: "Written questions"
@@ -550,7 +552,8 @@ en:
         answered_by: "Answered by the %{department}"
       roles_description:
         view_all_roles: "View all roles"
-        roles_in_parliament: "roles in Parliament"
+        simple_sentence: "%{person_name}'s %{link}."
+        simple_sentence_link_text: "roles in Parliament"
     image:
       figcaption: 'The official MP portraits are %{link}'
       available_download: 'available to download'
