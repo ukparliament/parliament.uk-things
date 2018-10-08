@@ -14,7 +14,7 @@
               %p= t('people.show.written_questions.answered_by', department: @question.answering_body_allocation.answering_body.name)
 
           - if @question.asked_at_date
-            %time{ datetime: l(@question.asked_at_date, format: '%y-%m-%d') }= l(@question.asked_at_date, format: '%d %B %Y')
+            %time{ datetime: l(@question.asked_at_date, format: :datetime) }= l(@question.asked_at_date, format: :default)
 
     = link_to(t('people.show.written_questions.view_all'), person_questions_written_path(@person.graph_id), class: ['btn--primary'])
 
