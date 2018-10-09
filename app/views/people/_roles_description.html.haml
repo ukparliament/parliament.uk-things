@@ -1,6 +1,9 @@
 %p.lead
-  - if @history[:current].any?
-    = PersonDescriptionHelper.current_description(@person, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", @current_roles)
-  - elsif @history[:current].empty?
-    = PersonDescriptionHelper.former_description(@person.display_name, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", "#{l(@sorted_incumbencies.last.end_date, format: :year_only)}")
-  = link_to('View all roles', person_associations_path(@person.graph_id))
+  - if Parliament::Utils::Helpers::HousesHelper.commons?(@most_recent_incumbency&.house)
+    - if @history[:current].any?
+      = PersonDescriptionHelper.current_description(@person, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", @current_roles)
+    - elsif @history[:current].empty?
+      = PersonDescriptionHelper.former_description(@person.display_name, "#{l(@sorted_incumbencies.first.start_date, format: :year_only)}", "#{l(@sorted_incumbencies.last.end_date, format: :year_only)}")
+    = link_to(t('people.show.roles_description.view_all_roles'), person_associations_path(@person.graph_id))
+  - else
+    = sanitize t('people.show.roles_description.simple_sentence', person_name: @person.display_name, link: link_to(t('people.show.roles_description.simple_sentence_link_text'), person_associations_path(@person.graph_id)))

@@ -20,10 +20,14 @@
             = current_party_details + ' -' if current_party_details
             = @person.statuses[:house_membership_status].join(' and ')
 
+    - if @current_incumbency && Pugin::Feature::Bandiera.show_activity_links?
+      .status--highlight.theme--purple--light
+        = sanitize t('.link_to_original', original_site_link: link_to(t('.original_version_link_text'), "http://www.parliament.uk/biographies/Commons/member/#{@person.mnis_id}"), known_issues_link: link_to(t('.known_issues_link_text'), article_path(t('.known_issues_graph_id'))))
+
     - if @person.image_id(show_placeholder:false)
       = render 'image'
 
-    - if @history && Parliament::Utils::Helpers::HousesHelper.commons?(@most_recent_incumbency&.house)
+    - if @history
       = render 'roles_description'
 
 %section
@@ -35,9 +39,4 @@
           - if @person.current_mp?
             = render 'when_to_contact'
           = render 'contact_details'
-    = render 'written_questions'
     = render 'related_links'
-
-    - if @current_incumbency && Pugin::Feature::Bandiera.show_activity_links?
-      .status--highlight.theme--purple--light
-        = "#{t('.link_to_original', link: link_to(t('.link_to_original_version'), "http://www.parliament.uk/biographies/Commons/member/#{@person.mnis_id}"))}".html_safe

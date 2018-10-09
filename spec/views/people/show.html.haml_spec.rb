@@ -62,7 +62,7 @@ RSpec.describe 'people/show', vcr: true do
     end
 
     it 'will render an activity link' do
-      expect(rendered).to match('This is our beta website, pages are being tested and improved. You can view <a href="http://www.parliament.uk/biographies/Commons/member/1357">a version of this page</a> on the current website.')
+      expect(rendered).to match('This is our beta website, pages are being tested and improved. We keep a record of <a href="/articles/SVKhjGF3">known issues</a>. You can view a non-test <a href="http://www.parliament.uk/biographies/Commons/member/1357">version of this page</a> on the current website.')
     end
   end
 
@@ -917,112 +917,6 @@ RSpec.describe 'people/show', vcr: true do
         )
       ])
       render
-    end
-  end
-
-  context 'written questions' do
-
-    before do
-      assign(:person, double(:person,
-        display_name:   'Test Display Name',
-        full_title:     'Test Title',
-        full_name:      'Test Full Name',
-        given_name:     'Test',
-        gender_pronoun: 'She',
-        statuses:       { house_membership_status: ['Former MP'] },
-        graph_id:       '7TX8ySd4',
-        image_id:       '12345678',
-        current_mp?:    false,
-        current_lord?:  false,
-        mnis_id:        '1357',
-        weblinks?:      false
-      ))
-    end
-
-    describe 'with a question' do
-      before do
-        assign(:question, double(:question,
-          heading: 'Test question heading',
-          graph_id: 'XXXXXXXX',
-          answers: ['Test Answer'],
-          answering_body_allocation: double(:answering_body_allocation,
-            answering_body: double(:answering_body,
-              name: 'Test answering body'
-            )
-          ),
-          asked_at_date: DateTime.parse('2018-05-21T00:00:00+00:00')
-        ))
-
-        render
-      end
-
-      it 'displays the section title' do
-        expect(rendered).to match("<h2>Written questions</h2>")
-      end
-
-      it 'displays question title as a link to the question' do
-        expect(rendered).to have_link('Test question heading', href: question_path('XXXXXXXX'))
-      end
-
-      it 'displays the correct date format' do
-        expect(rendered).to match("<time datetime='18-05-21'>21 May 2018</time>")
-      end
-
-      it 'displays a call to action to view all questions' do
-        expect(rendered).to have_link("View all written questions", href: person_questions_written_path("7TX8ySd4"), class: "btn--primary")
-      end
-    end
-
-    describe 'with an answer' do
-      before do
-        assign(:question, double(:question,
-          heading: 'Test question heading',
-          graph_id: 'XXXXXXXX',
-          answers: ['Test Answer'],
-          answering_body_allocation: double(:answering_body_allocation,
-            answering_body: double(:answering_body,
-              name: 'Test answering body'
-            )
-          ),
-          asked_at_date: DateTime.parse('2018-05-21T00:00:00+00:00')
-        ))
-
-        render
-      end
-
-      it 'displays the answering body text' do
-        expect(rendered).to match("<p>Answered by the Test answering body</p>")
-      end
-
-      it 'does not display the awaiting answer text' do
-        expect(rendered).not_to match("<p>Awaiting answer from the Test answering body</p>")
-      end
-    end
-
-    describe 'without an answer' do
-      before do
-        assign(:question, double(:question,
-          heading: 'Test question heading',
-          graph_id: 'XXXXXXXX',
-          answers: [],
-          answering_body_allocation: double(:answering_body_allocation,
-            answering_body: double(:answering_body,
-              name: 'Test answering body'
-            )
-          ),
-          asked_at_date: DateTime.parse('2018-05-21T00:00:00+00:00')
-        ))
-
-        render
-      end
-
-      it 'does not display the answering body text' do
-        expect(rendered).not_to match("<p>Answered by the Test answering body</p>")
-      end
-
-      it 'displays the awaiting answer text' do
-        expect(rendered).to match("<p>Awaiting answer from the Test answering body</p>")
-      end
     end
   end
 end
