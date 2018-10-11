@@ -297,7 +297,7 @@ RSpec.describe 'groups/show' do
     context 'when they exist' do
       context 'email' do
         it 'heading displays correctly' do
-          expect(rendered).to match(/Email:/)
+          expect(rendered).to match(/Email/)
         end
 
         it 'link displays correctly' do
@@ -307,7 +307,7 @@ RSpec.describe 'groups/show' do
 
       context 'phone number' do
         it 'heading displays correctly' do
-          expect(rendered).to match(/Phone:/)
+          expect(rendered).to match(/Phone/)
         end
 
         it 'link displays correctly' do
@@ -323,13 +323,13 @@ RSpec.describe 'groups/show' do
 
       context 'email' do
         it 'heading does not display' do
-          expect(rendered).not_to match(/Email:/)
+          expect(rendered).not_to match(/Email/)
         end
       end
 
       context 'phone number' do
         it 'heading does not display' do
-          expect(rendered).not_to match(/Phone:/)
+          expect(rendered).not_to match(/Phone/)
         end
       end
     end
@@ -338,7 +338,7 @@ RSpec.describe 'groups/show' do
   context 'address' do
     context 'when it exists' do
       it 'heading displays correctly' do
-        expect(rendered).to match(/Address:/)
+        expect(rendered).to match(/Address/)
       end
 
       it 'displays correctly' do

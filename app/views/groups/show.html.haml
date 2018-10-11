@@ -65,13 +65,13 @@
           %dl.list--definition
             - @contact_points.each do |contact_point|
               - if contact_point.email.present?
-                %dt= "#{t('contact_points.email').capitalize}:"
+                %dt= t('contact_points.email').capitalize
                 %dd= link_to "#{contact_point.email}", "mailto:#{contact_point.email}"
 
               - if contact_point.phone_number.present?
-                %dt= "#{t('contact_points.phone').capitalize}:"
+                %dt= t('contact_points.phone').capitalize
                 %dd= link_to "#{contact_point.phone_number}", "tel:#{contact_point.phone_number.gsub(/\s+/, "")}"
 
             - if @postal_address
-              %dt= "#{t('contact_points.address').capitalize}:"
+              %dt= t('contact_points.address').capitalize
               %dd= "#{@group.name}, #{@postal_address.full_address}"
