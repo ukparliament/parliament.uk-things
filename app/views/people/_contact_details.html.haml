@@ -2,14 +2,14 @@
   - if @current_incumbency.contact_points.empty?
     - if @person.current_lord?
       %dl.list--definition
-        %dt= t('contact_points.email').capitalize + ": "
+        %dt= t('contact_points.email').capitalize
         %dd
           = link_to(t('contact_points.fallback.lords.email'), "mailto:#{t('contact_points.fallback.lords.email')}")
-        %dt= t('contact_points.phone').capitalize + ": "
+        %dt= t('contact_points.phone').capitalize
         %dd
           = link_to(t('contact_points.fallback.lords.phone').gsub(/\s+/, " "), "tel:#{t('contact_points.fallback.lords.phone').gsub(/\s+/, "")}")
         %dt
-          = t('contact_points.address').capitalize + ": "
+          = t('contact_points.address').capitalize
           %dd= t('contact_points.fallback.lords.address')
     - else
       %p= t('.empty_contact_details')
@@ -17,16 +17,16 @@
     %dl.list--definition
       - @current_incumbency.contact_points.each do |contact_point|
         - if contact_point.email.present?
-          %dt= t('contact_points.email').capitalize + ": "
+          %dt= t('contact_points.email').capitalize
           %dd
             = link_to(contact_point.email, "mailto:#{contact_point.email}")
         - if contact_point.phone_number.present?
-          %dt= t('contact_points.phone').capitalize + ": "
+          %dt= t('contact_points.phone').capitalize
           %dd
             = link_to(contact_point.phone_number.gsub(/\s+/, " "), "tel:#{contact_point.phone_number.gsub(/\s+/, "")}")
         - if contact_point.postal_addresses.present?
           %dt
-            = t('contact_points.address').capitalize + ": "
+            = t('contact_points.address').capitalize
           - contact_point.postal_addresses.each do |postal_address|
             %dd= postal_address.full_address
         - if @current_incumbency.contact_points.length > 1
