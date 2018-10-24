@@ -1,19 +1,24 @@
-- page_title = title(@work_packageable_thing.name)
+- page_title = title(@work_packageable_thing.try(:workPackageableThingName))
 
 .section--primary#content{ tabindex: "0" }
   .container
+    %small
+      = link_to(t('.work_packages_link'), work_packages_path)
     %h1
       %span= page_title
 
-    %ul
-      %li
-        =t('.subject_to').capitalize
-        = link_to("#{@procedure.name.downcase} #{t('.procedure')}", procedure_path(@procedure.graph_id))
+    %dl.meta
+      %dt
+        = t('work_packages.show.procedure').capitalize
+      %dd
+        = @procedure.name
 
-      - unless @work_packageable_thing.weblink.empty?
+- if @work_packageable_thing
+  %section
+    .container
+      %ol.list--block
         %li
-          = link_to(@work_packageable_thing.weblink) do
-            = t('.related_information')
+          = render partial: 'work_packages/work_packageable_thing', locals: { work_packageable_thing: @work_packageable_thing, procedure: @procedure }
 
 - if @completed_business_items.any?
   %section.section--wide
