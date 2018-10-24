@@ -21,7 +21,7 @@
           = render partial: 'work_packages/work_packageable_thing', locals: { work_packageable_thing: @work_packageable_thing, procedure: @procedure }
 
 - if @completed_business_items.any?
-  %section.section--wide
+  %section
     .container
       %h2= t('.completed_stages')
       %ul.track--alternative
@@ -30,7 +30,7 @@
             = render partial: 'work_packages/completed_business_item', locals: { business_item: completed_business_item }
 
 - if @business_items_with_no_date.any?
-  %section.section--wide
+  %section
     .container
       %h2= t('.completed_stages_no_date')
       %p= t('.completed_stages_no_date_description')
@@ -39,7 +39,7 @@
           = render partial: 'work_packages/no_date_business_item', locals: { business_item: business_item_with_no_date }
 
 - if @scheduled_business_items.any?
-  %section.section--wide
+  %section
     .container
       %h2= t('.scheduled_stages')
       %ol.list--block.list--2
