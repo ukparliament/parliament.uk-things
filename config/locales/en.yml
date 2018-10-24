@@ -489,6 +489,10 @@ en:
       completed_stages_no_date_description: 'These stages will appear in the timeline above when a date is available.'
       scheduled_stages: 'Scheduled upcoming stages'
       possible_stages: 'Possible upcoming stages'
+      work_packages_link: 'Work Packages'
+    type:
+      si: 'Statutory Instrument'
+      pnsi: 'Proposed Negative Statutory Instrument'
     find_out_more_stage: 'Find out more about this stage'
   # questions translations
   questions:

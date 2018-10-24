@@ -4,8 +4,7 @@ RSpec.describe 'work_packages/show', vcr: true do
   let!(:work_packageable_thing) {
     assign(:work_packageable_thing,
       double(:work_packageable_thing,
-        name:'Test work package name',
-        weblink: 'www.legislation.gov/test-memorandum'
+        workPackageableThingName:'Test work package name'
       )
     )
   }
@@ -73,11 +72,7 @@ RSpec.describe 'work_packages/show', vcr: true do
 
   context 'about' do
     it 'displays procedure name' do
-      expect(rendered).to match(/draft affirmative/)
-    end
-
-    it 'displays web link' do
-      expect(rendered).to match(/<a href="www.legislation.gov\/test-memorandum">/)
+      expect(rendered).to match(/Draft affirmative/)
     end
   end
 
