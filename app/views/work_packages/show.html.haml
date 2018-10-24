@@ -11,7 +11,7 @@
       %dt
         = t('work_packages.show.procedure').capitalize
       %dd
-        = @procedure.name
+        = link_to("#{@procedure.name}", procedure_path(@procedure.graph_id))
 
 - if @work_packageable_thing
   %section
