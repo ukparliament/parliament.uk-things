@@ -97,7 +97,7 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hashdiff (0.3.7)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.1)
     json (2.1.0)
@@ -108,7 +108,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     macmillan-utils (1.0.44)
@@ -122,15 +122,15 @@ GEM
       simplecov-rcov
       syslog-logger
       webmock
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
-    method_source (0.9.0)
+    method_source (0.9.1)
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_test (0.1.2)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     parallel (1.12.1)
     parliament-grom-decorators (0.31.1)
@@ -206,13 +206,13 @@ GEM
       rspec-mocks (~> 3.8.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
-    rspec-expectations (3.8.1)
+    rspec-expectations (3.8.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-rails (3.8.0)
+    rspec-rails (3.8.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -296,7 +296,7 @@ DEPENDENCIES
   bandiera-client
   byebug
   capybara
-  factory_bot_rails
+  factory_bot_rails (>= 4.11.1)
   geosparql_to_geojson (~> 0.2)
   haml
   listen (>= 3.0.5, < 3.2)
@@ -311,10 +311,10 @@ DEPENDENCIES
   rack-test (= 0.7.0)
   rack-timeout
   rails (~> 5.1.6)
-  rails-controller-testing
+  rails-controller-testing (>= 1.0.2)
   rake
   redcarpet (~> 3.0)
-  rspec-rails
+  rspec-rails (>= 3.8.0)
   rubocop
   simplecov (~> 0.14)
   spring
@@ -324,8 +324,8 @@ DEPENDENCIES
   tzinfo-data
   vcard (~> 0.2)
   vcr
-  web-console (>= 3.3.0)
+  web-console (>= 3.7.0)
   webmock
 
 BUNDLED WITH
-   1.16.2
+   1.16.6
