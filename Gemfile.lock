@@ -155,7 +155,7 @@ GEM
       ast (~> 2.4.0)
     powerpack (0.1.2)
     public_suffix (3.0.3)
-    pugin (1.10.2)
+    pugin (1.10.3)
     puma (3.10.0)
     rack (2.0.5)
     rack-rewrite (1.5.1)
@@ -328,4 +328,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.2
+   1.17.1
