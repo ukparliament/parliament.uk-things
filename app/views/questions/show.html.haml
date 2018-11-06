@@ -26,14 +26,14 @@
   .container
 
     -# Question
-    .block--border__bottom
+    .card--extended
       %h2= t('.question').capitalize
       - if @asking_person_seat_incumbency
         - role = @asking_person_seat_incumbency.house_of_lords? ? "#{t('.member_of').capitalize} #{t('house_of_lords')}" : "#{t('.mp_for')} #{@constituency.name}"
       = render partial: 'person_details', locals: { body: @question.text, person: @asking_person, role: role, incumbency: @asking_person_seat_incumbency }
 
     -# Answer
-    .block--border__bottom
+    .card--extended
       %h2= t('.answer').capitalize
       - if @answer.present?
         = render partial: 'person_details', locals: { body: @answer_text, person: @answering_person, role: @government_position_name, incumbency: @answering_person_government_incumbency }
