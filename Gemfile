@@ -61,12 +61,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   # Use FactoryBot for building models in tests
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '>= 4.11.1'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 3.7.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -75,12 +75,12 @@ end
 
 group :test do
   gem 'rake'
-  gem 'capybara'
-  gem 'rspec-rails'
+  gem 'capybara', '>= 3.9.0'
+  gem 'rspec-rails', '>= 3.8.0'
   gem 'simplecov', '~> 0.14', require: false
   gem 'vcr'
   gem 'webmock'
   gem 'rubocop'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '>= 1.0.2'
   gem 'timecop'
 end
