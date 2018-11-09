@@ -9,19 +9,11 @@
       = succeed "." do
         = link_to("#{@procedure.name.downcase} #{t('.procedure')}", 'https://www.parliament.uk/about/how/laws/secondary-legislation/').html_safe
 
-    %h2= t('.work_package').pluralize.capitalize
-    %p= t('.list_ordering_description')
-
-    - if @work_packages.none?
-      %ul.list--block
-        %li= t('no_content.empty_list.no_results')
-
-    - else
-      %ol.list--block
-        - @work_packages.each do |work_package|
-          %li
-            .card
-              .card__details
-                %h2= link_to(work_package.work_packageable_thing_name, work_package_path(work_package.graph_id))
-                - if work_package.oldest_business_item_date
-                  %p= "#{l(work_package.oldest_business_item_date, format: :default)}"
+%section
+  .container
+    %ol.list--block
+      %li
+        .card
+          .card__details
+            %h2
+              = link_to(t('.work_packages'), procedure_work_packages_path(@procedure.graph_id))
