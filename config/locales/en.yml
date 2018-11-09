@@ -474,7 +474,7 @@ en:
   # procedures translations
   procedures:
     show:
-      work_package: 'work package'
+      work_packages: 'Work Packages'
       procedure: 'procedure'
       list_ordering_description: 'This list is in date order. The date shown relates to the first recorded stage of the procedure.'
       find_out_more: 'Find out more about the'

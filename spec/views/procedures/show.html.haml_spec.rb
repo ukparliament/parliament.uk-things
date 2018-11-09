@@ -4,7 +4,8 @@ RSpec.describe 'procedures/show', vcr: true do
   let!(:procedure) {
     assign(:procedure,
       double(:procedure,
-        name: 'Draft affirmative'
+        name: 'Draft affirmative',
+        graph_id: 12345678
       )
     )
   }
@@ -32,47 +33,9 @@ RSpec.describe 'procedures/show', vcr: true do
     end
   end
 
-  context 'work package' do
-    context 'with data' do
-      it 'displays name of work packageable thing with a link' do
-        expect(rendered).to match(/<a href="\/work-packages\/qwerzxcv">Work Packageable Thing Test Name<\/a>/)
-      end
-
-      it 'does not display empty list content' do
-        expect(rendered).not_to match(/There are no results/)
-      end
-
-      context 'oldest business item date' do
-        context 'exists' do
-          it 'displays date' do
-            expect(rendered).to match(/4 May 2018/)
-          end
-        end
-
-        context 'does not exist' do
-          let!(:work_package) {
-            assign(:work_package,
-              double(:work_package,
-                work_packageable_thing_name: 'Work Packageable Thing Test Name',
-                graph_id: 'qwerzxcv',
-                oldest_business_item_date: nil,
-              )
-            )
-          }
-
-          it 'does not display date' do
-            expect(rendered).not_to match(/4 May 2018/)
-          end
-        end
-      end
-    end
-
-    context 'without data' do
-      let!(:work_packages) { assign(:work_packages, []) }
-
-      it 'displays empty list content' do
-        expect(rendered).to match(/There are no results/)
-      end
+  context 'work packages' do
+    it 'displays a link to work packages' do
+      expect(rendered).to match(/<a href="\/procedures\/12345678\/work-packages">Work Packages<\/a>/)
     end
   end
 end
