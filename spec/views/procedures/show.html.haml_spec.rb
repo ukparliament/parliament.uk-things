@@ -35,7 +35,7 @@ RSpec.describe 'procedures/show', vcr: true do
 
   context 'work packages' do
     it 'displays a link to work packages' do
-      expect(rendered).to match(/<a href="\/procedures\/12345678\/work-packages">Work packages<\/a>/)
+      expect(rendered).to match(/<a href="\/procedures\/12345678\/work-packages">Procedural activity<\/a>/)
     end
   end
 end

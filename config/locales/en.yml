@@ -474,9 +474,8 @@ en:
   # procedures translations
   procedures:
     show:
-      work_packages: 'Work packages'
+      procedural_activity: 'Procedural activity'
       procedure: 'procedure'
-      list_ordering_description: 'This list is in date order. The date shown relates to the first recorded stage of the procedure.'
       find_out_more: 'Find out more about the'
   # work packages translations
   work_packages:
@@ -489,10 +488,10 @@ en:
       completed_stages_no_date_description: 'These stages will appear in the timeline above when a date is available.'
       scheduled_stages: 'Scheduled upcoming stages'
       possible_stages: 'Possible upcoming stages'
-      work_packages_link: 'Work Packages'
+      procedural_activity_link: 'Procedural activity'
     type:
-      si: 'Statutory Instrument'
-      pnsi: 'Proposed Negative Statutory Instrument'
+      si: 'Statutory instrument'
+      pnsi: 'Proposed negative statutory instrument'
     find_out_more_stage: 'Find out more about this stage'
   # questions translations
   questions:
