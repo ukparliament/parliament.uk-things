@@ -18,7 +18,7 @@ RSpec.describe 'work_packages/_work_packageable_thing', vcr: true do
         render
       end
       it 'displays the type' do
-        expect(rendered).to match(/Statutory Instrument/)
+        expect(rendered).to match(/Statutory instrument/)
       end
 
       it 'displays name' do
@@ -33,7 +33,7 @@ RSpec.describe 'work_packages/_work_packageable_thing', vcr: true do
 
         render
 
-        expect(rendered).to match(/Proposed Negative Statutory Instrument/)
+        expect(rendered).to match(/Proposed negative statutory instrument/)
       end
     end
   end
