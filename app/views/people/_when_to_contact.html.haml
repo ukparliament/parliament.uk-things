@@ -1,7 +1,7 @@
 .dropdown{ data: { toggle: t('dropdown.item') } }
-  %button.btn--toggle{ data: { toggle: t('dropdown.parent_item') } }
+  %button{ data: { toggle: t('dropdown.parent_item') } }
     = t('.title')
-  .dropdown__details{ data: { toggle: t('dropdown.content') } }
+  .dropdown__content{ data: { toggle: t('dropdown.content') } }
     %p= t('.mps_can_help_with')
     %ul
       %li= t('.hospitals_nhs')
@@ -11,4 +11,4 @@
       %li= t('.transport')
     %p= t('.if_you_live_in_scotland_wales_northern_ireland')
     %p= link_to(t('.who_should_i_contact_with_my_issue'), who_should_i_contact_with_my_issue_path)
-  %p= t('.contact_postcode')
+%p= t('.contact_postcode')
