@@ -99,7 +99,7 @@ RSpec.describe ConstituenciesController, vcr: true do
 
       it 'assigns @postcode and flash[:error]' do
         expect(assigns(:postcode)).to be(nil)
-        expect(flash[:error]).to eq("We couldn't find the postcode you entered.")
+        expect(flash[:error]).to eq('We could not find your postcode. If you have any questions, <a href="https://www.parliament.uk/mps-lords-and-offices/offices/commons/hcio/contact-us">contact the House of Commons Enquiry Service</a>.')
       end
     end
   end

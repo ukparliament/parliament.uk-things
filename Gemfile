@@ -26,7 +26,7 @@ gem 'geosparql_to_geojson', '~> 0.2'
 gem 'parliament-routes', '~> 0.6'
 
 # Parliament-Utils gem for generic set up and configuration
-gem 'parliament-utils', '~> 0.11', '>= 0.11.1', require: false
+gem 'parliament-utils', '~> 0.11', require: false
 
 # Parliament NTriple processes N-triple data
 gem 'parliament-ntriple', '~> 0.4', require: false
