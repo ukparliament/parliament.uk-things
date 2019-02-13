@@ -11,3 +11,9 @@
         = t('work_packages.type.pnsi')
       %h2
         = link_to("#{@work_packageable_thing.try(:workPackageableThingName)}", proposed_negative_statutory_instrument_path(@work_packageable_thing.graph_id))
+
+    - elsif @work_packageable_thing.is_a?(Parliament::Grom::Decorator::Treaty)
+      %small
+        = t('work_packages.type.treaty')
+      %h2
+        = link_to("#{@work_packageable_thing.try(:workPackageableThingName)}", treaty_path(@work_packageable_thing.graph_id))

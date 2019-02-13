@@ -491,6 +491,7 @@ en:
     type:
       si: 'Statutory instrument'
       pnsi: 'Proposed negative statutory instrument'
+      treaty: 'Treaty'
     find_out_more_stage: 'Find out more about this stage'
   # questions translations
   questions:
