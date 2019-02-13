@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.10.0'
@@ -17,7 +17,7 @@ gem 'haml'
 gem 'parliament-ruby', '~> 1.0'
 
 # Parliament Grom Decorators decorates Grom nodes
-gem 'parliament-grom-decorators', '< 1'
+gem 'parliament-grom-decorators', '0.32.1'
 
 # Converts GeoSparql to GeoJSON
 gem 'geosparql_to_geojson', '~> 0.2'
@@ -26,7 +26,7 @@ gem 'geosparql_to_geojson', '~> 0.2'
 gem 'parliament-routes', '~> 0.6'
 
 # Parliament-Utils gem for generic set up and configuration
-gem 'parliament-utils', '~> 0.11', require: false
+gem 'parliament-utils', '~> 0.11.3', require: false
 
 # Parliament NTriple processes N-triple data
 gem 'parliament-ntriple', '~> 0.4', require: false
@@ -38,7 +38,7 @@ gem 'bandiera-client'
 gem 'pugin', '~> 1.10', require: false
 
 # Use Airbrake for error monitoring
-gem 'airbrake'
+gem 'airbrake', '<8'
 
 # Gem to remove trailing slashes
 gem 'rack-rewrite'
@@ -61,7 +61,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   # Use FactoryBot for building models in tests
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '<5'
 end
 
 group :development do
