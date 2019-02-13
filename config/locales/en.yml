@@ -153,16 +153,16 @@ en:
     # id relates committee business id for additional provision 1
     id2:
       # title
-      object_title: 'Object to the Additional Provision to the'
+      object_title: 'Object to the First Additional Provision (AP1) to the'
       # show page
-      overview_a: 'Any individual, group of individuals, organisation or group of organisations affected by the Additional Provision to the High Speed Rail (West Midlands to Crewe) Bill can object to it'
-      objecting_subtitle: 'Objecting to the Additional Provision'
-      objecting_a: 'To object to the Additional Provision you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.'
-      objecting_b: 'We will ask for your name, address and examples of how you’re affected by the Additional Provision.'
-      after_sending_petition_a: 'Once we’ve received your petition we’ll ask you to pay a £20 admin fee, unless you paid it when objecting to the original bill'
+      overview_a: 'Any individual, group of individuals, organisation or group of organisations affected by the First Additional Provision (AP1) to the High Speed Rail (West Midlands to Crewe) Bill can object to it'
+      objecting_subtitle: 'Objecting to AP1'
+      objecting_a: 'To object to AP1 you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.'
+      objecting_b: 'We will ask for your name, address and examples of how you’re affected by AP1.'
+      after_sending_petition_a: 'Once we’ve received your petition we’ll ask you to pay a £20 admin fee, unless you paid it when objecting to the original bill.'
       after_sending_petition_b: 'We’ll publish your petition on our website. This will include your name and address.'
       after_sending_petition_c: 'We’ll send your petition to HS2 Ltd, who may contact you to discuss it.'
-      after_sending_petition_d: 'We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by the Additional Provision'
+      after_sending_petition_d: 'We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by the AP1.'
       after_sending_petition_e: 'You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2018.'
       # petition templates
       template_online: 'HS2-Phase-2a-Additional-Provision-Petition-Template-Online.doc'
@@ -180,10 +180,40 @@ en:
       petition_status_pre: 'You can object from Thursday 29 March 2018.'
       petition_status_active: 'The deadline is 1pm on Friday 27 April 2018.'
       petition_status_post: 'The deadline has passed.'
+    # id relates committee business id for additional provision 2
+    id3:
+      object_title: "Object to the Second Additional Provision (AP2) to the"
+      # show page
+      overview_a: 'Any individual, group of individuals, organisation or group of organisations affected by the Second Additional Provision (AP2) to the High Speed Rail (West Midlands to Crewe) Bill can object to it.'
+      objecting_subtitle: 'Objecting to AP2'
+      objecting_a: 'To object to AP2 you will need to download and complete our petition template. You can do this by petitioning on our website or by email, post or in person.'
+      objecting_b: "We will ask for your name, address and examples of how you're affected by AP2."
+      after_sending_petition_a: 'Once we’ve received your petition we’ll ask you to pay a £20 admin fee, unless you paid it when objecting to the original bill.'
+      after_sending_petition_b: 'We’ll publish your petition on our website. This will include your name and address.'
+      after_sending_petition_c: 'We’ll send your petition to HS2 Ltd, who may contact you to discuss it.'
+      after_sending_petition_d: 'We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by AP2.'
+      after_sending_petition_e: 'You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2019.'
+      # petition templates
+      template_online: 'HS2-Phase-2a-Additional-Provision-2-Petition-Template-Online.doc'
+      template_offline_ind: 'HS2-Phase-2a-Additional-Provision-2-Petition-Pack-Individuals.doc'
+      template_offline_grpind: 'HS2-Phase-2a-Additional-Provision-2-Petition-Pack-Group-Of-Individuals.doc'
+      template_offline_org: 'HS2-Phase-2a-Additional-Provision-2-Petition-Pack-Organisation.doc'
+      template_offline_grporg: 'HS2-Phase-2a-Additional-Provision-2-Petition-Pack-Group-Of-Organisations.doc'
+      # petition submission confirmation
+      what_next_a: 'We’ll email you within 14 days about how to pay the £20 admin fee, unless you paid it when objecting to the original bill.'
+      what_next_b: 'We’ll publish your petition on our website. This will include your name and address.'
+      what_next_c: 'We’ll send your petition to HS2 Ltd, who may contact you to discuss it.'
+      what_next_d: 'We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by AP2.'
+      what_next_e: 'You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for spring/summer 2019.'
+      # petition status
+      petition_status_pre: 'You can object from 11am on Friday 15 February 2019.'
+      petition_status_active: 'The deadline for objections is 1pm on Friday 15 March 2019.'
+      petition_status_post: 'The deadline has passed.'
     # Global hybrid bills translations
     hs2: 'High Speed Rail (West Midlands to Crewe)'
     hs2_bill: 'bill'
-    hs2_ap: 'Additional Provision to the'
+    hs2_ap1: 'First Additional Provision (AP1) to the'
+    hs2_ap2: 'Second Additional Provision (AP2) to the'
     object_to: 'Object to'
     the_bill: 'the bill'
     object_to_the_bill: 'Object to the bill'
@@ -214,7 +244,7 @@ en:
     step_1_5: 'of 5'
     # petitioner types
     individual: 'individual'
-    individual_owned: 'individuals’s'
+    individual_owned: 'individual’s'
     individual_desc: 'You are submitting a petition for one person.'
     group_individuals: 'group of individuals'
     group_individuals_owned: 'group of individuals’'
@@ -236,16 +266,20 @@ en:
       intro_b: 'and'
       private_bills: 'private bills'
       intro_c: 'They often propose works of national importance in a specific area of the UK.'
-      intro_d: 'For example, the Channel Tunnel Bills passed in the 1970s and 1980s and the Crossrail Bill passed in 2008.'
-      intro_e: 'Changes to the law proposed by a hybrid bill affect the general public and impact specific individuals, groups or organisations.'
+      intro_d: 'Changes to the law proposed by a hybrid bill affect the general public and impact specific individuals, groups or organisations.'
       hybrid_bill_paper_text: 'To find out more, read our'
       hybrid_bill_paper_link: 'Hybrid Bill Background Paper'
       object_hybrid_bill: 'objecting to a hybrid bill'
       object_hybrid_bill_a: 'Any individual, group of individuals, organisation or group of organisations affected by a hybrid bill can object to it.'
-      object_hybrid_bill_b: 'This can lead to changes being made to the bill, called additional provisions.'
-      object_hybrid_bill_c: 'Objecting to additional provisions is separate to objecting to the original bill.'
+      object_hybrid_bill_b: 'This can lead to changes being made to the bill called additional provisions.'
       current_hybrid_bills: 'current hybrid bills'
       past_hybrid_bills: 'past hybrid bills'
+      object_additional_provision: 'objecting to an additional provision'
+      object_additional_provision_a: 'Objecting to an additional provision is separate to objecting to the original bill.'
+      object_additional_provision_b: 'Any individual, group of individuals, organisation or group of organisations affected by an additional provision can object to it.'
+      object_additional_provision_c: 'If MPs agree with your objection they have the power to change the original bill before it becomes law.'
+      current_additional_provisions: 'current additional provisions'
+      past_additional_provisions: 'past additional provisions'
     # home page
     show:
       overview: 'overview'
@@ -273,7 +307,7 @@ en:
       send_post: 'send by post'
       send_post_a: 'Post your completed petition template to Hybrid Bills Office, Houses of Parliament, London, SW1A 0AA.'
       send_person: 'send in person'
-      send_person_a: 'call'
+      send_person_a: 'Call'
       send_person_b: 'to arrange a time to deliver your completed petition template.'
       bill_updates: 'bill updates'
       bill_updates_a: 'For news and updates on the Bill, visit the'
@@ -281,10 +315,10 @@ en:
     writing-your-petition-online:
       online: 'online'
       to_write_petition: 'to write your petition'
-      to_write_petition_a: 'download and save the petition template to your device'
-      to_write_petition_b: 'complete the petition template'
-      to_write_petition_c: 'save your completed template'
-      to_write_petition_d: 'click the link at the end of your template to continue the process'
+      to_write_petition_a: 'Download and save the petition template to your device.'
+      to_write_petition_b: 'Complete the petition template.'
+      to_write_petition_c: 'Save your completed template.'
+      to_write_petition_d: 'Click the link at the end of your template to continue the process.'
       to_write_petition_e: 'We’ll ask you to upload your completed template later.'
       completed_template: 'have you completed your petition template?'
       completed_template_legend: 'please confirm that you completed your petition template'
@@ -305,12 +339,12 @@ en:
     document-submission:
       title: 'upload your completed template'
       upload_requirements_title: 'uploaded file must'
-      upload_requirements_a: 'be less than 2 MB in size'
-      upload_requirements_b: 'not include any images, graphics or videos'
+      upload_requirements_a: 'Be less than 2 MB in size.'
+      upload_requirements_b: 'Not include any images, graphics or videos.'
       upload_template: 'upload your petition template'
       upload_error_title: 'Errors'
-      upload_error_a: 'please make sure the file you have uploaded is doc, docx, rtf, txt, odt or pdf.'
-      upload_error_b: 'the file you have uploaded is too big. Please make sure it is smaller than 2 MB.'
+      upload_error_a: 'Please make sure the file you have uploaded is doc, docx, rtf, txt, odt or pdf.'
+      upload_error_b: 'The file you have uploaded is too big. Please make sure it is smaller than 2 MB.'
     # petitioner terms and conditions page
     terms-conditions:
       title: 'terms and conditions'

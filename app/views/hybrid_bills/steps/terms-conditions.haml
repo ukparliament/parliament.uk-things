@@ -75,3 +75,13 @@
           = label_tag 'termsAccept', t('user_forms.terms_conditions_accept').capitalize
           = hidden_field_tag 'hybrid_bill_terms[accepted]', true
       = submit_tag t('hybrid_bills.terms-conditions.send_petition_button').capitalize, class: 'btn--primary'
+
+    %br
+    .block.accent--mint
+      %h3= t('hybrid_bills.help_support').capitalize
+      %p
+        = t('hybrid_bills.help_support_a')
+        = link_to t('hybrid_bills.help_support_email'), "mailto:#{t('hybrid_bills.help_support_email')}"
+        = t('hybrid_bills.help_support_b')
+        = succeed "." do
+          = link_to t('hybrid_bills.help_support_phone'), "tel:#{t('hybrid_bills.help_support_phone').gsub(/\s+/, "")}"
