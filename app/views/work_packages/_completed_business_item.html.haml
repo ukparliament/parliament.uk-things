@@ -1,30 +1,32 @@
 - if business_item.class == Parliament::Utils::Helpers::BusinessItemGroupingHelper::BusinessItemGroupedObject
   %h3= "#{l(business_item.date, format: :default)}"
-  - business_item.nodes.each do |business_item_node|
-    - if business_item_node.sorted_procedure_steps_by_distance.any? || !business_item_node.weblink.empty?
-      %ul.list--block
+  %ol.list--block
+    - business_item.nodes.each do |business_item_node|
+      - if business_item_node.sorted_procedure_steps_by_distance.any? || !business_item_node.weblink.empty?
         %li
           .card
             .card__details
-              - business_item_node.sorted_procedure_steps_by_distance.each do |procedure_step|
-                %p
-                  - procedure_step.houses.each do |house|
-                    %span.hint= house.name
-                  = procedure_step.name
+              %ol.list
+                - business_item_node.sorted_procedure_steps_by_distance.each do |procedure_step|
+                  %li
+                    - procedure_step.houses.each do |house|
+                      %span.hint= house.name
+                    %p= procedure_step.name
               - unless business_item_node.weblink.empty?
                 %p= link_to t('work_packages.find_out_more_stage'), "#{business_item_node.weblink}"
 
 - else
   %h3= "#{l(business_item.date, format: :default)}"
-  - if business_item.sorted_procedure_steps_by_distance.any? || !business_item.weblink.empty?
-    %ul.list--block
+  %ol.list--block
+    - if business_item.sorted_procedure_steps_by_distance.any? || !business_item.weblink.empty?
       %li
         .card
           .card__details
-            - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
-              %p
-                - procedure_step.houses.each do |house|
-                  %span.hint= house.name
-                = procedure_step.name
+            %ol.list
+              - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
+                %li
+                  - procedure_step.houses.each do |house|
+                    %span.hint= house.name
+                  %p= procedure_step.name
             - unless business_item.weblink.empty?
               %p= link_to t('work_packages.find_out_more_stage'), "#{business_item.weblink}"

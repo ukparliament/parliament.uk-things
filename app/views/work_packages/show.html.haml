@@ -24,7 +24,7 @@
   %section
     .container
       %h2= t('.completed_stages')
-      %ul.track--alternative
+      %ol.track--alternative
         - @completed_business_items.each do |completed_business_item|
           %li
             = render partial: 'work_packages/completed_business_item', locals: { business_item: completed_business_item }
