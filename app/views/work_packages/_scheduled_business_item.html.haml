@@ -2,12 +2,12 @@
   .card
     .card__details
       %h3= "#{l(business_item.date, format: :default)}"
-
       - if business_item.sorted_procedure_steps_by_distance.any? || !business_item.weblink.empty?
-        - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
-          %p
-            - procedure_step.houses.each do |house|
-              %span.hint= house.name
-            = procedure_step.name
+        %ol.list
+          - business_item.sorted_procedure_steps_by_distance.each do |procedure_step|
+            %li
+              - procedure_step.houses.each do |house|
+                %span.hint= house.name
+              %p= procedure_step.name
         - unless business_item.weblink.empty?
           %p= link_to t('work_packages.find_out_more_stage'), "#{business_item.weblink}"
