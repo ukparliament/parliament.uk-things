@@ -61,20 +61,16 @@
 
     %p= t('.object_additional_provision_c')
 
-    %h3= t('.current_additional_provisions').capitalize
-
-    %ol.list--block
-      %li
-        .card
-          .card__details
-            %h3= link_to(("#{t('hybrid_bills.hs2_ap2')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"), hybrid_bill_path('3'))
-            %p= t('hybrid_bills.id3.petition_status_pre')
-
     %h3= t('.past_additional_provisions').capitalize
 
     %ol.list--block
       %li
         .card
           .card__details
-            %h3= link_to(("#{t('hybrid_bills.hs2_ap1')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"), hybrid_bill_path('2'))
+            %h4= link_to(("#{t('hybrid_bills.hs2_ap2')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"), hybrid_bill_path('3'))
+            %p= t('hybrid_bills.id3.petition_status_post')
+      %li
+        .card
+          .card__details
+            %h4= link_to(("#{t('hybrid_bills.hs2_ap1')} #{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"), hybrid_bill_path('2'))
             %p= t('hybrid_bills.id2.petition_status_post')
