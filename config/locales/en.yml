@@ -235,7 +235,7 @@ en:
       what_next_d: 'We’ll also send your petition to the Department for Transport (DfT). They can challenge it if they don’t believe you are affected by the Bill.'
       what_next_e: 'You will usually be invited to give evidence to the committee about your petition. Hearings are scheduled for autumn 2019.'
       # petition status
-      petition_status_pre: 'You can object from 11am on Wednesday 17 July 2019.'
+      petition_status_pre: 'You can object from 10am on Wednesday 17 July 2019.'
       petition_status_active: 'The deadline for objections is 1pm on Friday 16 August 2019.'
       petition_status_post: 'The deadline has passed.'
     # Global hybrid bills translations
