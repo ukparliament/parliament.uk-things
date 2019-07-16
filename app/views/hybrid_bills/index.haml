@@ -26,14 +26,6 @@
 
     %p= t('.intro_d')
 
-    %p
-      = t('.hybrid_bill_paper_text')
-      = succeed "." do
-        = link_to 'http://researchbriefings.parliament.uk/ResearchBriefing/Summary/SN06736', target: '_blank' do
-          = t('.hybrid_bill_paper_link')
-          %span.sr-only>
-            = t('open_new_window_link')
-
 %section
   .container
     %h2= t('.object_hybrid_bill').capitalize
@@ -48,8 +40,8 @@
       %li
         .card
           .card__details
-            %h3= link_to(("#{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"), hybrid_bill_path('1'))
-            %p= t('hybrid_bills.id1.petition_status_post')
+            %h3= link_to(("#{t('hybrid_bills.hs2')} #{t('hybrid_bills.hs2_bill').capitalize}"), hybrid_bill_path('4'))
+            %p= t('hybrid_bills.id4.petition_status_pre')
 
 %section
   .container
