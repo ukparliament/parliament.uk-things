@@ -6,8 +6,7 @@ RSpec.describe HybridBillsHelper do
     expect(subject).to be_a(Module)
   end
 
-  describe '#api_request' do
-    it { expect(subject.api_request).to be_a(Parliament::Request::BaseRequest) }
-  end
+  # describe '#api_request' do
+  #   it { expect(subject.api_request).to be_a(Parliament::Request::BaseRequest) }
+  # end
 end
-
