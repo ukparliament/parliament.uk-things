@@ -93,6 +93,12 @@
               = t('cookies_disabled_d')
               = t('hybrid_bills.object_by_email')
 
-
       =link_to t('hybrid_bills.object_online').capitalize, hybrid_bill_path(@business_id, step: 'writing-your-petition-online'), class: 'btn--primary'
       =link_to t('hybrid_bills.object_by_email').capitalize, hybrid_bill_email_path(@business_id), class: 'btn--primary--inverse'
+
+      .status--highlight.theme--warning
+        %p= "We regret that the submission portal is temporarily unavailable.  Please could you try to resubmit later."
+
+        %p= sanitize "Alternatively you can submit your petition by email <a href='mailto:hlprivatebills@parliament.uk'>hlprivatebills@parliament.uk</a> or you may post your petition to Mark Cooper, Hybrid Bill Office, House of Lords, Westminster, SW1A 0PW."
+
+        %p= sanitize "If you would like to speak to someone please contact  Mark Cooper on <a href='tel:020 7219 3231'>020 7219 3231</a> or Chris Salmon Percival on <a href='tel:077 1414 7043'>077 1414 7043</a>."
