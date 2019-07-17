@@ -1,9 +1,9 @@
 module HybridBillsHelper
   def self.api_request
     HybridBillRequest.new(
-      base_url: 'https://services-externalsubmissions.parliament.uk',
+      base_url: ENV['HYBRID_BILL_API_BASE_URL'],
       headers:  {
-        'CMS-Token':    'a88073f5-3df2-46d6-8bd2-7f38a0731af0',
+        'CMS-Token':    ENV['HYBRID_BILL_API_TOKEN'],
         'Content-Type': 'application/json',
         'Accept':       'application/json'
       },
