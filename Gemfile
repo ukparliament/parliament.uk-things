@@ -35,7 +35,7 @@ gem 'parliament-ntriple', '~> 0.4', require: false
 gem 'bandiera-client'
 
 # Use Pugin for front-end components and templates
-gem 'pugin', '~> 1.10', require: false
+gem 'pugin', '~> 1.10.10', require: false
 
 # Use Airbrake for error monitoring
 gem 'airbrake', '<8'
