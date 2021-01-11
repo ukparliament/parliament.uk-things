@@ -47,7 +47,7 @@ gem 'rack-rewrite'
 gem 'tzinfo-data'
 
 # Support markdown to HTML transformation
-gem 'redcarpet', '~> 3.0'
+gem 'redcarpet', '~> 3.5'
 
 gem 'vcard', '~> 0.2'
 

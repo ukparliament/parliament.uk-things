@@ -218,7 +218,7 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-vocab (2.2.9)
       rdf (>= 2.2, < 4.0)
-    redcarpet (3.4.0)
+    redcarpet (3.5.1)
     regexp_parser (1.3.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
@@ -341,7 +341,7 @@ DEPENDENCIES
   rails (~> 5.2)
   rails-controller-testing
   rake
-  redcarpet (~> 3.0)
+  redcarpet (~> 3.5)
   rspec-rails
   rubocop
   simplecov (~> 0.14)
