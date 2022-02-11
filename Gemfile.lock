@@ -174,7 +174,8 @@ GEM
     psych (3.1.0)
     public_suffix (3.0.3)
     pugin (1.10.10)
-    puma (3.10.0)
+    puma (4.3.11)
+      nio4r (~> 2.0)
     rack (2.0.6)
     rack-rewrite (1.5.1)
     rack-test (0.7.0)
@@ -334,7 +335,7 @@ DEPENDENCIES
   parliament-ruby (~> 1.0)
   parliament-utils (~> 0.11.3)
   pugin (~> 1.10.10)
-  puma (~> 3.10.0)
+  puma (~> 4.3.11)
   rack-rewrite
   rack-test (= 0.7.0)
   rack-timeout
